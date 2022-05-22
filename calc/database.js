@@ -60,6 +60,7 @@ function queryDatabase() {
 function clearDatabaseQueryTable() {
 	$("#calcMain").removeClass("splitInterface")
 	$("#queryArea").remove() // remove element from page
+	searchBarValue = '' // clear search bar
 	queryResult = [] // clear
 	queryResultInitial = [] // clear
 }

@@ -137,9 +137,7 @@ function initCalc(defSet = false) { // run after page has finished loading
 	saveCalcSettingsLocalStorage(true) // save default settings
 }
 
-var updLinkOnce = true
 function configureCalcInterface(initRun = false) { // switch interface layout (desktop or mobile devices)
-	if (updLinkOnce) { displayCalcNotification("Please update bookmark to https://gematro.com", 8000); updLinkOnce = false; }
 	if (optMatrixCodeRain && !initRun) { // update code rain
 		clearInterval(code_rain) // reset previous instance
 		document.getElementById("canv").style.display = "none"
@@ -171,7 +169,12 @@ function configureCalcInterface(initRun = false) { // switch interface layout (d
 	}
 }
 
-window.addEventListener('resize', function(){configureCalcInterface();updateTables()} ) // update interface on window resize
+window.addEventListener('resize', function(){ // update interface on window resize
+	if (!mobileUserAgent && navigator.maxTouchPoints <= 1) { // touch keyboard on Windows devices changes window size
+		configureCalcInterface();
+		updateTables();
+	}
+})
 
 function displayCalcNotification(msg, timeMs = 1000) {
 	if (document.getElementById('calcNotification') !== null) {

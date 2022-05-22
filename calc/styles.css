@@ -659,7 +659,9 @@ body {
 	font-size: 110%;
 }
 @media (min-width: 911px) { /* desktop */
-	white-space: nowrap; /* affects table performance */
+	.hP { /* single line history phrase */
+		white-space: nowrap; /* affects table performance */
+	}
 }
 .hPQ { /* history phrase - query table*/
 	text-align: right;
