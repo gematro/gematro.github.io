@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<head>
+<title>GEMATRO - Gematria Calculator</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=520, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" type="image/x-icon" href="res/favicon.ico">
+
+<script src="lib/jquery.min.js"></script>
+
+<script src="calc/gematria.js"></script>
+<script src="calc/calc.js"></script>
+<script src="calc/init-variables.js"></script>
+<script src="calc/ciphers.js"></script>
+
+<link rel="stylesheet" type="text/css" href="calc/styles.css">
+
+<script>
+window.onpaint = function() {
+	updateInterfaceColor(true); // update interface color (first run)
+}
+$(window).load(function(){
+	$("#loader").delay(157).fadeOut("fast");
+	// $("#loader").delay(287).fadeOut("fast");
+});
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<!--
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0000000000"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0000000000');
+</script>
+-->
+</head>
+
+<body onload="initCalc(true)">
+
+<div id="loader"></div>
+<canvas id="canv"></canvas>
+
+<!-- preload font -->
+<span style="font-family: 'Roboto Mono';"></span>
+
+<div id="calcMain">
+	<center>
+
+		<div id="calcOptionsPanel"></div>
+
+		<div id="colorControlsMenuArea"></div>
+		<div id="editCiphersMenuArea"></div>
+		<div id="dateCalcMenuArea"></div>
+
+		<div id="inputArea">
+		  <input id="queryDBbtn" class="hideValue" type="button" onclick="queryDatabase()" value="Query">
+		  <input id="phraseBox" autofocus type="text" enterkeyhint="done" spellcheck="false" autocomplete="off" oninput="updateEnabledCipherTable(); updateWordBreakdown(breakCipher,false,false);" onkeydown="phraseBoxKeypress(event.keyCode)" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)">
+		  <input id="enterPhraseBtn" type="button" onclick="phraseBoxKeypress(13)" value="&#9660;">
+		  <input id="highlightBox" type="text" enterkeyhint="done" spellcheck="false" autocomplete="off"><span id="clearFilterButton"></span>
+		</div>
+
+		<div id="enabledCiphTable"></div>
+
+		<div id="BreakdownDetails">
+			<div id="BreakdownSpot"></div>
+			<div id="ChartSpotScroll"><div id="ChartSpot"></div></div>
+		</div>
+	</center>
+
+
+	<center>	
+		<div id="HistoryTableArea"></div>
+	</center>
+</div>
+
+<script src="calc/breakdown.js"></script>
+
+<script src="calc/highlighter.js"></script>
+<script src="calc/export.js"></script>
+<script src="calc/export-csv.js"></script>
+<script src="calc/num-prop.js"></script>
+<script src="calc/edit-ciphers.js"></script>
+<script src="calc/date-calc.js"></script>
+<script src="calc/database.js"></script>
+<script src="calc/quick-guide.js"></script>
+
+<script src="calc/localstorage.js"></script>
+<script src="calc/encoding.js"></script>
+<script src="calc/encoding-ciphers.js"></script>
+
+<script src="calc/coderain.js"></script>
+<script src="lib/html2canvas.min.js"></script>
+<!-- html2canvas v1.0.0-alpha.12 -->
+
+</body>
