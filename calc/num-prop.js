@@ -8,13 +8,13 @@ function initNumberPropArrays() {
 		window.localStorage.getItem('fibonacciNumsStorage') === null ||
 		window.localStorage.getItem('starNumsStorage') === null)
 	{
-		populatePrimeNumbers(1000000) // 10 million is ~4.98MB, ~100ms (boolean)
+		populatePrimeNumbers(100000) // 10 million is ~4.98MB, ~100ms (boolean)
 		window.localStorage.setItem('primeNumsStorage', JSON.stringify(primeNums))
-		triangularNums = populateTriangularNumbers(10000000)
+		triangularNums = populateTriangularNumbers(1000000)
 		window.localStorage.setItem('triangularNumsStorage', JSON.stringify(triangularNums))
-		fibonacciNums = populateFibonacciNumbers(10000000)
+		fibonacciNums = populateFibonacciNumbers(1000000)
 		window.localStorage.setItem('fibonacciNumsStorage', JSON.stringify(fibonacciNums))
-		starNums = populateStarNumbers(10000000)
+		starNums = populateStarNumbers(1000000)
 		window.localStorage.setItem('starNumsStorage', JSON.stringify(starNums))
 	} else {
 		primeNums = JSON.parse(window.localStorage.getItem('primeNumsStorage'))
