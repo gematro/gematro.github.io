@@ -131,55 +131,18 @@ function displayFaq() {
 	$('<div id="darkOverlay" onclick="closePanel(&quot;.faqPanel&quot;)"></div>').appendTo('body'); // overlay
 
 	var o = '<div class="faqPanel">'
-	o += '<p><span class="qgBold2">FAQ</p>'
-	
-	o += '<hr class="numPropSeparator">'
-	
-	o += '<div style="margin-top: 1.5em;margin-bottom: 2em;"><span class="qgBold">GEMATRO</span> was made for <span class="qgBold">the advancement of learning.</span><br><br>'
-	
-	o += '<hr class="numPropSeparator">'
-	
-	o += '<p><span class="qgBold">1) What is gematria?</p>'
-	o += '<p>Gematria is a practice with a set of rules to connect and link letters to numbers. There are different ways to apply it. For example, it can be used as a cryptographic method to conceal information or it can be used as a source of inspiration to create art, write stories and narratives tied by numerical matches. One could use it for qabbalistic purposes or simply study the mathematics of it. I do not claim to have all of the answers, so feel free to explore and experiment, there is definitely something more to this peculiar and ancient practice.<br><br><span class="qgNote"><a class="qgLink" target="_blank" href="https://gematriaresearch.blogspot.com/">Gematria Research (Luís Gonçalves)</a></span><br><span class="qgNote">History of neglected ciphers and methods used in the practice of gematria</span></p>'
-	
-	o += '<hr class="numPropSeparator">'
 
-	o += '<p><span class="qgBold">2) What do these matches and patterns mean?</p>'
-	o += '<p>When two or more words or phrases share the same value inside any given numerical key, generally it means there is equivalence (a link) between these words or phrases solely within that numerical key. Either all matches are (mathematically) valid, or none of them are true. Any additional meaning or interpretation becomes speculative and heavily depends on the context which is outside of the rules of gematria. In some cases, you choose the "correct" interpretation according to your own perference and you may define an extended set of rules to experiment with. Every tool is a double edged sword, it can be used both destructively and constructively, so be mindful.</p>'
-	
+	o += '<div style="margin-top: 5.3em;">'
 	o += '<hr class="numPropSeparator">'
-
-	o += '<p><span class="qgBold">3) How do I decode something?</p>'
-	o += '<p>If there is something deliberately encoded inside a specific message, then you start looking for external clues, but there is a plethora of techniques to ensure security of any encrypted message. However, in most cases as you explore gematria and experiment with finding matching phrases, you try to embed some personal meaning into the story of your own liking. So this is "encoding" and you find external confirmations, or sources of inspiration for ideas that might be of your personal interest. For example, "time = cure = 47 Ordinal". Think of it and you might discover something, or it might be a waste of your time. Remember that it is tempting to fall into the trap of confirmation bias where one prefers to consider only such evidence that reinforces existing beliefs or narratives while other information that challenges the validity of it becomes ignored. The purpose of this software is to help you explore far and wide, so that you may learn.</p>'
 	
-	o += '<hr class="numPropSeparator">'
+	o += '<div style="margin-top: 2em; margin-bottom: 2em;">'
+	o += '<span class="qgBold">GEMATRO</span> was made for the surplus of learning.<br><span class="qgNote">Saun Virroco</span>'
+	o += '</div>'
 
-	o += '<p><span class="qgBold">4) Can I predict the future or figure out my destiny with these numbers?</p>'
-	o += '<p>You might get a spark of creative ideas and explore numerical links to get started with figuring out the direction, but it is ultimately your own informed choice and actions that shape your destiny. It is very dangerous to let some pattern guide you into the nowhere, but the belief and the choice is yours. In that sense, absolutely any encounter or practice affects your destiny in some way.</p>'
+	o += '<hr class="numPropSeparator">'
+	o += '</div>'
 	
-	o += '<hr class="numPropSeparator">'
-
-	o += '<p><span class="qgBold">5) I see patterns everywhere. What does that mean?</p>'
-	o += '<p>Our minds excel at pattern and shape recognition, so the more you come across a certain pattern, the more you notice it as if everywhere. It is a natural thing and your mind curiously thinks there must be something of value to you as it tries to figure out the "anomaly". You are looking for that 33, so here it is. If it becomes intrusive or annoying and you feel paranoid, withdraw for a couple of weeks and every time you notice a similar pattern resurface again, consciously ignore it, tell yourself you do not need it and you do not want to see it, so over time you will stop getting "confirmations" that keep confusing your mind. Sometimes a number is just a number and our imagination gets tricked with illusions. Once again, be mindful and guard the gates of your mind.</p>'
-	
-	o += '<hr class="numPropSeparator">'
-
-	o += '<p><span class="qgBold">6) Why do I need gematria? Can I "save" the world with it?</p>'
-	o += '<p>It is up to you what to make of it. It might lead you to studies that could deepen your understanding of Life. Therapeutic sessions of recreational gematria might distract you from trouble or pain (or magnify it, so be careful), but ultimately all of the answers lie within. You feel something is wrong, you want to know what is going on, you want to do something about it and the goal of external help is to guide you to look within yourself. What you share with the world is a mirror of your soul, so sometimes the thing that disturbs you <u>lies</u> within yourself. <br><br><span class="qgNote"><a class="qgLink" target="_blank" href="https://www.thesquaremagazine.com/mag/article/202306nonsense-as-a-factor-in-soul-growth/">Manly Palmer Hall - Nonsense as a Factor in Soul Growth</a></span></p>'
-	
-	o += '<hr class="numPropSeparator">'
-
-	o += '<p><span class="qgBold">7) Is there any "conspiracy" aimed against all mankind?</p>'
-	o += '<p>The "conspiracy" has been instilled within yourself by dystopian precautionary visions crafted by ailing and disturbed minds who feel discontent within themselves. By giving our attention to it we magnify it, accelerate it and make it come true as we live by it. If anything, there is a true conspiracy to make this world into a better place for all people to have life more fruitfully and abundantly, but it is a very challenging undertaking that requires dedication and perseverence. Knowingly or unknowingly, you may be a part of either conspiracy, even if you operate independently. Having that said, it is not smart to conspire against "all mankind" and "all living things". People who attempt to do that fall from the "conspiracy" of their own making.</p>'
-	
-	o += '<hr class="numPropSeparator">'
-
-	o += '<p><span class="qgBold">8) Who is the true enemy?</p>'
-	o += '<p>Ignorance. Superstition. Trauma. Hurt people carry the pain inside of them and turn from victims into perpetrators, passing it onto others. Similarly, passionate and caring people who misinform themselves turn into disinformers. The road to hell is paved with good intentions. It is tempting to become a fighter of injustices, but you lose the spark of light within yourself when you embody darkness. If you have been bestowed with the gift of intelligence, direct it properly. Build not fight. Heal yourself. Do not hurt other people. You do not know their story. Be a light unto others, serve as a good example. Nothing can be built without the cornerstone of love towards your fellow man and woman. You are not alone on this eternal quest to navigate unchartered waters of life.</p>'
-	
-	o += '<hr class="numPropSeparator">'
-
-	o += '<p style="text-align:left;"><span class="qgNote">This software should not be used to promote or engage in any activities that are hateful, divisive, or harmful towards individuals or groups of people.<br><br>In no event will the creator of this software be liable for any damages arising out of or in connection with the use of this software, including but not limited to direct, indirect, consequential, and incidental damages.<br><br>It is the responsibility of the user to ensure that they use this software in an ethical manner, avoiding any practices that may cause damage, harm or offense to others. User must take full responsibility for the information provided by this software and verify its accuracy before taking any actions based on it.<br><br>Finally, this software may contain links to external websites which are not under the control of the creator of this software. The creator of this software is not responsible for the contents of any linked website.</span></p></div>'
+	o += '<p><span class="qgNote">Special thanks to </span><span class="qgNote"><a class="qgLink" target="_blank" href="https://gematriaresearch.blogspot.com/">Gematria Research (Luís Gonçalves)</a></span></p>'
 	
 	o += '</div>'
 

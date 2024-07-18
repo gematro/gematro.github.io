@@ -30,10 +30,10 @@
 	--font-family-mono: "Roboto Mono", monospace;
 	--font-size-body: 95%;
 	--global-hue: 222;
-	--global-sat: 1.0;
+	--global-sat: 2.0;
 	--global-lit: 1.0;
-	--font-hue: 0;
-	--font-sat: 0;
+	--font-hue: 200;
+	--font-sat: 0.2;
 	--font-lit: 1.0;
 	--menu-bg-accent: hsl(var(--global-hue) calc(20% * var(--global-sat)) calc(28% * var(--global-lit)));
 	--menu-bg-accent2: hsl(var(--global-hue) calc(20% * var(--global-sat)) calc(24% * var(--global-lit)));
@@ -1456,7 +1456,7 @@ body {
 	left: 0;
 	z-index: 999;
 }
-.quickGuide, .faqPanel {
+.quickGuide {
 	background-color: var(--menu-bg-accent2);
 	color: var(--font-white-2);
 	font-family: var(--font-family);
@@ -1472,7 +1472,7 @@ body {
 	border: 1px solid var(--border-dark-accent);
 }
 @media (max-width: 911px) { /* mobile */
-	.quickGuide, .faqPanel {
+	.quickGuide {
 		top: 50% !important;
 		left: 50% !important;
 		transform: translateX(-50%) translateY(-50%);
@@ -1515,7 +1515,7 @@ body {
 /*                    About                   */
 /* ########################################## */
 
-.contactInfo {
+.contactInfo, .faqPanel {
 	background-color: var(--menu-bg-accent2);
 	color: var(--font-white-2);
 	font-family: var(--font-family), "Arial", sans-serif;
@@ -1532,11 +1532,19 @@ body {
 	z-index: 1000;
 	border: 1px solid var(--border-dark-accent);
 }
+.faqPanel {
+	height: 287px;
+}
 @media (max-width: 911px) { /* mobile */
 	.contactInfo {
 		width: 400px !important;
 		height: 80% !important;
 		max-height: 560px !important;
+	}
+	.faqPanel {
+		width: 400px !important;
+		height: 80% !important;
+		max-height: 287px !important;
 	}
 }
 .qgBoldCoin {

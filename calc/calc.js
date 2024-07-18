@@ -65,24 +65,24 @@ var optGradientChartsDefault = optGradientCharts
 
 var interfaceHue = 222 // calculator interface color
 var interfaceHueDefault = 222 // value for reset, updated on first run of updateInterfaceHue()
-var interfaceSat = 1.0 // interface saturation multiplier
-var interfaceSatDefault = 1.0
-var interfaceLit = 1.0  // interface lightness multiplier
+var interfaceSat = 2.0 // interface saturation multiplier
+var interfaceSatDefault = 2.0
+var interfaceLit = 1.0 // interface lightness multiplier
 var interfaceLitDefault = 1.0
 
-var fontHue = 0 // font and outline hue
-var fontHueDefault = 0 // value for reset, updated on first run of updateFontHue()
-var fontSat = 0 // font saturation
-var fontSatDefault = 0
-var fontLit = 1.0  // font lightness multiplier
+var fontHue = 200 // font and outline hue
+var fontHueDefault = 200 // value for reset, updated on first run of updateFontHue()
+var fontSat = 0.2 // font saturation
+var fontSatDefault = 0.2
+var fontLit = 1.0 // font lightness multiplier
 var fontLitDefault = 1.0
 
-var coderainHue = 148 // coderain hue
-var coderainHueDefault = 148 // value for reset, updated on first run of updateCoderainHue()
+var coderainHue = 120 // coderain hue
+var coderainHueDefault = 120 // value for reset, updated on first run of updateCoderainHue()
 var coderainSat = 0.2 // coderain saturation
 var coderainSatDefault = 0.2
-var coderainLit = 0.19  // coderain lightness
-var coderainLitDefault = 0.19
+var coderainLit = 0.2 // coderain lightness
+var coderainLitDefault = 0.2
 
 var optImageScale = 1.0 // image scaling factor for screenshots
 
@@ -310,7 +310,7 @@ function createAboutMenu() { // create menu with all cipher catergories
 function gotoGitHubRepo() { window.open("https://github.com/gematro/gematro.github.io", "_blank") }
 
 function gematroSvgLogo() {
-	return '<svg xmlns="http://www.w3.org/2000/svg" width="802.4" height="76.4" viewBox="0 0 2006 191"><defs><style>.cls-1 {fill: #bababa;fill-rule: evenodd;}</style></defs><path id="gematro_svg" data-name="gematroSVG" class="cls-1" d="M192.556,55.8L238,56l0.143-12.972q0-24.223-10.351-33.474T188.592,0.3H50.512q-29.07,0-39.31,9.47T0.961,45.23V145.873q0,26.21,10.24,35.676t39.31,9.47h138.08q29.07,0,39.31-9.47t10.241-35.676V80.026H116.8V113.94h75.757v40.522H47.429V35.32H192.556V55.8Zm332.1,135.218V155.343h-160.1V108.435h91.833V75.621H364.552V34h157.68V0.3H317.644V191.019H524.655Zm104.386,0V62.848l86.328,105.268h9.03L809.625,59.765V191.019h43.164V0.3H815.351L722.417,113.5,629.041,0.3H591.823V191.019h37.218Zm326.153,0,24-41.843H1105.39l24,41.843h52.19L1066.63,0.3h-44.71L908.726,191.019h46.468ZM1041.96,34.88l44.49,79.5H999.018Zm368.44-.44V0.3H1179.6V34.439h92.06v156.58h46.46V34.439h92.28Zm228.7,2.2q4.515,3.525,4.52,11.892V70.556q0,8.372-4.52,11.892t-16.63,3.524H1516.33V33.118h106.14Q1634.59,33.118,1639.1,36.642ZM1516.33,191.019V118.785h43.82l79.94,72.234h66.73l-90.73-72.234h26.2q23.565,0,34.14-8.588T1687,82.228V37.3q0-19.6-10.57-28.3t-34.14-8.7H1470.52V191.019h45.81Zm289.15-155.7H1959.2V154.462H1805.48V35.32Zm-46.47,110.553q0,26.21,10.13,35.676t39.42,9.47h147.55q29.07,0,39.31-9.47t10.24-35.676V45.23q0-25.983-10.02-35.456T1956.11,0.3H1808.56q-29.28,0-39.42,9.47T1759.01,45.23V145.873Z"/></svg>'
+	return '<svg xmlns="http://www.w3.org/2000/svg" width="802.4" height="76.4" viewBox="0 0 2006 191"><defs><style>.cls-1 {fill: #bababa;fill-rule: evenodd;}</style></defs><path id="gematro_svg" data-name="gematroSVG" class="cls-1" d="m 50.512694,0.29785155 c -19.379981,0 -32.484863,3.15932895 -39.311522,9.47265605 C 4.3745118,16.083835 0.9625807,27.902842 0.96191404,45.229491 V 145.87402 c 0,17.47332 3.41259776,29.36317 10.23925796,35.67383 6.826659,6.31066 19.931541,9.46999 39.311522,9.47265 H 188.58886 c 19.37998,0 32.48487,-3.15933 39.31152,-9.47265 6.82666,-6.31333 10.2386,-18.20318 10.23926,-35.67383 V 80.024412 H 116.80175 v 33.916018 h 75.75684 v 40.52246 H 47.426757 V 35.322265 H 192.55371 V 55.80078 l 45.44433,0.200195 0.14649,-12.973632 c 0,-16.148651 -3.45091,-27.304352 -10.35157,-33.4716792 C 220.8923,3.3883367 207.82639,0.29985155 188.59375,0.29785155 Z m 267.128896,0 V 191.0205 h 207.01172 l 0.005,-0.005 V 155.34179 H 364.55565 v -46.90918 h 91.83106 V 75.620115 H 364.55077 V 33.999023 H 522.23143 V 0.29785155 Z m 274.17968,0 V 191.0205 h 37.22168 v -0.005 -128.168942 l 86.32813,105.268552 h 9.02832 L 809.624,59.765623 V 191.0205 h 43.16406 V 0.29785155 H 815.35154 L 722.41697,113.50097 629.04295,0.29785155 Z m 430.09763,0 L 908.72556,191.0205 h 46.46973 v -0.005 l 23.99902,-41.84082 h 126.19629 l 23.999,41.84082 h 52.1924 L 1066.6308,0.29785155 Z m 157.6807,0 V 34.438476 h 92.0605 V 191.0205 h 46.46 V 34.438476 h 92.2803 V 0.29785155 Z m 290.9228,0 V 191.0205 h 45.8057 v -72.23632 h 43.8232 l 79.9365,72.23632 h 66.7334 l -90.7324,-72.23632 h 26.2012 c 15.71,0 27.0906,-2.86354 34.1406,-8.58887 7.05,-5.72533 10.5746,-15.048096 10.5713,-27.96875 V 37.299804 c 0,-13.066654 -3.5246,-22.500787 -10.5713,-28.3007808 C 1669.384,3.199029 1658.0033,0.29785155 1642.29,0.29785155 Z m 338.0371,0 c -19.52,0 -32.6589,3.15932895 -39.4189,9.47265605 -6.76,6.3133274 -10.1385,18.1323344 -10.1319,35.4589834 V 145.87402 c 0,17.47332 3.3786,29.36317 10.1319,35.67383 6.7533,6.31066 19.8923,9.4651 39.4189,9.46777 h 147.5488 c 19.38,0 32.4849,-3.15445 39.3116,-9.46777 6.8266,-6.31333 10.2392,-18.20318 10.2392,-35.67383 V 45.229491 c 0,-17.321983 -3.3395,-29.138774 -10.0195,-35.4541006 -6.68,-6.315327 -19.8579,-9.47687218 -39.5313,-9.47753885 z M 1516.3281,33.120116 h 106.1426 c 8.08,0 13.6242,1.171177 16.6308,3.520508 3.01,2.349998 4.5133,6.311654 4.5166,11.889648 v 22.026367 c 0,5.581328 -1.5032,9.542984 -4.5166,11.889648 -3.0133,2.346664 -8.5575,3.522724 -16.6308,3.525391 h -106.1426 z m -474.3701,1.757813 44.4922,79.501951 h -87.43167 z m 763.5205,0.439453 h 153.7207 V 154.46289 H 1805.4785 V 35.322265 Z m 61.4355,34.843749 c -7.3809,0 -13.3203,5.103237 -13.3203,11.445312 v 26.777347 c 0,6.34207 5.9394,11.45019 13.3203,11.45019 h 31.1621 c 7.3809,0 13.3252,-5.10812 13.3252,-11.45019 V 81.606443 c 0,-6.342075 -5.9443,-11.445312 -13.3252,-11.445312 z"/></svg>'
 }
 
 // ========================= Options Menu ===========================
