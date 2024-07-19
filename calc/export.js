@@ -406,7 +406,7 @@ function HSLtoHSV(h, s, l) {
 	};
 }
 
-function HSVtoRGB(h, s, v) {
+function HSVtoRGB(h, s, v, mode = 0) {
 	var r, g, b, i, f, p, q, t;
 	h = h / 360, s = s / 100, v = v / 100;
 
@@ -423,5 +423,14 @@ function HSVtoRGB(h, s, v) {
 		case 4: r = t, g = p, b = v; break;
 		case 5: r = v, g = p, b = q; break;
 	}
-	return 'rgb('+Math.round(r * 255)+','+Math.round(g * 255)+','+Math.round(b * 255)+')'
+	var rgb = ''
+	if (mode = 0) { // always
+		rgb = 'rgb('+Math.round(r * 255)+','+Math.round(g * 255)+','+Math.round(b * 255)+')'
+	} else {
+		let hR = numBaseXtoY(Math.round(r * 255), 10, 16) // hex format
+		let hG = numBaseXtoY(Math.round(g * 255), 10, 16)
+		let hB = numBaseXtoY(Math.round(b * 255), 10, 16)
+		rgb = '#'+hR+hG+hB // #000000, colorTheme value
+	}
+	return rgb
 }

@@ -138,23 +138,25 @@ body {
 	overflow: overlay;
 }
 
-::-webkit-scrollbar {
-	width: 16px;
-	height: 16px;
-}
-
-::-webkit-scrollbar-thumb {
-	background: rgba(128, 128, 128, 0.5);
-	/*border-radius: 20px;*/
-}
-
-::-webkit-scrollbar-track {
-	background: rgba(0, 0, 0, 0.2);
-}
-
-::-webkit-scrollbar-corner
-{
-	background: rgba(0, 0, 0, 0.2);
+@media only screen and (min-device-width: 1024px) {
+	::-webkit-scrollbar {
+		width: 16px;
+		height: 16px;
+	}
+	
+	::-webkit-scrollbar-thumb {
+		background: rgba(128, 128, 128, 0.5);
+		/*border-radius: 20px;*/
+	}
+	
+	::-webkit-scrollbar-track {
+		background: rgba(0, 0, 0, 0.2);
+	}
+	
+	::-webkit-scrollbar-corner
+	{
+		background: rgba(0, 0, 0, 0.2);
+	}	
 }
 
 /* ########################################## */

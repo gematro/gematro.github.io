@@ -131,12 +131,18 @@ function initCalc(defSet = false) { // run after page has finished loading
 	generateRndColors()
 	if (runOnceRestoreCalcSet && window.localStorage.getItem('userCalcSettings') !== null) {
 		runOnceRestoreCalcSet = false; restoreCalcSettingsLocalStorage(true); return; }
+	updateBrowserTabThemeColor()
 	saveInitialCiphers()
 	initCiphers() // update default ciphers
 	createCalcMenus()
 	enableDefaultCiphers()
 	saveCalcSettingsLocalStorage(true) // save default settings
 	// showWelcomeMessage("Welcome to GEMATRO!")
+}
+
+function updateBrowserTabThemeColor() { // dynamic browser interface color
+	let themeColor = HSLtoRGB(Number(interfaceHue), 14*Number(interfaceSat), 14*Number(interfaceLit), 1)
+	document.querySelector('meta[name="theme-color"]').setAttribute('content', themeColor) // same as var(--table-row-odd)
 }
 
 var welcomeShown = false
@@ -810,6 +816,7 @@ function updateInterfaceHue(firstrun = false) { // change interface hue
 	var root = document.documentElement
 	root.style.setProperty("--global-hue", interfaceHue.toString()) // update :root CSS variable
 	if (firstrun) interfaceHueDefault = interfaceHue // set default color for reset
+	updateBrowserTabThemeColor()
 }
 function updateInterfaceSat(firstrun = false) { // change interface saturation
 	// update saturation from slider if element exists
@@ -817,6 +824,7 @@ function updateInterfaceSat(firstrun = false) { // change interface saturation
 	var root = document.documentElement
 	root.style.setProperty("--global-sat", interfaceSat.toString()) // update :root CSS variable
 	if (firstrun) interfaceSatDefault = interfaceSat // set default color for reset
+	updateBrowserTabThemeColor()
 }
 function updateInterfaceLit(firstrun = false) { // change interface lightness
 	// update lightness from slider if element exists
@@ -824,6 +832,7 @@ function updateInterfaceLit(firstrun = false) { // change interface lightness
 	var root = document.documentElement
 	root.style.setProperty("--global-lit", interfaceLit.toString()) // update :root CSS variable
 	if (firstrun) interfaceLitDefault = interfaceLit // set default color for reset
+	updateBrowserTabThemeColor()
 }
 
 function updateFontHue(firstrun = false) { // change font and outline hue

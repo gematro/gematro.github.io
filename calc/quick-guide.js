@@ -142,7 +142,7 @@ function displayFaq() {
 	o += '<hr class="numPropSeparator">'
 	o += '</div>'
 	
-	o += '<p><span class="qgNote">Special thanks to </span><span class="qgNote"><a class="qgLink" target="_blank" href="https://gematriaresearch.blogspot.com/">Gematria Research (Luís Gonçalves)</a></span></p>'
+	o += '<p><span class="qgNote">Special thanks to </span><span class="qgNote"><a class="qgLink" target="_blank" href="https://gematriaresearch.blogspot.com/">Luís Gonçalves (Gematria Research)</a></span></p>'
 	
 	o += '</div>'
 
