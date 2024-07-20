@@ -276,7 +276,6 @@ function displayCipherCatDetailed(curCat) {
 	var chk = ""; var o = ""
 	if (navigator.maxTouchPoints > 1) {
 		o += '<input class="intBtn3" type="button" value="Toggle Category" style="width: 100%; margin-top: 0.1em" onclick="toggleCipherCategory(&quot;'+curCat+'&quot;)">'
-		o += '<div style="padding: 0.25em;"></div>'
 	}
 	o += '<table class="cipherCatDetails"><tbody>'
 	for (i = 0; i < cipherList.length; i++) {
@@ -732,7 +731,7 @@ function toggleColorControlsMenu(redraw = false) { // display control menu to ad
 		o += '<tr><td class="colLabel">All Ciphers Color:</td>'
 		o += '<td class="colLabelSmall">Hue</td>'
 		o += '<td><input type="number" step="2" min="-360" max="360" value="'+globColors.H+'" class="colSlider2" id="globalSliderHue" oninput="changeCipherColors(&quot;globalSliderHue&quot;, &quot;Hue&quot;)"></td>'
-		o += '<td class="colLabelSmall">Saturation</td>'
+		o += '<td class="colLabelSmall">Sat</td>'
 		o += '<td><input type="number" step="1" min="-100" max="100" value="'+globColors.S+'" class="colSlider2" id="globalSliderSaturation" oninput="changeCipherColors(&quot;globalSliderSaturation&quot;, &quot;Saturation&quot;)"></td>'
 		o += '<td class="colLabelSmall">Lightness</td>'
 		o += '<td><input type="number" step="1" min="-100" max="100" value="'+globColors.L+'" class="colSlider2" id="globalSliderLightness" oninput="changeCipherColors(&quot;globalSliderLightness&quot;, &quot;Lightness&quot;)"></td>'
@@ -742,7 +741,7 @@ function toggleColorControlsMenu(redraw = false) { // display control menu to ad
 		o += '<tr><td class="colLabel" style="padding-right: 0.4em;">Interface Color:</td>'
 		o += '<td class="colLabelSmall">Hue</td>'
 		o += '<td><input type="number" step="1" min="0" max="359" value="'+interfaceHue+'" class="colSlider2" id="interfaceHueSlider" oninput="updateInterfaceHue()"></td>'
-		o += '<td class="colLabelSmall">Saturation</td>'
+		o += '<td class="colLabelSmall">Sat</td>'
 		o += '<td><input type="number" step="0.1" min="0" max="10.0" value="'+interfaceSat+'" class="colSlider2" id="interfaceSatSlider" oninput="updateInterfaceSat()"></td>'
 		o += '<td class="colLabelSmall">Lightness</td>'
 		o += '<td><input type="number" step="0.01" min="0" max="10.0" value="'+interfaceLit+'" class="colSlider2" id="interfaceLitSlider" oninput="updateInterfaceLit()"></td>'
@@ -751,7 +750,7 @@ function toggleColorControlsMenu(redraw = false) { // display control menu to ad
 		o += '<tr><td class="colLabel" style="padding-right: 0.4em;">Font & Outline Color:</td>'
 		o += '<td class="colLabelSmall">Hue</td>'
 		o += '<td><input type="number" step="1" min="0" max="359" value="'+fontHue+'" class="colSlider2" id="fontHueSlider" oninput="updateFontHue()"></td>'
-		o += '<td class="colLabelSmall">Saturation</td>'
+		o += '<td class="colLabelSmall">Sat</td>'
 		o += '<td><input type="number" step="0.01" min="0" max="1.0" value="'+fontSat+'" class="colSlider2" id="fontSatSlider" oninput="updateFontSat()"></td>'
 		o += '<td class="colLabelSmall">Lightness</td>'
 		o += '<td><input type="number" step="0.01" min="0" max="10.0" value="'+fontLit+'" class="colSlider2" id="fontLitSlider" oninput="updateFontLit()"></td>'
@@ -760,7 +759,7 @@ function toggleColorControlsMenu(redraw = false) { // display control menu to ad
 		o += '<tr><td class="colLabel" style="padding-right: 0.4em;">Code Rain Color:</td>'
 		o += '<td class="colLabelSmall">Hue</td>'
 		o += '<td><input type="number" step="1" min="0" max="359" value="'+coderainHue+'" class="colSlider2" id="coderainHueSlider" oninput="updateCoderainHue()"></td>'
-		o += '<td class="colLabelSmall">Saturation</td>'
+		o += '<td class="colLabelSmall">Sat</td>'
 		o += '<td><input type="number" step="0.01" min="0" max="1.0" value="'+coderainSat+'" class="colSlider2" id="coderainSatSlider" oninput="updateCoderainSat()"></td>'
 		o += '<td class="colLabelSmall">Lightness</td>'
 		o += '<td><input type="number" step="0.01" min="0" max="1.0" value="'+coderainLit+'" class="colSlider2" id="coderainLitSlider" oninput="updateCoderainLit()"></td>'
@@ -812,7 +811,8 @@ function updateInterfaceColor(firstrun = false) { // change interface color
 
 function updateInterfaceHue(firstrun = false) { // change interface hue
 	// update hue from slider if element exists
-	if (document.getElementById("interfaceHueSlider") !== null) interfaceHue = document.getElementById("interfaceHueSlider").value
+	let e = document.getElementById("interfaceHueSlider")
+	if (e !== null && !isNaN(e.value) && e.value !== '') interfaceHue = e.value // non empty value, number
 	var root = document.documentElement
 	root.style.setProperty("--global-hue", interfaceHue.toString()) // update :root CSS variable
 	if (firstrun) interfaceHueDefault = interfaceHue // set default color for reset
@@ -820,7 +820,8 @@ function updateInterfaceHue(firstrun = false) { // change interface hue
 }
 function updateInterfaceSat(firstrun = false) { // change interface saturation
 	// update saturation from slider if element exists
-	if (document.getElementById("interfaceSatSlider") !== null) interfaceSat = document.getElementById("interfaceSatSlider").value
+	let e = document.getElementById("interfaceSatSlider")
+	if (e !== null && !isNaN(e.value) && e.value !== '') interfaceSat = e.value // non empty value, number
 	var root = document.documentElement
 	root.style.setProperty("--global-sat", interfaceSat.toString()) // update :root CSS variable
 	if (firstrun) interfaceSatDefault = interfaceSat // set default color for reset
@@ -828,7 +829,8 @@ function updateInterfaceSat(firstrun = false) { // change interface saturation
 }
 function updateInterfaceLit(firstrun = false) { // change interface lightness
 	// update lightness from slider if element exists
-	if (document.getElementById("interfaceLitSlider") !== null) interfaceLit = document.getElementById("interfaceLitSlider").value
+	let e = document.getElementById("interfaceLitSlider")
+	if (e !== null && !isNaN(e.value) && e.value !== '') interfaceLit = e.value // non empty value, number
 	var root = document.documentElement
 	root.style.setProperty("--global-lit", interfaceLit.toString()) // update :root CSS variable
 	if (firstrun) interfaceLitDefault = interfaceLit // set default color for reset
@@ -837,21 +839,24 @@ function updateInterfaceLit(firstrun = false) { // change interface lightness
 
 function updateFontHue(firstrun = false) { // change font and outline hue
 	// update hue from slider if element exists
-	if (document.getElementById("fontHueSlider") !== null) fontHue = document.getElementById("fontHueSlider").value
+	let e = document.getElementById("fontHueSlider")
+	if (e !== null && !isNaN(e.value) && e.value !== '') fontHue = e.value // non empty value, number
 	var root = document.documentElement
 	root.style.setProperty("--font-hue", fontHue.toString()) // update :root CSS variable
 	if (firstrun) fontHueDefault = fontHue // set default color for reset
 }
 function updateFontSat(firstrun = false) { // change font and outline saturation
 	// update saturation from slider if element exists
-	if (document.getElementById("fontSatSlider") !== null) fontSat = document.getElementById("fontSatSlider").value
+	let e = document.getElementById("fontSatSlider")
+	if (e !== null && !isNaN(e.value) && e.value !== '') fontSat = e.value // non empty value, number
 	var root = document.documentElement
 	root.style.setProperty("--font-sat", fontSat.toString()) // update :root CSS variable
 	if (firstrun) fontSatDefault = fontSat // set default color for reset
 }
 function updateFontLit(firstrun = false) { // change font and outline lightness
 	// update lightness from slider if element exists
-	if (document.getElementById("fontLitSlider") !== null) fontLit = document.getElementById("fontLitSlider").value
+	let e = document.getElementById("fontLitSlider")
+	if (e !== null && !isNaN(e.value) && e.value !== '') fontLit = e.value // non empty value, number
 	var root = document.documentElement
 	root.style.setProperty("--font-lit", fontLit.toString()) // update :root CSS variable
 	if (firstrun) fontLitDefault = fontLit // set default color for reset
@@ -859,17 +864,20 @@ function updateFontLit(firstrun = false) { // change font and outline lightness
 
 function updateCoderainHue(firstrun = false) { // change coderain hue
 	// update hue from slider if element exists
-	if (document.getElementById("coderainHueSlider") !== null) coderainHue = document.getElementById("coderainHueSlider").value
+	let e = document.getElementById("coderainHueSlider")
+	if (e !== null && !isNaN(e.value) && e.value !== '') coderainHue = e.value // non empty value, number
 	if (firstrun) coderainHueDefault = coderainHue // set default color for reset
 }
 function updateCoderainSat(firstrun = false) { // change coderain saturation
 	// update saturation from slider if element exists
-	if (document.getElementById("coderainSatSlider") !== null) coderainSat = document.getElementById("coderainSatSlider").value
+	let e = document.getElementById("coderainSatSlider")
+	if (e !== null && !isNaN(e.value) && e.value !== '') coderainSat = e.value // non empty value, number
 	if (firstrun) coderainSatDefault = coderainSat // set default color for reset
 }
 function updateCoderainLit(firstrun = false) { // change coderain lightness
 	// update lightness from slider if element exists
-	if (document.getElementById("coderainLitSlider") !== null) coderainLit = document.getElementById("coderainLitSlider").value
+	let e = document.getElementById("coderainLitSlider")
+	if (e !== null && !isNaN(e.value) && e.value !== '') coderainLit = e.value // non empty value, number
 	if (firstrun) coderainLitDefault = coderainLit // set default color for reset
 }
 
@@ -930,6 +938,13 @@ function resetColorControls() { // set all color controls to zero
 	if (document.getElementById("fontHueSlider") !== null) document.getElementById("fontHueSlider").value = fontHue
 	if (document.getElementById("fontSatSlider") !== null) document.getElementById("fontSatSlider").value = fontSat
 	if (document.getElementById("fontLitSlider") !== null) document.getElementById("fontLitSlider").value = fontLit
+
+	coderainHue = coderainHueDefault // reset matrix code rain color
+	coderainSat = coderainSatDefault
+	coderainLit = coderainLitDefault
+	if (document.getElementById("coderainHueSlider") !== null) document.getElementById("coderainHueSlider").value = coderainHue
+	if (document.getElementById("coderainSatSlider") !== null) document.getElementById("coderainSatSlider").value = coderainSat
+	if (document.getElementById("coderainLitSlider") !== null) document.getElementById("coderainLitSlider").value = coderainLit
 	updateInterfaceColor()
 
 	updateTables() // update

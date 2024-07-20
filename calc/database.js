@@ -186,7 +186,7 @@ function updateDatabaseQueryTable(stPos = 0, dItems, scrollBarEvent = false) { /
 		ms = '<span class="minimizeLabel">Click to minimize</span>'
 		ms += '<div id="queryMinBtn">_</div>' // minimize button
 		ms += '<input type="range" min="0" max="'+sliderMax+'" value="'+curSliderPos+'" class="qSlider" id="queryScrollbar">' // slider/scrollbar
-		ms += '<input id="querySearchInput" type="text" spellcheck="false" autocomplete="off" value="'+searchBarValue+'" placeholder="Find...">' // search bar
+		ms += '<input id="querySearchInput" type="text" enterkeyhint="done" spellcheck="false" autocomplete="off" value="'+searchBarValue+'" placeholder="Find...">' // search bar
 		ms += '<table id="QueryTable" class="HistoryTable" data-startpos='+stPos+' data-dispitems='+dItems+'>'
 		ms += '<tbody>'
 	} else { // scrollbar used
@@ -365,6 +365,7 @@ function unloadDatabase() {
 	updateInterfaceColor() // update interface color
 
 	$("#queryDBbtn").addClass("hideValue") // hide query button
+	$("#phraseBox").removeClass("filterPhraseBox") // restore width
 	$("#clearDBqueryBtn").addClass("hideValue") // clear button
 	$("#unloadDBBtn").addClass("hideValue") // unload database button
 	$("#btn-export-db-query").addClass("hideValue") // export button

@@ -219,6 +219,7 @@ function removeNotMatchingPhrases() {
 	
 	var o = '<input id="btn-clear-active-filter" type="button" value="X" onclick="removeActiveFilter();displayCipherCatDetailed(cCat[0]);"/>'
 	$("#clearFilterButton").html(o) // clear active filter button
+	$("#highlightBox").addClass("filterHighlightBox") // narrower field
 	
 	autoHistoryTableLayout()
 	if (optFiltSameCipherMatch) {
@@ -282,6 +283,7 @@ function updateHistoryTableSameCiphMatch() {
 
 function removeActiveFilter() {
 	$("#clearFilterButton").html("") // remove clear button
+	$("#highlightBox").removeClass("filterHighlightBox") // restore field
 	$("#highlightBox").val("") // clear highlightBox box
 
 	for (i = 0; i < userOpenCiphers.length; i++) {

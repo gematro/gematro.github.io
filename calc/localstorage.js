@@ -42,6 +42,7 @@ function restoreCalcSettingsLocalStorage(silentMode = false) {
 	updateInterfaceColor(true) // update interface color (first run)
 	if (userDBlive.length !== 0) { // restore controls if live database is loaded
 		$("#queryDBbtn").removeClass("hideValue") // display query button
+		$("#phraseBox").addClass("filterPhraseBox") // narrower field
 		$("#clearDBqueryBtn").removeClass("hideValue") // clear button
 		$("#unloadDBBtn").removeClass("hideValue") // unload database button
 		$("#btn-export-db-query").removeClass("hideValue") // export button

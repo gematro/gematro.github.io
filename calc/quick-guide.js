@@ -132,7 +132,7 @@ function displayFaq() {
 
 	var o = '<div class="faqPanel">'
 
-	o += '<div style="margin-top: 5.3em;">'
+	o += '<div style="margin-top: 2.6em;">'
 	o += '<hr class="numPropSeparator">'
 	
 	o += '<div style="margin-top: 2em; margin-bottom: 2em;">'

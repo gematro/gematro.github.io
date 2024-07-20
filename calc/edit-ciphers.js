@@ -57,9 +57,9 @@ function checkCustCipherName() { // redraw add/update cipher button
 
 	var o = ""
 	if (updFlag) { // cipher exists
-		o += '<input class="ciphEditBtn" type="button" value="Update Existing Cipher" onclick="addNewCipherAction()">'
-		o += '<input class="ciphEditBtn" type="button" value="New Random Color" onclick="addNewCipherAction(true)">'
-		o += '<input class="ciphEditBtn" type="button" value="Delete Cipher" onclick="deleteCipherAction()">'
+		o += '<input class="ciphEditBtn" type="button" value="Update Cipher" onclick="addNewCipherAction()">'
+		o += '<input class="ciphEditBtn" type="button" value="Random Color" onclick="addNewCipherAction(true)">'
+		o += '<input class="ciphEditBtn" type="button" value="Delete" onclick="deleteCipherAction()">'
 		document.getElementById("custCipherButtonArea").innerHTML = o
 	} else {
 		o += '<input class="ciphEditBtn" type="button" value="Add New Cipher" onclick="addNewCipherAction()">'
@@ -243,6 +243,7 @@ function initCalcCustCiph(editorOpened = true) {
 	if (editorOpened) checkCustCipherName() // redraw add/update custom cipher button
 	if (userDBlive.length !== 0) { // restore controls if live database is loaded
 		$("#queryDBbtn").removeClass("hideValue") // display query button
+		$("#phraseBox").addClass("filterPhraseBox") // narrower field
 		$("#clearDBqueryBtn").removeClass("hideValue") // clear button
 		$("#unloadDBBtn").removeClass("hideValue") // unload database button
 		$("#btn-export-db-query").removeClass("hideValue") // export button

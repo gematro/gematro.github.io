@@ -38,7 +38,7 @@
 	--menu-bg-accent: hsl(var(--global-hue) calc(20% * var(--global-sat)) calc(28% * var(--global-lit)));
 	--menu-bg-accent2: hsl(var(--global-hue) calc(20% * var(--global-sat)) calc(24% * var(--global-lit)));
 	--breakdown-bg-accent: hsl(var(--global-hue) calc(21% * var(--global-sat)) calc(13% * var(--global-lit)));
-	--btn-bg-accent: hsl(var(--global-hue) calc(20% * var(--global-sat)) calc(22% * var(--global-lit)));
+	--btn-bg-accent: hsl(var(--global-hue) calc(20% * var(--global-sat)) calc(21% * var(--global-lit)));
 	--btn-hover-accent: hsl(var(--global-hue) calc(13% * var(--global-sat)) calc(33% * var(--global-lit)));
 	--btn-active-accent: hsl(var(--global-hue) calc(13% * var(--global-sat)) calc(39% * var(--global-lit)));
 	--body-bg-accent: hsl(var(--global-hue) calc(22% * var(--global-sat)) calc(16% * var(--global-lit)));
@@ -156,7 +156,7 @@ body {
 	::-webkit-scrollbar-corner
 	{
 		background: rgba(0, 0, 0, 0.2);
-	}	
+	}
 }
 
 /* ########################################## */
@@ -553,11 +553,13 @@ body {
 	font-weight: 500;
 	margin-left: 0.25em;
 	font-family: var(--font-family);
-	padding: 0.2em 0.55em 0.2em 0.55em;
 	border: 1px solid var(--border-accent);
-	background-color: var(--menu-bg-accent2);
+	background-color: var(--btn-bg-accent);
 	font-size: 100%;
 	outline: none;
+	height: 27px;
+	min-width: 27px;
+    max-width: 27px;
 }
 
 #btn-clear-active-filter:hover { background-color: var(--btn-hover-accent); }
@@ -582,10 +584,16 @@ body {
 }
 @media (max-width: 911px) { /* mobile */
 	#phraseBox {
-		width: 300px;
+		width: 287px;
 	}
 	#highlightBox {
-		width: 100px;
+		width: 98px;
+	}
+	.filterPhraseBox {
+		width: 254px !important;
+	}
+	.filterHighlightBox {
+		width: 68px !important;
 	}
 }
 @media (min-width: 911px) { /* desktop */
@@ -594,6 +602,12 @@ body {
 	}
 	#highlightBox {
 		width: 200px;
+	}
+	.filterPhraseBox {
+		width: 421px !important;
+	}
+	.filterHighlightBox {
+		width: 170px !important;
 	}
 }
 #phraseBox:focus, #highlightBox:focus {
@@ -743,7 +757,7 @@ body {
 	font-family: var(--font-family);
 	outline: none;
 	background-color: var(--btn-bg-accent);
-	background-color: transparent;
+	/* background-color: transparent; */
 }
 .intBtn2, .ciphEditBtn { /* Cipher Categories */
 	display: inline-block;
@@ -758,7 +772,7 @@ body {
 	font-family: var(--font-family);
 	outline: none;
 	background-color: var(--btn-bg-accent);
-	background-color: transparent;
+	/* background-color: transparent; */
 }
 .ciphEditBtn {
 	width: auto;
@@ -777,11 +791,12 @@ body {
 	font-family: var(--font-family);
 	outline: none;
 	background-color: var(--btn-bg-accent);
-	background-color: transparent;
+	/* background-color: transparent; */
 }
 @media (max-width: 911px) { /* mobile */
 	#queryDBbtn {
-		width: 40px !important;
+		min-width: 30px !important;
+		max-width: 30px !important;
 	}
 }
 .closeMenuBtn {
@@ -814,15 +829,15 @@ body {
 }
 #queryDBbtn {
 	padding: 0em;
-	margin: 0em 0.3em;
+	margin: 0em 0.25em 0em 0em;
 	width: 75px;
 }
 #enterPhraseBtn {
 	background-color: var(--input-bg-accent);
 	padding: 0em;
 	margin: 0em 0em 0em 0.3em;
-	min-width: 30px;
-	max-width: 30px;
+	min-width: 27px;
+	max-width: 27px;
 	color: var(--border-accent);
 }
 #calcNotification {
@@ -968,7 +983,7 @@ body {
 	left: 15%;
 	height: 77%;
 	width: 70%;
-	overflow: auto;
+	overflow: none;
 	z-index: 1000;
 	-webkit-user-select: none;
 	-moz-user-select: none;
@@ -1003,6 +1018,7 @@ body {
 	display: inline-block;
 }
 .imgDataArea {
+	overflow: auto;
 	display: grid;
 	place-items: center;
 }
@@ -1535,7 +1551,7 @@ body {
 	border: 1px solid var(--border-dark-accent);
 }
 .faqPanel {
-	height: 287px;
+	height: 200px;
 }
 @media (max-width: 911px) { /* mobile */
 	.contactInfo {
@@ -1546,7 +1562,7 @@ body {
 	.faqPanel {
 		width: 400px !important;
 		height: 80% !important;
-		max-height: 287px !important;
+		max-height: 200px !important;
 	}
 }
 .qgBoldCoin {

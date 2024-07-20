@@ -59,6 +59,7 @@ function importFileAction(file) {
 			} else {
 				userDBlive = [...userHist] // live database mode
 				$("#queryDBbtn").removeClass("hideValue") // display query button
+				$("#phraseBox").addClass("filterPhraseBox") // narrower field
 				$("#clearDBqueryBtn").removeClass("hideValue") // clear button
 				$("#unloadDBBtn").removeClass("hideValue") // unload database button
 				$("#btn-export-db-query").removeClass("hideValue") // export button
@@ -105,6 +106,7 @@ function importFileAction(file) {
 			updateInterfaceColor(true) // update interface color (first run)
 			if (userDBlive.length !== 0) { // restore controls if live database is loaded
 				$("#queryDBbtn").removeClass("hideValue") // display query button
+				$("#phraseBox").addClass("filterPhraseBox") // narrower field
 				$("#clearDBqueryBtn").removeClass("hideValue") // clear button
 				$("#unloadDBBtn").removeClass("hideValue") // unload database button
 				$("#btn-export-db-query").removeClass("hideValue") // export button
@@ -162,6 +164,7 @@ function importFileAction(file) {
 				userDB.push(tmp) // add phrase (no check for duplicates)
 			}
 			$("#queryDBbtn").removeClass("hideValue") // display query button
+			$("#phraseBox").addClass("filterPhraseBox") // narrower field
 			$("#clearDBqueryBtn").removeClass("hideValue") // clear button
 			$("#unloadDBBtn").removeClass("hideValue") // unload database button
 			$("#btn-export-db-query").removeClass("hideValue") // export button
