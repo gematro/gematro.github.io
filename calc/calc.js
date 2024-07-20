@@ -168,8 +168,8 @@ function configureCalcInterface(initRun = false) { // switch interface layout (d
 		colorMenuColumns = 1
 		enabledCiphColumns = 2
 		optCompactCiphCount = 4
-		chLimit = 17 // character limit, used to switch to a long breakdown style
-		maxRowWidth = 20 // one row character limit (long breakdown)
+		chLimit = 13 // character limit, used to switch to a long breakdown style
+		maxRowWidth = 18 // one row character limit (long breakdown)
 		$('#queryDBbtn').val('Q') // change Query button label
 	} else { // desktop
 		encodingMenuColumns = 4
