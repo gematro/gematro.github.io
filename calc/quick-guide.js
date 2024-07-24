@@ -136,7 +136,7 @@ function displayFaq() {
 	o += '<hr class="numPropSeparator">'
 	
 	o += '<div style="margin-top: 2em; margin-bottom: 2em;">'
-	o += '<span class="qgBold">GEMATRO</span> was made for the surplus of learning.<br><span class="qgNote">Saun Virroco</span>'
+	o += '<span class="qgBold">GEMATRO</span> was made for <span class="qgBold">The Surplus of Learning.</span><br><span class="qgNote">Saun Virroco</span>'
 	o += '</div>'
 
 	o += '<hr class="numPropSeparator">'
