@@ -204,10 +204,10 @@ $(document).ready(function(){
 			document.getElementById("custCipherNameInput").value = cipherList[cID].cipherName;
 			document.getElementById("custCipherCatInput").value = cipherList[cID].cipherCategory;
 
-			var charsArr = cipherList[cID].cArr; // get cipher charcodes
+			var charsArr = cipherList[cID].cArr; // get cipher codePoints
 			var tmp = "";
 			for (i = 0; i < charsArr.length; i++) {
-				tmp += String.fromCharCode(charsArr[i]);
+				tmp += String.fromCodePoint(charsArr[i]);
 			}
 			document.getElementById("custCipherAlphabet").value = tmp;
 
@@ -477,7 +477,8 @@ $(document).ready(function(){
 		updateWordBreakdown(breakCipher,false,false);
 	});
 	$("body").on("click", "#backspaceChartBtn", function () { // backspace
-		$('#phraseBox').val($('#phraseBox').val().slice(0,-1));
+		var s = stringToCodePointArr($('#phraseBox').val()); s.pop(); // removes last codePoint
+		$('#phraseBox').val(JSON.stringify(s).slice(1,-1).replace(/[\",]/g,'')); // array to string
 		$(this).toggleClass('highlightCipherTable'); el = $(this);
 		setTimeout(function (){ el.toggleClass('highlightCipherTable'); }, 75);
 		updateEnabledCipherTable();
@@ -722,3 +723,16 @@ $(document).ready(function() {
 	$("body").on("contextmenu", ".numProp", showTooltipClickAlt);
 
 });
+
+// ==================================================================
+// encoding.js
+
+var encodingMode = 0 // 0 - syllables, 1 - use database (1 phrase), 2 - use database (2 phrases)
+var encOddLength = false // use odd letters for syllable mode
+var encSylMaxPhrases = 10 // max phrases to generate for syllable mode
+var encDefAlphArr = 'abcdefghijklmnopqrstuvwxyz'
+var encDefVowArr = 'aeiouy'
+var encDefExcLetArr = 'qzjx'
+var encPrevAlphStr = encDefAlphArr // store previously defined alphabet
+var encPrevVowStr = encDefVowArr
+var encPrevExcLetStr = encDefExcLetArr

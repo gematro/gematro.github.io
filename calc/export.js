@@ -176,8 +176,7 @@ function exportCiphers() {
 		
 		// Read list of characters
 		for (m = 0; m < cipherList[i].cArr.length; m++) {
-			// cArr_.push(String.fromCharCode(cipherList[i].cArr[m])) // character
-			cArr_.push(cipherList[i].cArr[m]) // charcode
+			cArr_.push(cipherList[i].cArr[m]) // codePoint
 		}
 		
 		// Read values for each character
@@ -216,8 +215,7 @@ function exportCiphersDB(expAllCiph = false) {
 			
 			// Read list of characters
 			for (m = 0; m < cipherList[i].cArr.length; m++) {
-				// cArr_.push(String.fromCharCode(cipherList[i].cArr[m])) // character
-				cArr_.push(cipherList[i].cArr[m]) // charcode
+				cArr_.push(cipherList[i].cArr[m]) // codePoint
 			}
 			
 			// Read values for each character

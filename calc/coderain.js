@@ -48,7 +48,7 @@ function matrix() {
 	ypos.forEach((y, ind) => {
 
 		// choose a random character from array
-		text = String.fromCharCode(matrixChars[rndInt(0,aLen-1)])
+		text = String.fromCodePoint(matrixChars[rndInt(0,aLen-1)])
 
 		// x coordinate of the column, y coordinate is already given
 		x = ind * 14 // px

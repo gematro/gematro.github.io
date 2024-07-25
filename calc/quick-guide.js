@@ -37,6 +37,7 @@ function displayQuickstartGuide() {
 
 	o += '<li><span class="qgBold">"Show Only Matching"</span> - when highlighter is active, sets opacity of nonmatching values to zero</li>'
 
+	o += '<li><span class="qgBold">"Dotless Latin ı as i"</span> - when enabled, dotless lowercase Latin letter <span class="qgBold">ı</span> uses the same value as regular lowercase Latin letter <span class="qgBold">i</span> for gematria calculation<br><span class="qgNote">Note: This letter used in the Latin-script alphabets of Azerbaijani, Crimean Tatar, Gagauz, Kazakh, Tatar and Turkish</span></li>'
 	o += '<li><span class="qgBold">"Ignore Comments [...]"</span> - exclude any text inside square brackets from gematria calculation<br><span class="qgNote">Note: Comments are preserved on export/import</span></li>'
 	o += '<li><span class="qgBold">"Live Database Mode"</span> - disable this option to generate a precalculated database on file import<br><span class="qgNote">Note: More information is available in the "Databases" section of this guide</span></li>'
 	

@@ -97,7 +97,7 @@ function updateWordBreakdown(impName = breakCipher, impBool = false, chartUpd = 
 						if (String(curCipher.cp[x]).substring(0, 3) == "num") {
 							o += '<td class="BreakChar" style="'+curCiphCol+'">' + curCipher.cp[x].substring(3, curCipher.cp[x].length) + '</td>'
 						} else {
-							o += '<td class="BreakChar" style="'+curCiphCol+'">' + String.fromCharCode(curCipher.cp[x]) + '</td>'
+							o += '<td class="BreakChar" style="'+curCiphCol+'">' + String.fromCodePoint(curCipher.cp[x]) + '</td>'
 						}
 					} else {
 						o += '<td class="BreakWordSum" rowspan="2">' + curCipher.sumArr[wCount] + '</td>'
@@ -121,7 +121,7 @@ function updateWordBreakdown(impName = breakCipher, impBool = false, chartUpd = 
 						if (String(curCipher.cp[x]).substring(0, 3) == "num") {
 							curBreakWord += '<td class="BreakChar" style="'+curCiphCol+'">' + curCipher.cp[x].substring(3, curCipher.cp[x].length) + '</td>'
 						} else {
-							curBreakWord += '<td class="BreakChar" style="'+curCiphCol+'">' + String.fromCharCode(curCipher.cp[x]) + '</td>'
+							curBreakWord += '<td class="BreakChar" style="'+curCiphCol+'">' + String.fromCodePoint(curCipher.cp[x]) + '</td>'
 						}
 					} else {
 						curBreakWord = '<td class="BreakWordSum" rowspan="2">' + curCipher.sumArr[wCount] + '</td>' + curBreakWord // prepend word sum (displayed on the left)
@@ -159,7 +159,7 @@ function updateWordBreakdown(impName = breakCipher, impBool = false, chartUpd = 
 						if (String(curCipher.cp[x]).substring(0, 3) == "num") {
 							curBreakRow += '<td class="BreakChar">' + curCipher.cp[x].substring(3, curCipher.cp[x].length) + '</td>'
 						} else {
-							curBreakRow += '<td class="BreakChar">' + String.fromCharCode(curCipher.cp[x]) + '</td>'
+							curBreakRow += '<td class="BreakChar">' + String.fromCodePoint(curCipher.cp[x]) + '</td>'
 						}
 					} else { // show character values and word sum if space
 						curBreakRow += '<td class="BreakWordSum" rowspan="2"><font style="'+curCiphCol+'">' + curCipher.sumArr[wrdCount] + '</font></td>'
@@ -194,7 +194,7 @@ function updateWordBreakdown(impName = breakCipher, impBool = false, chartUpd = 
 						if (String(curCipher.cp[x]).substring(0, 3) == "num") {
 							curBreakRow += '<td class="BreakChar">' + curCipher.cp[x].substring(3, curCipher.cp[x].length) + '</td>'
 						} else {
-							curBreakRow += '<td class="BreakChar">' + String.fromCharCode(curCipher.cp[x]) + '</td>'
+							curBreakRow += '<td class="BreakChar">' + String.fromCodePoint(curCipher.cp[x]) + '</td>'
 						}
 					} else { // show character values and word sum if space or last character
 						if (breakArr.indexOf(wrdCount) > -1 || wrdCount == curCipher.WordCount-1) { // include values for last word

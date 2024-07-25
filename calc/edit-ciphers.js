@@ -74,7 +74,7 @@ function createIndLetterControls() {
 	if (ignoreDiarciticsCustom) alphabet = alphabet.normalize('NFD').replace(/[\u0300-\u036f]/g, "") // remove diacritics
 	document.getElementById("custCipherAlphabet").value = alphabet
 
-	var customChars = alphabet.split("") // string to array
+	var customChars = stringToCodePointArr(alphabet) // string to codePoint array
 	// console.log(JSON.stringify(customChars))
 
 	var alphabetValues = document.getElementById("custCipherGlobVals").value
@@ -147,7 +147,7 @@ function changeIndLetterValue(id) { // update char value from individual input b
 }
 
 function changeIndLetter(id) { // update char from individual box
-	var curIdChar = document.getElementById("custChar"+id+"").value.substring(0,1) // get current char, to lowercase, one char only
+	var curIdChar = document.getElementById("custChar"+id+"").value // get current char, to lowercase
 	if (!caseSensitiveCustom) curIdChar = curIdChar.toLowerCase()
 	if (ignoreDiarciticsCustom) curIdChar = curIdChar.normalize('NFD').replace(/[\u0300-\u036f]/g, "") // remove diacritics
 
@@ -155,7 +155,7 @@ function changeIndLetter(id) { // update char from individual box
 		document.getElementById("custChar"+id+"").value = curIdChar // replace box with first lowercase character
 
 		var alphabet = document.getElementById("custCipherAlphabet").value
-		var customChars = alphabet.split("") // string to array
+		var customChars = stringToCodePointArr(alphabet) // string to codePoint array
 
 		customChars[id] = curIdChar // update current char
 		tmpChar = JSON.stringify(customChars).slice(1,-1).replace(/\"/g, "").replace(/,/g, "") // convert to string, remove brackets, remove quotes, commas
@@ -170,11 +170,11 @@ function addNewCipherAction(updCiphCol = false) { // update existing cipher if I
 	// console.log(custCat)
 
 	var alphabet = document.getElementById("custCipherAlphabet").value
-	var charsArr = []; var tmp = 0 // array with charcodes
-	alphabet = alphabet.split("")
+	var charsArr = []; var tmp = 0 // array with codePoints
+	alphabet = stringToCodePointArr(alphabet) // string to codePoint array
 
 	for (i = 0; i < alphabet.length; i++) {
-		tmp = alphabet[i].replace(/\"/g, "").charCodeAt(0) // remove quotes, get charcode
+		tmp = alphabet[i].codePointAt(0) // get codePoint
 		charsArr.push(tmp)
 	}
 	// console.log(charsArr)

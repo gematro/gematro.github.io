@@ -1,17 +1,5 @@
 // ============================ Encoding ============================
 
-var encodingMode = 0 // 0 - syllables, 1 - use database (1 phrase), 2 - use database (2 phrases)
-var encOddLength = false // use odd letters for syllable mode
-var encSylMaxPhrases = 10 // max phrases to generate for syllable mode
-var encDefAlphArr = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
-var encDefVowArr = ["a","e","i","o","u","y"]
-var encDefExcLetArr = ["q","z","j","x"]
-var encPrevAlphStr = JSON.stringify(encDefAlphArr).replace(/"/g, "").slice(1,-1) // store previously defined alphabet
-var encPrevVowStr = JSON.stringify(encDefVowArr).replace(/"/g, "").slice(1,-1)
-var encPrevExcLetStr = JSON.stringify(encDefExcLetArr).replace(/"/g, "").slice(1,-1)
-
-// ==================================================================
-
 function toggleEncodingMenu(updateEncMenu = false, clearValues = false) {
 	if (!encodingMenuOpened || updateEncMenu == true) {
 		if (!updateEncMenu) closeAllOpenedMenus()
@@ -60,9 +48,9 @@ function toggleEncodingMenu(updateEncMenu = false, clearValues = false) {
 		if (updateEncMenu) { document.getElementById('encCipherTable').innerHTML = o; return; } // update available ciphers
 		o += '</table>'
 
-		var prevAlphStr = (encPrevAlphStr.length > 0) ? encPrevAlphStr : JSON.stringify(encDefAlphArr).replace(/"/g, "").slice(1,-1)
-		var prevVowStr = (encPrevVowStr.length > 0) ? encPrevVowStr : JSON.stringify(encDefVowArr).replace(/"/g, "").slice(1,-1)
-		var prevExcStr = (encPrevExcLetStr.length > 0) ? encPrevExcLetStr : JSON.stringify(encDefExcLetArr).replace(/"/g, "").slice(1,-1)
+		var prevAlphStr = (encPrevAlphStr.length > 0) ? encPrevAlphStr : encDefAlphArr
+		var prevVowStr = (encPrevVowStr.length > 0) ? encPrevVowStr : encDefVowArr
+		var prevExcStr = (encPrevExcLetStr.length > 0) ? encPrevExcLetStr : encDefExcLetArr
 
 		var SylChkState = (encodingMode == 0) ? " checked" : "";
 		var DBChkState = (encodingMode == 1) ? " checked" : "";
@@ -104,13 +92,13 @@ function toggleEncodingMenu(updateEncMenu = false, clearValues = false) {
 		o += '<table class="globColCtrlTable">'
 		o += '<tr>'
 		o += '<td><span class="colLabelSmall">Alphabet</span></td>'
-		o += '<td><input type="text" autocomplete="off" placeholder="a,b,c,d,e,f" value="'+prevAlphStr+'" class="colSlider" id="encAlphabetBox" style="width: 300px;" oninput="encPrevAlphStr = document.getElementById(&quot;encAlphabetBox&quot;).value"'+SylParamChkState+'></td>'
+		o += '<td><input type="text" autocomplete="off" placeholder="abcdefghijklmnopqrstuvwxyz" value="'+prevAlphStr+'" class="colSlider" id="encAlphabetBox" style="width: 300px;" oninput="encPrevAlphStr = document.getElementById(&quot;encAlphabetBox&quot;).value"'+SylParamChkState+'></td>'
 		o += '</tr><tr>'
 		o += '<td><span class="colLabelSmall">Vowels</span></td>'
-		o += '<td><input type="text" autocomplete="off" placeholder="a,e,i,o,u,y" value="'+prevVowStr+'" class="colSlider" id="encVowelsBox" style="width: 300px;" oninput="encPrevVowStr = document.getElementById(&quot;encVowelsBox&quot;).value"'+SylParamChkState+'></td>'
+		o += '<td><input type="text" autocomplete="off" placeholder="aeiouy" value="'+prevVowStr+'" class="colSlider" id="encVowelsBox" style="width: 300px;" oninput="encPrevVowStr = document.getElementById(&quot;encVowelsBox&quot;).value"'+SylParamChkState+'></td>'
 		o += '</tr><tr>'
 		o += '<td><span class="colLabelSmall">Exclude</span></td>'
-		o += '<td><input type="text" autocomplete="off" placeholder="q,z,j,x,k,w,v,f" value="'+prevExcStr+'" class="colSlider" id="encExcludeBox" style="width: 300px;" oninput="encPrevExcLetStr = document.getElementById(&quot;encExcludeBox&quot;).value"'+SylParamChkState+'></td>'
+		o += '<td><input type="text" autocomplete="off" placeholder="qzjx" value="'+prevExcStr+'" class="colSlider" id="encExcludeBox" style="width: 300px;" oninput="encPrevExcLetStr = document.getElementById(&quot;encExcludeBox&quot;).value"'+SylParamChkState+'></td>'
 		o += '</tr>'
 		o += '</table>'
 
@@ -178,10 +166,10 @@ function resetEncodingValues() {
 	document.getElementById('encMaxPhrases').value = 10
 	encOddLength = false
 	document.getElementById('chkbox_encOddLength').checked = false
-	encPrevAlphStr = ""; encPrevVowStr = ""; encPrevExcLetStr = ""
-	document.getElementById('encAlphabetBox').value = JSON.stringify(encDefAlphArr).replace(/"/g, "").slice(1,-1)
-	document.getElementById('encVowelsBox').value = JSON.stringify(encDefVowArr).replace(/"/g, "").slice(1,-1)
-	document.getElementById('encExcludeBox').value = JSON.stringify(encDefExcLetArr).replace(/"/g, "").slice(1,-1)
+	encPrevAlphStr = encDefAlphArr; encPrevVowStr = encDefVowArr; encPrevExcLetStr = encDefExcLetArr
+	document.getElementById('encAlphabetBox').value = encDefAlphArr
+	document.getElementById('encVowelsBox').value = encDefVowArr
+	document.getElementById('encExcludeBox').value = encDefExcLetArr
 	for (i = 0; i < cipherList.length; i++) { // reset values
 		tmpBox = document.getElementById('encCiphVal'+i)
 		if (tmpBox !== null) tmpBox.value = "0"
@@ -269,10 +257,6 @@ function encodeGematria(n_phr, encCiphValsArr, encCiphIndArr, exclude = []) {
 
 		if (encCiphIndArr.length == 0) return // no values were specified
 
-		// exclude letters
-		if (document.getElementById('encExcludeBox') !== null) { // exclude letters
-			encPrevExcLetStr = document.getElementById('encExcludeBox').value.replace(/ /g, '').split(',')
-		}
 		encodingInitSyllables() // build syllables
 
 		// find solutions
@@ -558,14 +542,15 @@ var encAllSyl = []; var encConSyl = []; var encVowSyl = []; var alph = [];
 
 function encodingInitSyllables() {
 
-	alph = document.getElementById("encAlphabetBox").value.split(',')
-	var vowels = document.getElementById("encVowelsBox").value.split(',')
+	alph = stringToCodePointArr(document.getElementById("encAlphabetBox").value)
+	var vowels = stringToCodePointArr(document.getElementById("encVowelsBox").value)
+	var exclude = stringToCodePointArr(document.getElementById("encExcludeBox").value)
 	var cons = []; for (var i = 0; i < alph.length; i++) { if (vowels.indexOf(alph[i]) == -1) { cons.push(alph[i]) } }
 
-	for (i = 0; i < encPrevExcLetStr.length; i++) {
-		if (alph.indexOf(encPrevExcLetStr[i]) > -1) alph.splice(alph.indexOf(encPrevExcLetStr[i]),1)
-		if (cons.indexOf(encPrevExcLetStr[i]) > -1) cons.splice(cons.indexOf(encPrevExcLetStr[i]),1)
-		if (vowels.indexOf(encPrevExcLetStr[i]) > -1) vowels.splice(vowels.indexOf(encPrevExcLetStr[i]),1)
+	for (i = 0; i < exclude.length; i++) {
+		if (alph.indexOf(exclude[i]) > -1) alph.splice(alph.indexOf(exclude[i]),1)
+		if (cons.indexOf(exclude[i]) > -1) cons.splice(cons.indexOf(exclude[i]),1)
+		if (vowels.indexOf(exclude[i]) > -1) vowels.splice(vowels.indexOf(exclude[i]),1)
 	}
 	// console.log("vowels:"+vowels.length+" consonants:"+cons.length+" alphabet:"+alph.length)
 

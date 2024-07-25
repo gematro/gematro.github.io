@@ -244,8 +244,7 @@ function enc_ExportFoundCiphers() {
 		
 		// Read list of characters
 		for (m = 0; m < enccMCiphArr[i][1][0].length; m++) {
-			// cArr_.push(String.fromCharCode(cipherList[i].cArr[m])) // character
-			cArr_.push(enccMCiphArr[i][1][0][m].charCodeAt(0)) // charcode
+			cArr_.push(enccMCiphArr[i][1][0][m].codePointAt(0)) // codePoint
 			vArr_.push(enccMCiphArr[i][1][1][m]) // value
 		}
 		

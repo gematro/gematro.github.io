@@ -54,6 +54,7 @@ var optFiltSameCipherMatch = false // filter shows only phrases that match in th
 var optFiltCrossCipherMatch = true // filter shows only ciphers that have matching values
 var alphaHlt = 0.15 // opacity for values that do not match - change value here and in conf_SOM()
 
+var optDotlessLatinI = true // recognize dotless Latin 'ı' as regular 'i'
 var optAllowPhraseComments = true // allow phrase comments, text inside [...] is not evaluated
 var liveDatabaseMode = true // live database mode
 
@@ -118,6 +119,7 @@ var calcOptionsArr = [ // used to export/import settings
 	"'optGemSubstitutionMode'+' = '+optGemSubstitutionMode",
 	"'optGemMultCharPos'+' = '+optGemMultCharPos",
 	"'optGemMultCharPosReverse'+' = '+optGemMultCharPosReverse",
+	"'optDotlessLatinI'+' = '+optDotlessLatinI",
 	'"encDefAlphArr"+" = \x27"+String(encPrevAlphStr).replace(/,/g,"")+"\x27"',
 	'"encDefVowArr"+" = \x27"+String(encPrevVowStr).replace(/,/g,"")+"\x27"',
 	'"encDefExcLetArr"+" = \x27"+String(encPrevExcLetStr).replace(/,/g,"")+"\x27"',
@@ -331,15 +333,16 @@ function createOptionsMenu() {
 	o += create_NumCalc() // Number Calculation
 
 	// get checkbox states
-	var CCMstate = ""; var SCMstate = ""; var SOMstate = ""; var APCstate = "";
-	var LDMstate = ""; var NPGFstate = ""; var LWCstate = ""; var WBstate = "";
-	var CBstate = ""; var CCstate = ""; var GCstate = ""; var SWCstate = "";
-	var MCRstate = "";
+	var CCMstate = ""; var SCMstate = ""; var SOMstate = ""; var DLIstate = "";
+	var APCstate = ""; var LDMstate = ""; var NPGFstate = ""; var LWCstate = "";
+	var WBstate = ""; var CBstate = ""; var CCstate = ""; var GCstate = "";
+	var SWCstate = ""; var MCRstate = "";
 
 	if (optFiltCrossCipherMatch) CCMstate = "checked" // Cross Cipher Match
 	if (optFiltSameCipherMatch) SCMstate = "checked" // Same Cipher Match
 	if (optShowOnlyMatching) SOMstate = "checked" // Show Only Matching
 
+	if (optDotlessLatinI) DLIstate = "checked" // Dotless Latin 'ı' as 'i'
 	if (optAllowPhraseComments) APCstate = "checked" // Allow Phrase Comments
 	if (liveDatabaseMode) LDMstate = "checked" // Live Database Mode
 
@@ -361,6 +364,7 @@ function createOptionsMenu() {
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Same Cipher Match<input type="checkbox" id="chkbox_SCM" onclick="conf_SCM()" '+SCMstate+'><span class="custChkBox"></span></label></div>'
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Show Only Matching<input type="checkbox" id="chkbox_SOM" onclick="conf_SOM()" '+SOMstate+'><span class="custChkBox"></span></label></div>'
 	o += '<div style="margin: 1em"></div>'
+	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Dotless Latin <b>ı</b> as <b>i</b><input type="checkbox" id="chkbox_DLI" onclick="conf_DLI()" '+DLIstate+'><span class="custChkBox"></span></label></div>'
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Ignore Comments [...]<input type="checkbox" id="chkbox_APC" onclick="conf_APC()" '+APCstate+'><span class="custChkBox"></span></label></div>'
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Live Database Mode<input type="checkbox" id="chkbox_LDM" onclick="conf_LDM()" '+LDMstate+'><span class="custChkBox"></span></label></div>'
 	o += '<div style="margin: 1em"></div>'
@@ -421,6 +425,11 @@ function conf_SOM() { // Show Only Matching
 	} else if (optFiltSameCipherMatch) {
 		updateHistoryTableSameCiphMatch()
 	}
+}
+
+function conf_DLI() { // Dotless Latin 'ı' as 'i'
+	optDotlessLatinI = !optDotlessLatinI
+	updateTables()
 }
 
 function conf_APC() { // Allow Phrase Comments
@@ -524,7 +533,6 @@ function conf_NumCalc(mode) { // Number Calculation
 		document.getElementById("chkbox_fullNumCalc").checked = false
 		document.getElementById("chkbox_redNumCalc").checked = false
 	}
-	updateWordBreakdown()
 	updateTables()
 }
 
@@ -568,7 +576,6 @@ function conf_GemCalc(mode) { // Gematria Calculation
 		optGemMultCharPos = false
 		optGemMultCharPosReverse = true
 	}
-	updateWordBreakdown()
 	updateTables()
 }
 

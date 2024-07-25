@@ -224,6 +224,7 @@ function importCalcOptions(calcOpt) { // load user options
 	if (typeof calcOpt !== 'undefined' && calcOpt !== null) {
 		for (var i = 0; i < calcOpt.length; i++) eval(calcOpt[i])
 	}
+	encPrevAlphStr = encDefAlphArr; encPrevVowStr = encDefVowArr; encPrevExcLetStr = encDefExcLetArr // encoder alphabet
 	toggleCodeRain() // update coderain
 }
 

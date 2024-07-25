@@ -21,7 +21,7 @@ function restoreCalcSettingsLocalStorage(silentMode = false) {
 		sItem = "userCalcSettings" // restore user settings
 	}
 	var file = window.localStorage.getItem(sItem);
-
+	
 	var calcOpt = file.match(/(?<=calcOptions = )[\s\S]*?\]/m) // array values
 	if (calcOpt !== null) {
 		calcOptMatch = calcOpt[0].replace(/(\t|  +|\r|\n)/g, "") // remove tabs, consequtive spaces, line breaks
