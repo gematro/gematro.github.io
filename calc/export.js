@@ -162,8 +162,10 @@ function exportCiphers() {
 			'\t[97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122], // lowercase characters\n'+
 			'\t[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26], // values\n'+
 			'\ttrue, // characters with diacritic marks have the same value as regular ones, default is "true"\n'+
-			'\ttrue // enabled state, default is "false"\n'+
-			'\tfalse // case sensitive cipher, default is "false"\n'+
+			'\ttrue, // enabled state, default is "false"\n'+
+			'\tfalse, // case sensitive cipher, default is "false"\n'+
+			'\tfalse, // multi character/syllable cipher, default is "false"\n'+
+			'\t"Values are assigned in alphabetical order." // brief cipherkey description\n'+
 		')\n'+
 		'*/\n\n'
 
@@ -193,7 +195,9 @@ function exportCiphers() {
 			'\t\t'+JSON.stringify(vArr_)+',\n'+
 			'\t\t'+cipherList[i].diacriticsAsRegular+',\n'+
 			'\t\t'+cipherList[i].enabled+',\n'+
-			'\t\t'+cipherList[i].caseSensitive+'\n'+
+			'\t\t'+cipherList[i].caseSensitive+',\n'+
+			'\t\t'+cipherList[i].multiCharacter+',\n'+
+			'\t\t"'+cipherList[i].cipherDescription+'"\n'+
 			'\t),\n'
 	}
 	out = out.substring(0, out.length-2) + '\n]' // remove last comma and new line, close array
@@ -232,7 +236,9 @@ function exportCiphersDB(expAllCiph = false) {
 				'\t\t'+JSON.stringify(vArr_)+',\n'+
 				'\t\t'+cipherList[i].diacriticsAsRegular+',\n'+
 				'\t\t'+cipherList[i].enabled+',\n'+
-				'\t\t'+cipherList[i].caseSensitive+'\n'+
+				'\t\t'+cipherList[i].caseSensitive+',\n'+
+				'\t\t'+cipherList[i].multiCharacter+',\n'+
+				'\t\t"'+cipherList[i].cipherDescription+'"\n'+
 				'\t),\n'
 		}
 	}

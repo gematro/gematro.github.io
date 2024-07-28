@@ -12,9 +12,10 @@ function toggleEditCiphersMenu() {
 		o += '<input class="closeMenuBtn" type="button" value="&#215;" onclick="closeAllOpenedMenus()">'
 
 		o += '<table class="custCipherMainTable"><tbody>'
-		o += '<tr><td style="text-align: center; padding: 0em 1em 1em 0em;"><input id="custCipherNameInput" type="text" autocomplete="off" oninput="checkCustCipherName()" placeholder="Cipher Name"></td>'
-		o += '<td style="text-align: center; padding: 0em 0em 1em 0em;"><input id="custCipherCatInput" type="text" autocomplete="off" placeholder="Category"></td></tr>'
-		o += '<tr><td colspan=2><input id="custCipherAlphabet" type="text" autocomplete="off" oninput="createIndLetterControls()" placeholder="Characters (abc)"></td></tr>'
+		o += '<tr><td style="text-align: center; padding: 0em 1em 0em 0em;"><input id="custCipherNameInput" type="text" autocomplete="off" oninput="checkCustCipherName()" placeholder="Cipher Name"></td>'
+		o += '<td style="text-align: center;"><input id="custCipherCatInput" type="text" autocomplete="off" placeholder="Category"></td></tr>'
+		o += '<tr><td colspan=2 style="padding: 0em 0em 1em 0em;"><input id="custCipherDescInput" type="text" autocomplete="off" placeholder="Cipher Description"></td></tr>'
+		o += '<tr><td colspan=2><input id="custCipherAlphabet" type="text" autocomplete="off" oninput="sanUnicode(\'custCipherAlphabet\');createIndLetterControls()" placeholder="Characters (a,b,c)"></td></tr>'
 		o += '<tr><td colspan=2><textarea id="custCipherGlobVals" type="text" autocomplete="off" oninput="createIndLetterControls()" placeholder="Values (1,2,3)"></textarea></td></tr>'
 		o += '</tbody></table>'
 
@@ -23,11 +24,17 @@ function toggleEditCiphersMenu() {
 		if (ignoreDiarciticsCustom) IDMstate = "checked" // checkbox state
 		o += '<div id="diacrChkbox"><label class="chkLabel optionElementLabel">Ignore Diacritical Marks (é=e)<input type="checkbox" id="chkbox_IDM" onclick="conf_IDM()" '+IDMstate+'><span class="custChkBox"></span></label></div>'
 		var CSstate = ""
-		if (caseSensitiveCustom) CSstate = "checked" // checkbox state
+		if (caseSensitiveCustom) CSstate = multiCharacterCustom ? "disabled" : "checked" // no case sensitivity for syllable mode
 		o += '<div id="caseSensChkbox"><label class="chkLabel optionElementLabel">Case Sensitive Cipher<input type="checkbox" id="chkbox_CS" onclick="conf_CS()" '+CSstate+'><span class="custChkBox"></span></label></div>'
 		o += '</div>' // close
 
-		o += '<div id="custCipherIndCtrls"></div>' // individual characters controls
+		o += '<div>' // second row for checkboxes
+		var MCstate = ""
+		if (multiCharacterCustom) MCstate = "checked" // checkbox state
+		o += '<div id="multiCharChkbox"><label class="chkLabel optionElementLabel">Multi Character Cipher<input type="checkbox" id="chkbox_MC" onclick="conf_MC()" '+MCstate+'><span class="custChkBox"></span></label></div>'
+		o += '</div>' // close
+
+		o += '<div id="custCipherIndCtrls" style="margin-top: 0.5em;"></div>' // individual characters controls
 		o += '<div id="custCipherButtonArea"><input class="ciphEditBtn" type="button" value="Add New Cipher" onclick="addNewCipherAction()"></div>' // buttons
 		o += '</div>'
 
@@ -45,6 +52,17 @@ function conf_IDM() { // ignore diacritical marks
 
 function conf_CS() { // case sensitive cipher
 	caseSensitiveCustom = !caseSensitiveCustom // toggle
+	createIndLetterControls() // update
+}
+
+function conf_MC() { // multi character cipher
+	multiCharacterCustom = !multiCharacterCustom // toggle
+	var CSstate = multiCharacterCustom ? "disabled" : "" // case sensitive state
+	if (caseSensitiveCustom == true) { // check case sensitive flag
+		caseSensitiveCustom = false
+	}
+	o = '<label class="chkLabel optionElementLabel">Case Sensitive Cipher<input type="checkbox" id="chkbox_CS" onclick="conf_CS()" '+CSstate+'><span class="custChkBox"></span></label>'
+	document.getElementById("caseSensChkbox").innerHTML = o // update element
 	createIndLetterControls() // update
 }
 
@@ -67,6 +85,74 @@ function checkCustCipherName() { // redraw add/update cipher button
 	}
 }
 
+function loadEditorExistingCipherValues(curCiphName) {
+	if (editCiphersMenuOpened) { // if menu is opened
+		var cID = 0 // current cipher ID
+		for (i = 0; i < cipherList.length; i++) { // get cipher ID
+			if (cipherList[i].cipherName == curCiphName) { cID = i; break; }
+		}
+		document.getElementById("custCipherNameInput").value = cipherList[cID].cipherName
+		document.getElementById("custCipherCatInput").value = cipherList[cID].cipherCategory
+		document.getElementById("custCipherDescInput").value = cipherList[cID].cipherDescription
+
+		if (!cipherList[cID].multiCharacter) {
+			var charsArr = cipherList[cID].cArr // get cipher codePoints
+			var tmp = ""
+			for (i = 0; i < charsArr.length; i++) {
+				tmp += String.fromCodePoint(charsArr[i])+','
+			}
+			document.getElementById("custCipherAlphabet").value = tmp.slice(0,-1) // remove last comma
+		} else {
+			var charsArr = cipherList[cID].sArr // get cipher syllables
+			var tmp = ""
+			for (i = 0; i < charsArr.length; i++) {
+				tmp += charsArr[i]+','
+			}
+			document.getElementById("custCipherAlphabet").value = tmp.slice(0,-1)
+		}
+
+		var valsArr = cipherList[cID].vArr // get cipher values
+		tmp = ""
+		for (i = 0; i < valsArr.length; i++) {
+			tmp += valsArr[i]+","
+		}
+		document.getElementById("custCipherGlobVals").value = tmp.slice(0,-1)
+
+		var IDMstate = "" // ignore diacritical marks state
+		if (cipherList[cID].diacriticsAsRegular == true) { // check diacritics flag
+			IDMstate = "checked" // checkbox state
+			ignoreDiarciticsCustom = true
+		} else {
+			ignoreDiarciticsCustom = false
+		}
+		var o = '<label class="chkLabel optionElementLabel">Ignore Diacritical Marks (é=e)<input type="checkbox" id="chkbox_IDM" onclick="conf_IDM()" '+IDMstate+'><span class="custChkBox"></span></label>'
+		document.getElementById("diacrChkbox").innerHTML = o // update element
+		
+		var CSstate = cipherList[cID].multiCharacter ? "disabled" : "" // case sensitive state
+		if (cipherList[cID].caseSensitive == true) { // check case sensitive flag
+			CSstate = "checked" // checkbox state
+			caseSensitiveCustom = true
+		} else {
+			caseSensitiveCustom = false
+		}
+		o = '<label class="chkLabel optionElementLabel">Case Sensitive Cipher<input type="checkbox" id="chkbox_CS" onclick="conf_CS()" '+CSstate+'><span class="custChkBox"></span></label>'
+		document.getElementById("caseSensChkbox").innerHTML = o // update element
+
+		var MCstate = "" // multi character state
+		if (cipherList[cID].multiCharacter == true) { // check multi character flag
+			MCstate = "checked" // checkbox state
+			multiCharacterCustom = true
+		} else {
+			multiCharacterCustom = false
+		}
+		o = '<label class="chkLabel optionElementLabel">Multi Character Cipher<input type="checkbox" id="chkbox_MC" onclick="conf_MC()" '+MCstate+'><span class="custChkBox"></span></label>'
+		document.getElementById("multiCharChkbox").innerHTML = o // update element
+		
+		createIndLetterControls() // update
+		checkCustCipherName() // redraw button (add/update)
+	}
+}
+
 function createIndLetterControls() {
 	var alphabet = document.getElementById("custCipherAlphabet").value
 	alphabet = alphabet.replace(/\t/g,"").replace(/ /g,"") // to lowercase, remove tabs and spaces
@@ -74,8 +160,8 @@ function createIndLetterControls() {
 	if (ignoreDiarciticsCustom) alphabet = alphabet.normalize('NFD').replace(/[\u0300-\u036f]/g, "") // remove diacritics
 	document.getElementById("custCipherAlphabet").value = alphabet
 
-	var customChars = stringToCodePointArr(alphabet) // string to codePoint array
-	// console.log(JSON.stringify(customChars))
+	// var customChars = stringToArrCodePoint(alphabet) // string to codePoint array
+	var customChars = alphabet.split(',') // string to array, comma separator
 
 	var alphabetValues = document.getElementById("custCipherGlobVals").value
 	alphabetValues = alphabetValues.replace(/\t/g,",").replace(/ /g,",") // replace tabs and spaces with comma
@@ -115,10 +201,9 @@ function createIndLetterControls() {
 			o += '<tr>'
 			new_row_opened = true
 		}
-		var chk = ""
 		if (charsInCurRow < charsInRow) { // until number of ciphers in row equals number of columns
 			o += '<td><table class="custCharIndTable"><tbody>'
-			o += '<tr><td class="custCharIndLabel"><input id="custChar'+i+'" type="text" autocomplete="off" oninput="changeIndLetter('+i+')" class="custCharInd" value="'+customChars[i]+'"></input></td></tr>'
+			o += '<tr><td class="custCharIndLabel"><input id="custChar'+i+'" type="text" autocomplete="off" oninput="sanUnicode(\'custChar'+i+'\');changeIndLetter('+i+')" class="custCharInd" value="'+customChars[i]+'"></input></td></tr>'
 			o += '<tr><td><input id="chVal'+i+'" type="text" autocomplete="off" oninput="changeIndLetterValue('+i+')" class="custCharIndValue" value="'+curCharVal+'"></input></div></center></td></tr>'
 			o += '</tbody></table></td>'
 			charsInCurRow++
@@ -155,10 +240,11 @@ function changeIndLetter(id) { // update char from individual box
 		document.getElementById("custChar"+id+"").value = curIdChar // replace box with first lowercase character
 
 		var alphabet = document.getElementById("custCipherAlphabet").value
-		var customChars = stringToCodePointArr(alphabet) // string to codePoint array
+		// var customChars = stringToArrCodePoint(alphabet) // string to codePoint array
+		var customChars = alphabet.split(',') // string to codePoint array
 
 		customChars[id] = curIdChar // update current char
-		tmpChar = JSON.stringify(customChars).slice(1,-1).replace(/\"/g, "").replace(/,/g, "") // convert to string, remove brackets, remove quotes, commas
+		tmpChar = JSON.stringify(customChars).slice(1,-1).replace(/\"/g, "") // convert to string, remove brackets, remove quotes
 		document.getElementById("custCipherAlphabet").value = tmpChar // update box with new characters
 	}
 }
@@ -166,18 +252,39 @@ function changeIndLetter(id) { // update char from individual box
 function addNewCipherAction(updCiphCol = false) { // update existing cipher if ID is specified
 	var custName = document.getElementById("custCipherNameInput").value.trim()
 	// console.log(custName)
-	var custCat = document.getElementById("custCipherCatInput").value
+	var custCat = document.getElementById("custCipherCatInput").value.trim()
+	var custDesc = document.getElementById("custCipherDescInput").value.trim()
 	// console.log(custCat)
 
 	var alphabet = document.getElementById("custCipherAlphabet").value
 	var charsArr = []; var tmp = 0 // array with codePoints
-	alphabet = stringToCodePointArr(alphabet) // string to codePoint array
+	// alphabet = stringToArrCodePoint(alphabet) // string to codePoint array
+	alphabet = alphabet.split(',') // string to array, comma separator
 
-	for (i = 0; i < alphabet.length; i++) {
-		tmp = alphabet[i].codePointAt(0) // get codePoint
-		charsArr.push(tmp)
+	if (!multiCharacterCustom) { // single character
+		for (let i = 0; i < alphabet.length; i++) {
+			tmp = alphabet[i].codePointAt(0) // get codePoint
+			charsArr.push(tmp)
+		}
+	} else { // multi character
+		var maxSylLen = 0  // max syllable length
+		var sArr = [] // syllable array (by codePoint)
+		var sTmp = [] // temp syllable
+		for (let i = 0; i < alphabet.length; i++) {
+			sTmp = stringToArrCodePoint(alphabet[i]) // 'abc' -> 'a','b','c'
+			if (sTmp.length > maxSylLen) maxSylLen = sTmp.length // find max syllable length
+			sArr.push(sTmp) // save codePoint array
+		}
+		charsArr.push(maxSylLen) // [3, 97,98,0, 99,100,0, 101,102,0 ...]
+		for (let i = 0; i < sArr.length; i++) { // [['a','b'],['c','d']]
+			for (let n = 0; n < sArr[i].length; n++) { // for each element ['a','b']
+				charsArr.push(sArr[i][n].codePointAt(0)) // 'a' -> 97, 'b' -> 98
+			}
+			if (sArr[i].length < maxSylLen) { // pad shorter syllables with zeroes
+				for (let p = 0; p < maxSylLen - sArr[i].length; p++) charsArr.push(0)
+			}
+		}
 	}
-	// console.log(charsArr)
 
 	var alphabetValues = document.getElementById("custCipherGlobVals").value
 	var valArr = alphabetValues.split(",") // string to array
@@ -194,8 +301,8 @@ function addNewCipherAction(updCiphCol = false) { // update existing cipher if I
 	resetColorControls() // reset color changes (otherwise they become permanent)
 	var custCipher
 	if (replaceID > -1) { // cipher needs to be updated (retain colors)
-		if (!updCiphCol) { custCipher = new cipher(custName, custCat, cipherList[replaceID].H, cipherList[replaceID].S, cipherList[replaceID].L, charsArr, valArr, ignoreDiarciticsCustom, true, caseSensitiveCustom) }
-		else { custCipher = new cipher(custName, custCat, getRndIndex(rndCol.H), getRndIndex(rndCol.S), getRndIndex(rndCol.L), charsArr, valArr, ignoreDiarciticsCustom, true, caseSensitiveCustom) }
+		if (!updCiphCol) { custCipher = new cipher(custName, custCat, cipherList[replaceID].H, cipherList[replaceID].S, cipherList[replaceID].L, charsArr, valArr, ignoreDiarciticsCustom, true, caseSensitiveCustom, multiCharacterCustom, custDesc) }
+		else { custCipher = new cipher(custName, custCat, getRndIndex(rndCol.H), getRndIndex(rndCol.S), getRndIndex(rndCol.L), charsArr, valArr, ignoreDiarciticsCustom, true, caseSensitiveCustom, multiCharacterCustom, custDesc) }
 		if (cipherList[replaceID].cipherCategory == custCat) { // same category
 			cipherList[replaceID] = custCipher // replace existing cipher
 		} else if (cCat.indexOf(custCat) > -1) { // other existing category
@@ -210,7 +317,7 @@ function addNewCipherAction(updCiphCol = false) { // update existing cipher if I
 		}
 	} else { // use random colors
 		// custCipher = new cipher(custName, custCat, rndInt(0, 360), rndInt(0, 68), rndInt(53, 67), charsArr, valArr, ignoreDiarciticsCustom, true, caseSensitiveCustom)
-		custCipher = new cipher(custName, custCat, getRndIndex(rndCol.H), getRndIndex(rndCol.S), getRndIndex(rndCol.L), charsArr, valArr, ignoreDiarciticsCustom, true, caseSensitiveCustom)
+		custCipher = new cipher(custName, custCat, getRndIndex(rndCol.H), getRndIndex(rndCol.S), getRndIndex(rndCol.L), charsArr, valArr, ignoreDiarciticsCustom, true, caseSensitiveCustom, multiCharacterCustom, custDesc)
 		if (cCat.indexOf(custCat) > -1) { // existing category
 			for (i = cipherList.length-1; i > -1; i--) { // go in reverse order
 				// insert after last cipher in that category
@@ -222,6 +329,11 @@ function addNewCipherAction(updCiphCol = false) { // update existing cipher if I
 	}
 
 	initCalcCustCiph() // update
+
+	var msg = ''
+	if (updCiphCol) { msg = 'Color Updated!' } else { msg = 'Cipher Updated!' }
+	if (replaceID == -1) { msg = 'Cipher Added!' }
+	displayCalcNotification(msg)
 }
 
 function deleteCipherAction() {
@@ -231,6 +343,7 @@ function deleteCipherAction() {
 		if (cipherList[i].cipherName == curCiphName) { cipherList.splice(i,1); break; } // remove cipher
 	}
 	initCalcCustCiph() // update
+	displayCalcNotification('Cipher Deleted!')
 }
 
 function initCalcCustCiph(editorOpened = true) {

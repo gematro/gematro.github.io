@@ -745,6 +745,16 @@ body {
 /*                Options Menu                */
 /* ########################################## */
 
+.cipherCatDetails {
+	width: 100%;
+}
+.ciphInfoLabel {
+	display: block;
+	position: relative;
+	cursor: pointer;
+	font-size: 100%;
+	font-weight: 500;
+}
 .intBtn { /* Big Buttons */
 	display: inline-block;
 	color: var(--font-white-1);
@@ -932,6 +942,7 @@ body {
 	margin: 0em 0.4em 0em 0.3em;
 	color: var(--font-white-2);
 	font-weight: 500;
+	max-width: fit-content;
 }
 .dropdown {
 	position: relative;
@@ -1122,7 +1133,7 @@ body {
 	box-sizing: border-box;
 	border: 1px solid var(--border-dark-accent);
 }
-#custCipherAlphabet, #custCipherGlobVals {
+#custCipherAlphabet, #custCipherGlobVals, #custCipherDescInput {
 	background: var(--btn-bg-accent);
 	font-size: 125%;
 	color: var(--font-white-2);
@@ -1140,7 +1151,8 @@ body {
 	height: 40px;
 }
 #custCipherAlphabet:focus, #custCipherGlobVals:focus,
-#custCipherNameInput:focus, #custCipherCatInput:focus {
+#custCipherNameInput:focus, #custCipherCatInput:focus,
+#custCipherDescInput:focus {
 	outline: none;
 	border: 1px solid var(--border-dark-accent);
 }
@@ -1148,7 +1160,7 @@ body {
 	outline: none;
 	border: none;
 }
-#diacrChkbox, #caseSensChkbox {
+#diacrChkbox, #caseSensChkbox, #multiCharChkbox {
 	display: inline-flex;
 	padding: 0em 1em 0.75em 1em;
 }
@@ -1533,7 +1545,7 @@ body {
 /*                    About                   */
 /* ########################################## */
 
-.contactInfo, .faqPanel {
+.contactInfo, .faqPanel, .ciphInfoPanel {
 	background-color: var(--menu-bg-accent2);
 	color: var(--font-white-2);
 	font-family: var(--font-family), "Arial", sans-serif;
@@ -1551,7 +1563,10 @@ body {
 	border: 1px solid var(--border-dark-accent);
 }
 .faqPanel {
-	height: 200px;
+	height: 201px;
+}
+.ciphInfoPanel {
+	height: unset;
 }
 @media (max-width: 911px) { /* mobile */
 	.contactInfo {
@@ -1562,7 +1577,12 @@ body {
 	.faqPanel {
 		width: 400px !important;
 		height: 80% !important;
-		max-height: 200px !important;
+		max-height: 201px !important;
+	}
+	.ciphInfoPanel {
+		width: 400px !important;
+		height: unset;
+		max-height: 80% !important;
 	}
 }
 .qgBoldCoin {

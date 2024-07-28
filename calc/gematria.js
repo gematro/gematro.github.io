@@ -1,28 +1,46 @@
 // ========================== Cipher Class ==========================
 
-function stringToCodePointArr(s) { // 'abc' -> ['a','b','c'], support for surrogate pairs, full Unicode range
-	var a = new Array()
+function stringToArrCodePoint(s) { // 'abc' -> ['a','b','c'], support for surrogate pairs, full Unicode range
+	var a = new Array() // emoji with modifiers and composite emoji with Zero Width Joiner are not supported
 	for (let i = 0; i < s.length;) {
 		let c = s.codePointAt(i) // current codePoint
-		// a.push(c); i += (c < 65537) ? 1 : 2 // advance by 2 characters for a surrogate pair
-		a.push(String.fromCodePoint(c)); i += (c < 65537) ? 1 : 2 // advance by 2 characters for a surrogate pair
+		a.push(String.fromCodePoint(c)); i += (c <= 65535) ? 1 : 2 // advance by 2 characters for a surrogate pair
 	}
 	return a
 }
 
+function calcCipherSyllables(cArr) { // convert list of codePoints to syllables
+	var sLen = cArr[0]; var tSyl = ''; var sArr = []
+	for (let i = 0; i < (cArr.length-1)/sLen; i++) {
+		tSyl = '' // temp syllable
+		for (let n = 0; n < sLen; n++) { // syllable length
+			let cP = cArr[1 + sLen*i + n] // get codePoint
+			if (cP > 0) tSyl += String.fromCodePoint(cP) // exclude 0
+		}
+		sArr.push(tSyl) // add constructed syllable
+	}
+	return sArr
+}
+
 class cipher { // cipher constructor class
-	constructor(ciphName, ciphCategory, col_H, col_S, col_L, ciphCharacterSet, ciphValues, diacriticsAsRegular = true, ciphEnabled = false, caseSensitive = false) {
+	constructor(ciphName, ciphCategory, col_H, col_S, col_L, ciphCharacterSet, ciphValues,
+		diacriticsAsRegular = true, ciphEnabled = false, caseSensitive = false, multiCharacter = false, cipherDescription = '') {
 		this.cipherName = ciphName // cipher name
 		this.cipherCategory = ciphCategory // cipher category
 		this.H = col_H // hue
 		this.S = col_S // saturation
 		this.L = col_L // lightness
 		this.cArr = ciphCharacterSet // character array
+		this.sArr = multiCharacter ? calcCipherSyllables(this.cArr) : [] //  syllable array, multiCharacter
 		this.vArr = ciphValues // value array
 		this.diacriticsAsRegular = diacriticsAsRegular // if true, characters with diactritic marks have the same value as regular ones
-		this.caseSensitive = caseSensitive // capital letters have different values
+		this.caseSensitive = multiCharacter ? false : caseSensitive // capital letters have different values
 		this.enabled = ciphEnabled // cipher state on/off
-		this.cp = []; this.cv = []; this.sumArr = [] // cp - character position, cv - character value, sumArr - phrase gematria value
+		this.multiCharacter = multiCharacter // assign value to a syllable or word
+		this.cipherDescription = cipherDescription // brief cipherkey description
+		this.cp = []; this.cv = [] // cp - breakdown character, cv - character value
+		this.sp = []; this.sv = [] // sp - breakdown syllable, sv - syllable value
+		this.sumArr = [] // phrase gematria value
 	}
 
 	calcGematria(gemPhrase) { // calculate gematria of a phrase
@@ -35,7 +53,32 @@ class cipher { // cipher constructor class
 		if (this.caseSensitive == false) gemPhrase = gemPhrase.toLowerCase()
 		if (optDotlessLatinI == true) gemPhrase = gemPhrase.replace(/ı/g, 'i')
 
-		var gemPhraseArr = stringToCodePointArr(gemPhrase) // codePoint array
+		var gemPhraseArr = stringToArrCodePoint(gemPhrase) // codePoint array
+
+		if (this.multiCharacter == true) { // syllable mode, only standard calculation, no numbers counted
+			var sLen = this.cArr[0] // max syllable length
+			var n = 0 // current syllable length modifier
+			for (let i = 0; i < gemPhraseArr.length;) {
+				cur_char = '' // current syllable, reset
+				for (let p = i; p < i+sLen-n && p < gemPhraseArr.length; p++) { // in bounds, s - syllable length, p - position
+					cur_char += gemPhraseArr[p] // build current syllable from phrase
+				}
+				ch_pos = this.sArr.indexOf(cur_char) // syllable position in assigned syllable array
+				if (ch_pos > -1) { // full syllable found
+					gemValue += this.vArr[ch_pos] // add value
+					i += sLen-n // advance position by syllable length, codePoint aware
+					n = 0 // reset syllable length modifier
+				} else { // full syllable not found, shorten current syllable
+					if (n < sLen) { // as short as a single character BUG HERE, IF sLen INFINITE LOOP, IF sLen-1 last letter excluded
+						n += 1 // continue building a shorter syllable from same position
+					} else { // even a single character is not found
+						n = 0 // reset syllable length modifier
+						i++ // advance position, try next full syllable
+					}
+				}
+			}
+			return gemValue // no number calculation
+		}
 
 		if (optGemSubstitutionMode) { // each character is substituted with a corresponding value
 			for (i = 0; i < gemPhraseArr.length; i++) {
@@ -100,20 +143,59 @@ class cipher { // cipher constructor class
 	calcBreakdown(gemPhrase) { // character breakdown table
 		var i, cIndex, wordSum //
 		var lastSpace = true
-		var n, nv // n - character for display, nv - codePoint for calculation
+		var nd, nv // n - character for display, nv - codePoint for calculation
 
 		 // remove [...], separate brackets, leading/trailing spaces
 		if (optAllowPhraseComments == true) { gemPhrase = gemPhrase.replace(/\[.+\]/g, '').replace(/\[/g, '').replace(/\]/g, '').trim() }
 
-		var gemPhraseArr = stringToCodePointArr(gemPhrase) // codePoint array, can be errors with Hebrew and Greek diacritics as they are removed later
+		var gemPhraseArr = stringToArrCodePoint(gemPhrase) // codePoint array
 
-		// character positions, character values, current number (if char is a digit)
-		this.cp = []; this.cv = []; this.curNum = ""; this.LetterCount = 0
-
+		// breakdown characters, character values, breakdown syllables, syllable values, current number (if char is a digit)
+		this.cp = []; this.cv = []; this.sp = []; this.sv = []; this.curNum = ""; this.LetterCount = 0
 		this.sumArr = []; wordSum = 0
+		
+		if (this.multiCharacter == true && gemPhraseArr.length > 0) { // syllable mode, only standard calculation, no numbers counted
+			var sLen = this.cArr[0] // max syllable length
+			var n = 0 // current syllable length modifier
+			for (let i = 0; i < gemPhraseArr.length;) {
+				var cur_char = '' // current syllable, reset
+				for (let p = i; p < i+sLen-n && p < gemPhraseArr.length; p++) { // in bounds, s - syllable length, p - position
+					cur_char += gemPhraseArr[p] // build current syllable from phrase
+				}
+				var ch_pos = this.sArr.indexOf(cur_char.toLowerCase()) // syllable position in assigned syllable array, lowercase
+				if (ch_pos > -1) { // full syllable found
+					this.sp.push(cur_char) // save current syllable
+					this.sv.push(this.vArr[ch_pos]) // save current syllable value
+					this.LetterCount++ // increase letter/token count
+					wordSum += this.vArr[ch_pos] // build word sum
+					i += sLen-n// advance position by syllable length, codePoint aware
+					n = 0 // reset syllable length modifier
+				} else { // full syllable not found, shorten current syllable
+					if (n < sLen) { // as short as a single character BUG HERE sLen-1 NO LAST LETTER OTHERWISE INF LOOP
+						n += 1 // continue building a shorter syllable from same position
+					} else { // even a single character is not found
+						if (this.sv.length !== 0 && this.sv[this.sv.length-1] !== " ") { // never add first space
+							this.sp.push(" "); this.sv.push(" ") // add break
+							this.sumArr.push(wordSum) // save word value
+						}
+						wordSum = 0 // reset word value counter
+						n = 0 // reset syllable length modifier
+						i++ // advance position, try next full syllable
+					}
+				}
+			}
+			if (this.sv.length !== 0 && this.sv[this.sv.length-1] !== " ") { // add last space if non empty
+				this.sp.push(" ")
+				this.sv.push(" ")
+				this.sumArr.push(wordSum) // last word value
+			}
+			this.WordCount = this.sumArr.length // word count
+			return
+		}
+
 		for (i = 0; i < gemPhraseArr.length; i++) {
 
-			n = gemPhraseArr[i].codePointAt(0); // get codePoint for each character in phrase
+			nd = gemPhraseArr[i].codePointAt(0); // get codePoint for each character in phrase
 
 			if (this.diacriticsAsRegular) { // if characters with diacritic marks are treated as regular characters
 				nv = gemPhraseArr[i].normalize('NFD').replace(/[\u0300-\u036f]/g, "")
@@ -124,10 +206,11 @@ class cipher { // cipher constructor class
 			if (optDotlessLatinI == true) nv = nv.replace(/ı/g, 'i')
 			nv = nv.codePointAt(0)
 
+			var boolCalcCheck = !optGemMultCharPos && !optGemMultCharPosReverse && !this.multiCharacter // no Mult/Rev mode, not a syllable cipher
 			// 0-9 digits, cipher doesn't contain "1"
-			if (n > 47 && n < 58 && this.cArr.indexOf(49) == -1 && !optGemMultCharPos && !optGemMultCharPosReverse) {
+			if (nd > 47 && nd < 58 && this.cArr.indexOf(49) == -1 && boolCalcCheck) {
 				if (optNumCalcMethod == 1) { // Full
-					this.curNum = String(this.curNum) + String(n - 48) // append digits
+					this.curNum = String(this.curNum) + String(nd - 48) // append digits
 					if (lastSpace == false) {
 						this.cp.push(" ")
 						this.cv.push(" ")
@@ -136,16 +219,16 @@ class cipher { // cipher constructor class
 						lastSpace = true
 					}
 				} else if (optNumCalcMethod == 2) { // Reduced
-					this.cp.push("num" + String(n - 48))
-					this.cv.push(n - 48)
-					this.curNum = String(n - 48)
-					wordSum += n - 48
+					this.cp.push("num" + String(nd - 48))
+					this.cv.push(nd - 48)
+					this.curNum = String(nd - 48)
+					wordSum += nd - 48
 					lastSpace = false
 				}
 				
 			} else {
-				if (optNumCalcMethod == 1 && !optGemMultCharPos && !optGemMultCharPosReverse) { // Full
-					if (this.curNum.length > 0 & n !== 44) { // character is not "44" comma (digit separator)
+				if (optNumCalcMethod == 1 && boolCalcCheck) { // Full
+					if (this.curNum.length > 0 & nd !== 44) { // character is not "44" comma (digit separator)
 						this.cp.push("num" + String(this.curNum), " ")
 						this.cv.push(Number(this.curNum), " ")
 						this.sumArr.push(Number(this.curNum))
@@ -157,10 +240,10 @@ class cipher { // cipher constructor class
 				if (cIndex > -1) {
 					lastSpace = false
 					wordSum += this.vArr[cIndex]
-					this.cp.push(n)
+					this.cp.push(nd)
 					this.LetterCount++
 					this.cv.push(this.vArr[cIndex])
-				} else if (n !== 39 && lastSpace == false) {
+				} else if (nd !== 39 && lastSpace == false) {
 					this.sumArr.push(wordSum)
 					wordSum = 0
 					this.cp.push(" ")
@@ -171,7 +254,7 @@ class cipher { // cipher constructor class
 		}
 		if (lastSpace == false) {this.sumArr.push(wordSum)} // add number value to phrase gematria
 		if (this.curNum !== "") {
-			if (optNumCalcMethod == 1 && !optGemMultCharPos && !optGemMultCharPosReverse) { // Full
+			if (optNumCalcMethod == 1 && boolCalcCheck) { // Full
 				this.cp.push("num" + String(this.curNum))
 				this.cv.push(Number(this.curNum))
 				this.sumArr.push(Number(this.curNum)) // value of full number
@@ -191,11 +274,11 @@ class cipher { // cipher constructor class
 		if (optGemMultCharPos) { // multiply each charater value based on character index
 			this.sumArr = [] // clear word sums
 			wordSum = 0
-			n = 0 // vaild character index (defined in cipher)
+			var cx = 0 // vaild character index
 			for (i = 0; i < this.cp.length; i++) {
 				if (typeof(this.cp[i]) == "number") { // character value, not "numXX"
-					n++
-					this.cv[i] *= n // multiply character value by position
+					cx++
+					this.cv[i] *= cx // multiply character value by position
 					wordSum += this.cv[i]
 				} else if (this.cp[i] == " ") { // space
 					this.sumArr.push(wordSum)
@@ -209,14 +292,14 @@ class cipher { // cipher constructor class
 		} else if (optGemMultCharPosReverse) { // multiply each charater value (reverse index)
 			this.sumArr = [] // clear word sums
 			wordSum = 0
-			n = 0 // vaild character index (defined in cipher)
+			var cx = 0 // vaild character index
 			var count = this.cp.length-1 // array index is one less
 			if (this.cp[this.cp.length - 1] == " ") count = this.cp.length-2 // exclude last character if a space
 
 			for (i = count; i >= 0; i--) {
 				if (typeof(this.cp[i]) == "number") { // character value, not "numXX"
-					n++
-					this.cv[i] *= n // multiply character value by position
+					cx++
+					this.cv[i] *= cx // multiply character value by position
 					wordSum += this.cv[i]
 				} else if (this.cp[i] == " ") { // space
 					this.sumArr.unshift(wordSum) // insert in the beginning of array

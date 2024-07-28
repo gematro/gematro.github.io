@@ -234,7 +234,7 @@ function createCiphersMenu() { // create menu with all cipher catergories
 
 	o += '<div class="dropdown">'
 	o += '<button class="dropbtn">Ciphers</button>'
-	o += '<div class="dropdown-content" style="width: 380px; min-height: 314px;">'
+	o += '<div class="dropdown-content" style="width: 422px; min-height: 314px;">'
 
 	o += '<div><center>'
 	o += '<input class="intBtn3" type="button" value="Empty" onclick="disableAllCiphers()">'
@@ -245,14 +245,14 @@ function createCiphersMenu() { // create menu with all cipher catergories
 
 	o += '<hr style="background-color: var(--separator-accent2); height: 1px; border: none; margin: 0.5em 0em 1em 0em;">'
 
-	o += '<div style="width: 30%; float: left;">'
+	o += '<div style="width: 32%; float: left;">'
 	for (i = 0; i < cCat.length; i++) {
 		o += '<input class="intBtn2 ciphCatButton" type="button" value="'+cCat[i]+'">'
 	}
 
 	o += '</div>'
 
-	o += '<div style="width: 70%; float: left;">'
+	o += '<div style="width: 68%; float: left;">'
 	o += '<div id="menuCiphCatDetailsArea" style="margin: 0em 0.25em 0em 1.25em;">'
 	o += '</div></div>'
 
@@ -284,6 +284,7 @@ function displayCipherCatDetailed(curCat) {
 		if (cipherList[i].cipherCategory == curCat) {
 			if (cipherList[i].enabled) {chk = " checked";} else {chk = ""} // checkbox state
 			o += '<tr><td><label class="chkLabel ciphCheckboxLabel2">'+cipherList[i].cipherName+'<input type="checkbox" id="cipher_chkbox'+i+'" onclick="toggleCipher('+i+')"'+chk+'><span class="custChkBox"></span></label></td>'
+			o += cipherList[i].cipherDescription !== '' ? '<td><span class="ciphInfoLabel" onclick="displayCipherInfoPanel('+i+')">�</span></td></tr>' : '</tr>'
 		}
 	}
 	o += '</tbody></table>'
@@ -1171,6 +1172,10 @@ function sVal() {
 function sValNoComments() {
 	// get value, remove text inside [...], remove [ and ] (unfinished input), remove spaces from both sides
 	return document.getElementById("phraseBox").value.replace(/\[.+\]/g, '').replace(/\[/g, '').replace(/\]/g, '').trim()
+}
+
+function sanUnicode(el) { // sanitize Unicode input - remove emoji Zero Width Joiner, Modifier and Fitzpatrick skin tones
+	document.getElementById(el).value = document.getElementById(el).value.replace(/(\u200d|\ufe0f|\ud83c\udffb|\ud83c\udffc|\ud83c\udffd|\ud83c\udffe|\ud83c\udfff)/g,'')
 }
 
 // 100% font size

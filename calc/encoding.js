@@ -542,9 +542,9 @@ var encAllSyl = []; var encConSyl = []; var encVowSyl = []; var alph = [];
 
 function encodingInitSyllables() {
 
-	alph = stringToCodePointArr(document.getElementById("encAlphabetBox").value)
-	var vowels = stringToCodePointArr(document.getElementById("encVowelsBox").value)
-	var exclude = stringToCodePointArr(document.getElementById("encExcludeBox").value)
+	alph = stringToArrCodePoint(document.getElementById("encAlphabetBox").value)
+	var vowels = stringToArrCodePoint(document.getElementById("encVowelsBox").value)
+	var exclude = stringToArrCodePoint(document.getElementById("encExcludeBox").value)
 	var cons = []; for (var i = 0; i < alph.length; i++) { if (vowels.indexOf(alph[i]) == -1) { cons.push(alph[i]) } }
 
 	for (i = 0; i < exclude.length; i++) {

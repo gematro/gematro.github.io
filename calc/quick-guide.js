@@ -37,7 +37,7 @@ function displayQuickstartGuide() {
 
 	o += '<li><span class="qgBold">"Show Only Matching"</span> - when highlighter is active, sets opacity of nonmatching values to zero</li>'
 
-	o += '<li><span class="qgBold">"Dotless Latin ı as i"</span> - when enabled, dotless lowercase Latin letter <span class="qgBold">ı</span> uses the same value as regular lowercase Latin letter <span class="qgBold">i</span> for gematria calculation<br><span class="qgNote">Note: This letter used in the Latin-script alphabets of Azerbaijani, Crimean Tatar, Gagauz, Kazakh, Tatar and Turkish</span></li>'
+	o += '<li><span class="qgBold">"Dotless Latin ı as i"</span> - when enabled, dotless lowercase Latin letter <span class="qgBold">ı</span> uses the same value as regular lowercase Latin letter <span class="qgBold">i</span> for gematria calculation<br><span class="qgNote">Note: This letter is used in the Latin-script alphabets of Azerbaijani, Crimean Tatar, Gagauz, Kazakh, Tatar and Turkish</span></li>'
 	o += '<li><span class="qgBold">"Ignore Comments [...]"</span> - exclude any text inside square brackets from gematria calculation<br><span class="qgNote">Note: Comments are preserved on export/import</span></li>'
 	o += '<li><span class="qgBold">"Live Database Mode"</span> - disable this option to generate a precalculated database on file import<br><span class="qgNote">Note: More information is available in the "Databases" section of this guide</span></li>'
 	
@@ -64,7 +64,7 @@ function displayQuickstartGuide() {
 
 	o += '<p class="qgMedium">Color Controls</p>\n<ul><li>Change interface, font or cipher colors (<span class="qgBold">HSL</span> - Hue, Saturation, Lightness)</li><li>Make sure to <span class="qgBold">"Save Settings"</span> or <span class="qgBold">"Export Settings (JS)"</span> before you make any modifications inside <span class="qgBold">"Edit Ciphers"</span> menu</li></ul>'
 
-	o += '<p class="qgMedium">Edit Ciphers</p>\n<ul><li><span class="qgBold">"Left Click"</span> on cipher name in Enabled Ciphers Table to edit existing cipher or make a new one based on existing one</li><li>Cipher names are unique; if name matches, it means an existing cipher is modified</li><li>Existing cipher can be moved to a different category (it will be added as last item in that category)</li><li>Any cipher category can be created</li><li>Cells with individual letters or values can be modified</li><li><span class="qgBold">Unicode</span> characters are supported</li><li>Color controls are reset on any change in <span class="qgBold">"Edit Ciphers"</span> menu</li></ul>'
+	o += '<p class="qgMedium">Edit Ciphers</p>\n<ul><li><span class="qgBold">"Left Click"</span> on cipher name in Enabled Ciphers Table to edit existing cipher or make a new one based on existing one</li><li>Cipher names are unique; if name matches, it means an existing cipher is modified</li><li>Existing cipher can be moved to a different category (it will be added as last item in that category)</li><li>Any new cipher category can be created</li><li>Cells with individual letters or values can be modified</li><li><span class="qgBold">All Unicode</span> characters are supported, including emoji<br><span class="qgNote">Emoji with U+200D Zero Width Joiner, U+FE0F Variation Selector or Fitzpatrick skin tones are split into base components</span></li><li><span class="qgBold">Multi Character</span> cipher keys are supported, the longest syllable is always calculated first<br><span class="qgNote">Example: \'a\'=100, \'ab\'=10, \'abc\'=1<br>\'abcaba\' = abc(1) + ab(10) + a(100) = 111</span></li><li>Color controls are reset on any change in <span class="qgBold">"Edit Ciphers"</span> menu</li></ul>'
 
 	o += '<p class="qgMedium">Encoding</p>\n<ul><p>Encoder supports <span class="qgBold">3 different modes</span>, all of which can work with Normal or Multiplicative <span class="qgBold">Gematria Calculation</span> modes.<br>Positive values are supported; use <span class="qgBold">-0</span> as a matching value for zero.<br>Read section about <span class="qgBold">Databases</span> for additional information and <span class="qgBold">Query Table</span> tips.\n</p>\n<ul><li><span class="qgBold">Syllables (default)</span> - syllables generated from <span class="qgBold">"Alphabet"</span> and <span class="qgBold">"Vowels"</span> fields (excluding letters from <span class="qgBold">"Exclude"</span> field) are used to create a matching phrase. You can type <span class="qgBold">start;end</span> or <span class="qgBold">start;</span> or <span class="qgBold">;end</span> inside <span class="qgBold">Phrase Box</span> to construct a complex phrase<br><span class="qgNote">Note: Anagrams are available for Normal gematria calculation mode only. Use "Odd letters" option to switch between even/odd phrase length</span></li><li><span class="qgBold">Database (1 phrase)</span> - uses a single phrase from currently loaded <span class="qgBold">Live Database</span>. You can use <span class="qgBold">start;end</span> constructor (and its variations) in the <span class="qgBold">Phrase Box</span><br><span class="qgNote">Note: Make sure that gematria value of current (additional) text in the Phrase Box is less than matching value, otherwise no results will be found</span></li><li><span class="qgBold">Database (2 phrases)</span> - uses two phrases from currently loaded <span class="qgBold">Live Database</span>. You can use <span class="qgBold">start;middle;end</span> constructor (and its variations, e.g. <span class="qgBold">;;end</span>) in the <span class="qgBold">Phrase Box</span><br><span class="qgNote">Note: This mode is very computationally expensive and can be really slow on some devices (Firefox can be ~7x slower compared to Chrome, try different browsers). It is not recommended to use a database with more than 20,000 entries (n^2 combinations). If this mode is used with Multiplicative gematria calculation mode, it becomes even slower. Encoding (2 phrases) for ciphers with negative values is the slowest mode, it can take minutes, so use a smaller database or one phrase mode</span></li></ul></ul>'
 
@@ -133,10 +133,11 @@ function displayFaq() {
 
 	var o = '<div class="faqPanel">'
 
-	o += '<div style="margin-top: 2.6em;">'
+	o += '<div>'
+	o += '<p><span class="qgNote" style="font-style:normal;">\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ ☉ /////////////////////////////////</span></p>'
 	o += '<hr class="numPropSeparator">'
 	
-	o += '<div style="margin-top: 2em; margin-bottom: 2em;">'
+	o += '<div style="margin-top: 1.9em; margin-bottom: 1.9em;">'
 	o += '<span class="qgBold">GEMATRO</span> was made for <span class="qgBold">The Surplus of Learning.</span><br><span class="qgNote">Saun Virroco</span>'
 	o += '</div>'
 
@@ -144,6 +145,31 @@ function displayFaq() {
 	o += '</div>'
 	
 	o += '<p><span class="qgNote">Special thanks to </span><span class="qgNote"><a class="qgLink" target="_blank" href="https://gematriaresearch.blogspot.com/">Luís Gonçalves (Gematria Research)</a></span></p>'
+	
+	o += '</div>'
+
+	$(o).appendTo('body'); // guide
+	$('body').addClass('noScroll') // prevent scrolling
+}
+
+function displayCipherInfoPanel(id) {
+	$('<div id="darkOverlay" onclick="closePanel(&quot;.ciphInfoPanel&quot;)"></div>').appendTo('body'); // overlay
+
+	var o = '<div class="ciphInfoPanel">'
+
+	o += '<p><span class="qgBold2">'+cipherList[id].cipherName+'</span></p>'
+
+	o += '<div>'
+	o += '<hr class="numPropSeparator">'
+	
+	o += '<div style="margin-top: 2em; margin-bottom: 2em; text-align: justify;">'
+	o += '<span>'+cipherList[id].cipherDescription+'</span>'
+	o += '</div>'
+
+	o += '<hr class="numPropSeparator">'
+	o += '</div>'
+
+	o += '<p><span class="qgNote" style="font-style:normal;">\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ ☉ /////////////////////////////////</span></p>'
 	
 	o += '</div>'
 

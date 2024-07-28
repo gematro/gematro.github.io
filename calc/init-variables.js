@@ -190,57 +190,13 @@ var endChkEnabled = true // can checkbox be toggled or not
 
 var ignoreDiarciticsCustom = true // diacritical marks flag for custom cipher
 var caseSensitiveCustom = false // case sensitivity flag for custom cipher
+var multiCharacterCustom = false // multi character (syllable) flag for custom cipher
 
 $(document).ready(function(){
 
 	// click on cipher name in enabled ciphers table to load existing cipher
 	$("body").on("click", ".phraseGemCiphName", function () {
-		if (editCiphersMenuOpened) { // if menu is opened
-			var curCiphName = $(this).text();
-			var cID = 0; // current cipher ID
-			for (i = 0; i < cipherList.length; i++) { // get cipher ID
-				if (cipherList[i].cipherName == curCiphName) { cID = i; break; }
-			}
-			document.getElementById("custCipherNameInput").value = cipherList[cID].cipherName;
-			document.getElementById("custCipherCatInput").value = cipherList[cID].cipherCategory;
-
-			var charsArr = cipherList[cID].cArr; // get cipher codePoints
-			var tmp = "";
-			for (i = 0; i < charsArr.length; i++) {
-				tmp += String.fromCodePoint(charsArr[i]);
-			}
-			document.getElementById("custCipherAlphabet").value = tmp;
-
-			var valsArr = cipherList[cID].vArr; // get cipher values
-			tmp = "";
-			for (i = 0; i < valsArr.length; i++) {
-				tmp += valsArr[i]+",";
-			}
-			document.getElementById("custCipherGlobVals").value = tmp.slice(0,-1); // remove last comma
-
-			var IDMstate = ""; // ignore diacritical marks state
-			if (cipherList[cID].diacriticsAsRegular == true) { // check diacritics flag
-				IDMstate = "checked"; // checkbox state
-				ignoreDiarciticsCustom = true;
-			} else {
-				ignoreDiarciticsCustom = false;
-			}
-			var o = '<label class="chkLabel optionElementLabel">Ignore Diacritical Marks (é=e)<input type="checkbox" id="chkbox_IDM" onclick="conf_IDM()" '+IDMstate+'><span class="custChkBox"></span></label>'
-			document.getElementById("diacrChkbox").innerHTML = o; // update element
-			
-			var CSstate = ""; // case sensitive state
-			if (cipherList[cID].caseSensitive == true) { // check case sensitive flag
-				CSstate = "checked"; // checkbox state
-				caseSensitiveCustom = true;
-			} else {
-				caseSensitiveCustom = false;
-			}
-			o = '<label class="chkLabel optionElementLabel">Case Sensitive Cipher<input type="checkbox" id="chkbox_CS" onclick="conf_CS()" '+CSstate+'><span class="custChkBox"></span></label>'
-			document.getElementById("caseSensChkbox").innerHTML = o; // update element
-			
-			createIndLetterControls(); // update
-			checkCustCipherName(); // redraw button (add/update)
-		}
+		loadEditorExistingCipherValues($(this).text());
 	});
 
 });
@@ -477,7 +433,7 @@ $(document).ready(function(){
 		updateWordBreakdown(breakCipher,false,false);
 	});
 	$("body").on("click", "#backspaceChartBtn", function () { // backspace
-		var s = stringToCodePointArr($('#phraseBox').val()); s.pop(); // removes last codePoint
+		var s = stringToArrCodePoint($('#phraseBox').val()); s.pop(); // removes last codePoint
 		$('#phraseBox').val(JSON.stringify(s).slice(1,-1).replace(/[\",]/g,'')); // array to string
 		$(this).toggleClass('highlightCipherTable'); el = $(this);
 		setTimeout(function (){ el.toggleClass('highlightCipherTable'); }, 75);
