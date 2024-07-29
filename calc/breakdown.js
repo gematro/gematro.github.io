@@ -420,8 +420,8 @@ function updateCipherChart(curCipher) {
 			}
 			o += '</tr><tr>'
 		}
-		if (!curCipher.multiCharacter) { o += (showCapsCipherChart && !curCipher.caseSensitive) ? '<td class="ChartChar" font style="'+curCiphCol+'">' + String.fromCodePoint(curCiphercArr[x]).toUpperCase() + '</td>' : '<td class="ChartChar" font style="'+curCiphCol+'">' + String.fromCodePoint(curCiphercArr[x]) + '</td>'}
-		else { o += '<td class="ChartChar" font style="'+curCiphCol+'">' + curCiphercArr[x] + '</td>' }
+		if (!curCipher.multiCharacter) { o += (showCapsCipherChart && !curCipher.caseSensitive) ? '<td class="ChartChar" font style="'+curCiphCol+'">' + String.fromCodePoint(curCiphercArr[x]).toUpperCase() + '</td>' : '<td class="ChartChar" font style="'+curCiphCol+'">' + String.fromCodePoint(curCiphercArr[x]) + '</td>' }
+		else { o += (showCapsCipherChart && !curCipher.caseSensitive) ? '<td class="ChartChar" font style="'+curCiphCol+'">' + curCiphercArr[x].toUpperCase() + '</td>' : '<td class="ChartChar" font style="'+curCiphCol+'">' + curCiphercArr[x] + '</td>' }
 	}
 	if (curCiphercArr.length % 2 == 1) { o += '<td class="ChartChar" font style="'+curCiphCol+'"></td>' } // empty character cell to make even rows
 	o += '</tr><tr>'

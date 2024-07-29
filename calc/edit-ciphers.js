@@ -24,7 +24,7 @@ function toggleEditCiphersMenu() {
 		if (ignoreDiarciticsCustom) IDMstate = "checked" // checkbox state
 		o += '<div id="diacrChkbox"><label class="chkLabel optionElementLabel">Ignore Diacritical Marks (é=e)<input type="checkbox" id="chkbox_IDM" onclick="conf_IDM()" '+IDMstate+'><span class="custChkBox"></span></label></div>'
 		var CSstate = ""
-		if (caseSensitiveCustom) CSstate = multiCharacterCustom ? "disabled" : "checked" // no case sensitivity for syllable mode
+		if (caseSensitiveCustom) CSstate = "checked" // no case sensitivity for syllable mode
 		o += '<div id="caseSensChkbox"><label class="chkLabel optionElementLabel">Case Sensitive Cipher<input type="checkbox" id="chkbox_CS" onclick="conf_CS()" '+CSstate+'><span class="custChkBox"></span></label></div>'
 		o += '</div>' // close
 
@@ -57,12 +57,6 @@ function conf_CS() { // case sensitive cipher
 
 function conf_MC() { // multi character cipher
 	multiCharacterCustom = !multiCharacterCustom // toggle
-	var CSstate = multiCharacterCustom ? "disabled" : "" // case sensitive state
-	if (caseSensitiveCustom == true) { // check case sensitive flag
-		caseSensitiveCustom = false
-	}
-	o = '<label class="chkLabel optionElementLabel">Case Sensitive Cipher<input type="checkbox" id="chkbox_CS" onclick="conf_CS()" '+CSstate+'><span class="custChkBox"></span></label>'
-	document.getElementById("caseSensChkbox").innerHTML = o // update element
 	createIndLetterControls() // update
 }
 
@@ -128,7 +122,7 @@ function loadEditorExistingCipherValues(curCiphName) {
 		var o = '<label class="chkLabel optionElementLabel">Ignore Diacritical Marks (é=e)<input type="checkbox" id="chkbox_IDM" onclick="conf_IDM()" '+IDMstate+'><span class="custChkBox"></span></label>'
 		document.getElementById("diacrChkbox").innerHTML = o // update element
 		
-		var CSstate = cipherList[cID].multiCharacter ? "disabled" : "" // case sensitive state
+		var CSstate = "" // case sensitive state
 		if (cipherList[cID].caseSensitive == true) { // check case sensitive flag
 			CSstate = "checked" // checkbox state
 			caseSensitiveCustom = true

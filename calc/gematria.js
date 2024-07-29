@@ -34,7 +34,7 @@ class cipher { // cipher constructor class
 		this.sArr = multiCharacter ? calcCipherSyllables(this.cArr) : [] //  syllable array, multiCharacter
 		this.vArr = ciphValues // value array
 		this.diacriticsAsRegular = diacriticsAsRegular // if true, characters with diactritic marks have the same value as regular ones
-		this.caseSensitive = multiCharacter ? false : caseSensitive // capital letters have different values
+		this.caseSensitive = caseSensitive // capital letters have different values
 		this.enabled = ciphEnabled // cipher state on/off
 		this.multiCharacter = multiCharacter // assign value to a syllable or word
 		this.cipherDescription = cipherDescription // brief cipherkey description
@@ -63,7 +63,8 @@ class cipher { // cipher constructor class
 				for (let p = i; p < i+sLen-n && p < gemPhraseArr.length; p++) { // in bounds, s - syllable length, p - position
 					cur_char += gemPhraseArr[p] // build current syllable from phrase
 				}
-				ch_pos = this.sArr.indexOf(cur_char) // syllable position in assigned syllable array
+				ch_pos = this.caseSensitive ? this.sArr.indexOf(cur_char) :
+					this.sArr.indexOf(cur_char.toLowerCase()) // syllable position in assigned syllable array
 				if (ch_pos > -1) { // full syllable found
 					gemValue += this.vArr[ch_pos] // add value
 					i += sLen-n // advance position by syllable length, codePoint aware
@@ -162,7 +163,8 @@ class cipher { // cipher constructor class
 				for (let p = i; p < i+sLen-n && p < gemPhraseArr.length; p++) { // in bounds, s - syllable length, p - position
 					cur_char += gemPhraseArr[p] // build current syllable from phrase
 				}
-				var ch_pos = this.sArr.indexOf(cur_char.toLowerCase()) // syllable position in assigned syllable array, lowercase
+				var ch_pos = this.caseSensitive ? this.sArr.indexOf(cur_char) :
+					this.sArr.indexOf(cur_char.toLowerCase()) // syllable position in assigned syllable array
 				if (ch_pos > -1) { // full syllable found
 					this.sp.push(cur_char) // save current syllable
 					this.sv.push(this.vArr[ch_pos]) // save current syllable value
