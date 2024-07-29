@@ -165,7 +165,8 @@ function exportCiphers() {
 			'\ttrue, // enabled state, default is "false"\n'+
 			'\tfalse, // case sensitive cipher, default is "false"\n'+
 			'\tfalse, // multi character/syllable cipher, default is "false"\n'+
-			'\t"Values are assigned in alphabetical order." // brief cipherkey description\n'+
+			'\tfalse, // wheel cipher, default is "false"\n'+
+			'\t"Values are assigned in alphabetical order." // brief description\n'+
 		')\n'+
 		'*/\n\n'
 
@@ -197,6 +198,7 @@ function exportCiphers() {
 			'\t\t'+cipherList[i].enabled+',\n'+
 			'\t\t'+cipherList[i].caseSensitive+',\n'+
 			'\t\t'+cipherList[i].multiCharacter+',\n'+
+			'\t\t'+cipherList[i].wheelCipher+',\n'+
 			'\t\t"'+cipherList[i].cipherDescription+'"\n'+
 			'\t),\n'
 	}
@@ -238,6 +240,7 @@ function exportCiphersDB(expAllCiph = false) {
 				'\t\t'+cipherList[i].enabled+',\n'+
 				'\t\t'+cipherList[i].caseSensitive+',\n'+
 				'\t\t'+cipherList[i].multiCharacter+',\n'+
+				'\t\t'+cipherList[i].wheelCipher+',\n'+
 				'\t\t"'+cipherList[i].cipherDescription+'"\n'+
 				'\t),\n'
 		}

@@ -23,10 +23,10 @@ function calcCipherSyllables(cArr) { // convert list of codePoints to syllables
 }
 
 class cipher { // cipher constructor class
-	constructor(ciphName, ciphCategory, col_H, col_S, col_L, ciphCharacterSet, ciphValues,
-		diacriticsAsRegular = true, ciphEnabled = false, caseSensitive = false, multiCharacter = false, cipherDescription = '') {
-		this.cipherName = ciphName // cipher name
-		this.cipherCategory = ciphCategory // cipher category
+	constructor(cipherName, cipherCategory, col_H, col_S, col_L, ciphCharacterSet, ciphValues,
+		diacriticsAsRegular = true, ciphEnabled = false, caseSensitive = false, multiCharacter = false, wheelCipher = false, cipherDescription = '') {
+		this.cipherName = cipherName // cipher name
+		this.cipherCategory = cipherCategory // cipher category
 		this.H = col_H // hue
 		this.S = col_S // saturation
 		this.L = col_L // lightness
@@ -34,9 +34,10 @@ class cipher { // cipher constructor class
 		this.sArr = multiCharacter ? calcCipherSyllables(this.cArr) : [] //  syllable array, multiCharacter
 		this.vArr = ciphValues // value array
 		this.diacriticsAsRegular = diacriticsAsRegular // if true, characters with diactritic marks have the same value as regular ones
-		this.caseSensitive = caseSensitive // capital letters have different values
 		this.enabled = ciphEnabled // cipher state on/off
+		this.caseSensitive = caseSensitive // capital letters have different values
 		this.multiCharacter = multiCharacter // assign value to a syllable or word
+		this.wheelCipher = wheelCipher // uses letters instead of values
 		this.cipherDescription = cipherDescription // brief cipherkey description
 		this.cp = []; this.cv = [] // cp - breakdown character, cv - character value
 		this.sp = []; this.sv = [] // sp - breakdown syllable, sv - syllable value
@@ -45,7 +46,8 @@ class cipher { // cipher constructor class
 
 	calcGematria(gemPhrase) { // calculate gematria of a phrase
 		var i, ch_pos, cur_char
-		var gemValue = 0
+		var gemValue = 0 // returns final value for numerical ciphers
+		var letValue = '' // returns letter output for wheel ciphers
 		var n = 0
 		
 		if (optAllowPhraseComments == true) { gemPhrase = gemPhrase.replace(/\[.+\]/g, '').trim() } // remove [...], leading/trailing spaces
@@ -66,7 +68,7 @@ class cipher { // cipher constructor class
 				ch_pos = this.caseSensitive ? this.sArr.indexOf(cur_char) :
 					this.sArr.indexOf(cur_char.toLowerCase()) // syllable position in assigned syllable array
 				if (ch_pos > -1) { // full syllable found
-					gemValue += this.vArr[ch_pos] // add value
+					if (this.wheelCipher == false) { gemValue += this.vArr[ch_pos] } else { letValue += String(this.vArr[ch_pos]) } // add value/letter
 					i += sLen-n // advance position by syllable length, codePoint aware
 					n = 0 // reset syllable length modifier
 				} else { // full syllable not found, shorten current syllable
@@ -78,17 +80,18 @@ class cipher { // cipher constructor class
 					}
 				}
 			}
-			return gemValue // no number calculation
+			if (this.wheelCipher == false) { return gemValue } else { return letValue } // no number calculation
 		}
 
-		if (optGemSubstitutionMode) { // each character is substituted with a corresponding value
+		if (optGemSubstitutionMode || this.wheelCipher) { // each character is substituted with a corresponding value
 			for (i = 0; i < gemPhraseArr.length; i++) {
 				cur_char = gemPhraseArr[i].codePointAt(0)
 				ch_pos = this.cArr.indexOf(cur_char)
 				if (ch_pos > -1) { // append value for each found character
-					gemValue += this.vArr[ch_pos]
+					if (this.wheelCipher == false) { gemValue += this.vArr[ch_pos] } else { letValue += String(this.vArr[ch_pos]) } // add value/letter
 				}
 			}
+			if (this.wheelCipher) { return letValue } // return letters for wheel cipher, no number calculation
 		} else if (optGemMultCharPos) { // multiply each charater value based on character index
 			for (i = 0; i < gemPhraseArr.length; i++) {
 				cur_char = gemPhraseArr[i].codePointAt(0)
@@ -169,7 +172,7 @@ class cipher { // cipher constructor class
 					this.sp.push(cur_char) // save current syllable
 					this.sv.push(this.vArr[ch_pos]) // save current syllable value
 					this.LetterCount++ // increase letter/token count
-					wordSum += this.vArr[ch_pos] // build word sum
+					if (!this.wheelCipher) wordSum += this.vArr[ch_pos] // build word sum
 					i += sLen-n// advance position by syllable length, codePoint aware
 					n = 0 // reset syllable length modifier
 				} else { // full syllable not found, shorten current syllable
@@ -208,7 +211,8 @@ class cipher { // cipher constructor class
 			if (optDotlessLatinI == true) nv = nv.replace(/ı/g, 'i')
 			nv = nv.codePointAt(0)
 
-			var boolCalcCheck = !optGemMultCharPos && !optGemMultCharPosReverse && !this.multiCharacter // no Mult/Rev mode, not a syllable cipher
+			var boolCalcCheck = ( !optGemMultCharPos && !optGemMultCharPosReverse &&
+				!this.multiCharacter && !this.wheelCipher ) // no Mult/Rev mode, not a syllable/wheel cipher
 			// 0-9 digits, cipher doesn't contain "1"
 			if (nd > 47 && nd < 58 && this.cArr.indexOf(49) == -1 && boolCalcCheck) {
 				if (optNumCalcMethod == 1) { // Full
@@ -241,7 +245,7 @@ class cipher { // cipher constructor class
 				cIndex = this.cArr.indexOf(nv) // index of current character in phrase inside all character arrays available for current cipher
 				if (cIndex > -1) {
 					lastSpace = false
-					wordSum += this.vArr[cIndex]
+					if (!this.wheelCipher) wordSum += this.vArr[cIndex]
 					this.cp.push(nd)
 					this.LetterCount++
 					this.cv.push(this.vArr[cIndex])
@@ -273,7 +277,7 @@ class cipher { // cipher constructor class
 
 		this.WordCount = this.sumArr.length // word count
 
-		if (optGemMultCharPos) { // multiply each charater value based on character index
+		if (optGemMultCharPos && !this.wheelCipher) { // multiply each charater value based on character index
 			this.sumArr = [] // clear word sums
 			wordSum = 0
 			var cx = 0 // vaild character index
@@ -291,7 +295,7 @@ class cipher { // cipher constructor class
 				}
 			}
 			if (wordSum !== 0) this.sumArr.push(wordSum) // last word value
-		} else if (optGemMultCharPosReverse) { // multiply each charater value (reverse index)
+		} else if (optGemMultCharPosReverse && !this.wheelCipher) { // multiply each charater value (reverse index)
 			this.sumArr = [] // clear word sums
 			wordSum = 0
 			var cx = 0 // vaild character index

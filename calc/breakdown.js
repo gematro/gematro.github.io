@@ -4,9 +4,14 @@ function getSum(total, num) { // used to .reduce() array, adds all values
     return total + num;
 }
 
+function getSumStr(total, str) { // used to .reduce() array, adds all values as string
+    return total + String(str);
+}
+
 function gemCalcModeLabel(curCipher) {
-	if (!curCipher.multiCharacter && optGemMultCharPos && curCipher.LetterCount > 0) return ' - x1 ... x'+curCipher.LetterCount
-	else if (!curCipher.multiCharacter && optGemMultCharPosReverse && curCipher.LetterCount > 0) return ' - x'+curCipher.LetterCount+' ... x1'
+	var cond = (!curCipher.multiCharacter && !curCipher.wheelCipher && curCipher.LetterCount > 0)
+	if (cond && optGemMultCharPos) return ' - x1 ... x'+curCipher.LetterCount
+	else if (cond && optGemMultCharPosReverse ) return ' - x'+curCipher.LetterCount+' ... x1'
 	return ""
 }
 
@@ -55,7 +60,7 @@ function updateWordBreakdown(impName = breakCipher, impBool = false, chartUpd = 
 			curCipher.cp.push(curCipher.cp.shift()) // remove first element and add to the end of array (space, used for word sum)
 			curCipher.cv.push(curCipher.cv.shift())
 		}
-		leftToRightBreak = curCipher.multiCharacter ? true : false
+		leftToRightBreak = ( curCipher.multiCharacter || curCipher.wheelCipher ) ? true : false
 	} else { // left to right, use regular word breakdown
 		curCipher.calcBreakdown(sVal()) // calculate breakdown for current phrase
 	}
@@ -85,8 +90,10 @@ function updateWordBreakdown(impName = breakCipher, impBool = false, chartUpd = 
 				simplePhr = sVal() // display full phrase
 			}
 			oStart += '<div id="SimpleBreak">'
-			oStart += '<span class="breakPhrase">' + simplePhr + '</span><span class="breakPhrase"> = </span><span class="breakSum">' + curCipher.sumArr.reduce(getSum) + ' </span>' // add all values in array
-			oStart += '<span class="breakCipher"><font style="'+curCiphCol+'"> (' + curCipher.cipherName + gemCalcModeLabel(curCipher) + ')</font></span>'
+			oStart += '<span class="breakPhrase">' + simplePhr + '</span><span class="breakPhrase"> = </span><span class="breakSum">'
+			oStart += curCipher.wheelCipher ? curCipher.sv.reduce(getSumStr) :
+				curCipher.sumArr.reduce(getSum) // add all values in array
+			oStart += ' </span><span class="breakCipher"><font style="'+curCiphCol+'"> (' + curCipher.cipherName + gemCalcModeLabel(curCipher) + ')</font></span>'
 		}
 
 		var curCiphercp = curCipher.multiCharacter ? curCipher.sp : curCipher.cp
@@ -108,12 +115,13 @@ function updateWordBreakdown(impName = breakCipher, impBool = false, chartUpd = 
 							'<td class="BreakChar" style="'+curCiphCol+'">' + String.fromCodePoint(curCiphercp[x]) + '</td>'
 						}
 					} else {
-						o += '<td class="BreakWordSum" rowspan="2">' + curCipher.sumArr[wCount] + '</td>'
+						o += curCipher.wheelCipher ? '<td class="BreakWordSum" rowspan="2" style="padding:0em;"></td>' : '<td class="BreakWordSum" rowspan="2">' + curCipher.sumArr[wCount] + '</td>'
 						wCount++
 					}
 					tdCount++
 				}
-				o += '<td class="BreakPhraseSum" rowspan="2"><font style="'+curCiphCol+'">' + curCipher.sumArr.reduce(getSum) + '</font></td>'
+				o += curCipher.wheelCipher ? '' :
+					'<td class="BreakPhraseSum" rowspan="2"><font style="'+curCiphCol+'">' + curCipher.sumArr.reduce(getSum) + '</font></td>'
 				o += '</tr><tr>'
 				tdCount++
 				for (z = 0; z < x; z++) {
@@ -171,7 +179,8 @@ function updateWordBreakdown(impName = breakCipher, impBool = false, chartUpd = 
 							'<td class="BreakChar">' + String.fromCodePoint(curCiphercp[x]) + '</td>'
 						}
 					} else { // show character values and word sum if space
-						curBreakRow += '<td class="BreakWordSum" rowspan="2"><font style="'+curCiphCol+'">' + curCipher.sumArr[wrdCount] + '</font></td>'
+						curBreakRow += curCipher.wheelCipher ? '<td class="BreakWordSum" rowspan="2" style="padding:0em;"></td>' :
+							'<td class="BreakWordSum" rowspan="2"><font style="'+curCiphCol+'">' + curCipher.sumArr[wrdCount] + '</font></td>'
 						if (breakArr.indexOf(wrdCount) > -1 || wrdCount == curCipher.WordCount-1) { // include values for last word
 							curBreakRow += '</tr><tr>'
 							for (z; z < x; z++) {
@@ -236,7 +245,7 @@ function updateWordBreakdown(impName = breakCipher, impBool = false, chartUpd = 
 			o = oStart + o // prepend phrase, word/letter count
 			if (optCompactBreakdown == true) {
 				o += '<div id="BreakSumLong"><span class="breakSumDark">'
-				o += curCipher.sumArr.reduce(getSum)
+				o += curCipher.wheelCipher ? '' : curCipher.sumArr.reduce(getSum)
 				o += ' </span>'
 				o += '<span class="breakCipher" style="'+curCiphCol+'">' + curCipher.cipherName + gemCalcModeLabel(curCipher) + '</span></div></div>'
 			} else {
@@ -259,8 +268,10 @@ function updateWordBreakdown(impName = breakCipher, impBool = false, chartUpd = 
 		var chartClass = 'SimpleBreakChart'
 		if (curCiphercp.length > chLimit) chartClass = 'SimpleBreakChartLong'
 		o = '<tr><td colspan=' + tdCount + '>'
-		o += '<div class="'+chartClass+'"><span class="breakPhraseChart">' + simplePhr + ' = ' + curCipher.sumArr.reduce(getSum) + ' </span>' // add all values in array
-		o += '<span class="breakPhraseChartCiphName" style="'+curCiphCol+'">(' + curCipher.cipherName + gemCalcModeLabel(curCipher) + ')</span></div></td></tr>'
+		o += '<div class="'+chartClass+'"><span class="breakPhraseChart">' + simplePhr + ' = '
+		o += curCipher.wheelCipher ? curCipher.sv.reduce(getSumStr) :
+			curCipher.sumArr.reduce(getSum) // add all values in array
+		o += ' </span><span class="breakPhraseChartCiphName" style="'+curCiphCol+'">(' + curCipher.cipherName + gemCalcModeLabel(curCipher) + ')</span></div></td></tr>'
 		$('#BreakTableContainer').prepend(o) // insert in the beginning of the table
 	}
 

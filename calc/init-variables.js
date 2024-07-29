@@ -191,14 +191,13 @@ var endChkEnabled = true // can checkbox be toggled or not
 var ignoreDiarciticsCustom = true // diacritical marks flag for custom cipher
 var caseSensitiveCustom = false // case sensitivity flag for custom cipher
 var multiCharacterCustom = false // multi character (syllable) flag for custom cipher
+var wheelCipherCustom = false // wheel cipher flag for custom cipher
 
 $(document).ready(function(){
-
 	// click on cipher name in enabled ciphers table to load existing cipher
 	$("body").on("click", ".phraseGemCiphName", function () {
 		loadEditorExistingCipherValues($(this).text());
 	});
-
 });
 
 // ==================================================================

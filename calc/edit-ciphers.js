@@ -32,6 +32,9 @@ function toggleEditCiphersMenu() {
 		var MCstate = ""
 		if (multiCharacterCustom) MCstate = "checked" // checkbox state
 		o += '<div id="multiCharChkbox"><label class="chkLabel optionElementLabel">Multi Character Cipher<input type="checkbox" id="chkbox_MC" onclick="conf_MC()" '+MCstate+'><span class="custChkBox"></span></label></div>'
+		var WCstate = ""
+		if (wheelCipherCustom) WCstate = "checked" // checkbox state
+		o += '<div id="wheelCiphChkbox"><label class="chkLabel optionElementLabel">Wheel Cipher<input type="checkbox" id="chkbox_WC" onclick="conf_WC()" '+WCstate+'><span class="custChkBox"></span></label></div>'
 		o += '</div>' // close
 
 		o += '<div id="custCipherIndCtrls" style="margin-top: 0.5em;"></div>' // individual characters controls
@@ -57,6 +60,11 @@ function conf_CS() { // case sensitive cipher
 
 function conf_MC() { // multi character cipher
 	multiCharacterCustom = !multiCharacterCustom // toggle
+	createIndLetterControls() // update
+}
+
+function conf_WC() { // multi character cipher
+	wheelCipherCustom = !wheelCipherCustom // toggle
 	createIndLetterControls() // update
 }
 
@@ -141,6 +149,16 @@ function loadEditorExistingCipherValues(curCiphName) {
 		}
 		o = '<label class="chkLabel optionElementLabel">Multi Character Cipher<input type="checkbox" id="chkbox_MC" onclick="conf_MC()" '+MCstate+'><span class="custChkBox"></span></label>'
 		document.getElementById("multiCharChkbox").innerHTML = o // update element
+
+		var WCstate = "" // wheel cipher state
+		if (cipherList[cID].wheelCipher == true) { // check wheel cipher flag
+			WCstate = "checked" // checkbox state
+			wheelCipherCustom = true
+		} else {
+			wheelCipherCustom = false
+		}
+		o = '<label class="chkLabel optionElementLabel">Wheel Cipher<input type="checkbox" id="chkbox_WC" onclick="conf_WC()" '+WCstate+'><span class="custChkBox"></span></label>'
+		document.getElementById("wheelCiphChkbox").innerHTML = o // update element
 		
 		createIndLetterControls() // update
 		checkCustCipherName() // redraw button (add/update)
@@ -165,7 +183,7 @@ function createIndLetterControls() {
 	if (customVals[0] == "" && customVals.length == 1) {
 		customVals = [] // empty array
 	} else {
-		customVals = customVals.map(function (e) { return parseInt(e, 10); }) // parse string array as integer array to exclude quotes
+		if (!wheelCipherCustom) { customVals = customVals.map(function (e) { return parseInt(e, 10); }) }// parse string array as integer array to exclude quotes
 	}
 
 	var cur_ciph_index = 0 // index of current of enabled cipher that will be added to the table (total # of ciphers added so far + 1)
@@ -186,7 +204,7 @@ function createIndLetterControls() {
 		} else {
 			curCharVal = i+1 // use default values - 1,2,3...
 			if (customVals.length > 0) { customVals.push(curCharVal); } else { customVals = [curCharVal]; } // add value
-			tmpValues = JSON.stringify(customVals).slice(1,-1)
+			tmpValues = JSON.stringify(customVals).replace(/\"/g,'').slice(1,-1)
 			document.getElementById("custCipherGlobVals").value = tmpValues // update box with new value
 		}
 
@@ -216,12 +234,12 @@ function createIndLetterControls() {
 function changeIndLetterValue(id) { // update char value from individual input box
 	var alphabetValues = document.getElementById("custCipherGlobVals").value
 	var valArr = alphabetValues.split(",") // string to array
-	valArr = valArr.map(function (e) { return parseInt(e, 10); }) // parse string array as integer array to exclude quotes
+	if (!wheelCipherCustom) valArr = valArr.map(function (e) { return parseInt(e, 10); }) // parse string array as integer array to exclude quotes
 
 	var curIdVal = document.getElementById("chVal"+id+"").value // get value for current char
-	valArr[id] = parseInt(curIdVal) // update value for current char
+	valArr[id] = wheelCipherCustom ? curIdVal : parseInt(curIdVal) // update value for current char
 
-	tmpVal = JSON.stringify(valArr).slice(1,-1) // convert to string
+	tmpVal = JSON.stringify(valArr).replace(/\"/g,'').slice(1,-1) // convert to string
 	document.getElementById("custCipherGlobVals").value = tmpVal // update box with new values
 }
 
@@ -238,7 +256,7 @@ function changeIndLetter(id) { // update char from individual box
 		var customChars = alphabet.split(',') // string to codePoint array
 
 		customChars[id] = curIdChar // update current char
-		tmpChar = JSON.stringify(customChars).slice(1,-1).replace(/\"/g, "") // convert to string, remove brackets, remove quotes
+		tmpChar = JSON.stringify(customChars).replace(/\"/g, "").slice(1,-1).replace(/\"/g, "") // convert to string, remove quotes, remove brackets
 		document.getElementById("custCipherAlphabet").value = tmpChar // update box with new characters
 	}
 }
@@ -282,7 +300,7 @@ function addNewCipherAction(updCiphCol = false) { // update existing cipher if I
 
 	var alphabetValues = document.getElementById("custCipherGlobVals").value
 	var valArr = alphabetValues.split(",") // string to array
-	valArr = valArr.map(function (e) { return parseInt(e, 10); }) // parse string array as integer array to exclude quotes
+	if (!wheelCipherCustom) valArr = valArr.map(function (e) { return parseInt(e, 10); }) // parse string array as integer array to exclude quotes
 	valArr = valArr.splice(0, charsArr.length) // use assigned values only (remove all extra)
 	// console.log(valArr)
 
@@ -295,8 +313,8 @@ function addNewCipherAction(updCiphCol = false) { // update existing cipher if I
 	resetColorControls() // reset color changes (otherwise they become permanent)
 	var custCipher
 	if (replaceID > -1) { // cipher needs to be updated (retain colors)
-		if (!updCiphCol) { custCipher = new cipher(custName, custCat, cipherList[replaceID].H, cipherList[replaceID].S, cipherList[replaceID].L, charsArr, valArr, ignoreDiarciticsCustom, true, caseSensitiveCustom, multiCharacterCustom, custDesc) }
-		else { custCipher = new cipher(custName, custCat, getRndIndex(rndCol.H), getRndIndex(rndCol.S), getRndIndex(rndCol.L), charsArr, valArr, ignoreDiarciticsCustom, true, caseSensitiveCustom, multiCharacterCustom, custDesc) }
+		if (!updCiphCol) { custCipher = new cipher(custName, custCat, cipherList[replaceID].H, cipherList[replaceID].S, cipherList[replaceID].L, charsArr, valArr, ignoreDiarciticsCustom, true, caseSensitiveCustom, multiCharacterCustom, wheelCipherCustom, custDesc) }
+		else { custCipher = new cipher(custName, custCat, getRndIndex(rndCol.H), getRndIndex(rndCol.S), getRndIndex(rndCol.L), charsArr, valArr, ignoreDiarciticsCustom, true, caseSensitiveCustom, multiCharacterCustom, wheelCipherCustom, custDesc) }
 		if (cipherList[replaceID].cipherCategory == custCat) { // same category
 			cipherList[replaceID] = custCipher // replace existing cipher
 		} else if (cCat.indexOf(custCat) > -1) { // other existing category
@@ -311,7 +329,7 @@ function addNewCipherAction(updCiphCol = false) { // update existing cipher if I
 		}
 	} else { // use random colors
 		// custCipher = new cipher(custName, custCat, rndInt(0, 360), rndInt(0, 68), rndInt(53, 67), charsArr, valArr, ignoreDiarciticsCustom, true, caseSensitiveCustom)
-		custCipher = new cipher(custName, custCat, getRndIndex(rndCol.H), getRndIndex(rndCol.S), getRndIndex(rndCol.L), charsArr, valArr, ignoreDiarciticsCustom, true, caseSensitiveCustom, multiCharacterCustom, custDesc)
+		custCipher = new cipher(custName, custCat, getRndIndex(rndCol.H), getRndIndex(rndCol.S), getRndIndex(rndCol.L), charsArr, valArr, ignoreDiarciticsCustom, true, caseSensitiveCustom, multiCharacterCustom, wheelCipherCustom, custDesc)
 		if (cCat.indexOf(custCat) > -1) { // existing category
 			for (i = cipherList.length-1; i > -1; i--) { // go in reverse order
 				// insert after last cipher in that category

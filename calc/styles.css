@@ -1160,7 +1160,7 @@ body {
 	outline: none;
 	border: none;
 }
-#diacrChkbox, #caseSensChkbox, #multiCharChkbox {
+#diacrChkbox, #caseSensChkbox, #multiCharChkbox, #wheelCiphChkbox {
 	display: inline-flex;
 	padding: 0em 1em 0.75em 1em;
 }
