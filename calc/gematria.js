@@ -190,9 +190,8 @@ class cipher { // cipher constructor class
 				}
 			}
 			if (this.sv.length !== 0 && this.sv[this.sv.length-1] !== " ") { // add last space if non empty
-				this.sp.push(" ")
-				this.sv.push(" ")
 				this.sumArr.push(wordSum) // last word value
+				if (this.sumArr.length > 1) { this.sp.push(" "); this.sv.push(" ") } // no space in the end for a single word
 			}
 			this.WordCount = this.sumArr.length // word count
 			return

@@ -91,8 +91,12 @@ function updateWordBreakdown(impName = breakCipher, impBool = false, chartUpd = 
 			}
 			oStart += '<div id="SimpleBreak">'
 			oStart += '<span class="breakPhrase">' + simplePhr + '</span><span class="breakPhrase"> = </span><span class="breakSum">'
-			oStart += curCipher.wheelCipher ? curCipher.sv.reduce(getSumStr) :
-				curCipher.sumArr.reduce(getSum) // add all values in array
+			if (curCipher.wheelCipher) {
+				oStart += curCipher.multiCharacter ? curCipher.sv.reduce(getSumStr) :
+					curCipher.cv.reduce(getSumStr) // add all values in array
+			} else {
+				oStart += curCipher.sumArr.reduce(getSum) // add all values in array
+			}
 			oStart += ' </span><span class="breakCipher"><font style="'+curCiphCol+'"> (' + curCipher.cipherName + gemCalcModeLabel(curCipher) + ')</font></span>'
 		}
 

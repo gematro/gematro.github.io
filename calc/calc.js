@@ -1254,11 +1254,12 @@ function updateEnabledCipherTable() { // draws a table with phrase gematria for 
 				new_row_opened = true
 			}
 			if (ciph_in_row < result_columns) { // until number of ciphers in row equals number of colums
+				var valClass = cipherList[i].wheelCipher ? 'numWProp' : 'numProp' // no number properties for wheel ciphers
 				cur_col = (optColoredCiphers) ? 'color: hsl('+cipherList[i].H+' '+cipherList[i].S+'% '+cipherList[i].L+'% / 1);' : ''
 				if (odd_col) { // odd column, "cipher name - value"
 					o += '<td class="phraseGemCiphName" style="'+cur_col+'">'+cipherList[i].cipherName+'</td>'
 					// o += '<td class="phraseGemValueOdd" style="'+cur_col+'">'+cipherList[i].calcGematria(phr)+'</td>'
-					o += '<td class="phraseGemValueOdd" style="'+cur_col+'"><span class="numProp">'
+					o += '<td class="phraseGemValueOdd" style="'+cur_col+'"><span class="'+valClass+'">'
 					o += cipherList[i].wheelCipher ? '&#9737;' : cipherList[i].calcGematria(phr)
 					o += '<span></td>'
 					ciph_in_row++
@@ -1266,7 +1267,7 @@ function updateEnabledCipherTable() { // draws a table with phrase gematria for 
 					//console.log(cipherList[i].cipherName+": odd")
 				} else if (!odd_col) { // even column, "value - cipher name"
 					// o += '<td class="phraseGemValueEven" style="'+cur_col+'">'+cipherList[i].calcGematria(phr)+'</td>'
-					o += '<td class="phraseGemValueEven" style="'+cur_col+'"><span class="numProp">'
+					o += '<td class="phraseGemValueEven" style="'+cur_col+'"><span class="'+valClass+'">'
 					o += cipherList[i].wheelCipher ? '&#9737;' : cipherList[i].calcGematria(phr)
 					o += '<span></td>'
 					o += '<td class="phraseGemCiphName" style="'+cur_col+'">'+cipherList[i].cipherName+'</td>'
@@ -1472,8 +1473,12 @@ function updateHistoryTable(hltBoolArr) {
 		for (y = 0; y < cipherList.length; y++) {
 			if (cipherList[y].enabled) {
 				curCiph = cipherList[y]
-				if (curCiph.wheelCipher) curCiph.calcBreakdown(sHistory[x])
-				gemVal = curCiph.wheelCipher ? curCiph.sv.reduce(getSumStr) : curCiph.calcGematria(sHistory[x]) // value only
+				if (curCiph.wheelCipher) {
+					curCiph.calcBreakdown(sHistory[x])
+					gemVal = curCiph.multiCharacter ? curCiph.sv.reduce(getSumStr) : curCiph.cv.reduce(getSumStr) // value only
+				} else {
+					gemVal = curCiph.calcGematria(sHistory[x]) // value only
+				}
 				
 				//phrase x, cipher y
 				col = (optColoredCiphers) ? 'hsl('+curCiph.H+' '+curCiph.S+'% '+curCiph.L+'% / 1)' : '' // default value color
@@ -1489,7 +1494,8 @@ function updateHistoryTable(hltBoolArr) {
 					}
 				}
 				ciphCount++ // next position in hltBoolArr
-				ms += '<td class="tC"><span style="color: '+col+'" class="gV"> '+gemVal+' </span></td>'
+				var valClass = curCiph.wheelCipher ? 'gW' : 'gV' // no number properties for wheel ciphers
+				ms += '<td class="tC"><span style="color: '+col+'" class="'+valClass+'"> '+gemVal+' </span></td>'
 			}
 		}
 		ms += '</tr>'
