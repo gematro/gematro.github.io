@@ -253,26 +253,8 @@ $(document).ready(function(){
 	});
 
 	$("body").on("click", "#btn-print-breakdown-details-png", function () {
-		var o = $(".LetterCounts").text();
-		var i, c_h, c_s, c_l = 0;
-		for (i = 0; i < cipherList.length; i++) {
-			if (cipherList[i].cipherName == breakCipher) { // current active cipher
-				c_h = cipherList[i].H;
-				c_s = cipherList[i].S;
-				c_l = cipherList[i].L;
-				break;
-			}
-		}
-		// $(".LetterCounts").html('<span style="color: hsl('+c_h+' '+c_s+'% '+c_l+'% / 1); font-weight: 500; font-size: 200%;">Gematria</span><br><hr style="background-color: rgb(105,105,105); height: 2px; border: none;">');
-		//$("#BreakdownDetails").attr("style", "padding-top: 1.25em;"); // more padding
-		// $(".LetterCounts").html('<br><hr style="background-color: rgb(105,105,105); height: 2px; border: none;">');
-		$(".LetterCounts").html('');
-		updateCipherChartGemCard(); // redraw cipher chart for current cipher (with borders)
-		$('#ChartSpotScroll').addClass('ChartSpotScrollStop'); // full size chart table for mobile devices
-		$('#BreakdownDetails').addClass('elemBorderScr'); // add outline for breakdown area
-		if (optCompactBreakdown) { $("#BreakdownDetails").attr("style", "padding-top: 0.9em; background-color:"+window.getComputedStyle(document.querySelector('body')).getPropertyValue('background-color')+";"); } // more padding
-		else { $("#BreakdownDetails").attr("style", "padding-top: 0.9em; background-color:"+window.getComputedStyle(document.querySelector('body')).getPropertyValue('background-color')+";"); }
-
+		var i = 0;
+		for (i; i < cipherList.length; i++) { if (cipherList[i].cipherName == breakCipher) break; } // get active cipher
 		// phrase-with-spaces_English-Ordinal_190_card.png
 		var fileName = sVal().normalize('NFD').replace(/[\u0300-\u036f]/g, "").replace(/ /g, "-").replace(/["|']/g, "")+
 			"_"+breakCipher.replace(/ /g, "-")+"_"+cipherList[i].calcGematria(sVal())+"_card.png";

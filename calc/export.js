@@ -6,7 +6,15 @@ function openImageWindow(element, imgName = "", sRatio = window.devicePixelRatio
 		// if browser zoom level is more than passed value, use current zoom level
 		if (isNaN(sRatio)) { sRatio = window.devicePixelRatio }
 		// if (typeof sRatio !== 'undefined' && sRatio < window.devicePixelRatio) { sRatio = window.devicePixelRatio}
-		if (element == '#ChartSpot') { // remove space and backspace labels from Cipher Chart
+		if (element == '#BreakdownDetails') { // Gematria Card style
+			$('#ChartSpotScroll').addClass('ChartSpotScrollStop'); // full size chart table for mobile devices
+			$('#BreakdownDetails').addClass('elemBorderScr'); // add outline for breakdown area
+			if (optCompactBreakdown) { $("#BreakdownDetails").attr("style", "padding-top: 1.5em; background-color:"+
+				window.getComputedStyle(document.querySelector('body')).getPropertyValue('background-color')+";"); } // extra padding and background color
+			else { $("#BreakdownDetails").attr("style", "padding-top: 1.5em; background-color:"+
+				window.getComputedStyle(document.querySelector('body')).getPropertyValue('background-color')+";"); }
+		}
+		if (element == '#ChartSpot' || element == '#BreakdownDetails') { // remove space and backspace labels from Cipher Chart or Gematria Card
 			$('#spaceChartBtn').text('');$('#backspaceChartBtn').text('');
 		}
 		// html2canvas($(element)[0], {allowTaint: false, backgroundColor: window.getComputedStyle(document.querySelector('body')).getPropertyValue('background-color'), width: $(element).outerWidth()+2, height: $(element).outerHeight()+2, scale: sRatio} ).then((canvas) => { // e.g. html2canvas($("#ChartTable")[0]).then ...
@@ -16,7 +24,7 @@ function openImageWindow(element, imgName = "", sRatio = window.devicePixelRatio
 			//width: $(element).width(), height: $(element).height() - get proper element dimensions
 			//console.log("done ... ");
 			//$("#previewImage").append(canvas);
-			
+
 			// imageDataURL = canvas.toDataURL("image/png"); // canvas to "data:image/png;base64, ..."
 			imageDataURL = trimCanvas(canvas); // canvas to "data:image/png;base64, ..."
 
