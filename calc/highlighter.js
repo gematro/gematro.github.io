@@ -355,7 +355,7 @@ function updateHistoryTableAutoHlt() {
 		// console.log(cols_arr)
 		
 		var col_matches = [] // frequency of values within one cipher for all phrases
-		for (q = 0; q < cols_arr.length; q++) { // for each enabled cipher (column), using "i" created some impossible infinte loop bug
+		for (q = 0; q < cols_arr.length; q++) { // for each enabled cipher (column)
 			col_matches = []
 			col_matches = countMatches(cols_arr[q]) // find matches within the same cipher
 			// console.log(col_matches)

@@ -29,7 +29,7 @@ function toggleEncodingMenu(updateEncMenu = false, clearValues = false) {
 			var chkVal; var chk = "";
 			if (ciph_in_row < encodingMenuColumns) { // until number of ciphers in row equals number of columns
 				// if (cipherList[i].cArr.indexOf(97) > -1) { // all available English ciphers
-				if (cipherList[i].enabled == true) { // for each enabled cipher
+				if (cipherList[i].enabled == true && !cipherList[i].wheelCipher) { // for each enabled cipher, wheel ciphers are not supported
 					chkVal = (document.getElementById('encCiphVal'+i) !== null) ? document.getElementById('encCiphVal'+i).value : 0
 					chkVal = (clearValues) ? 0 : chkVal // clear values
 					o += '<td><span class="ciphCheckboxLabel">'+cipherList[i].cipherName+'</span></td>'
@@ -208,7 +208,7 @@ function displayEncodingResults() {
 
 	gemArr = []; gemArrCiph = []
 	for (i = 0; i < cipherList.length; i++) {
-		if (cipherList[i].enabled) {
+		if (cipherList[i].enabled && !cipherList[i].wheelCipher) { // for each enabled cipher, wheel ciphers are not supported
 			curEncCiphVal = document.getElementById("encCiphVal"+i).value
 			gemArr.push(curEncCiphVal) // load values from encoder for enabled ciphers
 			gemArrCiph.push(i) // indices of enabled ciphers

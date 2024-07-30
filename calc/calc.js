@@ -1475,7 +1475,7 @@ function updateHistoryTable(hltBoolArr) {
 				curCiph = cipherList[y]
 				if (curCiph.wheelCipher) {
 					curCiph.calcBreakdown(sHistory[x])
-					gemVal = curCiph.multiCharacter ? curCiph.sv.reduce(getSumStr) : curCiph.cv.reduce(getSumStr) // value only
+					gemVal = curCiph.multiCharacter ? getSumStr(curCiph.sv) : getSumStr(curCiph.cv) // value only
 				} else {
 					gemVal = curCiph.calcGematria(sHistory[x]) // value only
 				}

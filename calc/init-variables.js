@@ -34,6 +34,7 @@ var mArr = [] // phrases returned by the match function
 var gemArr = [] // phrase values for enabled ciphers
 var gemArrCiph = [] // enabled ciphers indices
 var numericalMode // boolean flag, match numbers instead of phrase gematria
+var wheelDBactive = false // check is matched ciphers have wheel ciphers to control table width
 
 var userDB = [] // imported database
 var userDBlive = [] // imported live database (phrases only)

@@ -658,7 +658,7 @@ body {
 	font-weight: 500;
 	word-break: break-word; /* affects table performance */
 }
-.hCV, .hCVQ { /* vertical history table header, cipher name cell */
+.hCV, .hCVQ,.hCVW  { /* vertical history table header, cipher name cell */
 	font-size: 85%;
 	height: 180px;
 	text-align: center;
@@ -667,6 +667,9 @@ body {
 }
 .hCVQ { /* vertical query table header, cipher name cell */
 	width: 55px;
+}
+.hCVW { /* vertical query table header, wheel ciphers */
+	width: auto;
 }
 .hCV2 {
 	transform: rotate(-90deg);

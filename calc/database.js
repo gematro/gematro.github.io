@@ -16,6 +16,7 @@ function queryDatabase() {
 	mArr = [] // array with matching phrases from database
 	gemArr = [] // gematria of current phrase for enabled ciphers
 	gemArrCiph = [] // indices of enabled ciphers
+	wheelDBactive = false // check is matched ciphers have wheel ciphers to control table width
 
 	numericalMode = NumberArray() // boolean
 
@@ -24,6 +25,13 @@ function queryDatabase() {
 		if (cipherList[i].enabled) {
 			if (!numericalMode) {
 				val = cipherList[i].calcGematria(sVal())
+				if (cipherList[i].wheelCipher) { // wheel cipher
+					wheelDBactive = true // at least one wheel cipher is present
+					cipherList[i].calcBreakdown(sVal())
+					val = cipherList[i].multiCharacter ? getSumStr(cipherList[i].sv) : getSumStr(cipherList[i].cv)
+				} else { // normal mode
+					val = cipherList[i].calcGematria(sVal())
+				}
 				// if (val == 0) val = "n/a"
 				gemArr.push(val) // value for current phrase in each enabled cipher
 			} else { // numerical mode
@@ -49,7 +57,7 @@ function queryDatabase() {
 	// }
 	// var tWidth = longestPhr*11 + 58*gemArrCiph.length // 2x1px outer borders + phrase cell and amount of ciphers
 
-	var tWidth = 202 + 58*gemArrCiph.length // 2x1px outer borders + phrase cell and amount of ciphers
+	var tWidth = wheelDBactive ? 202 + 160*gemArrCiph.length : 202 + 58*gemArrCiph.length // 2x1px outer borders + phrase cell and amount of ciphers
 	$("#queryArea").css("min-width", tWidth) // set initial/minimal width for the table
 	$("#queryArea").css("width", tWidth) // set initial/minimal width for the table
 	/*var o = 'min-width:'+tWidth+';width:'+tWidth+';'
@@ -82,16 +90,18 @@ function searchDBcrossCipher() { // populate "queryResult" array with matching p
 	for (p = 0; p < userDB.length; p++) { // for each phrase in database
 		tmpArr = [0, userDB[p][0]] // reset, set score[0], phrase[1]
 		for (m = 0; m < gemArrCiphUsed.length; m++) { // for each enabled cipher index
-			tmpVal = Number(userDB[p][gemArrCiphUsed[m]+1]) // value for that phrase (+1 because [0] contains phrase), string to number
+			// tmpVal = cipherList[gemArrCiphUsed[m]].wheelCipher ? userDB[p][gemArrCiphUsed[m]+1] : Number(userDB[p][gemArrCiphUsed[m]+1]) // value for that phrase (+1 because [0] contains phrase), string to number
+			tmpVal = userDB[p][gemArrCiphUsed[m]+1] // value for that phrase (+1 because [0] contains phrase), string to number
 			tmpArr.push(tmpVal) // first add values irrelevant of match validity
+			// console.log(`tmpVal:${tmpVal} == gemArr:${gemArr[m]}`)
 			for (n = 0; n < gemArr.length; n++) { // for each gematria value (cross cipher)
 				if (tmpVal == gemArr[m]) { 
-					// tmpArr[0] += gemArr[n] * 10 // add score for a matching value, same cipher
-					tmpArr[0] += 10 + 0.00001*tmpVal // add score for a matching value, same cipher
+					tmpArr[0] += 10 // add score for a matching value, same cipher
+					if (!isNaN(tmpVal)) tmpArr[0] += 0.00001*tmpVal // add ranking for numerical mode
 					n = gemArr.length // exit innermost loop (score is added once for same cross cipher values)
 				} else if (tmpVal == gemArr[n]) {
-					// tmpArr[0] += gemArr[n] // cross cipher
-					tmpArr[0] += 1 + 0.00001*tmpVal // cross cipher
+					tmpArr[0] += 1 // cross cipher
+					if (!isNaN(tmpVal)) tmpArr[0] += 0.00001*tmpVal // add ranking for numerical mode
 					n = gemArr.length // exit innermost loop
 				}
 			}
@@ -120,11 +130,16 @@ function searchDBsameCipher() { // populate "queryResult" array with matching ph
 	for (p = 0; p < userDB.length; p++) { // for each phrase in database
 		tmpArr = [0, userDB[p][0]] // reset, set score[0], phrase[1]
 		for (m = 0; m < gemArrCiphUsed.length; m++) { // for each enabled cipher index
-			tmpVal = Number(userDB[p][gemArrCiphUsed[m]+1]) // value for that phrase (+1 because [0] contains phrase), string to number
+			// tmpVal = cipherList[gemArrCiphUsed[m]].wheelCipher ? userDB[p][gemArrCiphUsed[m]+1] : Number(userDB[p][gemArrCiphUsed[m]+1])
+			tmpVal = userDB[p][gemArrCiphUsed[m]+1]
+			// tmpVal = Number(userDB[p][gemArrCiphUsed[m]+1]) // value for that phrase (+1 because [0] contains phrase), string to number
 			tmpArr.push(tmpVal) // first add values irrelevant of match validity
+			// console.log(`tmpVal:${tmpVal} == gemArr:${gemArr[m]}`)
 			if (tmpVal == gemArr[m]) {
 				// tmpArr[0] += gemArr[m] // same cipher, add score
-				tmpArr[0] += 1 + 0.00001*gemArr[m] // same cipher, add score
+				// tmpArr[0] += 1 + 0.00001*gemArr[m] // same cipher, add score
+				tmpArr[0] += 1 // same cipher, add score
+				if (!isNaN(tmpVal)) tmpArr[0] += 0.00001*tmpVal // add ranking for numerical mode
 			}
 		}
 		if (tmpArr[0] > 0) queryResult.push(tmpArr) // if total score is more than zero, add phrase to array
@@ -219,7 +234,8 @@ function updateDatabaseQueryTable(stPos = 0, dItems, scrollBarEvent = false) { /
 				curCiph = cipherList[ gemArrCiph[z] ]
 				curCiphCol = (optColoredCiphers) ? 'hsl('+curCiph.H+' '+curCiph.S+'% '+curCiph.L+'% / 1)' : ''
 				// ms += '<td class="hCVQ"><span class="hCV2" style="color: '+curCiphCol+'">'+curCiph.cipherName.replace(/ /g, "<br>")+'</span></td>' // color of cipher displayed in the table
-				ms += '<td class="hCVQ" style="height: '+calcCipherNameHeightPx(curCiph.cipherName)+'px;"><span class="hCV2" style="color: '+curCiphCol+'">'
+				var widthClass = wheelDBactive ? 'hCVW' : 'hCVQ' // wheel ciphers have a wide column for values
+				ms += '<td class="'+widthClass+'" style="height: '+calcCipherNameHeightPx(curCiph.cipherName)+'px;"><span class="hCV2" style="color: '+curCiphCol+'">'
 				ms += curCiph.cipherName+'</span></td>' // color of cipher displayed in the table
 			}
 			ms += "</tr>"
@@ -245,9 +261,18 @@ function updateDatabaseQueryTable(stPos = 0, dItems, scrollBarEvent = false) { /
 			curCiphCol = (optColoredCiphers) ? 'hsl('+curCiph.H+' '+curCiph.S+'% '+curCiph.L+'% / 1)' : ''
 
 			if (liveDatabaseMode == true) {
-				gemVal = (encodingMenuOpened) ? curCiph.calcGematria(queryResult[x]) : curCiph.calcGematria(queryResult[x][1]) // recalculate displayed value
+				// gemVal = (encodingMenuOpened) ? curCiph.calcGematria(queryResult[x]) : curCiph.calcGematria(queryResult[x][1]) // recalculate displayed value
+				if (encodingMenuOpened) {
+					gemVal = curCiph.calcGematria(queryResult[x]) // encoding mode
+				} else {
+					if (curCiph.wheelCipher) { // database query, wheel ciphers
+						gemVal = curCiph.multiCharacter ? getSumStr(curCiph.sv) : getSumStr(curCiph.cv) // string
+					} else { // database query, numerical ciphers
+						gemVal = curCiph.calcGematria(queryResult[x][1]) // value
+					}
+				}
 			} else {
-				gemVal = queryResult[x][valPos] // value only
+				gemVal = queryResult[x][valPos] // precomputed value/string
 			}
 			// if (gemVal == 0) gemVal = "-"
 			valPos++ // increment value position
@@ -390,7 +415,13 @@ function calcLiveDatabase(arr) {
 		tmpArr.push(arr[i]) // add phrase
 		for (n = 0; n < cipherList.length; n++) {
 			if (cipherList[n].enabled) {
-				tmpArr.push(cipherList[n].calcGematria(arr[i])) // gematria value for each enabled cipher
+				if (cipherList[n].wheelCipher) {
+					cipherList[n].calcBreakdown(arr[i])
+					gemVal = cipherList[n].multiCharacter ? getSumStr(cipherList[n].sv) : getSumStr(cipherList[n].cv)
+					tmpArr.push(gemVal) // string value for wheel ciphers
+				} else {
+					tmpArr.push(cipherList[n].calcGematria(arr[i])) // gematria value for each enabled cipher
+				}
 			}
 		}
 		userDB.push(tmpArr) // add row with phrase and gematria for enabled ciphers

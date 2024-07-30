@@ -72,7 +72,7 @@ class cipher { // cipher constructor class
 					i += sLen-n // advance position by syllable length, codePoint aware
 					n = 0 // reset syllable length modifier
 				} else { // full syllable not found, shorten current syllable
-					if (n < sLen) { // as short as a single character BUG HERE, IF sLen INFINITE LOOP, IF sLen-1 last letter excluded
+					if (n < sLen) { // as short as a single character
 						n += 1 // continue building a shorter syllable from same position
 					} else { // even a single character is not found
 						n = 0 // reset syllable length modifier
@@ -176,7 +176,7 @@ class cipher { // cipher constructor class
 					i += sLen-n// advance position by syllable length, codePoint aware
 					n = 0 // reset syllable length modifier
 				} else { // full syllable not found, shorten current syllable
-					if (n < sLen) { // as short as a single character BUG HERE sLen-1 NO LAST LETTER OTHERWISE INF LOOP
+					if (n < sLen) { // as short as a single character
 						n += 1 // continue building a shorter syllable from same position
 					} else { // even a single character is not found
 						if (this.sv.length !== 0 && this.sv[this.sv.length-1] !== " ") { // never add first space
