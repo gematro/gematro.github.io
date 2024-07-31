@@ -623,12 +623,7 @@ $(document).ready(function() {
 				tooltipX = event.pageX - tW - 27 // display to the left and above of cursor
 				tooltipY = event.pageY - tH - 27
 			}
-
-			$('div.numPropTooltip').css({top: tooltipY, left: tooltipX});
-		}
-		if (navigator.maxTouchPoints > 1 && mobileUserAgent) { // for mobile devices
-			var tooltipX = event.pageX - 8;
-			var tooltipY = event.pageY + 8;
+			
 			$('div.numPropTooltip').css({top: tooltipY, left: tooltipX});
 		}
 	};

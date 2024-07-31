@@ -809,6 +809,23 @@ body {
 	background-color: var(--btn-bg-accent);
 	/* background-color: transparent; */
 }
+.intBtnRepo {
+	box-sizing: border-box;
+	display: inline-block;
+	text-align: center;
+	text-wrap: nowrap;
+	color: var(--font-white-1);
+	color: var(--font-white-2);
+	padding: 0.4em 0.75em;
+	border: 1px solid var(--border-accent);
+	width: 100%;
+	font-size: 100%;
+	font-weight: 500;
+	font-family: var(--font-family);
+	outline: none;
+	text-decoration: none;
+	background-color: var(--btn-bg-accent);
+}
 @media (max-width: 911px) { /* mobile */
 	#queryDBbtn {
 		min-width: 30px !important;
@@ -875,6 +892,24 @@ body {
 }
 .intBtn:active, .intBtn2:active, .ciphEditBtn:active, .intBtn3:active, .intBtnResetDate:active, #queryDBbtn:active, #enterPhraseBtn:active, .queryPageBtn:active {
 	background-color: var(--btn-active-accent);
+}
+.intBtnRepo:link {
+	color: var(--font-white-2);
+	border-bottom: 1px solid var(--border-accent);
+}
+.intBtnRepo:visited {
+	color: var(--font-white-2);
+	border-bottom: 1px solid var(--border-accent);
+}
+.intBtnRepo:hover {
+	color: var(--font-white-2);
+	background-color: var(--btn-hover-accent);
+	border-bottom: 1px solid var(--border-accent);
+}
+.intBtnRepo:active{
+	color: var(--font-white-2);
+	background-color: var(--btn-active-accent);
+	border-bottom: 1px solid var(--border-accent);
 }
 
 .dropbtn {
