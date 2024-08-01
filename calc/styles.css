@@ -176,8 +176,14 @@ body {
 	height: 10px !important;
 	width: auto !important;
 }
-.gematroLogo svg path {
+.gematroLogo svg path, .gitLogo svg path {
 	fill: var(--font-white-2) !important;
+}
+.gitLogo {
+	position: absolute;
+	pointer-events: none;
+	top: 0.4em;
+	left: 2.3em;
 }
 .splitInterface {}
 @media (min-width: 911px) { /* desktop */
@@ -812,11 +818,10 @@ body {
 .intBtnRepo {
 	box-sizing: border-box;
 	display: inline-block;
-	text-align: center;
-	text-wrap: nowrap;
+	text-align: left;
 	color: var(--font-white-1);
 	color: var(--font-white-2);
-	padding: 0.4em 0.75em;
+	padding: 0.4em 0.75em 0.4em 3.9em;
 	border: 1px solid var(--border-accent);
 	width: 100%;
 	font-size: 100%;
