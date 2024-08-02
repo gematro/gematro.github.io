@@ -238,6 +238,13 @@ body {
 #HistoryTableArea {
 	padding-bottom: 0.1em;
 }
+@media (max-width: 911px) { /* mobile */
+	#HistoryTableArea {
+		width: 90vw;
+		overflow: auto;
+		margin-bottom: 4em;
+	}
+}
 #calcOptionsPanel {
 	padding: 0.6em 0em 0em 0em;
 	-webkit-user-select: none;
@@ -641,6 +648,11 @@ body {
 	border-right: 1px solid var(--border-dark-accent);
 	margin: 0.5em 1em 2.4em 1em;
 }
+@media (max-width: 911px) { /* mobile */
+	.HistoryTable {
+		margin: 0em 0.25em 0em 0em;
+	}
+}
 .HistoryTable tr:nth-child(odd) {
 	background-color: var(--table-row-odd);
 }
@@ -684,6 +696,17 @@ body {
 	display: inline-block;
 	width: 20px;
 	margin-left: 1.6em;
+}
+@media (max-width: 911px) { /* mobile */
+	.hCV {
+		height: 40px !important;
+	}
+	.hCV2 {
+		display: none; /* no vertical cipher labels */
+	}
+	td.hCV {
+		border-left: none !important; /* clean cipher label row */
+	}
 }
 .hP { /* history phrase */
 	text-align: right;
