@@ -46,6 +46,9 @@ var searchBarValue = '' // search bar value
 $(document).ready(function(){
 	// Scroll inside table
 	$("body").on("wheel", "#QueryTable", function (event) {
+
+		hideContextMenu(); // close context menu on scroll
+		
 		st = $("#QueryTable").data("startpos")
 		n = $("#QueryTable").data("dispitems")
 
@@ -94,7 +97,7 @@ $(document).ready(function(){
 		updateDatabaseQueryTable(st, n, true) // update only the table at new position
 	});
 	$("body").on("change", "#queryScrollbar", function () {
-		document.getElementById("queryPosInput").focus() // restore focus after using scrollbar
+		if (navigator.maxTouchPoints <= 1) document.getElementById("queryPosInput").focus() // restore focus on desktop devices after using scrollbar
 	});
 
 	// Search bar
@@ -561,7 +564,7 @@ $(document).ready(function(){
 			document.getElementById("phraseBox").value = phr; // insert into search box
 			updateWordBreakdown() // update breakdown for current phrase
 			updateEnabledCipherTable() // update enabled cipher values
-			document.getElementById("queryPosInput").focus(); // focus input
+			if (navigator.maxTouchPoints <= 1) document.getElementById("queryPosInput").focus() // restore focus on desktop devices
 			if (!optNewPhrasesGoFirst) { addPhraseToHistory(phr, true) } // enter as single phrase
 			else { addPhraseToHistoryUnshift(phr, true) } // insert in the beginning
 		}
@@ -631,6 +634,13 @@ $(document).ready(function() {
 	var hideTooltip = function() {
 		$('div.numPropTooltip').remove();
 	};
+	$(document).on('click', function (e) {
+		if ($(".numPropTooltip").length) { // if element exists
+			if ($(e.target).closest(".numPropTooltip, .numProp, .gV, .gVQ, #calcOptionsPanel").length === 0 ) {
+				hideTooltip(); // hide number properties when clicked outside, but not on menu elements
+			}
+		}
+	});
 
 	// numbers inside enabled ciphers and history tables
 	$("body").on("mouseenter", ".numProp, .gV, .gVQ", showTooltip);

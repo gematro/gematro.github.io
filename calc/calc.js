@@ -1505,3 +1505,177 @@ function updateHistoryTable(hltBoolArr) {
 	ms += '</tbody></table>'
 	histTable.innerHTML = ms
 }
+
+// ================ History & Database - Context Menu ===============
+
+var $elemHltContextMenu = null // currently highlighted element
+
+var hideContextMenu = function() { // removes context menu
+	$('div.contextMenuTooltip').remove();
+	if ($elemHltContextMenu !== null) $elemHltContextMenu.removeClass("selectedPhrase") // clear old highlight
+};
+
+document.addEventListener('scroll', function (e) { // close context menu on scroll event
+	if ($(".contextMenuTooltip").length) {
+		hideContextMenu();
+	}
+}, true);
+
+$(document).ready(function() { // context menu definition and positioning
+
+	var changeContextMenuPosition = function(event, wasClicked = false) {
+		if (ctrlIsPressed || shiftIsPressed || wasClicked == true) { // if modifier keys were used or opened with click
+			var tW = $('div.contextMenuTooltip').outerWidth() // tooltip dimensions
+			var tH = $('div.contextMenuTooltip').outerHeight()
+			var wndW = $(window).width() // viewport dimensions
+			var wndH = $(window).height()
+			var viewportW = $(document).scrollLeft() // window scroll position
+			var viewportH = $(document).scrollTop()
+			var coordX = event.pageX // cursor coordinates
+			var coordY = event.pageY
+			var tooltipX = 0; var tooltipY = 0; // final tooltip coordinates
+			//console.log("X:"+coordX+" Y:"+coordY)
+
+			if (coordX + tW + 8 + 35 < viewportW + wndW) { // X position
+				tooltipX = coordX + 8; // follow cursor position
+			} else { // if outside of visible viewport
+				tooltipX = viewportW + wndW - tW - 35 // display at furthest visible position
+			}
+
+			if (coordY + tH + 8 + 35 < viewportH + wndH) { // Y position
+				tooltipY = coordY + 8;
+			} else {
+				tooltipY = viewportH + wndH - tH - 35
+			}
+
+			// bottom right corner, out of viewport
+			if (coordX + tW + 8 + 35 > viewportW + wndW && coordY + tH + 8 + 35 > viewportH + wndH) {
+				tooltipX = event.pageX - tW - 27 // display to the left and above of cursor
+				tooltipY = event.pageY - tH - 27
+			}
+			
+			$('div.contextMenuTooltip').css({top: tooltipY, left: tooltipX});
+		}
+	};
+
+	$("body").on("mouseleave", "div.contextMenuTooltip", hideContextMenu); // close menu on mouse leave event
+	$(document).on('click', function (e) {
+		if ($(".contextMenuTooltip").length) {
+			if ($(e.target).closest(".contextMenuTooltip").length === 0) {
+				hideContextMenu(); // clicking outside of context menu closes it
+			}
+		}
+	});
+
+	var showHistoryContextMenu = function(event) {
+		if (!ctrlIsPressed && !shiftIsPressed) { // no modifier keys, those are reserved for shortcuts
+			hideContextMenu();
+			p = $(this).data('ind'); // get current phrase index in sHistory[]
+			$(this).addClass("selectedPhrase"); // highlight current element
+			$elemHltContextMenu = $(this);
+			$('<div class="contextMenuTooltip">'+listHistoryContextMenuElements(p)+'</div>').appendTo('body');
+			changeContextMenuPosition(event, true); // a click was issued
+			return false;
+		}
+	};
+	var showDatabaseContextMenu = function(event) {
+		if (!ctrlIsPressed && !shiftIsPressed) { // no modifier keys, those are reserved for shortcuts
+			hideContextMenu();
+			p = $(this).data('ind'); // get current phrase index in queryResult[]
+			$(this).addClass("selectedPhrase"); // highlight current element
+			$elemHltContextMenu = $(this);
+			$('<div class="contextMenuTooltip">'+listDatabaseContextMenuElements(p)+'</div>').appendTo('body');
+			changeContextMenuPosition(event, true);
+			return false; // no context menu
+		}
+	};
+
+	// Context Menu listeners for History Table and Database entries
+	$("body").on("contextmenu", ".hP", showHistoryContextMenu);
+	$("body").on("contextmenu", ".hPQ", showDatabaseContextMenu);
+});
+
+function listHistoryContextMenuElements(p) { // create buttons for History Table context menu
+	var o = '<div>'
+	o += '<input class="intBtn" type="button" value="Open" onclick="contextMenuOpenAction(\''+p+'\')">'
+	o += '<div style="margin: 0.5em;"></div>'
+	o += '<input class="intBtn" type="button" value="Edit" onclick="contextMenuEditAction(\''+p+'\')">'
+	o += '<div style="margin: 0.5em;"></div>'
+	if (sHistory.length > 1) { // cannot cut a single element
+		o += '<input class="intBtn" type="button" value="Cut" onclick="contextMenuCutAction(\''+p+'\')">'
+		o += '<div style="margin: 0.5em;"></div>'
+	}
+	if (cutPhraseBuffer !== '') { // show paste if buffer is not empty
+		o += '<input class="intBtn" type="button" value="&#8593; Paste &#8593;" onclick="contextMenuPasteAction(\''+p+'\',true)">'
+		o += '<div style="margin: 0.5em;"></div>'
+		o += '<input class="intBtn" type="button" value="&#8595; Paste &#8595;" onclick="contextMenuPasteAction(\''+p+'\')">'
+		o += '<div style="margin: 0.5em;"></div>'
+	}
+	o += '<input class="intBtn" type="button" value="Remove" onclick="contextMenuRemoveAction(\''+p+'\')">'
+	o += '</div>'
+	return o
+}
+
+function contextMenuOpenAction(p) {
+	document.getElementById("phraseBox").value = sHistory[p]; // insert phrase into search box
+	updateWordBreakdown() // update breakdown for current phrase
+	updateEnabledCipherTable() // update enabled cipher values
+	if (navigator.maxTouchPoints <= 1)  document.getElementById("phraseBox").focus(); // focus input on desktop devices
+	hideContextMenu()
+}
+
+function contextMenuEditAction(p) {
+	var e = prompt('Edit word or phrase:', sHistory[p])
+	if (e !== null) {
+		sHistory.splice(p, 1) // remove old phrase
+		sHistory.splice(p, 0, e) // insert new at the same position
+		updateHistoryTable()
+	}
+	hideContextMenu()
+}
+
+var cutPhraseBuffer = '' // store previously cut phrase
+function contextMenuCutAction(p) {
+	cutPhraseBuffer = sHistory[p]
+	sHistory.splice(p, 1) // remove previous phrase, shifts array
+	updateHistoryTable()
+	hideContextMenu()
+}
+
+function contextMenuPasteAction(p, pAbove = false) {
+	p = pAbove ? p : Number(p)+1
+	sHistory.splice(p, 0, cutPhraseBuffer) // insert phrase at index
+	updateHistoryTable()
+	cutPhraseBuffer = '' // reset buffer
+	hideContextMenu()
+}
+
+function contextMenuRemoveAction(p) {
+	if (sHistory.length == 1) {
+		sHistory = [] // reinitialize array if there is only one entry
+		tArea = document.getElementById("HistoryTableArea")
+		tArea.innerHTML = "" // clear table
+	} else {
+		sHistory.splice(p,1)
+	}
+	updateHistoryTable()
+	hideContextMenu()
+}
+
+function listDatabaseContextMenuElements(p) { // create buttons for Database context menu
+	var o = '<div>'
+	o += '<input class="intBtn" type="button" value="Add to History Table" onclick="contextMenuAddToHistoryAction(\''+p+'\')">'
+	o += '</div>'
+	return o
+}
+
+function contextMenuAddToHistoryAction(p) {
+	var phr = (encodingMenuOpened) ? queryResult[p] : queryResult[p][1] // phrase[1]
+	document.getElementById("phraseBox").value = phr; // insert into search box
+	updateWordBreakdown() // update breakdown for current phrase
+	updateEnabledCipherTable() // update enabled cipher values
+	if (navigator.maxTouchPoints <= 1) document.getElementById("queryPosInput").focus() // restore focus on desktop devices
+	if (!optNewPhrasesGoFirst) { addPhraseToHistory(phr, true) } // enter as single phrase
+	else { addPhraseToHistoryUnshift(phr, true) } // insert in the beginning
+	hideContextMenu()
+}
