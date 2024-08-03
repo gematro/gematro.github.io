@@ -85,7 +85,7 @@ var coderainSatDefault = 0.2
 var coderainLit = 0.2 // coderain lightness
 var coderainLitDefault = 0.2
 
-var optImageScale = 1.0 // image scaling factor for screenshots
+var optImageScale = 2.0 // image scaling factor for screenshots
 
 var calcOptionsArr = [ // used to export/import settings
 	"'optNumCalcMethod'+' = '+optNumCalcMethod",

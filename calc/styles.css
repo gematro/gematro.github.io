@@ -694,7 +694,7 @@ body {
 .hCVW { /* vertical query table header, wheel ciphers */
 	width: auto;
 }
-.hCV2 {
+.hCV2, .hCVQ2 { /* vertical cipher label for history/query table */
 	transform: rotate(-90deg);
 	transform-origin: left;
 	white-space: nowrap;
@@ -711,6 +711,7 @@ body {
 	}
 	td.hCV {
 		border-left: none !important; /* clean cipher label row */
+		min-width: 30px;
 	}
 }
 .hP { /* history phrase */

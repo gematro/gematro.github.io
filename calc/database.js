@@ -235,7 +235,7 @@ function updateDatabaseQueryTable(stPos = 0, dItems, scrollBarEvent = false) { /
 				curCiphCol = (optColoredCiphers) ? 'hsl('+curCiph.H+' '+curCiph.S+'% '+curCiph.L+'% / 1)' : ''
 				// ms += '<td class="hCVQ"><span class="hCV2" style="color: '+curCiphCol+'">'+curCiph.cipherName.replace(/ /g, "<br>")+'</span></td>' // color of cipher displayed in the table
 				var widthClass = wheelDBactive ? 'hCVW' : 'hCVQ' // wheel ciphers have a wide column for values
-				ms += '<td class="'+widthClass+'" style="height: '+calcCipherNameHeightPx(curCiph.cipherName)+'px;"><span class="hCV2" style="color: '+curCiphCol+'">'
+				ms += '<td class="'+widthClass+'" style="height: '+calcCipherNameHeightPx(curCiph.cipherName)+'px;"><span class="hCVQ2" style="color: '+curCiphCol+'">'
 				ms += curCiph.cipherName+'</span></td>' // color of cipher displayed in the table
 			}
 			ms += "</tr>"
