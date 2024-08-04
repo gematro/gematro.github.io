@@ -356,19 +356,6 @@ function unloadDatabase() {
 	updateTables() // update
 
 	if (!liveDatabaseMode) { // restore ciphers only when precalculated database is unloaded
-		/*
-		cipherList = [...cipherListSaved] // restore initial ciphers
-		interfaceHue = interfaceHueDefault // restore hue
-		interfaceLit = interfaceLitDefault // restore saturation
-		interfaceSat = interfaceSatDefault // restore lightness
-		fontHue = fontHueDefault
-		fontLit = fontLitDefault
-		fontSat = fontSatDefault
-		coderainHue = coderainHueDefault
-		coderainLit = coderainLitDefault
-		coderainSat = coderainSatDefault
-		optGradientCharts = optGradientChartsDefault // restore gradient charts
-		*/
 		restoreCalcSettingsLocalStorage(true) // restore settings from localStorage
 	}
 	userDB = [] // clear previous DB
