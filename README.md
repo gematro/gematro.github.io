@@ -5,7 +5,7 @@
 ### Features:
 <ul>
 <li>Dynamic highlighter with a filter</li>
-<li>Support for characters with diacritical marks</li>
+<li>Support for diacritical marks</li>
 <li>Fully customizable ciphers</li>
     <ul>
         <li>Number substitution</li>
@@ -14,7 +14,7 @@
     </ul>
 <li>Database mode</li>
 <li>Encoding mode</li>
-<li>Import/Export (TXT, CSV format)</li>
+<li>Import/Export (TXT, CSV)</li>
 <li>Unicode and emoji support</li>
 </ul>
 
