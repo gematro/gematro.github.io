@@ -1,19 +1,29 @@
 ## GEMATRO - Gematria Calculator
 ![GEMATRO - Gematria Calculator](res/preview.png)
----
 > NOTE: Use a desktop Chromium based browser for best experience
 
 ### Features:
 <ul>
-<li>Dynamic highlighter with filtering</li>
+<li>Dynamic highlighter with a filter</li>
 <li>Support for characters with diacritical marks</li>
-<li>Date calculator (offline)</li>
-<li>Number properties (offline)</li>
-<li>Database support (offline)</li>
-<li>Encoding (offline)</li>
-<li>History export/import (CSV format)</li>
-<li>Fully customizable ciphers (Unicode)</li>
+<li>Fully customizable ciphers</li>
+    <ul>
+        <li>Number substitution</li>
+        <li>Letter substitution</li>
+        <li>Multicharacter</li>
+    </ul>
+<li>Database mode</li>
+<li>Encoding mode</li>
+<li>Import/Export (TXT, CSV format)</li>
+<li>Unicode and emoji support</li>
+</ul>
+
+### Extra:
+
+<ul>
+<li>Number properties</li>
+<li>Date calculator</li>
 <li>Color controls</li>
 <li>Screenshot tools</li>
-<li>Quickstart guide included</li>
+<li>Quickstart guide</li>
 </ul>
