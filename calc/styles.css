@@ -1671,7 +1671,8 @@ body {
 	height: 201px;
 }
 .ciphInfoPanel {
-	height: unset;
+	height: fit-content;
+	max-height: 80%;
 }
 @media (max-width: 911px) { /* mobile */
 	.contactInfo {
@@ -1686,8 +1687,6 @@ body {
 	}
 	.ciphInfoPanel {
 		width: 400px !important;
-		height: unset;
-		max-height: 80% !important;
 	}
 }
 .qgBoldCoin {

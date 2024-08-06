@@ -162,7 +162,7 @@ function displayCipherInfoPanel(id) {
 	o += '<div>'
 	o += '<hr class="numPropSeparator">'
 	
-	o += '<div style="margin-top: 2em; margin-bottom: 2em; text-align: justify;">'
+	o += '<div style="margin-top: 2em; margin-bottom: 2em; text-align: left;">'
 	o += '<span>'+cipherList[id].cipherDescription+'</span>'
 	o += '</div>'
 
