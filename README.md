@@ -22,6 +22,7 @@
 
 <ul>
 <li>Number properties</li>
+<li>Virtual keyboard</li>
 <li>Date calculator</li>
 <li>Color controls</li>
 <li>Screenshot tools</li>

@@ -1134,6 +1134,16 @@ body {
 	font-family: var(--font-family);
 	border: 1px solid var(--border-dark-accent);
 }
+@media (max-width: 911px) { /* mobile */
+	.numPropTooltip {
+		top: 0 !important;
+		left: 0 !important;
+		bottom: 0;
+		right: 0;
+		margin: auto;
+		height: fit-content;
+	}
+}
 .contextMenuTooltip {
 	min-width: 100px;
 	margin: 1em;
@@ -1324,9 +1334,6 @@ body {
 	line-height: 0.8em;
 	padding: 1em 1em 0.9em 1em;
 	background: var(--btn-bg-accent);
-}
-.elemBorderScr {
-	border: 1px solid var(--border-dark-accent);
 }
 .dateCalcBg {
 	min-width: 370px;

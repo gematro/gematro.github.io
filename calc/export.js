@@ -8,7 +8,6 @@ function openImageWindow(element, imgName = "", sRatio = window.devicePixelRatio
 		// if (typeof sRatio !== 'undefined' && sRatio < window.devicePixelRatio) { sRatio = window.devicePixelRatio}
 		if (element == '#BreakdownDetails') { // Gematria Card style
 			$('#ChartSpotScroll').addClass('ChartSpotScrollStop'); // full size chart table for mobile devices
-			$('#BreakdownDetails').addClass('elemBorderScr'); // add outline for breakdown area
 			if (optCompactBreakdown) { $("#BreakdownDetails").attr("style", "padding-top: 1.5em; background-color:"+
 				window.getComputedStyle(document.querySelector('body')).getPropertyValue('background-color')+";"); } // extra padding and background color
 			else { $("#BreakdownDetails").attr("style", "padding-top: 1.5em; background-color:"+
@@ -25,17 +24,15 @@ function openImageWindow(element, imgName = "", sRatio = window.devicePixelRatio
 			//console.log("done ... ");
 			//$("#previewImage").append(canvas);
 
-			// imageDataURL = canvas.toDataURL("image/png"); // canvas to "data:image/png;base64, ..."
-			imageDataURL = trimCanvas(canvas); // canvas to "data:image/png;base64, ..."
+			tCanvas = trimCanvas(canvas); // trim transparent pixels
+			imageDataURL = drawOutlineCanvas(tCanvas,2).toDataURL("image/png"); // draw outline, canvas to "data:image/png;base64, ..."
 
 			if (element == '.dateCalcTable2') { // restore date labels as input
 				$('#dateDesc1Area').html('<input class="dateDescription" id="dateDesc1" value="'+dateDesc1Saved+'">')
 				$('#dateDesc2Area').html('<input class="dateDescription" id="dateDesc2" value="'+dateDesc2Saved+'">')
-				$('.dateCalcTable2').removeClass('elemBorderScr') // add outline
 			}
 
 			if (element == '#BreakdownDetails') { // restore chart style, remove outline
-				$('#BreakdownDetails').removeClass('elemBorderScr') // remove outline for breakdown area
 				updateWordBreakdown() // redraw cipher chart
 			}
 
@@ -108,9 +105,17 @@ function trimCanvas(c) { // remove transparent pixels
 	copyCtx.canvas.height = trimHeight;
 	copyCtx.putImageData(trimmed, 0, 0);
 	
-	// open new window with trimmed image:
-	// return copyCtx.canvas;
-	return copy.toDataURL("image/png");
+	return copyCtx.canvas;
+	// return copy.toDataURL("image/png");
+}
+
+function drawOutlineCanvas(c, oWidth = 5) {
+	var outlineColor = HSLtoRGB(Number(fontHue), 100*Number(fontSat), 23*Number(fontLit), 1) // same as --border-dark-accent
+	var ctx = c.getContext('2d')
+	ctx.lineWidth = oWidth
+	ctx.strokeStyle = outlineColor
+	ctx.strokeRect(0, 0, c.width, c.height)
+	return ctx.canvas
 }
 
 function showPrintImagePreview(imageDataURL, imgName, element, sRatio) {
@@ -398,9 +403,9 @@ function calcBGhtml2canvas() { // not used
 	return HSLtoRGB(colArr[0], colArr[1], colArr[2]) // rgb(32,37,50)
 }
 
-function HSLtoRGB(h, s, l) {
+function HSLtoRGB(h, s, l, mode = 0) { // mode 0 returns '#000000', else 'rgb(4,63,70)'
 	var hsv = HSLtoHSV(h, s, l)
-	return HSVtoRGB(hsv.h, hsv.s, hsv.v)
+	return HSVtoRGB(hsv.h, hsv.s, hsv.v, mode)
 }
 
 function HSLtoHSV(h, s, l) {
@@ -439,13 +444,13 @@ function HSVtoRGB(h, s, v, mode = 0) {
 		case 5: r = v, g = p, b = q; break;
 	}
 	var rgb = ''
-	if (mode = 0) { // always
+	if (mode == 0) { // 'rgb(4,63,70)'
 		rgb = 'rgb('+Math.round(r * 255)+','+Math.round(g * 255)+','+Math.round(b * 255)+')'
 	} else {
 		let hR = numBaseXtoY(Math.round(r * 255), 10, 16) // hex format
 		let hG = numBaseXtoY(Math.round(g * 255), 10, 16)
 		let hB = numBaseXtoY(Math.round(b * 255), 10, 16)
-		rgb = '#'+hR+hG+hB // #000000, colorTheme value
+		rgb = '#'+pad(hR,2)+pad(hG,2)+pad(hB,2) // '#000000', colorTheme value
 	}
 	return rgb
 }

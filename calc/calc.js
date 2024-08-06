@@ -84,7 +84,7 @@ var coderainSatDefault = 0.2
 var coderainLit = 0.2 // coderain lightness
 var coderainLitDefault = 0.2
 
-var optImageScale = 2.0 // image scaling factor for screenshots
+var optImageScale = 1.0 // image scaling factor for screenshots
 
 var calcOptionsArr = [ // used to export/import settings
 	"'optNumCalcMethod'+' = '+optNumCalcMethod",
@@ -1567,6 +1567,7 @@ $(document).ready(function() { // context menu definition and positioning
 	});
 
 	var showHistoryContextMenu = function(event) {
+		hideNumPropTooltip()
 		if (!ctrlIsPressed && !shiftIsPressed) { // no modifier keys, those are reserved for shortcuts
 			hideContextMenu();
 			p = $(this).data('ind'); // get current phrase index in sHistory[]
@@ -1578,6 +1579,7 @@ $(document).ready(function() { // context menu definition and positioning
 		}
 	};
 	var showDatabaseContextMenu = function(event) {
+		hideNumPropTooltip()
 		if (!ctrlIsPressed && !shiftIsPressed) { // no modifier keys, those are reserved for shortcuts
 			hideContextMenu();
 			p = $(this).data('ind'); // get current phrase index in queryResult[]

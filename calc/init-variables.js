@@ -240,7 +240,6 @@ $(document).ready(function(){
 	$("body").on("click", "#btn-date-calc-png", function () {
 		$('#dateDesc1Area').html('<span class="dateDescription">'+dateDesc1Saved+'</span>') // input to fixed text
 		$('#dateDesc2Area').html('<span class="dateDescription">'+dateDesc2Saved+'</span>')
-		$('.dateCalcTable2').addClass('elemBorderScr') // add outline
 		// phrase-with-spaces_2021-03-26_10-23-52_table.png
 		var fileName = (saved_d1.getMonth()+1)+'-'+saved_d1.getDate()+'-'+saved_d1.getFullYear()+'_'+
 			(saved_d2.getMonth()+1)+'-'+saved_d2.getDate()+'-'+saved_d2.getFullYear()+"_date_durations.png";
@@ -536,12 +535,12 @@ $(document).ready(function(){
 	// Ctrl + Right click on phrase in history table
 	$("body").on("contextmenu", ".hP", function (e) { // tC - history table cell
 		if (ctrlIsPressed) {
+			hideContextMenu()
 			var curPhrID = $(this).data("ind") // get phrase index
 			if (prevPhrID == -1) { // no previous selection
 				$(this).addClass("selectedPhrase")
 				prevPhrID = curPhrID // save selection
 			} else { // previous selection exists
-				var curPhr = sHistory[curPhrID]
 				var prevPhr = sHistory[prevPhrID]
 				if (curPhrID == prevPhrID) { // clear selection
 					$(this).removeClass("selectedPhrase")
@@ -578,6 +577,9 @@ var primeNums; var triangularNums; var fibonacciNums; var starNums;
 
 // ======================= Number Properties ========================
 
+var hideNumPropTooltip = function() { // hide number properties
+	$('div.numPropTooltip').remove();
+};
 $(document).ready(function() {
 
 	var showTooltip = function(event) {
@@ -598,6 +600,7 @@ $(document).ready(function() {
 
 	var changeTooltipPosition = function(event, wasClicked = false) {
 		if (ctrlIsPressed || shiftIsPressed || wasClicked == true) { // if modifier keys were used or opened with click
+			hideContextMenu()
 			var tW = $('div.numPropTooltip').outerWidth() // tooltip dimensions
 			var tH = $('div.numPropTooltip').outerHeight()
 			var wndW = $(window).width() // viewport dimensions
@@ -631,13 +634,10 @@ $(document).ready(function() {
 		}
 	};
 
-	var hideTooltip = function() {
-		$('div.numPropTooltip').remove();
-	};
 	$(document).on('click', function (e) {
 		if ($(".numPropTooltip").length) { // if element exists
 			if ($(e.target).closest(".numPropTooltip, .numProp, .gV, .gVQ, #calcOptionsPanel").length === 0 ) {
-				hideTooltip(); // hide number properties when clicked outside, but not on menu elements
+				hideNumPropTooltip(); // hide number properties when clicked outside, but not on menu elements
 			}
 		}
 	});
@@ -645,8 +645,8 @@ $(document).ready(function() {
 	// numbers inside enabled ciphers and history tables
 	$("body").on("mouseenter", ".numProp, .gV, .gVQ", showTooltip);
 	$("body").on("mousemove", ".numProp, .gV, .gVQ", changeTooltipPosition);
-	// $("body").on("mouseleave", ".numProp, .gV", hideTooltip)
-	$("body").on("mouseleave", "div.numPropTooltip", hideTooltip);
+	// $("body").on("mouseleave", ".numProp, .gV", hideNumPropTooltip)
+	$("body").on("mouseleave", "div.numPropTooltip", hideNumPropTooltip);
 
 	var showTooltipClick = function(event) {
 		$('div.numPropTooltip').remove(); // old tooltip
