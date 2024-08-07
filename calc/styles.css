@@ -406,6 +406,11 @@ body {
 	padding: 0.5em 0em;
 	text-align: center;
 }
+@media (max-width: 911px) { /* mobile */
+	#BreakSumLong {
+		padding: 0.5em 1em 0.5em 0.5em;
+	}
+}
 .SimpleBreakChart {
 	max-width: 800px;
 }
@@ -710,8 +715,9 @@ body {
 		display: none; /* no vertical cipher labels */
 	}
 	td.hCV {
-		border-left: none !important; /* clean cipher label row */
-		min-width: 30px;
+		min-width: 40px;
+		font-size: 110%;
+		vertical-align: middle;
 	}
 }
 .hP { /* history phrase */

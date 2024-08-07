@@ -156,6 +156,7 @@ function showWelcomeMessage(msg, durMs = 2500, delMs = 1250) {
 	}
 }
 
+var mobileCalcLayout = true // store current layout
 function configureCalcInterface(initRun = false) { // switch interface layout (desktop or mobile devices)
 	if (optMatrixCodeRain && !initRun) { // update code rain
 		clearInterval(code_rain) // reset previous instance
@@ -172,6 +173,7 @@ function configureCalcInterface(initRun = false) { // switch interface layout (d
 		chLimit = 13 // character limit, used to switch to a long breakdown style
 		maxRowWidth = 18 // one row character limit (long breakdown)
 		$('#queryDBbtn').val('Q') // change Query button label
+		mobileCalcLayout = true
 	} else { // desktop
 		encodingMenuColumns = 4
 		colorMenuColumns = ($(window).width() < 1600) ? 2 : 4
@@ -180,6 +182,7 @@ function configureCalcInterface(initRun = false) { // switch interface layout (d
 		chLimit = 30 // character limit, used to switch to a long breakdown style
 		maxRowWidth = 36 // one row character limit (long breakdown)
 		$('#queryDBbtn').val('Query') // change Query button label
+		mobileCalcLayout = false
 	}
 	if (optForceTwoColumnLayout && $(window).width() > compactViewportWidth) { // override layout for desktop
 		encodingMenuColumns = 2
@@ -1445,7 +1448,20 @@ function updateHistoryTable(hltBoolArr) {
 				if (cipherList[z].enabled) {
 					curCiphCol = (optColoredCiphers) ? 'color: hsl('+cipherList[z].H+' '+cipherList[z].S+'% '+cipherList[z].L+'% / 1);' : ''
 					if (compactHistoryTable) {
-						ms += '<td class="hCV" style="height: '+calcCipherNameHeightPx(cipherList[z].cipherName)+'px;"><span class="hCV2" style="'+curCiphCol+'">'+cipherList[z].cipherName+'</span></td>' // color of cipher displayed in the table
+						if (mobileCalcLayout) { // mobile layout, cipher shorthands
+							cN = cipherList[z].cipherName.split(' ') // ["English", "Ordinal"]
+							cNLen = cN.length > 2 ? 2 : cN.length // pick not more than 2 words
+							sH = '' // shorthand for cipher name, uppercase letters
+							if (cNLen == 2) { // first letters of first two words
+								sH = cN[0][0].toUpperCase() + cN[1][0].toUpperCase() 
+							} else { //two letters of the first word
+								if (cN[0].length > 1) { sH = cN[0][0].toUpperCase() + cN[0][1].toUpperCase() }
+							}
+							ms += '<td class="hCV" style="'+curCiphCol+';">'+sH+'</td>' // color of cipher displayed in the table
+						} else { // desktop layout, vertical cipher names
+							ms += '<td class="hCV" style="height: '+calcCipherNameHeightPx(cipherList[z].cipherName)+'px;"><span class="hCV2" style="'+curCiphCol+'">'+cipherList[z].cipherName+'</span></td>' // color of cipher displayed in the table
+							
+						}
 					} else {
 						ms += '<td class="hC" style="'+curCiphCol+' max-width: '+calcCipherNameWidthPx(cipherList[z].cipherName)+'px; min-width: '+calcCipherNameWidthPx(cipherList[z].cipherName)+'px;">'+cipherList[z].cipherName+'</td>' // color of cipher displayed in the table
 					}
