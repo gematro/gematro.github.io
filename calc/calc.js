@@ -67,8 +67,8 @@ var interfaceHue = 222 // calculator interface color
 var interfaceHueDefault = 222 // value for reset, updated on first run of updateInterfaceHue()
 var interfaceSat = 2.0 // interface saturation multiplier
 var interfaceSatDefault = 2.0
-var interfaceLit = 1.0 // interface lightness multiplier
-var interfaceLitDefault = 1.0
+var interfaceLit = 1.1 // interface lightness multiplier
+var interfaceLitDefault = 1.1
 
 var fontHue = 200 // font and outline hue
 var fontHueDefault = 200 // value for reset, updated on first run of updateFontHue()

@@ -1,16 +1,17 @@
 {
-  "short_name": "Gematro",
+  "short_name": "GEMATRO",
   "name": "GEMATRO - Gematria Calculator",
-  "background_color": "#202631",
+  "start_url": "https://gematro.github.io",
+  "background_color": "#192541",
+  "theme_color": "#1C2332",
+  "orientation": "portrait",
+  "display": "standalone",
+  "launch_handler": {
+    "client_mode": "focus-existing"
+  },
   "icons": [
     {
-      "src": "res/calc-logo-36.png",
-      "sizes": "36x36",
-      "type": "image/png",
-      "density": 0.75
-    },
-    {
-      "src": "res/calc-logo-36.png",
+      "src": "res/calc-logo-48.png",
       "sizes": "48x48",
       "type": "image/png",
       "density": 1.0
@@ -39,7 +40,5 @@
       "type": "image/png",
       "density": 4.0
     }
-  ],
-  "start_url": "index.html",
-  "display": "fullscreen"
+  ]
 }

@@ -1354,7 +1354,7 @@ body {
 @media (max-width: 911px) { /* mobile */
 	.dateCalcBg {
 		margin: 1em 0em 0em 0em !important;
-		height: 350px;
+		height: 330px;
 	}
 }
 .dateInputLabel {
