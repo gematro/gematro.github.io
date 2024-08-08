@@ -3,7 +3,7 @@
   "name": "GEMATRO - Gematria Calculator",
   "start_url": "https://gematro.github.io",
   "background_color": "#192541",
-  "theme_color": "#1C2332",
+  "theme_color": "#192541",
   "orientation": "portrait",
   "display": "standalone",
   "launch_handler": {
