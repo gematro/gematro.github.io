@@ -142,8 +142,8 @@ function initCalc(defSet = false) { // run after page has finished loading
 }
 
 function updateBrowserTabThemeColor() { // dynamic browser interface color
-	let themeColor = HSLtoRGB(Number(interfaceHue), 14*Number(interfaceSat), 14*Number(interfaceLit), 1)
-	document.querySelector('meta[name="theme-color"]').setAttribute('content', themeColor) // same as var(--table-row-odd)
+	let themeColor = HSLtoRGB(Number(interfaceHue), 22*Number(interfaceSat), 16*Number(interfaceLit), 1)
+	document.querySelector('meta[name="theme-color"]').setAttribute('content', themeColor) // same as var(--body-bg-accent)
 }
 
 var welcomeShown = false
