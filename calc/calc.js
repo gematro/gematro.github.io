@@ -141,9 +141,14 @@ function initCalc(defSet = false) { // run after page has finished loading
 	// showWelcomeMessage("Welcome to GEMATRO!")
 }
 
+function isStandaloneWebApp() {
+	return (window.matchMedia('(display-mode: standalone)').matches) || (window.navigator.standalone) || document.referrer.includes('android-app://')
+}
+
 function updateBrowserTabThemeColor() { // dynamic browser interface color
-	let themeColor = HSLtoRGB(Number(interfaceHue), 22*Number(interfaceSat), 16*Number(interfaceLit), 1)
-	document.querySelector('meta[name="theme-color"]').setAttribute('content', themeColor) // same as var(--body-bg-accent)
+	let themeColor = isStandaloneWebApp() ? HSLtoRGB(Number(interfaceHue), 22*Number(interfaceSat), 16*Number(interfaceLit), 1) : // --body-bg-accent, WebApp
+		HSLtoRGB(Number(interfaceHue), 14*Number(interfaceSat), 14*Number(interfaceLit), 1) // CSS var(--table-row-odd)
+	document.querySelector('meta[name="theme-color"]').setAttribute('content', themeColor)
 }
 
 var welcomeShown = false
