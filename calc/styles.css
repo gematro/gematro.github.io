@@ -339,6 +339,7 @@ body {
 	top:0;
 	left:0;
 	z-index : -1; /* behind all elements */ 
+	filter: blur(0.15em);
 }
 .ciphCheckbox {
 }

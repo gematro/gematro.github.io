@@ -7,8 +7,6 @@ function initCodeRain() {
 	canvas = document.getElementById("canv")
 	ctx = canvas.getContext("2d")
 
-	if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) $('#canv').css({'filter':'blur(1px)'}) // blur effect for Firefox
-
 	// set width and height of the canvas
 	w = canvas.width = document.body.offsetWidth
 	h = canvas.height = height_html
@@ -25,20 +23,18 @@ function matrix() {
 
 	// draw a semitransparent black rectangle on top of previous drawing
 	ctx.fillStyle = "#00000010"
-	if(navigator.userAgent.toLowerCase().indexOf('firefox') == -1) { // if not Firefox
-		// ctx.shadowColor = "rgba(0,0,0,0)" // reset blurred shadows for old characters
-		ctx.shadowColor = "hsla(0,0%,0%,0.0)" // reset blurred shadows for old characters
-		ctx.shadowBlur = 0 // reset blurred shadows
-	}
+
+	ctx.shadowColor = "hsla(0,0%,0%,0.0)" // reset blurred shadows for old characters
+	ctx.shadowBlur = 0 // reset blurred shadows
+
 	ctx.fillRect(0, 0, w, h)
 
 	// set color and font in the drawing context
 	ctx.fillStyle = "hsl("+coderainHue+","+(coderainSat*100)+"%,"+(coderainLit*100)+"%)"
 	ctx.font = "bold 18pt matrix-font"
-	if(navigator.userAgent.toLowerCase().indexOf('firefox') == -1) { // if not Firefox
-		ctx.shadowColor = "hsla("+coderainHue+",100%,50%,0.4)"
-		ctx.shadowBlur = 4
-	}
+	
+	ctx.shadowColor = "hsla("+coderainHue+",100%,50%,0.4)"
+	ctx.shadowBlur = 4
 
 	var matrixChars = [97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,
 		48,49,50,51,52,53,54,55,56,57,36,43,45,42,47,61,37,34,39,35,38,95,40,41,44,46,59,58,63,33,92,124,123,125,60,62,91,93,94,126]
