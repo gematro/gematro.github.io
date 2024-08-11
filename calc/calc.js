@@ -7,7 +7,8 @@ var cipherList = [] // list of all available ciphers
 var cipherListSaved = [] // copy of all initially available ciphers
 var defaultCipherArray = [] // default ciphers
 var defaultCipherArraySaved = [] // copy of default ciphers
-var cCat = []; // list of all available cipher categories
+var cCat = [] // list of all available cipher categories
+var oCat= "" // open category in Ciphers Menu
 
 // Layout
 var colorMenuColumns = ($(window).width() < 1600) ? 2 : 4 // number of columns inside Color Menu
@@ -254,7 +255,8 @@ function createCiphersMenu() { // create menu with all cipher catergories
 
 	o += '<div style="width: 32%; float: left;">'
 	for (i = 0; i < cCat.length; i++) {
-		o += '<input class="intBtn2 ciphCatButton" type="button" value="'+cCat[i]+'">'
+		firstCatOpen = i==0 ? " openCiphCat" : "" // highlight first available category
+		o += '<input class="intBtn2 ciphCatButton'+firstCatOpen+'" type="button" value="'+cCat[i]+'">'
 	}
 
 	o += '</div>'
@@ -272,20 +274,20 @@ function createCiphersMenu() { // create menu with all cipher catergories
 $(document).ready(function(){
 	$("body").on("mouseover", ".ciphCatButton", function () { // mouse over cipher category button
 		displayCipherCatDetailed( $(this).val() );
+		$(".ciphCatButton").removeClass('openCiphCat') // clear highlight
+		$(this).addClass('openCiphCat') // highlight open category
 	});
-
-	$("body").on("click", ".ciphCatButton", function (e) {
-		if (navigator.maxTouchPoints < 1) { // Left Click (desktop)
+	$("body").on("mousedown", ".ciphCatButton", function (e) {
+		if (oCat == $(this).val() || navigator.maxTouchPoints < 1) { // if category is open (touch devics) of Left Click (desktop)
 			toggleCipherCategory( $(this).val() ) // toggle category
+			return
 		}
+		if (oCat !== $(this).val()) oCat = $(this).val() // store opened category
 	});
 });
 
 function displayCipherCatDetailed(curCat) {
 	var chk = ""; var o = ""
-	if (navigator.maxTouchPoints > 1) {
-		o += '<input class="intBtn3" type="button" value="Toggle Category" style="width: 100%; margin-top: 0.1em" onclick="toggleCipherCategory(&quot;'+curCat+'&quot;)">'
-	}
 	o += '<table class="cipherCatDetails"><tbody>'
 	for (i = 0; i < cipherList.length; i++) {
 		if (cipherList[i].cipherCategory == curCat) {
@@ -309,13 +311,9 @@ function createAboutMenu() { // create menu with all cipher catergories
 
 	o += '<center><div class="gematroLogo">'+gematroSvgLogo()+'</div></center>'
 	o += '<div style="margin: 1em;"></div>'
-	o += '<div style="position: relative;"><div class="gitLogo">'+gitSvgLogo()+'</div><a class="intBtnRepo" target="_blank" href="https://github.com/gematro/gematro.github.io">GitHub</a></div>'
+	o += '<div style="position: relative;"><div class="gitLogo">'+gitSvgLogo()+'</div><a class="intBtnRepo" target="_blank" href="https://github.com/gematro">GitHub</a></div>'
 	o += '<div style="margin: 0.5em;"></div>'
 	o += '<input class="intBtn" type="button" value="Quickstart Guide" onclick="displayQuickstartGuide()">'
-	o += '<div style="margin: 0.5em;"></div>'
-	o += '<input class="intBtn" type="button" value="FAQ" onclick="displayFaq()">'
-	o += '<div style="margin: 0.5em;"></div>'
-	o += '<input class="intBtn" type="button" value="Contacts" onclick="displayContactInfo()">'
 
 	o += '</div></div>'
 
@@ -1054,6 +1052,7 @@ function initCiphers(updDefCiph = true) { // list categories, define default (ba
 		if (cCat.indexOf(c) == -1) { cCat.push(c) } // list categories
 		if (cipherList[i].enabled && updDefCiph) { defaultCipherArray.push(cipherList[i].cipherName) } // update default ciphers
 	}
+	oCat = cCat[0] // first category is opened by default
 	if (defaultCipherArraySaved.length == 0) defaultCipherArraySaved = [...defaultCipherArray] // copy of initial default ciphers
 	initColorArrays()
 }

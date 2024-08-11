@@ -8,8 +8,11 @@ new cipher(
 	[97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122], // lowercase characters
 	[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26], // values
 	true, // characters with diacritic marks have the same value as regular ones, default is "true"
-	true // enabled state, default is "false"
-	false // case sensitive cipher, default is "false"
+	true, // enabled state, default is "false"
+	false, // case sensitive cipher, default is "false"
+	false, // multi character/syllable cipher, default is "false"
+	false, // wheel cipher, default is "false"
+	"Simple cipher based on alphabetical order." // brief description
 )
 */
 
@@ -22,7 +25,10 @@ cipherList = [
 		[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26],
 		true,
 		true,
-		false
+		false,
+		false,
+		false,
+		""
 	),
 	new cipher(
 		"Reverse Ordinal",
@@ -32,7 +38,10 @@ cipherList = [
 		[26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1],
 		true,
 		true,
-		false
+		false,
+		false,
+		false,
+		""
 	),
 	new cipher(
 		"English Reduced",
@@ -42,7 +51,10 @@ cipherList = [
 		[1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8],
 		true,
 		true,
-		false
+		false,
+		false,
+		false,
+		""
 	),
 	new cipher(
 		"Reverse Reduced",
@@ -52,7 +64,10 @@ cipherList = [
 		[8,7,6,5,4,3,2,1,9,8,7,6,5,4,3,2,1,9,8,7,6,5,4,3,2,1],
 		true,
 		true,
-		false
+		false,
+		false,
+		false,
+		""
 	),
 	new cipher(
 		"English Standard",
@@ -62,7 +77,10 @@ cipherList = [
 		[1,2,3,4,5,6,7,8,9,10,20,30,40,50,60,70,80,90,100,200,300,400,500,600,700,800],
 		true,
 		false,
-		false
+		false,
+		false,
+		false,
+		""
 	),
 	new cipher(
 		"Agrippa Key",
@@ -72,7 +90,10 @@ cipherList = [
 		[1,2,3,4,5,6,7,8,9,10,20,30,40,50,60,70,80,90,100,200,300,400,500,600,700,800,900],
 		true,
 		false,
-		false
+		false,
+		false,
+		false,
+		""
 	),
 	new cipher(
 		"Case Sensitive",
@@ -82,7 +103,10 @@ cipherList = [
 		[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52],
 		true,
 		false,
-		true
+		true,
+		false,
+		false,
+		""
 	),
 	new cipher(
 		"Alt Case Sensitive",
@@ -92,7 +116,10 @@ cipherList = [
 		[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52],
 		true,
 		false,
-		true
+		true,
+		false,
+		false,
+		""
 	),
 	new cipher(
 		"Elizabethan Simple",
@@ -102,7 +129,10 @@ cipherList = [
 		[1,2,3,4,5,6,7,8,9,9,10,11,12,13,14,15,16,17,18,19,20,20,21,22,23,24],
 		true,
 		false,
-		false
+		false,
+		false,
+		false,
+		""
 	),
 	new cipher(
 		"Elizabethan Reverse",
@@ -112,7 +142,10 @@ cipherList = [
 		[24,23,22,21,20,19,18,17,16,16,15,14,13,12,11,10,9,8,7,6,5,5,4,3,2,1],
 		true,
 		false,
-		false
+		false,
+		false,
+		false,
+		""
 	),
 	new cipher(
 		"Elizabethan Short",
@@ -122,7 +155,10 @@ cipherList = [
 		[1,2,3,4,5,6,7,8,9,9,1,2,3,4,5,6,7,8,9,1,2,2,3,4,5,6],
 		true,
 		false,
-		false
+		false,
+		false,
+		false,
+		""
 	),
 	new cipher(
 		"Elizabethan R Short",
@@ -132,7 +168,10 @@ cipherList = [
 		[6,5,4,3,2,1,9,8,7,7,6,5,4,3,2,1,9,8,7,6,5,5,4,3,2,1],
 		true,
 		false,
-		false
+		false,
+		false,
+		false,
+		""
 	),
 	new cipher(
 		"Kaye Cipher",
@@ -142,7 +181,10 @@ cipherList = [
 		[27,28,29,30,31,32,33,34,35,35,10,11,12,13,14,15,16,17,18,19,20,20,21,22,23,24,25,26],
 		true,
 		false,
-		false
+		false,
+		false,
+		false,
+		""
 	),
 	new cipher(
 		"Modern Kaye",
@@ -152,7 +194,10 @@ cipherList = [
 		[27,28,29,30,31,32,33,34,35,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26],
 		true,
 		false,
-		false
+		false,
+		false,
+		false,
+		""
 	),
 	new cipher(
 		"Illuminati Novice",
@@ -162,9 +207,12 @@ cipherList = [
 		[12,11,10,9,8,7,6,5,4,4,3,2,1,13,14,15,16,17,18,19,20,20,21,22,23,24],
 		true,
 		false,
-		false
+		false,
+		false,
+		false,
+		""
 	),
-		new cipher(
+	new cipher(
 		"English Qaballa",
 		"Thelemic",
 		13, 68, 64,
@@ -172,7 +220,10 @@ cipherList = [
 		[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26],
 		true,
 		false,
-		false
+		false,
+		false,
+		false,
+		""
 	),
 	new cipher(
 		"Trigrammaton Qabalah",
@@ -182,7 +233,10 @@ cipherList = [
 		[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25],
 		true,
 		false,
-		false
+		false,
+		false,
+		false,
+		""
 	),
 	new cipher(
 		"Alphanumeric Qabbala",
@@ -192,7 +246,10 @@ cipherList = [
 		[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35],
 		true,
 		false,
-		false
+		false,
+		false,
+		false,
+		""
 	),
 	new cipher(
 		"Mispar Siduri",
@@ -202,7 +259,10 @@ cipherList = [
 		[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,11,13,14,17,18],
 		true,
 		false,
-		false
+		false,
+		false,
+		false,
+		""
 	),
 	new cipher(
 		"Mispar Katan",
@@ -212,7 +272,10 @@ cipherList = [
 		[1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,2,4,5,8,9],
 		true,
 		false,
-		false
+		false,
+		false,
+		false,
+		""
 	),
 	new cipher(
 		"Mispar Hechrachi",
@@ -222,7 +285,10 @@ cipherList = [
 		[1,2,3,4,5,6,7,8,9,10,20,30,40,50,60,70,80,90,100,200,300,400,20,40,50,80,90],
 		true,
 		false,
-		false
+		false,
+		false,
+		false,
+		""
 	),
 	new cipher(
 		"Mispar Gadol",
@@ -232,7 +298,10 @@ cipherList = [
 		[1,2,3,4,5,6,7,8,9,10,20,30,40,50,60,70,80,90,100,200,300,400,500,600,700,800,900],
 		true,
 		false,
-		false
+		false,
+		false,
+		false,
+		""
 	),
 	new cipher(
 		"Greek Ordinal",
@@ -242,7 +311,10 @@ cipherList = [
 		[1,2,3,4,5,6,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,20,21,22,23,24,25,26,27],
 		true,
 		false,
-		false
+		false,
+		false,
+		false,
+		""
 	),
 	new cipher(
 		"Greek Reduced",
@@ -252,7 +324,10 @@ cipherList = [
 		[1,2,3,4,5,6,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,2,3,4,5,6,7,8,9],
 		true,
 		false,
-		false
+		false,
+		false,
+		false,
+		""
 	),
 	new cipher(
 		"Greek Isopsephy",
@@ -262,7 +337,10 @@ cipherList = [
 		[1,2,3,4,5,6,6,7,8,9,10,20,30,40,50,60,70,80,90,100,200,200,300,400,500,600,700,800,900],
 		true,
 		false,
-		false
+		false,
+		false,
+		false,
+		""
 	),
 	new cipher(
 		"Greek Ordinal 24",
@@ -272,7 +350,10 @@ cipherList = [
 		[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,18,19,20,21,22,23,24],
 		true,
 		false,
-		false
+		false,
+		false,
+		false,
+		""
 	),
 	new cipher(
 		"Arabic Ordinal",
@@ -282,7 +363,10 @@ cipherList = [
 		[1,1,1,1,1,2,3,4,5,5,6,7,8,9,10,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28],
 		true,
 		false,
-		false
+		false,
+		false,
+		false,
+		""
 	),
 	new cipher(
 		"Arabic Reduced",
@@ -292,7 +376,10 @@ cipherList = [
 		[1,1,1,1,1,2,3,4,5,5,6,7,8,9,1,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1],
 		true,
 		false,
-		false
+		false,
+		false,
+		false,
+		""
 	),
 	new cipher(
 		"Arabic Standard",
@@ -302,7 +389,10 @@ cipherList = [
 		[1,1,1,1,1,2,3,4,5,5,6,7,8,9,10,10,20,30,40,50,60,70,80,90,100,200,300,400,500,600,700,800,900,1000],
 		true,
 		false,
-		false
+		false,
+		false,
+		false,
+		""
 	),
 	new cipher(
 		"Russian Ordinal",
@@ -312,7 +402,10 @@ cipherList = [
 		[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33],
 		false,
 		false,
-		false
+		false,
+		false,
+		false,
+		""
 	),
 	new cipher(
 		"Russian R Ordinal",
@@ -322,7 +415,10 @@ cipherList = [
 		[33,32,31,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1],
 		false,
 		false,
-		false
+		false,
+		false,
+		false,
+		""
 	),
 	new cipher(
 		"Russian Reduced",
@@ -332,7 +428,10 @@ cipherList = [
 		[1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6],
 		false,
 		false,
-		false
+		false,
+		false,
+		false,
+		""
 	),
 	new cipher(
 		"Russian R Reduced",
@@ -342,6 +441,9 @@ cipherList = [
 		[6,5,4,3,2,1,9,8,7,6,5,4,3,2,1,9,8,7,6,5,4,3,2,1,9,8,7,6,5,4,3,2,1],
 		false,
 		false,
-		false
+		false,
+		false,
+		false,
+		""
 	)
 ]

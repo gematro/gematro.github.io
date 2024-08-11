@@ -931,11 +931,11 @@ body {
 	text-align: center;
 	z-index: 1000;
 }
-.intBtn:hover, .intBtn2:hover, .ciphEditBtn:hover, .intBtn3:hover, .intBtnResetDate:hover, #queryDBbtn:hover, #enterPhraseBtn:hover, .queryPageBtn:hover {
+.openCiphCat, .intBtn:hover, .intBtn2:hover, .ciphEditBtn:hover, .intBtn3:hover, .intBtnResetDate:hover, #queryDBbtn:hover, #enterPhraseBtn:hover, .queryPageBtn:hover {
 	background-color: var(--btn-hover-accent);
 }
 .intBtn:active, .intBtn2:active, .ciphEditBtn:active, .intBtn3:active, .intBtnResetDate:active, #queryDBbtn:active, #enterPhraseBtn:active, .queryPageBtn:active {
-	background-color: var(--btn-active-accent);
+	background-color: var(--btn-active-accent) !important;
 }
 .intBtnRepo:link {
 	color: var(--font-white-2);
@@ -1225,10 +1225,8 @@ body {
 }
 .custCipherMainTable {
 	margin: 0.5em 0em 0.5em 0em;
-	/*width: 570px;*/
 }
 .custCipherTable {
-	/*margin: 0em 0em 0.75em 0em;*/
 }
 #custCipherNameInput, #custCipherCatInput {
 	background: var(--btn-bg-accent);
@@ -1530,8 +1528,6 @@ body {
 #queryPosInput {
 	width: 95px;
 	font-size: 100%;
-	/* background: transparent; */
-	/* border: none; */
 	outline: none; 
 	color: var(--font-white-2);
 	caret-color: transparent !important;
@@ -1643,7 +1639,7 @@ body {
 .noScroll {
 	overflow: hidden;
 }
-.qgBold, .qgBold2, .qgBoldCoin {
+.qgBold, .qgBold2 {
 	font-size: 100%;
 	font-weight: 500;
 	color: var(--font-white-1);
@@ -1652,17 +1648,18 @@ body {
 	font-size: 150%;
 }
 
-/*                    About                   */
+/*                 Cipher Info                */
 /* ########################################## */
 
-.contactInfo, .faqPanel, .ciphInfoPanel {
+.ciphInfoPanel {
 	background-color: var(--menu-bg-accent2);
 	color: var(--font-white-2);
 	font-family: var(--font-family), "Arial", sans-serif;
 	font-size: 100%;
 	text-align: center;
-	padding: 1em 2em 1em 2em;
-	height: 560px;
+	padding: 1em 2em;
+	height: fit-content;
+	max-height: 80%;
 	width: 480px;
 	overflow: auto;
 	z-index: 1000;
@@ -1674,38 +1671,10 @@ body {
 	bottom: 0;
 	margin: auto;
 }
-.faqPanel {
-	height: 201px;
-}
-.ciphInfoPanel {
-	height: fit-content;
-	max-height: 80%;
-}
 @media (max-width: 911px) { /* mobile */
-	.contactInfo {
-		width: 400px !important;
-		height: 80% !important;
-		max-height: 560px !important;
-	}
-	.faqPanel {
-		width: 400px !important;
-		height: 80% !important;
-		max-height: 201px !important;
-	}
 	.ciphInfoPanel {
-		width: 400px !important;
+		width: 380px !important;
 	}
-}
-.qgBoldCoin {
-	font-size: 150%;
-	margin: 1em 0em 0.3em 0em;
-}
-.qgAddr {
-	font-family: var(--font-family-mono), monospace;
-	color: var(--font-white-1);
-}
-.qrImg {
-	margin: 1em 0em 2.5em 0em;
 }
 
 /*               Custom Checkbox              */

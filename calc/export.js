@@ -179,7 +179,7 @@ function exportCiphers() {
 			'\tfalse, // case sensitive cipher, default is "false"\n'+
 			'\tfalse, // multi character/syllable cipher, default is "false"\n'+
 			'\tfalse, // wheel cipher, default is "false"\n'+
-			'\t"Values are assigned in alphabetical order." // brief description\n'+
+			'\t"Simple cipher based on alphabetical order." // brief description\n'+
 		')\n'+
 		'*/\n\n'
 
