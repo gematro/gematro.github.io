@@ -1632,6 +1632,11 @@ body {
 	font-size: 85%;
 	color: var(--separator-accent);
 }
+.qgVer {
+	font-size: 85%;
+	font-weight: 500;
+	color: var(--separator-accent);
+}
 .qgLink{
 	font-size: 100%;
 	color: var(--font-white-1);

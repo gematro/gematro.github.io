@@ -6,12 +6,18 @@ function closePanel(el) {
 	$('body').removeClass('noScroll') // restore scrolling
 }
 
+function gematroVersionFull() {
+	var v = gematroVersion.split('.')
+	var m = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+	return `${m[v[1]]} ${v[2]}, 20${v[0]}`
+}
+
 function displayQuickstartGuide() {
 	$('<div id="darkOverlay" onclick="closePanel(&quot;.quickGuide&quot;)"></div>').appendTo('body'); // overlay
 
 	var o = '<div class="quickGuide">'
-	o += '<p><span class="qgBold2">Quickstart Guide</p>'
-	
+	o += '<p><span class="qgBold2">Quickstart Guide</span><br><span class="qgVer">GEMATRO '+gematroVersion+' ('+gematroVersionFull()+')</span></p>'
+
 	o += '<hr class="numPropSeparator">'
 	
 	o += '<p class="qgMedium">Phrase Box - enter any word, phrase or number</p>\n<ul><li><span class="qgBold">"Enter"</span> - add phrase to history table</li><li><span class="qgBold">"Up"</span> and <span class="qgBold">"Down"</span> arrow keys - select phrase from history table<br>Press <span class="qgBold">"Down"</span> to select previously entered phrase</li><li><span class="qgBold">"Delete"</span> - delete current phrase from history table</li><li>Additional Shortcuts:<br><span class="qgBold">"Home"</span> - clear history table<br><span class="qgBold">"End"</span> - shortcut for <span class="qgBold">"Enter As Words"</span> function</li></ul>'

@@ -1,5 +1,6 @@
 // ============================== Init ==============================
 
+var gematroVersion = '24.8.12.0' // YY.M.D.revision
 var compactViewportWidth = 911 // viewport width threshold
 var mobileUserAgent = navigator.userAgent.match('Mobile')
 
@@ -310,7 +311,8 @@ function createAboutMenu() { // create menu with all cipher catergories
 	o += '<div class="dropdown-content dropdown-about">'
 
 	o += '<center><div class="gematroLogo">'+gematroSvgLogo()+'</div></center>'
-	o += '<div style="margin: 1em;"></div>'
+	o += '<div style="text-align: center;"><span class="qgVer">'+gematroVersion+'</span></div>'
+	o += '<div style="margin: 0.5em;"></div>'
 	o += '<div style="position: relative;"><div class="gitLogo">'+gitSvgLogo()+'</div><a class="intBtnRepo" target="_blank" href="https://github.com/gematro">GitHub</a></div>'
 	o += '<div style="margin: 0.5em;"></div>'
 	o += '<input class="intBtn" type="button" value="Quickstart Guide" onclick="displayQuickstartGuide()">'
