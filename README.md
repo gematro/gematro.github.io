@@ -1,30 +1,32 @@
 ## GEMATRO - Gematria Calculator
 ![GEMATRO - Gematria Calculator](res/preview.png)
-> NOTE: Use a desktop Chromium based browser for best experience
 
-### Features:
-<ul>
-<li>Dynamic highlighter with a filter</li>
-<li>Support for diacritical marks</li>
-<li>Fully customizable ciphers</li>
-    <ul>
-        <li>Number substitution</li>
-        <li>Letter substitution</li>
-        <li>Multicharacter</li>
-    </ul>
-<li>Database mode</li>
-<li>Encoding mode</li>
-<li>Import/Export (TXT, CSV)</li>
-<li>Unicode and emoji support</li>
-</ul>
+### Features
 
-### Extra:
+* Dynamic highlighter with a filter
+* Support for diacritical marks
+* Fully customizable ciphers
+    * Number substitution
+    * Letter substitution
+    * Multicharacter
+* Database mode
+* Encoding mode
+* Import/Export (TXT, CSV)
+* Unicode and emoji support
 
-<ul>
-<li>Number properties</li>
-<li>Virtual keyboard</li>
-<li>Date calculator</li>
-<li>Color controls</li>
-<li>Screenshot tools</li>
-<li>Quickstart guide</li>
-</ul>
+### Extra
+
+* Number properties
+* Virtual keyboard
+* Date calculator
+* Color controls
+* Screenshot tools
+* Quickstart guide
+
+### Licensing
+
+* This software is licensed under the [GNU AGPLv3](https://www.gnu.org/licenses/agpl-3.0.html) license
+* [Montserrat typeface (Open Font License)](https://fonts.google.com/specimen/Montserrat/about)
+* [Roboto Mono (Apache License 2.0)](https://fonts.google.com/specimen/Roboto+Mono/about)
+* [html2canvas (MIT license)](https://github.com/niklasvh/html2canvas)
+* [jQuery (MIT license)](https://github.com/jquery/jquery)
