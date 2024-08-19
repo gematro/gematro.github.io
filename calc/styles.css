@@ -686,6 +686,7 @@ body {
 	padding: 5px 3px 5px 3px;
 	text-align: center;
 	font-weight: 500;
+	height: 32px;
 	word-break: break-word; /* affects table performance */
 }
 .hCV, .hCVQ,.hCVW  { /* vertical history table header, cipher name cell */
