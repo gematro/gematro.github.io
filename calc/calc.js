@@ -1,6 +1,6 @@
 // ============================== Init ==============================
 
-var gematroVersion = '24.8.12.0' // YY.M.D.revision
+var gematroVersion = '24.8.19.0' // YY.M.D.revision
 var compactViewportWidth = 911 // viewport width threshold
 var mobileUserAgent = navigator.userAgent.match('Mobile')
 
@@ -263,7 +263,7 @@ function createCiphersMenu() { // create menu with all cipher catergories
 	o += '</div>'
 
 	o += '<div style="width: 68%; float: left;">'
-	o += '<div id="menuCiphCatDetailsArea" style="margin: 0em 0.25em 0em 1.25em;">'
+	o += '<div id="menuCiphCatDetailsArea">'
 	o += '</div></div>'
 
 	o += '</div></div>'
@@ -293,7 +293,7 @@ function displayCipherCatDetailed(curCat) {
 	for (i = 0; i < cipherList.length; i++) {
 		if (cipherList[i].cipherCategory == curCat) {
 			if (cipherList[i].enabled) {chk = " checked";} else {chk = ""} // checkbox state
-			o += '<tr><td><label class="chkLabel ciphCheckboxLabel2">'+cipherList[i].cipherName+'<input type="checkbox" id="cipher_chkbox'+i+'" onclick="toggleCipher('+i+')"'+chk+'><span class="custChkBox"></span></label></td>'
+			o += '<tr><td class="ciphSelection"><label class="chkLabel ciphCheckboxLabel2">'+cipherList[i].cipherName+'<input type="checkbox" id="cipher_chkbox'+i+'" onclick="toggleCipher('+i+')"'+chk+'><span class="custChkBox"></span></label></td>'
 			o += cipherList[i].cipherDescription !== '' ? '<td><span class="ciphInfoLabel" onclick="displayCipherInfoPanel('+i+')">�</span></td></tr>' : '</tr>'
 		}
 	}

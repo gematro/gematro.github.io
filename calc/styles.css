@@ -69,6 +69,7 @@ html, body { /* full <body> height for <!DOCTYPE html> */
 	min-height: 100%;
 	padding: 0;
 	margin: 0;
+	overscroll-behavior: none; /* disable pull to refresh (mobile) */
 }
 
 body { /* disable Chromium's Text Autosizer (mobile text inflation algorithm) */
@@ -803,6 +804,10 @@ body {
 	font-size: 100%;
 	font-weight: 500;
 }
+.ciphSelection {
+	min-width: 200px;
+	max-width: 200px;
+}
 .intBtn { /* Big Buttons */
 	display: inline-block;
 	color: var(--font-white-1);
@@ -1029,6 +1034,9 @@ body {
 	font-weight: 500;
 	max-width: fit-content;
 }
+#menuCiphCatDetailsArea {
+	margin: 0em 0em 0em 1.25em;
+}
 .dropdown {
 	position: relative;
 	display: inline-block;
@@ -1041,8 +1049,7 @@ body {
 	padding: 1em;
 	text-align: left;
 	background-color: var(--menu-bg-accent2);
-	border: 1px solid var(--border-dark-accent); /* --body-bg-accent */
-	/*border-top: none;*/
+	border: 1px solid var(--border-dark-accent);
 }
 @media (max-width: 911px) { /* mobile */
 	.dropdown {
@@ -1598,7 +1605,7 @@ body {
 	height: 79%;
 	right: 0;
 	left: 0;
-	width: 40%;
+	max-width: 600px;
 	margin: auto;
 	overflow: auto;
 	z-index: 1000;
@@ -1615,6 +1622,9 @@ body {
 		width: 80% !important;
 		height: 80% !important;
 	}
+}
+.quickGuide ul{
+	padding-inline-start: 1.25em;
 }
 .qgBold, .qgBold2 {
 	font-size: 100%;
@@ -1665,7 +1675,9 @@ body {
 	padding: 1em 2em;
 	height: fit-content;
 	max-height: 80%;
-	width: 480px;
+	min-width: 480px;
+	max-width: 80%;
+	width: fit-content;
 	overflow: auto;
 	z-index: 1000;
 	border: 1px solid var(--border-dark-accent);
@@ -1675,10 +1687,29 @@ body {
 	top: 0;
 	bottom: 0;
 	margin: auto;
+	box-sizing: border-box;
 }
 @media (max-width: 911px) { /* mobile */
 	.ciphInfoPanel {
-		width: 380px !important;
+		min-width: unset;
+		max-width: unset;
+		width: 450px !important;
+		box-sizing: border-box;
+	}
+}
+.ciphInfoTextArea {
+	margin: 2em auto 2em auto;
+	text-align: left;
+	max-width: 500px;
+}
+#imgDataDesc {
+	margin: 1.5em 0em 0em 0em;
+	border: 2px solid var(--separator-accent);
+	box-sizing: border-box;
+}
+@media (max-width: 911px) { /* mobile */
+	#imgDataDesc {
+		max-width: 100%;
 	}
 }
 
@@ -1698,10 +1729,10 @@ input[type=checkbox] {
 /* custom checkbox */
 .custChkBox {
 	position: absolute;
-	right: 0;
+	top: 50%;
+	transform: translate(0, -50%);
 	left: 0;
-	top: 0;
-	bottom: 0;
+	right: 0;
 	height: 16px;
 	width: 16px;
 	background-color: var(--btn-bg-accent);
