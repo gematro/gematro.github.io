@@ -741,6 +741,12 @@ body {
 	font-weight: 500;
 	font-size: 125%;
 }
+.mP {
+	color: var(--font-white-3);
+	font-size: 110%;
+	width: fit-content;
+    padding: 0em 1em;
+}
 .mPQ { /* query table - top left cell */
 	/*width: 300px;*/
 	height: 150px;

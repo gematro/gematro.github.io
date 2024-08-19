@@ -1,6 +1,6 @@
 // ============================== Init ==============================
 
-var gematroVersion = '24.8.19.0' // YY.M.D.revision
+var gematroVersion = '24.8.19.1' // YY.M.D.revision
 var compactViewportWidth = 911 // viewport width threshold
 var mobileUserAgent = navigator.userAgent.match('Mobile')
 
@@ -87,6 +87,7 @@ var coderainLit = 0.2 // coderain lightness
 var coderainLitDefault = 0.2
 
 var optImageScale = 1.0 // image scaling factor for screenshots
+var optHistTableCaption = '' // history table caption (top left cell)
 
 var calcOptionsArr = [ // used to export/import settings
 	"'optNumCalcMethod'+' = '+optNumCalcMethod",
@@ -124,7 +125,8 @@ var calcOptionsArr = [ // used to export/import settings
 	'"encDefAlphArr"+" = \x27"+String(encPrevAlphStr).replace(/,/g,"")+"\x27"',
 	'"encDefVowArr"+" = \x27"+String(encPrevVowStr).replace(/,/g,"")+"\x27"',
 	'"encDefExcLetArr"+" = \x27"+String(encPrevExcLetStr).replace(/,/g,"")+"\x27"',
-	"'optImageScale'+' = '+optImageScale"
+	"'optImageScale'+' = '+optImageScale",
+	'"optHistTableCaption"+" = \x27"+String(optHistTableCaption)+"\x27"'
 ]
 
 var runOnceRestoreCalcSet = true
@@ -669,6 +671,8 @@ function createFeaturesMenu() {
 
 	o += '<hr style="background-color: var(--separator-accent2); height: 1px; border: none; margin: 0.75em;">'
 
+	o += '<input class="intBtn" type="button" value="Set Table Caption" onclick="conf_HTC()">' // History Table caption
+	o += '<div style="margin: 0.5em;"></div>'
 	o += '<input class="intBtn" type="button" value="Find Matches" onclick="updateHistoryTableAutoHlt()">'
 	o += '<div style="margin: 0.5em;"></div>'
 	o += '<input class="intBtn" type="button" value="Enter As Words" onclick="phraseBoxKeypress(35)">' // "End" keystroke
@@ -693,6 +697,11 @@ function create_PL() { // Phrase Limit (End)
 function conf_PL() {
 	var pLimit = document.getElementById("phrLimitBox")
 	optPhraseLimit = Number(pLimit.value)
+}
+function conf_HTC() {
+	var p = prompt('Specify History Table caption:', optHistTableCaption)
+	optHistTableCaption = p !== null ? p : ''
+	updateHistoryTable()
 }
 
 function toggleColorControlsMenu(redraw = false) { // display control menu to adjust each cipher
@@ -1089,7 +1098,7 @@ function enableAllEnglishCiphers() {
 	prevCiphIndex = -1 // reset cipher selection
 	var cur_chkbox
 	for (i = 0; i < cipherList.length; i++) {
-		if (cipherList[i].cArr.indexOf(97) > -1) { // lowercase "a"
+		if (cipherList[i].cArr.indexOf(97) > -1 && cipherList[i].cipherCategory !== 'Other') { // lowercase "a", not "Other" category
 			cur_chkbox = document.getElementById("cipher_chkbox"+i)
 			cipherList[i].enabled = true
 			if (cur_chkbox !== null) cur_chkbox.checked = true
@@ -1449,7 +1458,7 @@ function updateHistoryTable(hltBoolArr) {
 	for (x = 0; x < sHistory.length; x++) {
 
 		if (x % 25 == 0 && enabledCiphCount !== 0) { // show header after each 25 phrases
-			ms += '<tr class="cH"><td class="mP"></td>'
+			ms += '<tr class="cH"><td class="mP">'+optHistTableCaption+'</td>'
 			for (z = 0; z < cipherList.length; z++) {
 				if (cipherList[z].enabled) {
 					curCiphCol = (optColoredCiphers) ? 'color: hsl('+cipherList[z].H+' '+cipherList[z].S+'% '+cipherList[z].L+'% / 1);' : ''

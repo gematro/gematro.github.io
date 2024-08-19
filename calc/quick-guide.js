@@ -305,6 +305,10 @@ function displayQuickstartGuide() {
 	o += '</ul>'
 
 	o += '<p>'
+	o += '<span class="qgBold">"Set Table Caption"</span> - use custom <span class="qgBold">History Table</span> caption inside the top left cell'
+	o += '</p>'
+
+	o += '<p>'
 	o += '<span class="qgBold">"Find Matches"</span> - populate <span class="qgBold">Highlight Box</span> with numbers that match at least twice inside <span class="qgBold">History Table</span>'
 	o += '<br>'
 	o += '<span class="qgNote">Note: Cipher filter is not applied, you can press "Enter" inside Highlight Box to show matching ciphers only</span>'
