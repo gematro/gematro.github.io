@@ -342,8 +342,6 @@ body {
 	z-index : -1; /* behind all elements */ 
 	filter: blur(0.15em);
 }
-.ciphCheckbox {
-}
 .ciphCheckboxLabel {
 	font-size: 85%;
 	font-weight: 500;
@@ -738,19 +736,17 @@ body {
 	padding: 0em 0.5em 0em 0.5em;
 	font-size: 110%;
 }
-.mP, .mPQ { /* history table - top left cell */
+.mPQ { /* query table - top left cell */
 	font-weight: 500;
 	font-size: 125%;
+	height: 150px;
 }
-.mP {
+.mP { /* history table - top left cell */
 	color: var(--font-white-3);
 	font-size: 110%;
+	font-weight: 600;
 	width: fit-content;
     padding: 0em 1em;
-}
-.mPQ { /* query table - top left cell */
-	/*width: 300px;*/
-	height: 150px;
 }
 .gV, .gW, .gVQ { /* gematria value in history/query table */
 	font-size: 125%;
