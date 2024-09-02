@@ -119,7 +119,7 @@ cipherList = [
 		false,
 		false,
 		false,
-		"<p> This cipher is based on <span class='qgBold'>Elizabethan Simple</span>. It uses <span class='qgBold'>reverse order</span> of the <span class='qgBold'>Old English</span> alphabet. </p> <p> <span class='qgNote'>Read more about Sir Francis Bacon: <a class='qgLink' target='_blank' href='https://www.fbrt.org.uk/bacon/'>The Francis Bacon Research Trust (FBRT)</a></span> </p>"
+		"<p> This cipher is based on <span class='qgBold'>Elizabethan Simple</span>. It uses <span class='qgBold'>reverse order</span> of the <span class='qgBold'>Old English</span> alphabet. </p>"
 	),
 	new cipher(
 		"Elizabethan Short",
@@ -158,7 +158,7 @@ cipherList = [
 		false,
 		false,
 		false,
-		"<p> This cipher is based on <span class='qgBold'>Old English</span> alphabet, however the sequence starts with letter <span class='qgBold'>K = 10</span> (first double digit value) and it is continued incrementally until all letters of the alphabet are obtained. </p> <p> The letter <span class='qgBold'>Z = 24</span> is followed by English ampersand (<span class='qgBold'>& = 25</span>) and Latin ampersand (<span class='qgBold'>et = 26</span>) before the sequence wraps around to continue with the letter <span class='qgBold'>A = 27</span> until the last letter <span class='qgBold'>J</span> is assigned the value of <span class='qgBold'>35</span>. </p> <p> Due to these rules the letter <span class='qgBold'>G</span> has the value of <span class='qgBold'>33</span>. </p> <p> <span class='qgNote'>Read more: <a class='qgLink' target='_blank' href='https://www.fbrt.org.uk/wp-content/uploads/2020/06/The_Fra_Rosie_Cross_Cipher_287.pdf'>Peter Dawkins - The Fra. Rosie Cross Cipher 287</a></span> </p>"
+		"<p> This cipher is based on <span class='qgBold'>Old English</span> alphabet, however the sequence starts with letter <span class='qgBold'>K = 10</span> (first double digit value) and it is continued incrementally until all letters of the alphabet are obtained. </p> <p> The letter <span class='qgBold'>Z = 24</span> is followed by English ampersand (<span class='qgBold'>& = 25</span>) and Latin ampersand (<span class='qgBold'>et = 26</span>) before the sequence wraps around to continue with the letter <span class='qgBold'>A = 27</span> until the last letter <span class='qgBold'>J</span> is assigned the value of <span class='qgBold'>35</span>. </p> <p> <span class='qgNote'>Read more: <a class='qgLink' target='_blank' href='https://www.fbrt.org.uk/wp-content/uploads/2020/06/The_Fra_Rosie_Cross_Cipher_287.pdf'>Peter Dawkins - The Fra. Rosie Cross Cipher</a></span> </p>"
 	),
 	new cipher(
 		"Jay Cipher",
@@ -171,7 +171,7 @@ cipherList = [
 		false,
 		false,
 		false,
-		"<p> This cipher is based on <span class='qgBold'>26 letter English</span> alphabet. It is similar to <span class='qgBold'>Kay Cipher</span>. </p> <p> Sequence starts with the letter <span class='qgBold'>J = 10</span> (first double digit value) and it is continued incrementally until all letters of the alphabet are obtained. </p> <p> In this cipher the letter <span class='qgBold'>Z = 26</span> is not followed by ampersands, so the sequence wraps around and continues with the letter <span class='qgBold'>A = 27</span> until the last letter <span class='qgBold'>I</span> is assigned the value of <span class='qgBold'>35</span>. </p> <p> Letter <span class='qgBold'>G</span> has the value of <span class='qgBold'>33</span>. </p> <p> Try calculating the value of <span class='qgBold'>'Francis Bacon'</span>. </p>"
+		"<p> This cipher is based on <span class='qgBold'>26 letter English</span> alphabet. It is similar to <span class='qgBold'>Kay Cipher</span>. </p> <p> Sequence starts with the letter <span class='qgBold'>J = 10</span> (first double digit value) and it is continued incrementally until all letters of the alphabet are obtained. </p> <p> In this cipher the letter <span class='qgBold'>Z = 26</span> is not followed by ampersands, so the sequence wraps around and continues with the letter <span class='qgBold'>A = 27</span> until the last letter <span class='qgBold'>I</span> is assigned the value of <span class='qgBold'>35</span>. </p>"
 	),
 	new cipher(
 		"Case Sensitive",
@@ -184,7 +184,7 @@ cipherList = [
 		true,
 		false,
 		false,
-		"<p> This cipher uses <span class='qgBold'>lower and upper case</span> letters in <span class='qgBold'>sequential order</span>. </p> <p> It is an <span class='qgBold'>experimental</span> cipher, for the use of different variants of upper case letters (e.g. <span class='qgBold'>N</span> and <span class='qgBold'>Ɲ</span>) is documented only within the context of <span class='qgBold'>Bacon's biliteral cipher</span>. </p> <p> Try calculating the values of <span class='qgBold'>'Francis Bacon'</span>, <span class='qgBold'>'Worshipfull Master'</span> (double 'l' spelling). Note that letter <span class='qgBold'>'G'</span> equals <span class='qgBold'>33</span>, same as in the <span class='qgBold'>Kay Cipher</span> which also yields some interesting results. </p> <p> <span class='qgNote'>Read more: <a class='qgLink' target='_blank' href='https://archive.org/details/TheSecretTeachingsOfAllAgesManlyHall/page/n555/mode/2up'><span class='qgBold'>The Secret Teachings Of All Ages</span> by <span class='qgBold'>Manly Palmer Hall, p. 556</span></a></span> </p>"
+		"<p> This cipher uses <span class='qgBold'>lower and upper case</span> letters in <span class='qgBold'>sequential order</span>. </p> <p> It is an <span class='qgBold'>experimental</span> cipher, for the use of different variants of upper case letters (e.g. <span class='qgBold'>N</span> and <span class='qgBold'>Ɲ</span>) is documented only within the context of <span class='qgBold'>Bacon's biliteral cipher</span>. </p> <p> <span class='qgNote'>Read more: <a class='qgLink' target='_blank' href='https://archive.org/details/TheSecretTeachingsOfAllAgesManlyHall/page/n555/mode/2up'><span class='qgBold'>The Secret Teachings Of All Ages</span> by <span class='qgBold'>Manly Palmer Hall, p. 556</span></a></span> </p>"
 	),
 	new cipher(
 		"Alt Case Sensitive",
@@ -197,7 +197,7 @@ cipherList = [
 		true,
 		false,
 		false,
-		"<p> This cipher uses <span class='qgBold'>upper and lower case</span> letters in <span class='qgBold'>alternating order</span>. </p> <p> It is an <span class='qgBold'>experimental</span> cipher, for the use of different variants of upper case letters (e.g. <span class='qgBold'>N</span> and <span class='qgBold'>Ɲ</span>) is documented only within the context of <span class='qgBold'>Bacon's biliteral cipher</span>. </p> <p> Try calculating the value of <span class='qgBold'>'Worshipful Master'</span> (157+287). </p> <p> <span class='qgNote'>Read more: <a class='qgLink' target='_blank' href='https://archive.org/details/TheSecretTeachingsOfAllAgesManlyHall/page/n549/mode/2up'><span class='qgBold'>The Secret Teachings Of All Ages</span> by <span class='qgBold'>Manly Palmer Hall, p. 550</span></a></span> </p>"
+		"<p> This cipher uses <span class='qgBold'>upper and lower case</span> letters in <span class='qgBold'>alternating order</span>. </p> <p> It is an <span class='qgBold'>experimental</span> cipher, for the use of different variants of upper case letters (e.g. <span class='qgBold'>N</span> and <span class='qgBold'>Ɲ</span>) is documented only within the context of <span class='qgBold'>Bacon's biliteral cipher</span>. </p>"
 	),
 	new cipher(
 		"English Qaballa",
