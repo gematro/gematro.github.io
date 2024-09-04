@@ -1597,7 +1597,7 @@ body {
 	left: 0;
 	z-index: 999;
 }
-.quickGuide {
+.quickGuide, .faqPanel {
 	background-color: var(--menu-bg-accent2);
 	color: var(--font-white-2);
 	font-family: var(--font-family);
@@ -1614,16 +1614,22 @@ body {
 	z-index: 1000;
 	border: 1px solid var(--border-dark-accent);
 }
+.faqPanel {
+	max-width: 450px;
+	box-sizing: border-box;
+}
 @media (max-width: 911px) { /* mobile */
-	.quickGuide {
+	.quickGuide, .faqPanel {
 		position: absolute;
 		right: 0;
 		left: 0;
 		top: 0;
 		bottom: 0;
 		margin: auto;
-		width: 80% !important;
 		height: 80% !important;
+	}
+	.quickGuide {
+		width: 80% !important;
 	}
 }
 .quickGuide ul{

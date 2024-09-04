@@ -488,6 +488,90 @@ function displayQuickstartGuide() {
 	$('body').addClass('noScroll') // prevent scrolling
 }
 
+function displayFaqPanel() {
+	$('<div id="darkOverlay" onclick="closePanel(&quot;.faqPanel&quot;)"></div>').appendTo('body'); // overlay
+
+	var o = '<div class="faqPanel">'
+	o += '<center>'
+	o += '<p><span class="qgBold2">FAQ</span></p>'
+	o += '</center>'
+	
+	o += '<hr class="numPropSeparator">'
+
+	o += '<p><span class="qgBold">(1) What is gematria?</span></p>'
+	o += '<p>'
+	o += '<span class="qgBold">Gematria</span> is an <span class="qgBold"><i>occult</i></span> practice with a set of rules to connect letters to numbers for <span class="qgBold">qabbalistic studies</span>.'
+	o += '</p>'
+	
+	o += '<hr class="numPropSeparator">'
+
+	o += '<p><span class="qgBold">(2) What do these numerical matches mean?</span></p>'
+	o += '<p>'
+	o += 'When two or more words or phrases share <span class="qgBold">the same value</span> inside any given cipher, it means there is a <span class="qgBold">numerical link</span> or equivalence between these words or phrases which is <span class="qgBold">valid only within the scope of that numerical cipher</span>.'
+	o += '<br><br>'
+	o += 'Any additional meaning or <span class="qgBold">interpretation depends on the context</span> which is outside of these mathematical rules. Since every practice can be used both destructively and constructively, please <span class="qgBold">be mindful</span> of how you work with gematria.'
+	o += '</p>'
+	
+	o += '<hr class="numPropSeparator">'
+
+	o += '<p><span class="qgBold">(3) Can I predict the outcome of future events? Can I figure out my destiny with these numbers?</span></p>'
+	o += '<p>'
+	o += 'Gematria is an occult practice for many reasons, so my answer would be <span class="qgBold">"no, absolutely not"</span>. It is very dangerous to let some patterns guide you into the nowhere.'
+	o += '<br><br>'
+	o += '<span class="qgBold">Do not mislead yourself or others with an imaginary story</span> loosely inspired by some numbers, especially when you know that <span class="qgBold">you are the sole author of the narrative you "discovered", but you claim it is some "they" who "did it"</span>.'
+	o += '</p>'
+	
+	o += '<hr class="numPropSeparator">'
+
+	o += '<p><span class="qgBold">(4) Why is this software available online then?</span></p>'
+	o += '<p>'
+	o += 'Teachings that were meant to be preserved and kept in secret have gradually become available to a broader audience especially as of lately. Unfortunately, this exposure allowed blatant misuse and perversions of the very teachings to flourish all because such foolishness was left to spread and multiply unchallenged. Moreover, such misuse was welcomed or deliberately encouraged either by individuals with nefarious purposes or those who know not what they do.'
+	o += '<br><br>'
+	o += 'This software aims <span class="qgBold">to assist thoughtful and rational men in their diligent studies</span> in hope that the acquired knowledge will be used <span class="qgBold">responsibly</span>.'
+	o += '</p>'
+	
+	o += '<hr class="numPropSeparator">'
+
+	o += '<p><span class="qgBold">(5) Is there any "conspiracy" aimed against all mankind?</span></p>'
+	o += '<p>'
+	o += 'The illusion of a "conspiracy" has been created by dystopian visions and distortions crafted by ailing and disturbed minds who feel discontent or paranoia within themselves. <span class="qgBold">By giving our attention</span> to such narratives we unconsciously fuel and magnify the problem only to make <span class="qgBold">these visions come true</span>.'
+	o += '<br><br>'
+	o += 'If anything, there is a true conspiracy to <span class="qgBold">make this world a better place</span> for all people to have life more fruitfully and abundantly, but it is a very challenging undertaking that requires dedication and perseverence.'
+	o += '<br><br>'
+	o += 'Having that said, it is not smart to conspire against "all mankind" or "all living things". People who attempt to do that fall from the "conspiracy" of their own making. Knowingly or unknowingly, you may be contributing to either side.'
+	o += '</p>'
+	
+	o += '<hr class="numPropSeparator">'
+
+	o += '<p><span class="qgBold">(6) So what is the problem then?</span></p>'
+	o += '<p>'
+	o += '<span class="qgBold">Ignorance. Superstition. Foolishness</span> that is left unchallenged.'
+	o += '<br><br>'
+	o += 'Unfortunately, not so many people are willing to take responsibility for their own mischief, but quite often those are the very same ignorant individuals who are the first ones to slander, blame or scapegoat other individuals, groups or societies when they know absolutely nothing on the matter.'
+	o += '<br><br>'
+	o += '<span class="qgBold">The only thing necessary for the triumph of evil is for good men to do nothing.</span>'
+	o +='</p>'
+	
+	o += '<hr class="numPropSeparator">'
+
+	o += '<p>'
+	o += '<span class="qgNote">'
+	o += 'This software should not be used to promote or engage in any activities that are hateful, divisive, or harmful towards individuals or groups of people.'
+	o += '<br><br>'
+	o += 'In no event will the creator of this software be liable for any damages arising out of or in connection with the use of this software, including but not limited to direct, indirect, consequential, and incidental damages.'
+	o += '<br><br>'
+	o += 'It is the responsibility of the user to ensure that they use this software in an ethical manner, avoiding any practices that may cause damage, harm or offense to others. User must take full responsibility for the information provided by this software and verify its accuracy before taking any actions based on it.'
+	o += '<br><br>'
+	o += 'This software may contain links to external websites which are not under the control of the creator of this software. The creator of this software is not responsible for the contents of any linked website.'
+	o += '</span>'
+	o += '</p>'
+	
+	o += '</div>'
+
+	$(o).appendTo('body'); // guide
+	$('body').addClass('noScroll') // prevent scrolling
+}
+
 function displayCipherInfoPanel(id) {
 	$('<div id="darkOverlay" onclick="closePanel(&quot;.ciphInfoPanel&quot;)"></div>').appendTo('body'); // overlay
 
