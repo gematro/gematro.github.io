@@ -19,23 +19,35 @@ function toggleEditCiphersMenu() {
 		o += '<tr><td colspan=2><textarea id="custCipherGlobVals" type="text" autocomplete="off" oninput="createIndLetterControls()" placeholder="Values (1,2,3)"></textarea></td></tr>'
 		o += '</tbody></table>'
 
-		o += '<div>' // container for checkboxes
+		o += '<table><tbody>' // container for checkboxes
+
+		o += '<tr>' // first row
 		var IDMstate = ""
 		if (ignoreDiarciticsCustom) IDMstate = "checked" // checkbox state
-		o += '<div id="diacrChkbox"><label class="chkLabel optionElementLabel">Ignore Diacritical Marks (é=e)<input type="checkbox" id="chkbox_IDM" onclick="conf_IDM()" '+IDMstate+'><span class="custChkBox"></span></label></div>'
+		o += '<td>'
+		o += '<div id="diacrChkbox"><label class="chkLabel optionElementLabel">Ignore Diacritics<input type="checkbox" id="chkbox_IDM" onclick="conf_IDM()" '+IDMstate+'><span class="custChkBox"></span></label></div>'
+		o += '</td>'
 		var CSstate = ""
 		if (caseSensitiveCustom) CSstate = "checked" // no case sensitivity for syllable mode
-		o += '<div id="caseSensChkbox"><label class="chkLabel optionElementLabel">Case Sensitive Cipher<input type="checkbox" id="chkbox_CS" onclick="conf_CS()" '+CSstate+'><span class="custChkBox"></span></label></div>'
-		o += '</div>' // close
+		o += '<td>'
+		o += '<div id="caseSensChkbox"><label class="chkLabel optionElementLabel">Case Sensitive<input type="checkbox" id="chkbox_CS" onclick="conf_CS()" '+CSstate+'><span class="custChkBox"></span></label></div>'
+		o += '</td>'
+		o += '</tr>' // close
 
-		o += '<div>' // second row for checkboxes
+		o += '<tr>' // second row
 		var MCstate = ""
 		if (multiCharacterCustom) MCstate = "checked" // checkbox state
-		o += '<div id="multiCharChkbox"><label class="chkLabel optionElementLabel">Multi Character Cipher<input type="checkbox" id="chkbox_MC" onclick="conf_MC()" '+MCstate+'><span class="custChkBox"></span></label></div>'
+		o += '<td>'
+		o += '<div id="multiCharChkbox"><label class="chkLabel optionElementLabel">Multi Character<input type="checkbox" id="chkbox_MC" onclick="conf_MC()" '+MCstate+'><span class="custChkBox"></span></label></div>'
+		o += '</td>'
 		var WCstate = ""
 		if (wheelCipherCustom) WCstate = "checked" // checkbox state
+		o += '<td>'
 		o += '<div id="wheelCiphChkbox"><label class="chkLabel optionElementLabel">Wheel Cipher<input type="checkbox" id="chkbox_WC" onclick="conf_WC()" '+WCstate+'><span class="custChkBox"></span></label></div>'
-		o += '</div>' // close
+		o += '</td>'
+		o += '</tr>'
+
+		o += '<table><tbody>' // close container
 
 		o += '<div id="custCipherIndCtrls" style="margin-top: 0.5em;"></div>' // individual characters controls
 		o += '<div id="custCipherButtonArea"><input class="ciphEditBtn" type="button" value="Add New Cipher" onclick="addNewCipherAction()"></div>' // buttons
@@ -127,7 +139,7 @@ function loadEditorExistingCipherValues(curCiphName) {
 		} else {
 			ignoreDiarciticsCustom = false
 		}
-		var o = '<label class="chkLabel optionElementLabel">Ignore Diacritical Marks (é=e)<input type="checkbox" id="chkbox_IDM" onclick="conf_IDM()" '+IDMstate+'><span class="custChkBox"></span></label>'
+		var o = '<label class="chkLabel optionElementLabel">Ignore Diacritics<input type="checkbox" id="chkbox_IDM" onclick="conf_IDM()" '+IDMstate+'><span class="custChkBox"></span></label>'
 		document.getElementById("diacrChkbox").innerHTML = o // update element
 		
 		var CSstate = "" // case sensitive state
@@ -137,7 +149,7 @@ function loadEditorExistingCipherValues(curCiphName) {
 		} else {
 			caseSensitiveCustom = false
 		}
-		o = '<label class="chkLabel optionElementLabel">Case Sensitive Cipher<input type="checkbox" id="chkbox_CS" onclick="conf_CS()" '+CSstate+'><span class="custChkBox"></span></label>'
+		o = '<label class="chkLabel optionElementLabel">Case Sensitive<input type="checkbox" id="chkbox_CS" onclick="conf_CS()" '+CSstate+'><span class="custChkBox"></span></label>'
 		document.getElementById("caseSensChkbox").innerHTML = o // update element
 
 		var MCstate = "" // multi character state
@@ -147,7 +159,7 @@ function loadEditorExistingCipherValues(curCiphName) {
 		} else {
 			multiCharacterCustom = false
 		}
-		o = '<label class="chkLabel optionElementLabel">Multi Character Cipher<input type="checkbox" id="chkbox_MC" onclick="conf_MC()" '+MCstate+'><span class="custChkBox"></span></label>'
+		o = '<label class="chkLabel optionElementLabel">Multi Character<input type="checkbox" id="chkbox_MC" onclick="conf_MC()" '+MCstate+'><span class="custChkBox"></span></label>'
 		document.getElementById("multiCharChkbox").innerHTML = o // update element
 
 		var WCstate = "" // wheel cipher state

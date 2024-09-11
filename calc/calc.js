@@ -1,6 +1,6 @@
 // ============================== Init ==============================
 
-var gematroVersion = '24.9.4.0' // YY.M.D.revision
+var gematroVersion = '24.9.11.0' // YY.M.D.revision
 var compactViewportWidth = 911 // viewport width threshold
 var mobileUserAgent = navigator.userAgent.match('Mobile')
 
@@ -39,6 +39,7 @@ var optCompactCiphCount = 8 // compact mode threshold
 var optLoadUserHistCiphers = true // load ciphers when CSV file is imported
 
 var optMatrixCodeRain = false // code rain
+var optRoundedInterface = false // rounded menus, buttons and charts
 
 var optShowOnlyMatching = false // set opacity of nonmatching values to zero
 
@@ -126,7 +127,8 @@ var calcOptionsArr = [ // used to export/import settings
 	'"encDefVowArr"+" = \x27"+String(encPrevVowStr).replace(/,/g,"")+"\x27"',
 	'"encDefExcLetArr"+" = \x27"+String(encPrevExcLetStr).replace(/,/g,"")+"\x27"',
 	"'optImageScale'+' = '+optImageScale",
-	'"optHistTableCaption"+" = \x27"+String(optHistTableCaption)+"\x27"'
+	'"optHistTableCaption"+" = \x27"+String(optHistTableCaption)+"\x27"',
+	"'optRoundedInterface'+' = '+optRoundedInterface"
 ]
 
 var runOnceRestoreCalcSet = true
@@ -167,6 +169,7 @@ function showWelcomeMessage(msg, durMs = 2500, delMs = 1250) {
 
 var mobileCalcLayout = true // store current layout
 function configureCalcInterface(initRun = false) { // switch interface layout (desktop or mobile devices)
+	conf_RIF(true); // activate Chiseled or Rounded Interface
 	if (optMatrixCodeRain && !initRun) { // update code rain
 		clearInterval(code_rain) // reset previous instance
 		document.getElementById("canv").style.display = "none"
@@ -247,14 +250,14 @@ function createCiphersMenu() { // create menu with all cipher catergories
 	o += '<button class="dropbtn">Ciphers</button>'
 	o += '<div class="dropdown-content" style="width: 422px; min-height: 314px;">'
 
-	o += '<div><center>'
+	o += '<div id="ciphHeaderPanel"><center>'
 	o += '<input class="intBtn3" type="button" value="Empty" onclick="disableAllCiphers()">'
 	o += '<input class="intBtn3" type="button" value="Default" onclick="enableDefaultCiphers()">'
 	o += '<input class="intBtn3" type="button" value="All (EN)" onclick="enableAllEnglishCiphers()">'
 	o += '<input class="intBtn3" type="button" value="All" onclick="enableAllCiphers()">'
 	o += '</center></div>'
 
-	o += '<hr style="background-color: var(--separator-accent2); height: 1px; border: none; margin: 0.5em 0em 1em 0em;">'
+	o += '<hr class="hrSeparator1em">'
 
 	o += '<div style="width: 32%; float: left;">'
 	for (i = 0; i < cCat.length; i++) {
@@ -346,10 +349,13 @@ function createOptionsMenu() {
 	o += create_NumCalc() // Number Calculation
 
 	// get checkbox states
-	var CCMstate = ""; var SCMstate = ""; var SOMstate = ""; var DLIstate = "";
-	var APCstate = ""; var LDMstate = ""; var NPGFstate = ""; var LWCstate = "";
-	var WBstate = ""; var CBstate = ""; var CCstate = ""; var GCstate = "";
-	var SWCstate = ""; var MCRstate = "";
+	var MCRstate = ""; var RIFstate = ""; var CCMstate = ""; var SCMstate = "";
+	var SOMstate = ""; var DLIstate = ""; var APCstate = ""; var LDMstate = "";
+	var NPGFstate = ""; var LWCstate = ""; var WBstate = ""; var CBstate = "";
+	var CCstate = ""; var GCstate = ""; var SWCstate = ""; 
+
+	if (optMatrixCodeRain) MCRstate = "checked" // Matrix Code Rain
+	if (optRoundedInterface) RIFstate = "checked" // Rounded Interface
 
 	if (optFiltCrossCipherMatch) CCMstate = "checked" // Cross Cipher Match
 	if (optFiltSameCipherMatch) SCMstate = "checked" // Same Cipher Match
@@ -367,11 +373,10 @@ function createOptionsMenu() {
 	if (optShowCipherChart) CCstate = "checked" // Cipher Chart
 
 	if (optGradientCharts) GCstate = "checked" // Gradient Charts
-
 	if (optLoadUserHistCiphers) SWCstate = "checked" // Switch Ciphers (CSV)
-	if (optMatrixCodeRain) MCRstate = "checked" // Matrix Code Rain
 
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Matrix Code Rain<input type="checkbox" id="chkbox_MCR" onclick="conf_MCR()" '+MCRstate+'><span class="custChkBox"></span></label></div>'
+	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Rounded Interface<input type="checkbox" id="chkbox_RIF" onclick="conf_RIF()" '+RIFstate+'><span class="custChkBox"></span></label></div>'
 	o += '<div style="margin: 1em"></div>'
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Cross Cipher Match<input type="checkbox" id="chkbox_CCM" onclick="conf_CCM()" '+CCMstate+'><span class="custChkBox"></span></label></div>'
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Same Cipher Match<input type="checkbox" id="chkbox_SCM" onclick="conf_SCM()" '+SCMstate+'><span class="custChkBox"></span></label></div>'
@@ -383,10 +388,10 @@ function createOptionsMenu() {
 	o += '<div style="margin: 1em"></div>'
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">New Phrases Go First<input type="checkbox" id="chkbox_NPGF" onclick="conf_NPGF()" '+NPGFstate+'><span class="custChkBox"></span></label></div>'
 	o += '<div style="margin: 1em"></div>'
-	o += '<div class="dbOptionsBox" style="border: 1px solid var(--border-accent) !important;">'
+	o += '<div class="dbOptionsBoxTop">'
 	o += '<span class="optionTableLabel">Phrases on DB page</span><input id="dbPageItemsBox" onchange="conf_DPI()" type="text" value="'+dbPageItems+'">'
 	o += '</div>'
-	o += '<div class="dbOptionsBox">'
+	o += '<div class="dbOptionsBoxBtm">'
 	o += '<span class="optionTableLabel">Scroll DB by lines</span><input id="dbScrollItemsBox" onchange="conf_DSI()" type="text" value="'+dbScrollItems+'">'
 	o += '</div>'
 	o += '<div style="margin: 1em"></div>'
@@ -402,6 +407,23 @@ function createOptionsMenu() {
 	o += '</div></div>'
 
 	document.getElementById("calcOptionsPanel").innerHTML = o
+}
+
+function conf_MCR() { // Matrix Code Rain
+	optMatrixCodeRain = !optMatrixCodeRain
+	toggleCodeRain()
+}
+
+function conf_RIF(redraw = false) { // Rounded Interface
+	if (!redraw) optRoundedInterface = !optRoundedInterface
+	if (optRoundedInterface) { // extra padding for rounded input elements
+		$('input[type=text]').addClass('inputPadding');
+	} else {
+		$('input[type=text]').removeClass('inputPadding');
+	}
+	var bRad = optRoundedInterface ? "1em" : "unset"
+	var root = document.documentElement // :root CSS variable
+	root.style.setProperty("--border-rad", bRad)
 }
 
 function conf_CCM() { // Cross Cipher Match
@@ -509,11 +531,6 @@ function conf_DSI() { // Database Scroll Items
 	dbScrollItems = Number(element.value)
 }
 
-function conf_MCR() { // Matrix Code Rain
-	optMatrixCodeRain = !optMatrixCodeRain
-	toggleCodeRain()
-}
-
 function create_NumCalc() { // Number Calculation
 	var o = ""
 	var fullNumCalcState = ''; var redNumCalcState = ''; var offNumCalcState = '';
@@ -614,7 +631,8 @@ function createExportMenu() {
 	o += '<div style="margin: 0.5em;"></div>'
 	o += '<input id="btn-date-calc-png" class="intBtn" type="button" value="Print Date Durations">' // print date durations
 	o += '<div class="enterAsWordsLimit"><span class="optionTableLabel">Image scale</span><input id="iScaleBox" onchange="conf_iScale()" type="text" value="'+optImageScale.toFixed(1)+'"></div>' // image scale
-	o += '<hr style="background-color: var(--separator-accent2); height: 1px; border: none; margin: 0.75em;">'
+
+	o += '<hr class="hrSeparator2em">'
 
 	o += '<input type="file" id="importFileDummy" style="display: none;">' // dummy item for file import
 	o += '<label for="importFileDummy" class="intBtn" style="text-align: center; box-sizing: border-box;">Import File</label>' // import file
@@ -628,7 +646,7 @@ function createExportMenu() {
 	o += '<div style="margin: 0.5em;"></div>'
 	o += '<input id="btn-export-db-query" class="intBtn hideValue" type="button" value="Export DB Query (CSV)">' // export database query
 	
-	o += '<hr style="background-color: var(--separator-accent2); height: 1px; border: none; margin: 0.75em;">'
+	o += '<hr class="hrSeparator2em">'
 
 	o += '<div style="margin: 0.5em;"></div>'
 	o += '<table style="width: 100%; border-spacing: 0px;"><tbody><tr>'
@@ -671,7 +689,7 @@ function createFeaturesMenu() {
 	o += '<div style="margin: 0.5em;"></div>'
 	o += '<input class="intBtn" type="button" value="Encoding" onclick="toggleEncodingMenu()">'
 
-	o += '<hr style="background-color: var(--separator-accent2); height: 1px; border: none; margin: 0.75em;">'
+	o += '<hr class="hrSeparator2em">'
 
 	o += '<input class="intBtn" type="button" value="Set Table Caption" onclick="conf_HTC()">' // History Table caption
 	o += '<div style="margin: 0.5em;"></div>'
@@ -739,7 +757,7 @@ function toggleColorControlsMenu(redraw = false) { // display control menu to ad
 					o += '<td><input type="number" step="2" min="-360" max="360" value="'+chkboxColors[i].H+'" class="colSlider" id="sliderHue'+i+'" oninput="changeCipherColors(&quot;sliderHue'+i+'&quot;, &quot;Hue&quot;, '+i+')"></td>'
 					o += '<td><input type="number" step="1" min="-100" max="100" value="'+chkboxColors[i].S+'" class="colSlider" id="sliderSaturation'+i+'" oninput="changeCipherColors(&quot;sliderSaturation'+i+'&quot;, &quot;Saturation&quot;, '+i+')"></td>'
 					o += '<td><input type="number" step="1" min="-100" max="100" value="'+chkboxColors[i].L+'" class="colSlider" id="sliderLightness'+i+'" oninput="changeCipherColors(&quot;sliderLightness'+i+'&quot;, &quot;Lightness&quot;, '+i+')"></td>'
-					o += '<td><input type="text" value="" class="cipherColValueBox" id="cipherHSL'+i+'"></td>'
+					o += '<td><input type="text" value="" class="cipherColValueBox" id="cipherHSL'+i+'" disabled></td>'
 					o += '<td style="min-width: 16px;"></td>'
 					ciph_in_row++
 				}
@@ -1009,7 +1027,7 @@ function changeCipherColors(elem_id, col_mode, cipher_index) {
 			cipherList[i].L = colFmt(origColors[i].L + chkboxColors[i].L + globColors.L,"L")
 		}
 		cur_ciphColBox = document.getElementById("cipherHSL"+i) // textbox with HSLA values for current color
-		if (cur_ciphColBox !== null) cur_ciphColBox.value = colPad(cipherList[i].H)+colPad(cipherList[i].S)+colPad(cipherList[i].L,true)
+		if (cur_ciphColBox !== null) cur_ciphColBox.value = " "+colPad(cipherList[i].H)+colPad(cipherList[i].S)+colPad(cipherList[i].L,true)
 	}
 	updateTables(false) // update without redrawing color controls
 	updateWordBreakdown() // update word/cipher breakdown table
@@ -1047,7 +1065,7 @@ function populateColorValues() { // update color controls for each individual ci
 		if (tmp_H !== null) tmp_H.value = chkboxColors[i].H
 		if (tmp_S !== null) tmp_S.value = chkboxColors[i].S
 		if (tmp_L !== null) tmp_L.value = chkboxColors[i].L
-		if (tmp_HSL !== null) tmp_HSL.value = colPad(cipherList[i].H)+colPad(cipherList[i].S)+colPad(cipherList[i].L,true)
+		if (tmp_HSL !== null) tmp_HSL.value = " "+colPad(cipherList[i].H)+colPad(cipherList[i].S)+colPad(cipherList[i].L,true)
 	}
 }
 

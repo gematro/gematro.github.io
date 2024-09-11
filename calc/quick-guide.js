@@ -114,6 +114,7 @@ function displayQuickstartGuide() {
 	o += '</li>'
 
 	o += '<li><span class="qgBold">"Matrix Code Rain"</span> - use dynamic background</li>'
+	o += '<li><span class="qgBold">"Rounded Interface"</span> - use rounded corners for menus, buttons and charts</li>'
 
 	o += '<li>'
 	o += '<span class="qgBold">Highlighter</span> has two different modes:'
@@ -168,9 +169,9 @@ function displayQuickstartGuide() {
 	o += '<ul>'
 
 	o += '<li>'
-	o += '<span class="qgBold">Standard (default)</span> - each character is substituted with a corresponding value and values for all characters in phrase are simply added together'
+	o += '<span class="qgBold">Regular (default)</span> - each character is substituted with a corresponding value and values for all characters in phrase are simply added together'
 	o += '<br>'
-	o += '<span class="qgNote">\'Full\' and \'Reduced\' Number Calculation modes are available only for \'Standard\' mode</span>'
+	o += '<span class="qgNote">\'Full\' and \'Reduced\' Number Calculation modes are available only for \'Regular\' mode</span>'
 	o += '</li>'
 
 	o += '<li><span class="qgBold">Multiplication</span> - each character value is multiplied by its position in a phrase (based on Mispar Ha\'achor)</li>'
@@ -275,7 +276,7 @@ function displayQuickstartGuide() {
 	o += '<p class="qgMedium">Encoding</p>'
 
 	o += '<p>'
-	o += 'Encoder supports <span class="qgBold">3 different modes</span>, all of which can work with Normal or Multiplicative <span class="qgBold">Gematria Calculation</span> modes. <span class="qgBold">Wheel Ciphers</span> are not supported.'
+	o += 'Encoder supports <span class="qgBold">3 different modes</span>, all of which can work with Regular or Multiplicative <span class="qgBold">Gematria Calculation</span> modes. <span class="qgBold">Wheel Ciphers</span> are not supported.'
 	o += '<br>'
 	o += 'Positive values are supported; use <span class="qgBold">-0</span> as a matching value for zero.'
 	o += '<br>'
@@ -287,7 +288,7 @@ function displayQuickstartGuide() {
 	o += '<li>'
 	o += '<span class="qgBold">Syllables (default)</span> - syllables generated from <span class="qgBold">"Alphabet"</span> and <span class="qgBold">"Vowels"</span> fields (excluding letters from <span class="qgBold">"Exclude"</span> field) are used to create a matching phrase. You can type <span class="qgBold">start;end</span> or <span class="qgBold">start;</span> or <span class="qgBold">;end</span> inside <span class="qgBold">Phrase Box</span> to construct a complex phrase'
 	o += '<br>'
-	o += '<span class="qgNote">Note: Anagrams are available for Normal gematria calculation mode only. Use "Odd letters" option to switch between even/odd phrase length</span>'
+	o += '<span class="qgNote">Note: Anagrams are available for Regular gematria calculation mode only. Use "Odd letters" option to switch between even/odd phrase length</span>'
 	o += '</li>'
 
 	o += '<li>'
@@ -299,7 +300,7 @@ function displayQuickstartGuide() {
 	o += '<li>'
 	o += '<span class="qgBold">Database (2 phrases)</span> - uses two phrases from currently loaded <span class="qgBold">Live Database</span>. You can use <span class="qgBold">start;middle;end</span> constructor (and its variations, e.g. <span class="qgBold">;;end</span>) in the <span class="qgBold">Phrase Box</span>'
 	o += '<br>'
-	o += '<span class="qgNote">Note: This mode is very computationally expensive and can be really slow on some devices (Firefox can be ~7x slower compared to Chrome, try different browsers). It is not recommended to use a database with more than 20,000 entries (n^2 combinations). If this mode is used with Multiplicative gematria calculation mode, it becomes even slower. Encoding (2 phrases) for ciphers with negative values is the slowest mode, it can take minutes, so use a smaller database or one phrase mode</span>'
+	o += '<span class="qgNote">Note: This mode is very computationally expensive and can be really slow on some devices (Firefox can be ~7x slower compared to Chrome, try different browsers). It is not recommended to use a database with more than 20,000 entries (n<sup>2</sup> combinations). If this mode is used with Multiplicative gematria calculation mode, it becomes even slower. Encoding (2 phrases) for ciphers with negative values is the slowest mode, it can take minutes, so use a smaller database or one phrase mode</span>'
 	o += '</li>'
 	
 	o += '</ul>'
@@ -589,7 +590,7 @@ function displayCipherInfoPanel(id) {
 			width: $(el).outerWidth()+10, height: $(el).outerHeight()+10, scale: sRatio} )
 			.then((canvas) => {
 				tCanvas = trimCanvas(canvas); // trim transparent pixels
-				imageDataURL = drawOutlineCanvas(tCanvas,2).toDataURL("image/png"); // draw outline, canvas to "data:image/png;base64, ..."
+				imageDataURL = drawOutlineCanvas(tCanvas,0).toDataURL("image/png"); // draw outline, canvas to "data:image/png;base64, ..."
 
 				var o = '<div class="ciphInfoPanel">'
 

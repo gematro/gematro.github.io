@@ -29,6 +29,8 @@
 	--font-family: "Montserrat", "Arial", sans-serif;
 	--font-family-mono: "Roboto Mono", monospace;
 	--font-size-body: 95%;
+	--border-pxl: 1px solid;
+	--border-rad: 1em;
 	--global-hue: 222;
 	--global-sat: 2.0;
 	--global-lit: 1.1;
@@ -58,7 +60,8 @@
 	--font-white-4: hsl(var(--font-hue) calc(100% * var(--font-sat)) calc(30% * var(--font-lit)));
 	--border-accent: hsl(var(--font-hue) calc(100% * var(--font-sat)) calc(41% * var(--font-lit)));
 	--separator-accent: hsl(var(--font-hue) calc(100% * var(--font-sat)) calc(50% * var(--font-lit)));
-	--separator-accent2: hsl(var(--font-hue) calc(100% * var(--font-sat)) calc(30% * var(--font-lit)));
+	--btn-border-accent: hsl(var(--font-hue) calc(100% * var(--font-sat)) calc(41% * var(--font-lit)));
+	--btn-border-accent2: hsl(var(--font-hue) calc(100% * var(--font-sat)) calc(30% * var(--font-lit)));
 	--border-dark-accent: hsl(var(--font-hue) calc(100% * var(--font-sat)) calc(23% * var(--font-lit)));
 	--focus-outline: hsl(var(--font-hue) calc(100% * var(--font-sat)) calc(75% * var(--font-lit)));
 	--break-val-accent: hsl(var(--font-hue) calc(100% * var(--font-sat)) calc(41% * var(--font-lit)));
@@ -82,6 +85,60 @@ body { /* disable Chromium's Text Autosizer (mobile text inflation algorithm) */
 	body {
 		user-select: none;
 	}
+}
+
+/* no arrow controls for number inputs */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+input[type=number] {
+	-moz-appearance: textfield;
+}
+
+input {
+	box-sizing: border-box;
+}
+.inputPadding { /* padding for rounded input elements */
+	padding-left: 0.35em;
+	padding-right: 0.35em;
+}
+
+input, textarea, button, label.intBtn, .intBtnRepo, .optionElementTable, table.optionElementTable tr:first-child > td,
+.dropdown-content, .dropdown-content-opt, .enterAsWordsLimit,
+.quickGuide, .faqPanel, .ciphInfoPanel, .contextMenuTooltip,
+.dateCalcContainer, .colorControlsBG, .editCiphersContainer, .printImageContainer,
+#BreakTableContainer, #ChartSpot, #imgDataDesc, #calcNotification, #queryArea,
+#BreakdownDetails, .numPropTooltip, .dateCalcBg, .dateCalcTable2,
+table.HistoryTable, table.phraseGemContainer, td.custCharIndLabel,
+table.dateCalcTable2 tr:last-child > td {
+	border-radius: var(--border-rad);
+}
+label {
+	user-select: none;
+}
+
+table tr:first-child > td:first-child {
+	border-top-left-radius: var(--border-rad);
+}
+table tr:first-child > td:last-child {
+	border-top-right-radius: var(--border-rad);
+}
+table tr:last-child > td:last-child {
+	border-bottom-right-radius: var(--border-rad);
+}
+table tr:last-child > td:first-child {
+	border-bottom-left-radius: var(--border-rad);
+}
+
+.dbOptionsBoxTop {
+	border-top-left-radius: var(--border-rad);
+	border-top-right-radius: var(--border-rad);
+}
+.dbOptionsBoxBtm {
+	border-bottom-left-radius: var(--border-rad);
+	border-bottom-right-radius: var(--border-rad);
 }
 
 /*               Text Selection               */
@@ -152,16 +209,17 @@ body {
 	
 	::-webkit-scrollbar-thumb {
 		background: rgba(128, 128, 128, 0.5);
-		/*border-radius: 20px;*/
+		border-radius: var(--border-rad);
 	}
 	
 	::-webkit-scrollbar-track {
-		background: rgba(0, 0, 0, 0.2);
+		background: rgba(0, 0, 0, 0.15);
+		border-radius: var(--border-rad);
 	}
 	
 	::-webkit-scrollbar-corner
 	{
-		background: rgba(0, 0, 0, 0.2);
+		background: rgba(0, 0, 0, 0.15);
 	}
 }
 
@@ -209,7 +267,7 @@ body {
 	width: -moz-fit-content;
 	padding: 0.5em 0em 0.75em 1em;
 	margin: 0.5em 0em 0.5em 0em;
-	border: 1px solid var(--border-dark-accent);
+	border: var(--border-pxl) var(--border-dark-accent);
 }
 .colLabelSmall, .colLabelSmallEnc {
 	font-size: 80%;
@@ -226,6 +284,15 @@ body {
 	color: var(--focus-outline);
 	text-align: center;
 	padding-right: 0.4em;
+}
+.hrSeparator1em, .hrSeparator2em {
+	background-color: transparent;
+	border: none;
+	height: 0px;
+	margin: 1em 0em;
+}
+.hrSeparator1em {
+	margin: 0.5em 0em;
 }
 #enabledCiphTable {
 	width: 100%;
@@ -265,38 +332,40 @@ body {
 	text-align: left;
 }
 .colSlider, .colSlider2 {
-	width: 55px;
+	width: 50px;
+	text-align: center;
 	font-size: 80%;
 	color: var(--font-white-1);
 	border: 2px solid var(--border-accent);
 	box-sizing: border-box;
 	font-family: var(--font-family-mono);
-	line-height: 1.1em;
+	line-height: 1.2em;
 	background-color: var(--btn-bg-accent);
 }
-.colSlider2 {
-	width: 65px;
-}
 @media (max-width: 911px) { /* mobile */
-	.colSlider2 {
-		width: 40px;
+	.colSlider, .colSlider2 {
+		width: 42px;
 	}
 }
 .cipherColValueBox {
-	width: 85px;
+	width: 100px;
 	font-size: 80%;
 	color: var(--font-white-1);
 	border: 2px solid var(--border-accent);
 	font-family: var(--font-family-mono);
-	line-height: 1.1em;
+	line-height: 1.2em;
 	background-color: var(--btn-bg-accent);
+}
+.colSlider:focus, .colSlider2:focus, .cipherColValueBox:focus {
+	outline: none !important;
+	border: 2px solid var(--focus-outline);
 }
 .globColCtrlTable {
 	padding-right: 1.25em;
 }
 .phraseGemContainer {
 	display: inline-block;
-	border: 1px solid var(--border-dark-accent);
+	border: var(--border-pxl) var(--border-dark-accent);
 	border-spacing: 0px;
 	text-align: center;
 	font-weight: 500;
@@ -355,7 +424,7 @@ body {
 	white-space: nowrap;
 }
 .dragOver {
-	border: 1px solid var(--drag-highlight-border) !important;
+	border: var(--border-pxl) var(--drag-highlight-border) !important;
 	background-color: var(--drag-highlight) !important;
 }
 
@@ -370,7 +439,7 @@ body {
 	width: -webkit-fit-content;
 	width: -moz-fit-content;
 	/*padding: 0.4em;*/
-	border: 1px solid var(--border-dark-accent);
+	border: var(--border-pxl) var(--border-dark-accent);
     /*margin-top: 1em;*/
 	/*margin-bottom: 0.5em;*/
 }
@@ -421,7 +490,7 @@ body {
 }
 #BreakTableContainer {
 	padding: 0.4em 0.4em 0.4em 0.8em;
-	border: 1px solid var(--border-dark-accent);
+	border: var(--border-pxl) var(--border-dark-accent);
 	width: -webkit-fit-content;
 	width: -moz-fit-content;
 }
@@ -513,24 +582,6 @@ body {
 		padding: 0.1em 0.15em 0.2em 0.15em;
 	}
 }
-
-/* ----- Bordered style for Cipher Table ---- */
-.borderCipherTable {
-	border-right: 1px solid var(--border-accent) !important;
-	border-top: 1px solid var(--border-accent) !important;
-}
-.borderCipherTable td {
-	border-left: 1px solid var(--border-accent) !important;
-	border-bottom: 1px solid var(--border-accent) !important;
-	padding-right: 5px !important;
-	padding-left: 5px !important;
-	padding-top: 1px !important;
-	padding-bottom: 2px !important;
-}
-.borderClassGemCard {
-	border: 1px solid var(--border-accent) !important;
-}
-
 .ChartChar {
 	font-size: 140%;
 }
@@ -574,9 +625,9 @@ body {
 	position: relative;
 	color: var(--font-white-1);
 	font-weight: 500;
-	margin-left: 0.25em;
+	margin-left: 9px;
 	font-family: var(--font-family);
-	border: 1px solid var(--border-accent);
+	border: var(--border-pxl) var(--border-accent);
 	background-color: var(--btn-bg-accent);
 	font-size: 100%;
 	outline: none;
@@ -592,16 +643,16 @@ body {
 	background-color: var(--input-bg-accent);
 	color: var(--font-white-1);
 	font-weight: 500;
-	border: 1px solid var(--border-accent);
+	border: var(--border-pxl) var(--border-accent);
 	font-family: var(--font-family);
-	margin-left: 0.25em;
+	margin-left: 9px;
 	font-size: 125%;
 }
 #phraseBox {
 	background-color: var(--input-bg-accent);
 	color: var(--font-white-1);
 	font-weight: 500;
-	border: 1px solid var(--border-accent);
+	border: var(--border-pxl) var(--border-accent);
 	font-family: var(--font-family);
 	font-size: 125%;
 }
@@ -610,13 +661,13 @@ body {
 		width: 287px;
 	}
 	#highlightBox {
-		width: 98px;
+		width: 100px;
 	}
 	.filterPhraseBox {
-		width: 254px !important;
+		width: 248px !important;
 	}
 	.filterHighlightBox {
-		width: 68px !important;
+		width: 65px !important;
 	}
 }
 @media (min-width: 911px) { /* desktop */
@@ -627,24 +678,20 @@ body {
 		width: 200px;
 	}
 	.filterPhraseBox {
-		width: 421px !important;
+		width: 417px !important;
 	}
 	.filterHighlightBox {
-		width: 170px !important;
+		width: 164px !important;
 	}
 }
 #phraseBox:focus, #highlightBox:focus {
 	outline: none !important;
-	border:1px solid var(--focus-outline);
+	border: var(--border-pxl) var(--focus-outline);
 }
 
 /*                History Table               */
 /* ########################################## */
 
-.HistoryTable tr, .HistoryTable td {
-	border-bottom: 1px solid var(--border-dark-accent);
-	border-left: 1px solid var(--border-dark-accent);
-}
 .cH { /* cipher header bar, history table */
 	background: -webkit-linear-gradient(0deg, var(--hist-header-gradient), transparent); /*20,23,27*/
 	background: -moz-linear-gradient(0deg, var(--hist-header-gradient), transparent);
@@ -654,8 +701,7 @@ body {
 .HistoryTable {
 	text-align: center;
 	border-spacing: 0px;
-	border-top: 1px solid var(--border-dark-accent);
-	border-right: 1px solid var(--border-dark-accent);
+	border: var(--border-pxl) var(--border-dark-accent);
 	margin: 0.5em 1em 2.4em 1em;
 }
 @media (max-width: 911px) { /* mobile */
@@ -797,6 +843,11 @@ body {
 /*                Options Menu                */
 /* ########################################## */
 
+#ciphHeaderPanel {
+	background-color: var(--btn-bg-accent);
+	border-radius: var(--border-rad);
+	border: var(--border-pxl) var(--btn-border-accent);
+}
 .cipherCatDetails {
 	width: 100%;
 }
@@ -815,49 +866,50 @@ body {
 	display: inline-block;
 	color: var(--font-white-1);
 	color: var(--font-white-2);
-	padding: 0.4em 0.75em;
-	border: 1px solid var(--border-accent);
+	padding: 0.4em 1em;
+	border: var(--border-pxl) var(--btn-border-accent);
 	width: 100%;
 	font-size: 100%;
 	font-weight: 500;
 	font-family: var(--font-family);
 	outline: none;
 	background-color: var(--btn-bg-accent);
-	/* background-color: transparent; */
 }
 .intBtn2, .ciphEditBtn { /* Cipher Categories */
 	display: inline-block;
 	color: var(--font-white-1);
 	color: var(--font-white-2);
-	padding: 0.3em 0.75em;
+	padding: 0.3em 1em;
 	margin: 0.1em 0em;
-	border: 1px solid var(--border-accent);	  
+	border: var(--border-pxl) var(--btn-border-accent);	  
 	width: 100%;
 	font-size: 100%;
 	font-weight: 500;
 	font-family: var(--font-family);
 	outline: none;
 	background-color: var(--btn-bg-accent);
-	/* background-color: transparent; */
 }
 .ciphEditBtn {
 	width: auto;
 	margin: 0.75em 0.5em 0em 0.5em;
 }
-.intBtn3, .intBtnResetDate, #queryDBbtn, #enterPhraseBtn { /* Empty, Default, All */
+.intBtn3, .intBtnResetDate, #queryDBbtn, #enterPhraseBtn {
 	display: inline-block;
 	color: var(--font-white-1);
 	color: var(--font-white-2);
-	padding: 0.2em 0.75em;
+	padding: 0.2em 1em;
 	margin: 0em 0.1em 0.5em 0.1em;
-	border: 1px solid var(--border-accent);
-	width: 85px;
+	border: var(--border-pxl) var(--border-accent);
+	width: 90px;
 	font-size: 100%;
 	font-weight: 500;
 	font-family: var(--font-family);
 	outline: none;
 	background-color: var(--btn-bg-accent);
-	/* background-color: transparent; */
+}
+.intBtn3 { /* Empty, Default, All */
+	border: var(--border-pxl) var(--btn-border-accent2);
+	margin: 0.5em 0.1em;
 }
 .intBtnRepo {
 	box-sizing: border-box;
@@ -866,7 +918,7 @@ body {
 	color: var(--font-white-1);
 	color: var(--font-white-2);
 	padding: 0.4em 0.75em 0.4em 3.9em;
-	border: 1px solid var(--border-accent);
+	border: var(--border-pxl) var(--btn-border-accent);
 	width: 100%;
 	font-size: 100%;
 	font-weight: 500;
@@ -907,20 +959,21 @@ body {
 	font-size: 80%;
 	width: auto;
 	margin: 0em;
-	padding: 0.3em 0.6em 0.3em 0.6em;
+	padding: 0.3em 0.75em 0.3em 0.75em;
 }
 #queryDBbtn {
 	padding: 0em;
-	margin: 0em 0.25em 0em 0em;
+	margin: 0em 9px 0em 0em;
 	width: 75px;
 }
 #enterPhraseBtn {
 	background-color: var(--input-bg-accent);
 	padding: 0em;
-	margin: 0em 0em 0em 0.3em;
+	margin: 0em 0em 0em 9px;
 	min-width: 27px;
 	max-width: 27px;
 	color: var(--border-accent);
+	font-weight: 600;
 }
 #calcNotification {
 	position: absolute;
@@ -931,11 +984,10 @@ body {
 	max-width: 240px;
 	bottom: 40px;
 	background: var(--menu-bg-accent);
-	border: 1px solid var(--border-dark-accent);
+	border: var(--border-pxl) var(--border-dark-accent);
 	padding: 1em 1.5em;
 	font-size: 125%;
 	font-weight: 500;
-	border-radius: 15px;
 	text-align: center;
 	z-index: 1000;
 }
@@ -947,21 +999,21 @@ body {
 }
 .intBtnRepo:link {
 	color: var(--font-white-2);
-	border-bottom: 1px solid var(--border-accent);
+	border-bottom: var(--border-pxl) var(--btn-border-accent);
 }
 .intBtnRepo:visited {
 	color: var(--font-white-2);
-	border-bottom: 1px solid var(--border-accent);
+	border-bottom: var(--border-pxl) var(--btn-border-accent);
 }
 .intBtnRepo:hover {
 	color: var(--font-white-2);
 	background-color: var(--btn-hover-accent);
-	border-bottom: 1px solid var(--border-accent);
+	border-bottom: var(--border-pxl) var(--btn-border-accent);
 }
 .intBtnRepo:active{
 	color: var(--font-white-2);
 	background-color: var(--btn-active-accent);
-	border-bottom: 1px solid var(--border-accent);
+	border-bottom: var(--border-pxl) var(--btn-border-accent);
 }
 
 .dropbtn {
@@ -979,7 +1031,7 @@ body {
 	border-spacing: 0;
 	text-align: center;
 	margin: 1em;
-	border: 1px solid var(--border-accent);
+	border: var(--border-pxl) var(--border-accent);
 	border-bottom: none;
 	text-align: center;
 	color: var(--font-white-2);
@@ -988,11 +1040,11 @@ body {
 	width: 87%;
 }
 .optionElementTable td {
-	border-bottom: 1px solid var(--border-accent);
+	border-bottom: var(--border-pxl) var(--border-accent);
 	padding: 0.3em;
 }
 .enterAsWordsLimit {
-	border: 1px solid var(--border-accent);
+	border: var(--border-pxl) var(--btn-border-accent);
 	text-align: right;
 	color: var(--font-white-2);
 	font-weight: 500;
@@ -1001,17 +1053,19 @@ body {
 	border-top: none;
 	padding-bottom: 0.1em;
 }
-.dbOptionsBox {
+.dbOptionsBoxTop, .dbOptionsBoxBtm {
 	margin: auto;
-	border: 1px solid var(--border-accent);
+	border: var(--border-pxl) var(--border-accent);
 	text-align: right;
 	color: var(--font-white-2);
 	background-color: var(--btn-bg-accent);
 	font-weight: 500;
 	width: 200px;
 	box-sizing: border-box;
-	border-top: none;
 	padding-bottom: 0.1em;
+}
+.dbOptionsBoxBtm {
+	border-top: none;
 }
 .optionTableLabel {
 	font-size: 80%;
@@ -1052,7 +1106,7 @@ body {
 	padding: 1em;
 	text-align: left;
 	background-color: var(--menu-bg-accent2);
-	border: 1px solid var(--border-dark-accent);
+	border: var(--border-pxl) var(--border-dark-accent);
 }
 @media (max-width: 911px) { /* mobile */
 	.dropdown {
@@ -1080,7 +1134,7 @@ body {
 .printImageContainer {
 	color: var(--font-white-2);
 	background-color: black;
-	border: 1px solid var(--border-dark-accent);
+	border: var(--border-pxl) var(--border-dark-accent);
 	font-family: var(--font-family);
 	font-size: 100%;
 	position: absolute;
@@ -1117,7 +1171,6 @@ body {
     padding: 0.35em 1em;
     border: none;
     outline: none;
-    border-radius: 20px;
 	margin: 1.5em 0.3em 1.5em 0.3em;
 }
 #imgData {
@@ -1149,7 +1202,7 @@ body {
 	position: absolute;
 	z-index: 101;
 	font-family: var(--font-family);
-	border: 1px solid var(--border-dark-accent);
+	border: var(--border-pxl) var(--border-dark-accent);
 }
 @media (max-width: 911px) { /* mobile */
 	.numPropTooltip {
@@ -1169,7 +1222,7 @@ body {
 	position: absolute;
 	z-index: 101;
 	font-family: var(--font-family);
-	border: 1px solid var(--border-dark-accent);
+	border: var(--border-pxl) var(--border-dark-accent);
 }
 .numPropTable {
 	text-align: center;
@@ -1231,7 +1284,7 @@ body {
 	background: var(--menu-bg-accent);
 	width: -webkit-fit-content;
 	width: -moz-fit-content;
-	border: 1px solid var(--border-dark-accent);
+	border: var(--border-pxl) var(--border-dark-accent);
 }
 .custCipherMainTable {
 	margin: 0.5em 0em 0.5em 0em;
@@ -1247,7 +1300,7 @@ body {
 	text-align: center;
 	width: 100%;
 	box-sizing: border-box;
-	border: 1px solid var(--border-dark-accent);
+	border: var(--border-pxl) var(--border-dark-accent);
 }
 #custCipherAlphabet, #custCipherGlobVals, #custCipherDescInput {
 	background: var(--btn-bg-accent);
@@ -1260,7 +1313,7 @@ body {
 	resize: none;
 	width: 100%;
 	box-sizing: border-box;
-	border: 1px solid var(--border-dark-accent);
+	border: var(--border-pxl) var(--border-dark-accent);
 }
 #custCipherGlobVals {
 	font-size: 100%;
@@ -1270,7 +1323,7 @@ body {
 #custCipherNameInput:focus, #custCipherCatInput:focus,
 #custCipherDescInput:focus {
 	outline: none;
-	border: 1px solid var(--border-dark-accent);
+	border: var(--border-pxl) var(--border-dark-accent);
 }
 .custCharInd:focus, .custCharIndValue:focus {
 	outline: none;
@@ -1278,7 +1331,7 @@ body {
 }
 #diacrChkbox, #caseSensChkbox, #multiCharChkbox, #wheelCiphChkbox {
 	display: inline-flex;
-	padding: 0em 1em 0.75em 1em;
+	padding: 0em 0.5em 0.25em 0.5em;
 }
 .custCharIndTable {
 	width: 40px;
@@ -1290,7 +1343,7 @@ body {
 	background: var(--btn-bg-accent);
 	height: 38px;
 	box-sizing: border-box;
-	border: 1px solid var(--border-dark-accent);
+	border: var(--border-pxl) var(--border-dark-accent);
 }
 .custCharInd {
 	width: 40px;
@@ -1314,8 +1367,12 @@ body {
 	color: var(--font-white-2);
 }
 @media (max-width: 911px) { /* mobile */
-	.custCharInd, .custCharIndValue {
+	.custCharInd {
 		width: 30px !important;
+		padding: unset;
+	}
+	.custCharIndValue {
+		width: 38px !important;
 	}
 }
 
@@ -1331,7 +1388,7 @@ body {
 	width: -moz-fit-content;
 	display: flex;
 	height: 340px;
-	border: 1px solid var(--border-dark-accent);
+	border: var(--border-pxl) var(--border-dark-accent);
 }
 @media (max-width: 911px) { /* mobile */
 	.dateCalcContainer {
@@ -1357,7 +1414,7 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	border: 1px solid var(--border-dark-accent);
+	border: var(--border-pxl) var(--border-dark-accent);
 	box-sizing: border-box;
 }
 @media (max-width: 911px) { /* mobile */
@@ -1399,14 +1456,14 @@ body {
 }
 .dateInput, .dateInputYear, .offsetDateInput, #queryPosInput {
 	text-align: center;
-	width: 60px;
+	width: 55px;
 	font-size: 150%;
 	color: var(--font-white-1);
 	border: 2px solid var(--border-accent);
 	box-sizing: border-box;
 	font-family: var(--font-family);
 	font-weight: 500;
-	line-height: 1.1em;
+	line-height: 1.2em;
 	background-color: var(--btn-bg-accent);
 }
 .offsetDateInput {
@@ -1416,7 +1473,7 @@ body {
 	padding: 0.2em 0em;
 }
 .dateInputYear {
-	width: 110px;
+	width: 100px;
 }
 .dateDetailsText {
 }
@@ -1454,6 +1511,10 @@ body {
 	background: var(--highlight-date);
 	padding: 0em 0.5em;
 }
+.dateInput:focus, .dateInputYear:focus, .offsetDateInput:focus {
+	outline: none !important;
+	border: 2px solid var(--focus-outline);
+}
 
 /*                Query Table                 */
 /* ########################################## */
@@ -1461,13 +1522,11 @@ body {
 #queryArea {
 	width: 30%;
 	position: absolute;
-	/* border-right: 1px solid var(--border-accent); */
 	top: 90px;
 	left: 100px;
 	overflow: auto;
 	max-height: 92%;
-	border: 1px solid var(--border-accent);
-	/* background-color: var(--query-bg-accent); */
+	border: var(--border-pxl) var(--border-accent);
 	resize: horizontal;
 }
 @media (max-width: 911px) { /* mobile */
@@ -1479,7 +1538,7 @@ body {
 	font-size: 100%;
 	color: var(--font-white-2);
 	background-color: var(--btn-bg-accent);
-	border: 1px solid var(--border-dark-accent);
+	border: var(--border-pxl) var(--border-dark-accent);
 	padding: 0em 0.35em;
 }
 #queryMinBtn {
@@ -1491,7 +1550,7 @@ body {
 	box-sizing: border-box;
 	color: var(--border-accent);
 	background: var(--hist-header-gradient);
-	border: 1px solid var(--border-accent);
+	border: var(--border-pxl) var(--border-accent);
 	border-bottom: 2px solid var(--border-accent);
 	cursor: pointer;
 	user-select: none;
@@ -1506,6 +1565,10 @@ body {
 	padding: 1em;
 	line-height: 2em;
 }
+#queryScrollbar {
+	border-radius: unset;
+	padding: unset;
+}
 .qSlider {
 	-webkit-appearance: none;
 	width: calc(100% - 24px);
@@ -1513,7 +1576,7 @@ body {
 	background: var(--hist-header-gradient);
 	outline: none;
 	margin: 0;
-	border: 1px solid var(--border-accent);
+	border: var(--border-pxl) var(--border-accent);
 	border-bottom: 2px solid var(--border-accent);
 	display: block;
 	box-sizing: border-box;
@@ -1542,12 +1605,12 @@ body {
 	color: var(--font-white-2);
 	caret-color: transparent !important;
 	background-color: var(--body-bg-accent);
-	border: 1px solid var(--border-dark-accent);
+	border: var(--border-pxl) var(--border-dark-accent);
 	border-left: none;
 	border-right: none;
 }
 #queryPosInput:focus {
-	border: 1px solid var(--focus-outline);
+	border: var(--border-pxl) var(--focus-outline);
 }
 #querySearchInput {
 	text-align: center;
@@ -1559,10 +1622,11 @@ body {
 	color: var(--font-white-2);
 	background-color: var(--body-bg-accent);
 	box-sizing: border-box;
-	border: 1px solid var(--border-dark-accent);
+	border: var(--border-pxl) var(--border-dark-accent);
 	border-top: none;
 	outline: none;
 	padding: 0.3em 0em;
+	border-radius: unset;
 }
 .minimizeQuery {
 	resize: none !important;
@@ -1612,7 +1676,7 @@ body {
 	margin: auto;
 	overflow: auto;
 	z-index: 1000;
-	border: 1px solid var(--border-dark-accent);
+	border: var(--border-pxl) var(--border-dark-accent);
 }
 .faqPanel {
 	max-width: 450px;
@@ -1689,7 +1753,7 @@ body {
 	width: fit-content;
 	overflow: auto;
 	z-index: 1000;
-	border: 1px solid var(--border-dark-accent);
+	border: var(--border-pxl) var(--border-dark-accent);
 	position: absolute;
 	right: 0;
 	left: 0;
@@ -1745,7 +1809,8 @@ input[type=checkbox] {
 	height: 16px;
 	width: 16px;
 	background-color: var(--btn-bg-accent);
-	border: 1px solid var(--border-accent);
+	border: var(--border-pxl) var(--btn-border-accent);
+	border-radius: var(--border-rad);
 }
 .chkLabel:hover input ~ .custChkBox {
 	background-color: var(--btn-hover-accent);
@@ -1779,4 +1844,5 @@ input[type=checkbox] {
 	width: 0px;
 	height: 0px;
 	border: solid 4px var(--checkmark-accent);
+	border-radius: var(--border-rad);
 }
