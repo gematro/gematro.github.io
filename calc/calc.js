@@ -1,6 +1,6 @@
 // ============================== Init ==============================
 
-var gematroVersion = '24.9.14.0' // YY.M.D.revision
+var gematroVersion = '24.9.14.1' // YY.M.D.revision
 var compactViewportWidth = 911 // viewport width threshold
 var mobileUserAgent = navigator.userAgent.match('Mobile')
 
@@ -152,7 +152,7 @@ function isStandaloneWebApp() {
 }
 
 function updateBrowserTabThemeColor() { // dynamic browser interface color
-	let themeColor = isStandaloneWebApp() ? HSLtoRGB(Number(interfaceHue), 22*Number(interfaceSat), 16*Number(interfaceLit), 1) : // --body-bg-accent, WebApp
+	let themeColor = isStandaloneWebApp() && !optMatrixCodeRain ? HSLtoRGB(Number(interfaceHue), 22*Number(interfaceSat), 16*Number(interfaceLit), 1) : // --body-bg-accent, WebApp
 		HSLtoRGB(Number(interfaceHue), 14*Number(interfaceSat), 14*Number(interfaceLit), 1) // CSS var(--table-row-odd)
 	document.querySelector('meta[name="theme-color"]').setAttribute('content', themeColor)
 }

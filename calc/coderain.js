@@ -63,6 +63,7 @@ function rndInt(min, max) { // inclusive
 }
 
 function toggleCodeRain() {
+	updateBrowserTabThemeColor()
 	if (optMatrixCodeRain) {
 		clearInterval(code_rain) // reset previous instance
 		document.getElementById("canv").style.display = "none"
