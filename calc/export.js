@@ -25,7 +25,7 @@ function openImageWindow(element, imgName = "", sRatio = window.devicePixelRatio
 			//$("#previewImage").append(canvas);
 
 			tCanvas = trimCanvas(canvas); // trim transparent pixels
-			imageDataURL = drawOutlineCanvas(tCanvas,1).toDataURL("image/png"); // draw outline, canvas to "data:image/png;base64, ..."
+			imageDataURL = drawOutlineCanvas(tCanvas,2).toDataURL("image/png"); // draw outline, canvas to "data:image/png;base64, ..."
 
 			if (element == '.dateCalcTable2') { // restore date labels as input
 				$('#dateDesc1Area').html('<input class="dateDescription" id="dateDesc1" value="'+dateDesc1Saved+'">')
@@ -110,13 +110,13 @@ function trimCanvas(c) { // remove transparent pixels
 }
 
 function drawOutlineCanvas(c, oWidth = 5) {
-	var outlineColor = HSLtoRGB(Number(fontHue), 100*Number(fontSat), 23*Number(fontLit), 1) // same as --border-dark-accent
+	var outlineColor = HSLtoRGB(Number(fontHue), 100*Number(fontSat), 21*Number(fontLit), 1) // same as --border-dark-accent
 	var ctx = c.getContext('2d')
 	ctx.lineWidth = oWidth*optImageScale
 	ctx.strokeStyle = outlineColor
-	if (!optRoundedInterface) { // rectangular outline
-		ctx.strokeRect(0, 0, c.width, c.height)
-	} else { // rounded outline
+	if (!optRoundedInterface && oWidth > 0) { // rectangular outline
+		ctx.strokeRect(0+(ctx.lineWidth/2), 0+(ctx.lineWidth/2), c.width-ctx.lineWidth, c.height-ctx.lineWidth)
+	} else if (oWidth > 0) { // rounded outline
 		canvClearRoundRectCorners(ctx, 0, 0, c.width, c.height, 20*optImageScale) // erase corners and border, 1em (16px) + 2px + 2px
 		ctx.beginPath()
 		ctx.roundRect(0+(ctx.lineWidth/2), 0+(ctx.lineWidth/2), c.width-ctx.lineWidth, c.height-ctx.lineWidth, 16*optImageScale) // 1em (16px)

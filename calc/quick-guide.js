@@ -583,7 +583,8 @@ function displayCipherInfoPanel(id) {
 
 	var el = '#ChartSpot' // draw Cipher Chart
 	updateCipherChart(cipherList[id]) // draw requested cipher chart
-	$('#spaceChartBtn').text(''); $('#backspaceChartBtn').text(''); // remove space and backspace labels
+	$('#spaceChartBtn').text(''); $('#backspaceChartBtn').text('') // remove space and backspace labels
+	$('#ChartSpot').addClass("hideBorder") // temporarily hide border
 	var sRatio = isNaN(sRatio) ? window.devicePixelRatio : optImageScale // image scaling
 	if ( $(el).length ) {
 		var canvas = html2canvas($(el)[0], {allowTaint: false, backgroundColor: "rgba(0,0,0,0)",
@@ -610,6 +611,7 @@ function displayCipherInfoPanel(id) {
 
 				if (!ciphChartVisibility) element.classList.toggle("hideValue") // undo visibility change
 				optShowCipherChart = ciphChartVisibility // restore cipher chart visibility
+				$('#ChartSpot').removeClass("hideBorder") // temporarily hide border
 				updateWordBreakdown() // restore cipher chart of previously selected cipher
 
 				$(o).appendTo('body'); // guide

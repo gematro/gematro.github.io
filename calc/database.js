@@ -223,9 +223,9 @@ function updateDatabaseQueryTable(stPos = 0, dItems, scrollBarEvent = false) { /
 			ms += queryResult.length.toLocaleString('en')+' matches'
 			ms += '<br><br>'
 			ms += '<div style="display: inline-flex;">'
-			ms += '<input class="queryPageBtn" id="queryPrevPageBtn" type="button" value="<" onclick="queryShowPrevPage()">'
+			ms += '<input class="queryPageBtnL" id="queryPrevPageBtn" type="button" value="<" onclick="queryShowPrevPage()">'
 			ms += '<input id="queryPosInput" type="tel" autocomplete="off" value="'+curPos+'">'
-			ms += '<input class="queryPageBtn" id="queryNextPageBtn" type="button" value=">" onclick="queryShowNextPage()">'
+			ms += '<input class="queryPageBtnR" id="queryNextPageBtn" type="button" value=">" onclick="queryShowNextPage()">'
 			ms += '</div>'
 			ms += '<br>-'
 			ms += '<br>'+nextBlock

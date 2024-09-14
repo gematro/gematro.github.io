@@ -1,6 +1,6 @@
 // ============================== Init ==============================
 
-var gematroVersion = '24.9.11.0' // YY.M.D.revision
+var gematroVersion = '24.9.14.0' // YY.M.D.revision
 var compactViewportWidth = 911 // viewport width threshold
 var mobileUserAgent = navigator.userAgent.match('Mobile')
 
@@ -39,7 +39,7 @@ var optCompactCiphCount = 8 // compact mode threshold
 var optLoadUserHistCiphers = true // load ciphers when CSV file is imported
 
 var optMatrixCodeRain = false // code rain
-var optRoundedInterface = false // rounded menus, buttons and charts
+var optRoundedInterface = true // rounded menus, buttons and charts
 
 var optShowOnlyMatching = false // set opacity of nonmatching values to zero
 
@@ -719,7 +719,7 @@ function conf_PL() {
 	optPhraseLimit = Number(pLimit.value)
 }
 function conf_HTC() {
-	var p = prompt('Specify History Table caption:', optHistTableCaption)
+	var p = prompt('Set History Table caption:', optHistTableCaption)
 	optHistTableCaption = p !== null ? p : ''
 	updateHistoryTable()
 }

@@ -29,7 +29,7 @@
 	--font-family: "Montserrat", "Arial", sans-serif;
 	--font-family-mono: "Roboto Mono", monospace;
 	--font-size-body: 95%;
-	--border-pxl: 1px solid;
+	--border-pxl: 2px solid;
 	--border-rad: 1em;
 	--global-hue: 222;
 	--global-sat: 2.0;
@@ -40,7 +40,7 @@
 	--menu-bg-accent: hsl(var(--global-hue) calc(20% * var(--global-sat)) calc(28% * var(--global-lit)));
 	--menu-bg-accent2: hsl(var(--global-hue) calc(20% * var(--global-sat)) calc(24% * var(--global-lit)));
 	--breakdown-bg-accent: hsl(var(--global-hue) calc(21% * var(--global-sat)) calc(13% * var(--global-lit)));
-	--btn-bg-accent: hsl(var(--global-hue) calc(20% * var(--global-sat)) calc(21% * var(--global-lit)));
+	--btn-bg-accent: hsl(var(--global-hue) calc(20% * var(--global-sat)) calc(20% * var(--global-lit)));
 	--btn-hover-accent: hsl(var(--global-hue) calc(13% * var(--global-sat)) calc(33% * var(--global-lit)));
 	--btn-active-accent: hsl(var(--global-hue) calc(13% * var(--global-sat)) calc(39% * var(--global-lit)));
 	--body-bg-accent: hsl(var(--global-hue) calc(22% * var(--global-sat)) calc(16% * var(--global-lit)));
@@ -60,11 +60,12 @@
 	--font-white-4: hsl(var(--font-hue) calc(100% * var(--font-sat)) calc(30% * var(--font-lit)));
 	--border-accent: hsl(var(--font-hue) calc(100% * var(--font-sat)) calc(41% * var(--font-lit)));
 	--separator-accent: hsl(var(--font-hue) calc(100% * var(--font-sat)) calc(50% * var(--font-lit)));
-	--btn-border-accent: hsl(var(--font-hue) calc(100% * var(--font-sat)) calc(41% * var(--font-lit)));
+	--btn-border-accent: hsl(var(--font-hue) calc(100% * var(--font-sat)) calc(33% * var(--font-lit)));
 	--btn-border-accent2: hsl(var(--font-hue) calc(100% * var(--font-sat)) calc(30% * var(--font-lit)));
-	--border-dark-accent: hsl(var(--font-hue) calc(100% * var(--font-sat)) calc(23% * var(--font-lit)));
-	--focus-outline: hsl(var(--font-hue) calc(100% * var(--font-sat)) calc(75% * var(--font-lit)));
+	--border-dark-accent: hsl(var(--font-hue) calc(100% * var(--font-sat)) calc(21% * var(--font-lit)));
+	--focus-outline: hsl(var(--font-hue) calc(100% * var(--font-sat)) calc(60% * var(--font-lit)));
 	--break-val-accent: hsl(var(--font-hue) calc(100% * var(--font-sat)) calc(41% * var(--font-lit)));
+	--selected-phr-accent: hsla(var(--global-hue) 15% 55% / 0.2);
 }
 
 html, body { /* full <body> height for <!DOCTYPE html> */
@@ -104,31 +105,36 @@ input {
 	padding-left: 0.35em;
 	padding-right: 0.35em;
 }
+@-moz-document url-prefix() { /* mode padding for Firefox */
+	.inputPadding {
+		padding-left: 0.65em;
+		padding-right: 0.65em;
+	}
+}
 
-input, textarea, button, label.intBtn, .intBtnRepo, .optionElementTable, table.optionElementTable tr:first-child > td,
+input, textarea, button, label.intBtn, .intBtnRepo, .optionElementTable,
 .dropdown-content, .dropdown-content-opt, .enterAsWordsLimit,
 .quickGuide, .faqPanel, .ciphInfoPanel, .contextMenuTooltip,
 .dateCalcContainer, .colorControlsBG, .editCiphersContainer, .printImageContainer,
-#BreakTableContainer, #ChartSpot, #imgDataDesc, #calcNotification, #queryArea,
+#BreakTableContainer, #ChartSpot, #imgDataDesc, #calcNotification,
 #BreakdownDetails, .numPropTooltip, .dateCalcBg, .dateCalcTable2,
-table.HistoryTable, table.phraseGemContainer, td.custCharIndLabel,
-table.dateCalcTable2 tr:last-child > td {
+td.custCharIndLabel, table.dateCalcTable2 tr:last-child > td {
 	border-radius: var(--border-rad);
 }
 label {
 	user-select: none;
 }
 
-table tr:first-child > td:first-child {
+table.optionElementTable tr:first-child > td:first-child {
 	border-top-left-radius: var(--border-rad);
 }
-table tr:first-child > td:last-child {
+table.optionElementTable tr:first-child > td:last-child {
 	border-top-right-radius: var(--border-rad);
 }
-table tr:last-child > td:last-child {
+table.optionElementTable tr:last-child > td:last-child {
 	border-bottom-right-radius: var(--border-rad);
 }
-table tr:last-child > td:first-child {
+table.optionElementTable tr:last-child > td:first-child {
 	border-bottom-left-radius: var(--border-rad);
 }
 
@@ -443,6 +449,9 @@ body {
     /*margin-top: 1em;*/
 	/*margin-bottom: 0.5em;*/
 }
+.hideBorder {
+	border: none !important;
+}
 @media (max-width: 911px) { /* mobile */
 	#ChartSpot {
 		padding: 0em 0.8em !important;
@@ -625,15 +634,15 @@ body {
 	position: relative;
 	color: var(--font-white-1);
 	font-weight: 500;
-	margin-left: 9px;
+	margin-left: 8px;
 	font-family: var(--font-family);
 	border: var(--border-pxl) var(--border-accent);
 	background-color: var(--btn-bg-accent);
 	font-size: 100%;
 	outline: none;
-	height: 27px;
-	min-width: 27px;
-    max-width: 27px;
+	height: 29px;
+	min-width: 29px;
+    max-width: 29px;
 }
 
 #btn-clear-active-filter:hover { background-color: var(--btn-hover-accent); }
@@ -645,7 +654,7 @@ body {
 	font-weight: 500;
 	border: var(--border-pxl) var(--border-accent);
 	font-family: var(--font-family);
-	margin-left: 9px;
+	margin-left: 8px;
 	font-size: 125%;
 }
 #phraseBox {
@@ -664,10 +673,10 @@ body {
 		width: 100px;
 	}
 	.filterPhraseBox {
-		width: 248px !important;
+		width: 249px !important;
 	}
 	.filterHighlightBox {
-		width: 65px !important;
+		width: 63px !important;
 	}
 }
 @media (min-width: 911px) { /* desktop */
@@ -681,7 +690,7 @@ body {
 		width: 417px !important;
 	}
 	.filterHighlightBox {
-		width: 164px !important;
+		width: 162px !important;
 	}
 }
 #phraseBox:focus, #highlightBox:focus {
@@ -692,6 +701,10 @@ body {
 /*                History Table               */
 /* ########################################## */
 
+.HistoryTable tr, .HistoryTable td {
+	border-bottom: var(--border-pxl) var(--border-dark-accent);
+	border-left: var(--border-pxl) var(--border-dark-accent);
+}
 .cH { /* cipher header bar, history table */
 	background: -webkit-linear-gradient(0deg, var(--hist-header-gradient), transparent); /*20,23,27*/
 	background: -moz-linear-gradient(0deg, var(--hist-header-gradient), transparent);
@@ -701,7 +714,8 @@ body {
 .HistoryTable {
 	text-align: center;
 	border-spacing: 0px;
-	border: var(--border-pxl) var(--border-dark-accent);
+	border-top: var(--border-pxl) var(--border-dark-accent);
+	border-right: var(--border-pxl) var(--border-dark-accent);
 	margin: 0.5em 1em 2.4em 1em;
 }
 @media (max-width: 911px) { /* mobile */
@@ -722,6 +736,7 @@ body {
 	margin: auto;
 	float: right;
 	border-top: none;
+	border-right: none;
 }
 .hC { /* history table header, cipher name cell */
 	min-width: 80px;
@@ -837,7 +852,7 @@ body {
 	z-index: 99;
 }
 .selectedPhrase {
-	background-color: hsla(var(--global-hue) 15% 50% / 0.2)
+	background-color: var(--selected-phr-accent);
 }
 
 /*                Options Menu                */
@@ -909,7 +924,7 @@ body {
 }
 .intBtn3 { /* Empty, Default, All */
 	border: var(--border-pxl) var(--btn-border-accent2);
-	margin: 0.5em 0.1em;
+	margin: 0.5em 0.25em;
 }
 .intBtnRepo {
 	box-sizing: border-box;
@@ -963,15 +978,15 @@ body {
 }
 #queryDBbtn {
 	padding: 0em;
-	margin: 0em 9px 0em 0em;
+	margin: 0em 8px 0em 0em;
 	width: 75px;
 }
 #enterPhraseBtn {
 	background-color: var(--input-bg-accent);
 	padding: 0em;
-	margin: 0em 0em 0em 9px;
-	min-width: 27px;
-	max-width: 27px;
+	margin: 0em 0em 0em 8px;
+	min-width: 29px;
+	max-width: 29px;
 	color: var(--border-accent);
 	font-weight: 600;
 }
@@ -1055,7 +1070,7 @@ body {
 }
 .dbOptionsBoxTop, .dbOptionsBoxBtm {
 	margin: auto;
-	border: var(--border-pxl) var(--border-accent);
+	border: var(--border-pxl) var(--btn-border-accent);
 	text-align: right;
 	color: var(--font-white-2);
 	background-color: var(--btn-bg-accent);
@@ -1534,12 +1549,20 @@ body {
 		left: 24px !important;
 	}
 }
-.queryPageBtn {
+.queryPageBtnL, .queryPageBtnR {
 	font-size: 100%;
 	color: var(--font-white-2);
 	background-color: var(--btn-bg-accent);
 	border: var(--border-pxl) var(--border-dark-accent);
 	padding: 0em 0.35em;
+}
+.queryPageBtnL {
+	border-top-right-radius: unset;
+	border-bottom-right-radius: unset;
+}
+.queryPageBtnR {
+	border-top-left-radius: unset;
+	border-bottom-left-radius: unset;
 }
 #queryMinBtn {
 	position: absolute;
@@ -1550,8 +1573,8 @@ body {
 	box-sizing: border-box;
 	color: var(--border-accent);
 	background: var(--hist-header-gradient);
-	border: var(--border-pxl) var(--border-accent);
-	border-bottom: 2px solid var(--border-accent);
+	border-left: var(--border-pxl) var(--border-accent);
+	border-bottom: var(--border-pxl) var(--border-accent);
 	cursor: pointer;
 	user-select: none;
 }
@@ -1576,8 +1599,7 @@ body {
 	background: var(--hist-header-gradient);
 	outline: none;
 	margin: 0;
-	border: var(--border-pxl) var(--border-accent);
-	border-bottom: 2px solid var(--border-accent);
+	border-bottom: var(--border-pxl) var(--border-accent);
 	display: block;
 	box-sizing: border-box;
 }
@@ -1598,6 +1620,12 @@ body {
 	background: var(--border-accent);
 	cursor: pointer;
 }
+table#QueryTable td:first-child {
+	border-left: unset;
+}
+table#QueryTable tr:last-child td {
+	border-bottom: unset;
+}
 #queryPosInput {
 	width: 95px;
 	font-size: 100%;
@@ -1606,6 +1634,7 @@ body {
 	caret-color: transparent !important;
 	background-color: var(--body-bg-accent);
 	border: var(--border-pxl) var(--border-dark-accent);
+	border-radius: unset;
 	border-left: none;
 	border-right: none;
 }
@@ -1624,6 +1653,8 @@ body {
 	box-sizing: border-box;
 	border: var(--border-pxl) var(--border-dark-accent);
 	border-top: none;
+	border-left: none;
+	border-right: none;
 	outline: none;
 	padding: 0.3em 0em;
 	border-radius: unset;
