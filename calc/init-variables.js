@@ -37,7 +37,7 @@ var numericalMode // boolean flag, match numbers instead of phrase gematria
 var wheelDBactive = false // check is matched ciphers have wheel ciphers to control table width
 
 var userDB = [] // imported database
-var userDBlive = [] // imported live database (phrases only)
+// var userDBlive = [] // imported live database (phrases only) - declared inside calc.js
 var queryResult = [] // matching phrases
 var queryResultInitial = [] // matching phrases (used to reset search bar results)
 var precalcDBLoaded = false // if precalculated database is loaded, disable cipher rearrangement

@@ -13,6 +13,7 @@
 
 <script src="lib/jquery.min.js"></script>
 
+<script src="calc/database/default-db.js"></script>
 <script src="calc/gematria.js"></script>
 <script src="calc/calc.js"></script>
 <script src="calc/init-variables.js"></script>
@@ -58,7 +59,7 @@ $(window).load(function(){
 		<div id="dateCalcMenuArea"></div>
 
 		<div id="inputArea">
-		  <input id="queryDBbtn" class="hideValue" type="button" onclick="queryDatabase()" value="Query">
+		  <input id="queryDBbtn" class="hideValue" type="button" onclick="queryDatabase()" value="?">
 		  <input id="phraseBox" autofocus type="text" enterkeyhint="done" spellcheck="false" autocomplete="off" oninput="sanUnicode('phraseBox'); updateEnabledCipherTable(); updateWordBreakdown(breakCipher,false,false);" onkeydown="phraseBoxKeypress(event.keyCode)" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)">
 		  <input id="enterPhraseBtn" type="button" onclick="phraseBoxKeypress(13)" value="&#9660;">
 		  <input id="highlightBox" type="text" enterkeyhint="done" spellcheck="false" autocomplete="off"><span id="clearFilterButton"></span>
@@ -78,7 +79,6 @@ $(window).load(function(){
 </div>
 
 <script src="calc/breakdown.js"></script>
-
 <script src="calc/highlighter.js"></script>
 <script src="calc/export.js"></script>
 <script src="calc/export-csv.js"></script>

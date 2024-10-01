@@ -1,6 +1,6 @@
 // ============================== Init ==============================
 
-var gematroVersion = '24.9.14.1' // YY.M.D.revision
+var gematroVersion = '24.10.1.0' // YY.M.D.revision
 var compactViewportWidth = 911 // viewport width threshold
 var mobileUserAgent = navigator.userAgent.match('Mobile')
 
@@ -61,7 +61,7 @@ var optDotlessLatinI = true // recognize dotless Latin 'ı' as regular 'i'
 var optAllowPhraseComments = true // allow phrase comments, text inside [...] is not evaluated
 var liveDatabaseMode = true // live database mode
 
-var dbPageItems = 15 // number of phrases in one section
+var dbPageItems = 5 // number of phrases in one section
 var dbScrollItems = 1 // used for scrolling
 
 var optGradientCharts = true // gradient fill for breakdown/cipher charts
@@ -143,6 +143,7 @@ function initCalc(defSet = false) { // run after page has finished loading
 	initCiphers() // update default ciphers
 	createCalcMenus()
 	enableDefaultCiphers()
+	loadDefaultDatabase()
 	saveCalcSettingsLocalStorage(true) // save default settings
 	// showWelcomeMessage("Welcome to GEMATRO!")
 }
@@ -167,6 +168,24 @@ function showWelcomeMessage(msg, durMs = 2500, delMs = 1250) {
 	}
 }
 
+var userDBlive = [] // imported live database (phrases only)
+function loadDefaultDatabase() {
+	if (defaultDatabase.length > 0) {
+		userDBlive = defaultDatabase.replace(/\t/g, ' ').replace(/ +/g, ' ').split('\n') // remove consequtive tabs and spaces, split into array by line break
+		for (let n = 0; n < userDBlive.length; n++) { // remove empty lines and excluded phrases
+			if (userDBlive[n].length == 0 || userDBlive[n][0] == '#') {userDBlive.splice(n,1); n--}
+		}
+	}
+	if (userDBlive.length > 0) {
+		$("#queryDBbtn").removeClass("hideValue") // display query button
+		$("#phraseBox").addClass("filterPhraseBox") // narrower field
+		$("#clearDBqueryBtn").removeClass("hideValue") // clear button
+		$("#unloadDBBtn").removeClass("hideValue") // unload database button
+		$("#btn-export-db-query").removeClass("hideValue") // export button
+		$("#liveDBOption").addClass("hideValue") // hide "Live Database Mode"
+	}
+}
+
 var mobileCalcLayout = true // store current layout
 function configureCalcInterface(initRun = false) { // switch interface layout (desktop or mobile devices)
 	conf_RIF(true); // activate Chiseled or Rounded Interface
@@ -184,7 +203,7 @@ function configureCalcInterface(initRun = false) { // switch interface layout (d
 		optCompactCiphCount = 2
 		chLimit = 13 // character limit, used to switch to a long breakdown style
 		maxRowWidth = 18 // one row character limit (long breakdown)
-		$('#queryDBbtn').val('Q') // change Query button label
+		$('#queryDBbtn').val('?') // change Query button label
 		mobileCalcLayout = true
 	} else { // desktop
 		encodingMenuColumns = 4
@@ -193,7 +212,7 @@ function configureCalcInterface(initRun = false) { // switch interface layout (d
 		optCompactCiphCount = 8
 		chLimit = 30 // character limit, used to switch to a long breakdown style
 		maxRowWidth = 36 // one row character limit (long breakdown)
-		$('#queryDBbtn').val('Query') // change Query button label
+		$('#queryDBbtn').val('?') // change Query button label
 		mobileCalcLayout = false
 	}
 	if (optForceTwoColumnLayout && $(window).width() > compactViewportWidth) { // override layout for desktop
@@ -384,7 +403,7 @@ function createOptionsMenu() {
 	o += '<div style="margin: 1em"></div>'
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Dotless Latin <b>ı</b> as <b>i</b><input type="checkbox" id="chkbox_DLI" onclick="conf_DLI()" '+DLIstate+'><span class="custChkBox"></span></label></div>'
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Ignore Comments [...]<input type="checkbox" id="chkbox_APC" onclick="conf_APC()" '+APCstate+'><span class="custChkBox"></span></label></div>'
-	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Live Database Mode<input type="checkbox" id="chkbox_LDM" onclick="conf_LDM()" '+LDMstate+'><span class="custChkBox"></span></label></div>'
+	o += '<div id="liveDBOption" class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Live Database Mode<input type="checkbox" id="chkbox_LDM" onclick="conf_LDM()" '+LDMstate+'><span class="custChkBox"></span></label></div>'
 	o += '<div style="margin: 1em"></div>'
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">New Phrases Go First<input type="checkbox" id="chkbox_NPGF" onclick="conf_NPGF()" '+NPGFstate+'><span class="custChkBox"></span></label></div>'
 	o += '<div style="margin: 1em"></div>'

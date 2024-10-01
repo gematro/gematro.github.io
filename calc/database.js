@@ -57,7 +57,8 @@ function queryDatabase() {
 	// }
 	// var tWidth = longestPhr*11 + 58*gemArrCiph.length // 2x1px outer borders + phrase cell and amount of ciphers
 
-	var tWidth = wheelDBactive ? 202 + 160*gemArrCiph.length : 202 + 58*gemArrCiph.length // 2x1px outer borders + phrase cell and amount of ciphers
+	var phraseWidth = mobileCalcLayout ? 200 : 300
+	var tWidth = wheelDBactive ? phraseWidth + 160*gemArrCiph.length : phraseWidth + 59*gemArrCiph.length // 2x1px outer borders + phrase cell and amount of ciphers
 	$("#queryArea").css("min-width", tWidth) // set initial/minimal width for the table
 	$("#queryArea").css("width", tWidth) // set initial/minimal width for the table
 	/*var o = 'min-width:'+tWidth+';width:'+tWidth+';'
@@ -220,7 +221,7 @@ function updateDatabaseQueryTable(stPos = 0, dItems, scrollBarEvent = false) { /
 		if (firstPhrase) { // open row on the first phrase
 			firstPhrase = false
 			ms += '<tr class="cH"><td class="mPQ">'
-			ms += queryResult.length.toLocaleString('en')+' matches'
+			ms += queryResult.length.toLocaleString('en')+' answers'
 			ms += '<br><br>'
 			ms += '<div style="display: inline-flex;">'
 			ms += '<input class="queryPageBtnL" id="queryPrevPageBtn" type="button" value="<" onclick="queryShowPrevPage()">'

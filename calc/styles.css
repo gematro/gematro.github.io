@@ -56,7 +56,7 @@
 	--checkmark-accent: hsl(var(--global-hue) calc(75% * var(--global-sat)) calc(85% * var(--font-lit)));
 	--font-white-1: hsl(var(--font-hue) calc(100% * var(--font-sat)) calc(92% * var(--font-lit)));
 	--font-white-2: hsl(var(--font-hue) calc(100% * var(--font-sat)) calc(82% * var(--font-lit)));
-	--font-white-3: hsl(var(--font-hue) calc(100% * var(--font-sat)) calc(63% * var(--font-lit)));
+	--font-white-3: hsl(var(--font-hue) calc(100% * var(--font-sat)) calc(68% * var(--font-lit)));
 	--font-white-4: hsl(var(--font-hue) calc(100% * var(--font-sat)) calc(30% * var(--font-lit)));
 	--border-accent: hsl(var(--font-hue) calc(100% * var(--font-sat)) calc(41% * var(--font-lit)));
 	--separator-accent: hsl(var(--font-hue) calc(100% * var(--font-sat)) calc(50% * var(--font-lit)));
@@ -673,7 +673,7 @@ body {
 		width: 100px;
 	}
 	.filterPhraseBox {
-		width: 249px !important;
+		width: 250px !important;
 	}
 	.filterHighlightBox {
 		width: 63px !important;
@@ -687,7 +687,7 @@ body {
 		width: 200px;
 	}
 	.filterPhraseBox {
-		width: 417px !important;
+		width: 463px !important;
 	}
 	.filterHighlightBox {
 		width: 162px !important;
@@ -732,7 +732,7 @@ body {
 #QueryTable {
 	table-layout: fixed;
 	width: 100%;
-	word-break: break-all;
+	word-break: break-word;
 	margin: auto;
 	float: right;
 	border-top: none;
@@ -782,10 +782,12 @@ body {
 		vertical-align: middle;
 	}
 }
-.hP { /* history phrase */
+.hP, .hPQ { /* history phrase */
 	text-align: right;
 	padding: 0em 0.5em 0em 0.5em;
 	font-size: 110%;
+	font-weight: 500;
+	color: var(--font-white-3);
 }
 @media (min-width: 911px) { /* desktop */
 	.hP { /* single line history phrase */
@@ -793,9 +795,14 @@ body {
 	}
 }
 .hPQ { /* history phrase - query table*/
-	text-align: right;
-	padding: 0em 0.5em 0em 0.5em;
-	font-size: 110%;
+	text-align: center;
+	box-sizing: border-box;
+	height: 64px;
+}
+@media (max-width: 911px) { /* mobile */
+	.hPQ { /* history phrase - query table*/
+		font-size: 100%;
+	}
 }
 .mPQ { /* query table - top left cell */
 	font-weight: 500;
@@ -944,8 +951,8 @@ body {
 }
 @media (max-width: 911px) { /* mobile */
 	#queryDBbtn {
-		min-width: 30px !important;
-		max-width: 30px !important;
+		min-width: 29px !important;
+		max-width: 29px !important;
 	}
 }
 .closeMenuBtn {
@@ -979,7 +986,7 @@ body {
 #queryDBbtn {
 	padding: 0em;
 	margin: 0em 8px 0em 0em;
-	width: 75px;
+	width: 29px;
 }
 #enterPhraseBtn {
 	background-color: var(--input-bg-accent);
