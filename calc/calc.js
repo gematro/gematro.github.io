@@ -1,6 +1,6 @@
 // ============================== Init ==============================
 
-var gematroVersion = '24.10.1.0' // YY.M.D.revision
+var gematroVersion = '24.10.2.0' // YY.M.D.revision
 var compactViewportWidth = 911 // viewport width threshold
 var mobileUserAgent = navigator.userAgent.match('Mobile')
 
@@ -38,7 +38,7 @@ var optNewPhrasesGoFirst = false // new phrases are inserted at the beginning of
 var optCompactCiphCount = 8 // compact mode threshold
 var optLoadUserHistCiphers = true // load ciphers when CSV file is imported
 
-var optMatrixCodeRain = false // code rain
+var optMatrixCodeRain = true // code rain
 var optRoundedInterface = true // rounded menus, buttons and charts
 
 var optShowOnlyMatching = false // set opacity of nonmatching values to zero
@@ -64,28 +64,28 @@ var liveDatabaseMode = true // live database mode
 var dbPageItems = 5 // number of phrases in one section
 var dbScrollItems = 1 // used for scrolling
 
-var optGradientCharts = true // gradient fill for breakdown/cipher charts
+var optGradientCharts = false // gradient fill for breakdown/cipher charts
 
-var interfaceHue = 222 // calculator interface color
-var interfaceHueDefault = 222 // value for reset, updated on first run of updateInterfaceHue()
+var interfaceHue = 180 // calculator interface color
+var interfaceHueDefault = 180 // value for reset, updated on first run of updateInterfaceHue()
 var interfaceSat = 2.0 // interface saturation multiplier
 var interfaceSatDefault = 2.0
-var interfaceLit = 1.1 // interface lightness multiplier
-var interfaceLitDefault = 1.1
+var interfaceLit = 0.6 // interface lightness multiplier
+var interfaceLitDefault = 0.6
 
-var fontHue = 200 // font and outline hue
-var fontHueDefault = 200 // value for reset, updated on first run of updateFontHue()
-var fontSat = 0.2 // font saturation
-var fontSatDefault = 0.2
-var fontLit = 1.0 // font lightness multiplier
-var fontLitDefault = 1.0
+var fontHue = 180 // font and outline hue
+var fontHueDefault = 180 // value for reset, updated on first run of updateFontHue()
+var fontSat = 0.5 // font saturation
+var fontSatDefault = 0.5
+var fontLit = 0.9 // font lightness multiplier
+var fontLitDefault = 0.9
 
-var coderainHue = 120 // coderain hue
-var coderainHueDefault = 120 // value for reset, updated on first run of updateCoderainHue()
+var coderainHue = 180 // coderain hue
+var coderainHueDefault = 180 // value for reset, updated on first run of updateCoderainHue()
 var coderainSat = 0.2 // coderain saturation
 var coderainSatDefault = 0.2
-var coderainLit = 0.2 // coderain lightness
-var coderainLitDefault = 0.2
+var coderainLit = 0.05 // coderain lightness
+var coderainLitDefault = 0.05
 
 var optImageScale = 1.0 // image scaling factor for screenshots
 var optHistTableCaption = '' // history table caption (top left cell)
@@ -341,7 +341,7 @@ function createAboutMenu() { // create menu with all cipher catergories
 	o += '<div style="margin: 0.5em;"></div>'
 	o += '<input class="intBtn" type="button" value="Quickstart Guide" onclick="displayQuickstartGuide()">'
 	o += '<div style="margin: 0.5em;"></div>'
-	o += '<input class="intBtn" type="button" value="FAQ" onclick="displayFaqPanel()">'
+	o += '<input class="intBtn" type="button" value="Disclaimer" onclick="displayDiscPanel()">'
 
 	o += '</div></div>'
 

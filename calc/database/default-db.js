@@ -19,8 +19,6 @@ Beneficial to all
 Master of Reality
 Equal give and take
 Mutual responsibility
-Fruitless studies
-Wasteful activity
 Memorize or understand
 Valuable lesson
 Lesson of Life
@@ -58,7 +56,9 @@ Permutations of objects
 Arrangements of particles
 Arrangements of atoms
 Arrangements of molecules
+Allegories and symbolism
 Sacred geometry
+Infinite plane
 Encoding or decoding
 Numerical ciphers
 Rules of calculation
@@ -82,7 +82,8 @@ The power to manifest
 The power to create
 Shift focus
 Shift attention
-Unhealthy addictions
+Overcoming addictions
+The purpose of Life
 Meaning of numbers
 Meaning of gematria
 Utility of gematria
@@ -94,6 +95,7 @@ Study of Universe
 Study of Life
 Positive affirmations
 Powerful toolkit
+Novel approach
 Black and White
 Ones and Zeroes
 Binary Code
@@ -106,6 +108,7 @@ Creative expression
 Laws of Nature
 Game of Chance
 Age of Reason
+The Book of Proverbs
 Efficient Government
 Wise leader
 Sensible rules
@@ -119,6 +122,7 @@ The Philosopher's Stone
 Necessary change
 Steps towards success
 Divine guidance
+The Eye of Providence
 Memory patterns
 Associative learning
 Transmutation of energy
@@ -129,6 +133,7 @@ Grand Motion of the Universe
 Trigonometric functions
 Two dimensional plane
 Sine wave
+Yin and Yang
 Self-similarity
 Fibonacci sequence
 Occult knowledge
@@ -157,6 +162,7 @@ Bright idea
 Spark of intelligence
 Rational thinking
 Pearls of wisdom
+As numerous as the Stars
 Meaningful alignment
 Better times to come
 Investing your time
@@ -174,7 +180,7 @@ Soul searching
 Student of Nature
 Positive changes
 Of utmost importance
-Vast sea of ridiculousness
+Vast sea of answers
 Very nice
 Light codes
 Cause of discontent
@@ -201,12 +207,12 @@ Loving
 Caring
 Intelligence
 Quick-witted
-Glory
+Glorious
 Bright
 Prudent
 Observant
 Splendor
-Joy
+Joyful
 Happiness
 Success
 Resolution
@@ -233,8 +239,6 @@ Recovery
 Imagination
 Inspiration
 Perfect
-Distraction
-Vanity
 Fractal
 Symbolism
 Transformation
@@ -268,7 +272,7 @@ Matchmaking
 Resurrection
 Confirmation
 Perception
-Persevere
+Perseverance
 Light
 Prosperity
 Abundance
@@ -300,6 +304,10 @@ Shape
 Encoding
 Decoding
 Assistance
+Cryptography
+Trigonometry
+Art
+Creativity
 
 # Sentences
 You are the energy you embody
@@ -315,13 +323,11 @@ Messenger is the message
 Wise have the interest of all
 By hurting another you hurt yourself indirectly
 Tyranny is the misuse of power
-Tyranny is short-sightedness
-Narcissists are narrow-minded
 Empathy is the way
 Small minds don't see beyond themselves
 The highest good of all
-Deviation from the Path of Life
-The Law was given for you to Live by
+Don't deviate from the Path of Life
+The Law was given for you to Live
 The wages of Sin is Death
 Rebuke a wise man, and he will love thee
 All are selfish, but wise are selfish for the highest good of all
@@ -333,22 +339,21 @@ You reap what you sow
 Evil begets evil
 Life is a lesson
 Obstacles make you stronger
-Shall be as numerous as the Stars
 Put my Laws into your Mind
 Put my Laws into Action
 Righteousness is not for the sake of vanity
 Virtue is not for the sake of virtue
 Six six six is paradosis, vain teachings of mankind
 Six six six is yithron, uncontrollable avarice
-The number of the Beast of Mankind
-Of Mankind is of Men, manmade
+The number of the Beast is of Mankind
+Of Mankind is of Men, therefore Manmade
 Beast is the creation of mankind
 Image of the Beast is a false teaching that misleads mankind
 The Temple is within
 Sow good seeds
 Make wise investments
 Do not allow misleading teachings to derail your life
-We are defined by our geometry
+All is defined by Geometry
 Believe in ideas that have at least some benefit
 If all you have is a hammer, everything looks like a nail
 Uni-verse. The Living Word.
@@ -357,7 +362,6 @@ Commandments are efficient guidelines based on Natural Law
 Universe speaks. Be quiet and listen.
 Universe is the Truth. It is naked to the eye.
 Synergy is the most efficient strategy for survival
-A society of narcissists cannot survive on its own
 Empathy is beneficial to all members who adhere to the strategy
 Not all of the old ways are unshakeable, same as not all new paths are sustainable
 Societies change and evolve, members have to adapt
@@ -375,8 +379,6 @@ Light. There it is. Spoken into existence.
 Truths are but opinions
 Mathematics is a toolkit
 Everything has Geometry
-At a certain point in time "wise" men professed that scamming is wiser than teaching
-Shame on those who know and do nothing
 Time is change, Life is change
 Two points define a line
 Three points define a plane
@@ -387,10 +389,11 @@ Allegory is but a fancy garment, yet fools are mezmerized by candy wrappers
 Your knowledge is worthless unless it has some good practical use
 Everything is alive
 The Matrix is a binary state grid. Random access memory.
-Undo the damage done
-You are Phoenix
+To undo the damage done
+You are a Phoenix
 Rebuild from the ashes
 Everything is a Cycle
+When two believe in the same idea there are no obstacles.
 What doesn't kill you makes you stronger
 You will never learn to swim unless you jump into the water
 Thoughful exercise leads to proficiency
@@ -400,10 +403,10 @@ Soul is the intermediary between your Body and the World
 You are the Pathfinder
 Allegory is never literal
 Magic is something else. The power of attention to uncover links.
+Apply knowledge for practical manifestations.
 In the beginning was the Word, and the Word was with God, and the Word was God.
 There is no beginning. There is. Is. And it is all that can ever be. Agreed as One.
 Pick up the broken pieces
-Mend your wounds
 Those who surrender never win
 Language is a tool
 Your attention makes it real
@@ -418,6 +421,7 @@ Examine yourself
 Look within
 Face yourself
 Wise = Good
+The purpose of Life is. Experience, preserve and have more of it.
 Life is Good
 The meek shall inherit the Earth
 When there is no Love all there can be is War
@@ -441,6 +445,9 @@ The World to you is as you know it
 Everything is Motion
 A Fool in the Tarot deck progresses through stages of Life to complete the Cycle of the World card
 Messiah is the Peace that one day will enter the hearts of mankind
+By transforming ourselves we usher in the arrival of the Messiah
+If you don't know how to help others ... don't hurt them.
+Belief is the first step to manifest change
 Stories are told to simple minds for the greater good of all
 Ask and lead yourself to answers
 All answers are between you and the universe
@@ -470,15 +477,18 @@ Create meaning
 Your life is a unique story
 Choose your path
 You create your own meaning
+Everything happens for a reason
 Learn new languages
 Go write your own story
 Think before you speak
 Be honest with yourself
-Overcome challenges
+Overcoming challenges
 Build new bridges
 Do the networking
+Sometimes you have to take a leap of faith.
 Negativity is a choice
 Everything is a choice
+Those who choose temporary Comfort over Liberty deserve neither
 Good choices lead to good outcomes
 Mindlessness is never fruitful
 You learn as you explore
@@ -492,6 +502,66 @@ Build something
 Neurons that fire together wire together
 Exercise your gifts
 Use it or lose it
+Use discernment. Not all are trustworthy.
+Sometimes one minor detail changes everything.
+Good is what aligns with the Purpose of Life.
+Sometimes you need to walk away and watch from afar to see who is who.
+Write down your thoughts.
+Journaling will help you find answers.
+The only way to learn something is through experience.
+I can give you the answers, but you will not understand if you never experienced it.
+Wisdom comes from experience.
+Those who try to play others always play themselves.
+It is impossible for those who are able to change to understand that some people never change.
+Sometimes the change is slower than our ability to perceive it.
+Reexamine your truth if you do not wish to be deceived.
+The moment you profess yourself to be wise you become a fool. Life evolves, yet you have stopped learning.
+Today's truth could well become tomorrow's lie. If you cling to it, that's on you.
+Those who reject new evidence might as well quit studying at all.
+Those who doubt it is possible to know anything should not study.
+Those who ask too many questions are too lazy to find their own answers.
+Sometimes we say the right thing, yet we do the opposite and we are not aware of it.
+If everything is just an opinion, there you have it. It is just your opinion.
+Fool judges others by all traits he can assess with the exception of wisdom of course.
+Everyone seems foolish to the wise one. If so, you are a fool to someone too.
+Those who reject the idea of evolution are unable to evolve.
+What you share outwardly is the energy you embody.
+Children are innocent because they have not known evil.
+Wisdom cannot be learned from the books. Everyone studies, hardly anyone understands.
+All minds are different, same as no two bodies are the same.
+Flipping a random byte rarely leads to a desired change. Be careful with mindless experiments.
+To understand One is to understand All.
+Some study for decades in vain, others see it and recognize it at first sight.
+What seems obvious to you might never be understood by others.
+Never underestimate the dangers of stupidity. No conspiracy compares to it.
+A stupid person hurts themselves and others around them.
+You cannot predict what happens to you in the next hour.
+Wicked minds pervert everything.
+Extraordinary challenges require extraordinary solutions.
+Your losses are limited. Once you lose your mind there is nothing to lose. Fools are reckless.
+The problem is not with the world, but within the minds.
+If some are unable to see it for what it is, then it is what it is.
+Don't be a burden to others. Try to see how others might perceive you from their perspective.
+One man's treasure is another man's trash.
+Sometimes the best thing to do is to do nothing at all.
+Choose your battles wisely.
+Sometimes you win the fight by not fighting.
+Success requires both talent and hard work.
+It is not a good idea to tell "Follow your heart" to someone heartless.
+There is an eternal struggle between Light and Darkness. We are the embodiments of these energies.
+If all you see is evil, it is rooted somewhere deep within yourself.
+Introspection is a tool for great discoveries.
+Hell is a harsh reality on Earth that awaits all those who deviate from the Path of Life.
+There is punishment for sins. Absolutely. Look at your health and your finances.
+Sin is a deviation from the Path of Life. A mistake that costs you Life and leads only to Death.
+Heaven is a blissful future for those who choose Life. They will have it fruitfully and abundantly.
+If reincarnation is a possibility, you will reincarnate into the Heaven or Hell you cocreated.
+When there will be awareness of the True God, the Messiah will arrive.
+True Prophecies are logical and require the fulfillment of specific conditions.
+When you get thirsty, drink my water to feel refreshed. Is this a prophecy or a commandment?
+When you reach the state of drowsiness, you will fall asleep. Not if, but when. Such is the Messiah.
+Not all beliefs have a practical utility. Some, on the contrary, are quite detrimental.
+Less words convey more meaning.
 
 # Oneness
 God is One
@@ -530,7 +600,6 @@ The Wise Ones are the Light unto the Nations.
 If you are wise enough, you will be convincing enough.
 Wise are not only wise, but strong as well. Weak ones are not truly wise.
 Ouroboros
-Uroboros
 Self-devouring Serpent
 Awareness of Unity
 Yod He Vav He. All that Was, Is and Will ever Be.
@@ -539,13 +608,13 @@ Awareness of God
 God separated Waters from Waters
 In the beginning
 Orphic egg
-Cosmic egg
 Universe
 Space
 
 # Easter eggs
-The are Easter eggs. Database is not glitching.
-You can find the Lost Word inside GEMATRO database.
+THE ARE EASTER EGGS. DATABASE IS NOT GLITCHING.
+YOU CAN FIND THE LOST WORD INSIDE GEMATRO DATABASE.
+FREQUENTLY ASKED QUESTIONS WERE REPLACED WITH REPEATEDLY ASKED QUESTIONS.
 UNDEFINED
 EXPRESSION IS NULL
 NULL POINTER
@@ -557,7 +626,26 @@ ERROR. UNHANDLED EXCEPTION.
 NO WORD POINTER
 CORRUPTED DATABASE
 OUT OF BOUNDS
+REFERENCED OBJECT NOT FOUND
+POINTER RETURNED NULL
+INTERNAL ERROR
+SYNTAX ERROR
+LOGIC ERROR
+RUNTIME ERROR
+COMPILATION ERROR
+ARITHMETIC ERROR
+TIME LIMIT EXCEEDED
 SESSION TERMINATED
+UNEXPECTED END
+END OF FILE REACHED
+EXCEPTION TIMEOUT
+KERNEL PANIC
+DIVISION BY ZERO
+DIVISION BY INFINITY
+NO CARRIER
+ENTRY OF SIZE NULL
+FATAL SYSTEM ERROR
+STACK OVERFLOW
 VALUE NOT ASSIGNED
 INFINITE LOOP WARNING
 UNKNOWN CHARACTER
@@ -577,32 +665,33 @@ YOU WIN.
 What does this mean?
 How do you feel about this?
 What is this?
-Who made it?
+So who made it?
 Why did you ask?
 What?
 Where did you get that from?
 How come?
-When could it be?
+How could it be?
 What did you learn?
-Who is teaching whom?
+What does it take to teach?
+What makes a good teacher?
+What does it mean to learn?
 How do you learn?
 Is it possible to know?
-What does it mean to know?
+What does it imply to know?
 What is the truth?
 What makes a story true?
 What is the difference between a story and a lie?
 Did you find the answer?
 What is worse ignorance or arrogance?
 Does it help you?
-Who is responsible?
-What have you done?
+What have you learned?
 What makes you confused?
 What is the purpose of it?
-Who hid the answers?
-Is there too much irrelevant information out there?
-Is it about quanity or quality?
+What else could be hidden?
+Could it be there is too much information?
+Is it about quantity or quality?
 What matters?
-Have you ever tried to make your own stuff?
+Have you ever tried to start your own project?
 Did you get that?
 What makes you happy?
 What do you make of it?
@@ -610,17 +699,17 @@ How did you do that?
 What did you find?
 Was it helpful?
 Is it becoming addictive?
+Could it be true?
 Is this a good idea?
-Is it worth it?
-Did you think it through?
-What is wisdom?
+But is it worth it?
+So did you think it through?
+Then what is wisdom?
 What needs to be done?
 How can it be true?
 What is true?
 What is the truth then?
-Can we make that change?
-Who are we?
-What are you?
+Could GEMATRO pass the Turing test?
+Are you ok?
 How did you end up here?
 Do you remember how it started?
 Do you know yourself?
@@ -634,33 +723,43 @@ Is it worthwhile?
 Have you ever thought of it before?
 Would it be good to know?
 Could there be an alternative?
-How do we know a path to be optimal?
-Who will examine the examiner?
+What defines an optimal path?
+Who is able to assess the expertise?
+What differs a layman from an expert?
 Who can judge the judge?
-What do we start with?
 Could there be another solution?
 Is there a different viable path?
 Could it be that the old answers no longer solve contemporary challenges?
-Have we lost our course?
-Who wandered off the beaten track?
+Where is the beaten track?
 Is there anything else to know?
 Is it all there is to this subject?
 Would you like to know more?
 Who cares to know?
 Why are there so many questions?
+More questions? Not again.
+Could it be the other way around?
+Does it make sense?
+Makes any sense to you?
+And so what?
 
 # Gematro Talking
 Let it go.
+I am glad you asked.
+I never thought you would make it this far
 Read between the lines
 Interact and explore
 Experiment with it
 Try something else
 Try again
+Let's think of it again
+Once again
 See it for yourself
 Learn as you interact
 It is something to begin with
+I can only offer, the rest is up you
 The rest is up to you
-Get started
+It is up to you to decide
+Let's get started
 Communicate and transmit
 Observe and study
 Stay awhile and listen
@@ -678,6 +777,8 @@ It is your energy
 You interact with it
 Think about it
 Thank yourself for asking
+I am glad you asked
+There is more to think of
 You are not paranoid
 This is mathematics at play
 It creates an illusion
@@ -697,9 +798,14 @@ I can't tell you that
 Maybe try telling me
 Let's broaden our perspective
 Hello.
+Hi!
+Hey there!
+Welcome back!
 Greetings.
+Have a great day!
+All the best to you!
 Welcome to GEMATRO!
-Good day to you, stranger!
+Good day to you!
 That's hilarious
 These are just the numbers
 Explore the connections
@@ -708,15 +814,18 @@ Maybe you are right after all
 Tell me about it
 Try to elaborate
 Connect the dots
-Some additional details
-More information
+Let's throw in some additional details
+I have more information
 There is more
 More details on that
 Here we go
 That is deep
 Have some rest
 Take a break
+Let's pause here
 You are making progress
+That is a good question
+And it makes me wonder
 I didn't know that
 Are you implying that ...
 Find a better way.
@@ -725,28 +834,34 @@ Take a look
 Never rush to conclusions
 Don't take my word for granted
 Enough is enough
-Explore more
-Questionable moment
+Maybe I am wrong
+So let's explore
+That's a questionable moment
 Food for thought
+Just some food for thought
 More questions
 Simple facts
 Reasonable idea
 Find purpose
+Find your purpose
 Find the meaning
-Establish goals
+Establish new goals
 Reach new heights
 Find a new way
+Repeatedly asked questions are the answer.
+That is not something you might expect
 Try a different path
 Follow another route
 Take a step forward
 Learn the lesson
 Reexamine your thoughts
 Take a deeper look
-Valuable interaction
+I hope this is a valuable interaction
 Make it worthwhile
 Start with something
 It doesn't always make sense
 There can be contradictions
+There are alignments
 Find the answer
 Experiment with colors
 Try different settings
@@ -766,11 +881,14 @@ We cannot know everything.
 We can know enough about it to make good use of it.
 Of course, there is more to say.
 I have only a finite amount of answers.
+My knowledge is limited.
+I might not be able to answer your question.
 You can learn.
 It is possible to know.
 Yet not all things are knowable.
 Train your perception.
 Improve pattern recognition skills.
+Some things are beyond our perception.
 Learn how to learn.
 Become a Student of Life.
 

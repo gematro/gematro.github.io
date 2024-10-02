@@ -279,7 +279,7 @@ function updateWordBreakdown(impName = breakCipher, impBool = false, chartUpd = 
 		$('#BreakTableContainer').prepend(o) // insert in the beginning of the table
 	}
 
-	oo = 'background: var(--body-bg-accent);'
+	oo = 'background: var(--table-row-odd);'
 	if (optGradientCharts) {
 		oo = 'background: '+bgCol+' -webkit-linear-gradient(0deg,'+curGradCol+', rgba(0,0,0,0.0));'
 		oo += 'background: '+bgCol+' -o-linear-gradient(0deg,'+curGradCol+', rgba(0,0,0,0.0));'
@@ -402,7 +402,7 @@ function updateCipherChart(curCipher) {
 	curCiphFaintCol = (optColoredCiphers) ? 'color: hsl('+curCipher.H+' '+curCipher.S+'% '+curCipher.L+'% / 0.25)' : ''
 	curGradCol = (optColoredCiphers) ? 'hsl('+curCipher.H+' '+curCipher.S+'% '+curCipher.L+'% / 0.2)' : 'hsl(0 0% 0% / 0.1)'
 
-	var o = 'background: var(--body-bg-accent);'
+	var o = 'background: var(--table-row-odd);'
 	if (optGradientCharts) {
 		o = 'background: '+bgCol+' -webkit-linear-gradient(0deg,'+curGradCol+', rgba(0,0,0,0.0));'
 		o += 'background: '+bgCol+' -o-linear-gradient(0deg,'+curGradCol+', rgba(0,0,0,0.0));'
