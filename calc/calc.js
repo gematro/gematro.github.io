@@ -1,6 +1,6 @@
 // ============================== Init ==============================
 
-var gematroVersion = '24.10.3.0' // YY.M.D.revision
+var gematroVersion = '24.10.3.1' // YY.M.D.revision
 var compactViewportWidth = 911 // viewport width threshold
 var mobileUserAgent = navigator.userAgent.match('Mobile')
 
@@ -168,21 +168,36 @@ function showWelcomeMessage(msg, durMs = 2500, delMs = 1250) {
 	}
 }
 
-var userDBlive = [] // imported live database (phrases only)
+function activateDBInterfaceLayout(state = true, precalcMode = false) {
+	if (state == true) {
+		$("#queryDBbtn").removeClass("hideValue") // show "Query" button
+		$("#phraseBox").addClass("filterPhraseBox") // narrower Phrase Box
+		$("#liveDBOption").addClass("hideValue") // hide "Live Database Mode"
+		$("#clearDBqueryBtn").removeClass("hideValue") // show "Clear DB Query"
+		$("#unloadDBBtn").removeClass("hideValue") // show "Unload Database"
+		$("#btn-export-db-query").removeClass("hideValue") // show "Export DB Query (CSV)"
+		if (precalcMode) $("#edCiphBtn").addClass("hideValue") // hide "Edit Ciphers"
+	} else {
+		$("#queryDBbtn").addClass("hideValue") // hide "Query" button
+		$("#phraseBox").removeClass("filterPhraseBox") // restore Phrase Box width
+		$("#liveDBOption").removeClass("hideValue") // show "Live Database Mode"
+		$("#clearDBqueryBtn").addClass("hideValue") // hide "Clear DB Query"
+		$("#unloadDBBtn").addClass("hideValue") // hide "Unload Database"
+		$("#btn-export-db-query").addClass("hideValue") // hide "Export DB Query (CSV)"
+		$("#edCiphBtn").removeClass("hideValue") // show "Edit Ciphers"
+	}
+}
+
+var userDBlive = [] // declare imported live database (phrases only)
 function loadDefaultDatabase() {
-	if (defaultDatabase.length > 0) {
+	if (defaultDatabase.length > 0) { // if 'var defaultDatabase' from 'default-db.js' has entries
 		userDBlive = defaultDatabase.replace(/\t/g, ' ').replace(/ +/g, ' ').split('\n') // remove consequtive tabs and spaces, split into array by line break
-		for (let n = 0; n < userDBlive.length; n++) { // remove empty lines and excluded phrases
+		for (let n = 0; n < userDBlive.length; n++) { // remove empty lines and excluded lines (#)
 			if (userDBlive[n].length == 0 || userDBlive[n][0] == '#') {userDBlive.splice(n,1); n--}
 		}
 	}
-	if (userDBlive.length > 0) {
-		$("#queryDBbtn").removeClass("hideValue") // display query button
-		$("#phraseBox").addClass("filterPhraseBox") // narrower field
-		$("#clearDBqueryBtn").removeClass("hideValue") // clear button
-		$("#unloadDBBtn").removeClass("hideValue") // unload database button
-		$("#btn-export-db-query").removeClass("hideValue") // export button
-		$("#liveDBOption").addClass("hideValue") // hide "Live Database Mode"
+	if (userDBlive.length !== 0) { // if live database is not empty
+		activateDBInterfaceLayout(true) // activate DB layout
 	}
 }
 
@@ -203,7 +218,6 @@ function configureCalcInterface(initRun = false) { // switch interface layout (d
 		optCompactCiphCount = 2
 		chLimit = 13 // character limit, used to switch to a long breakdown style
 		maxRowWidth = 18 // one row character limit (long breakdown)
-		$('#queryDBbtn').val('?') // change Query button label
 		mobileCalcLayout = true
 	} else { // desktop
 		encodingMenuColumns = 4
@@ -212,7 +226,6 @@ function configureCalcInterface(initRun = false) { // switch interface layout (d
 		optCompactCiphCount = 8
 		chLimit = 30 // character limit, used to switch to a long breakdown style
 		maxRowWidth = 36 // one row character limit (long breakdown)
-		$('#queryDBbtn').val('?') // change Query button label
 		mobileCalcLayout = false
 	}
 	if (optForceTwoColumnLayout && $(window).width() > compactViewportWidth) { // override layout for desktop

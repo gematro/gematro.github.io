@@ -58,12 +58,7 @@ function importFileAction(file) {
 				exportHistoryCSV(userHist, true, expCiphers) // export database with enabled ciphers
 			} else {
 				userDBlive = [...userHist] // live database mode
-				$("#queryDBbtn").removeClass("hideValue") // display query button
-				$("#phraseBox").addClass("filterPhraseBox") // narrower field
-				$("#clearDBqueryBtn").removeClass("hideValue") // clear button
-				$("#unloadDBBtn").removeClass("hideValue") // unload database button
-				$("#btn-export-db-query").removeClass("hideValue") // export button
-				$("#liveDBOption").addClass("hideValue") // hide "Live Database Mode"
+				activateDBInterfaceLayout(true) // activate DB layout
 				closeAllOpenedMenus() // close menus
 
 				console.log("Live Database loaded! ("+userDBlive.length+" entries)")
@@ -105,12 +100,7 @@ function importFileAction(file) {
 			updateTables() // update tables
 			updateInterfaceColor(true) // update interface color (first run)
 			if (userDBlive.length !== 0) { // restore controls if live database is loaded
-				$("#queryDBbtn").removeClass("hideValue") // display query button
-				$("#phraseBox").addClass("filterPhraseBox") // narrower field
-				$("#clearDBqueryBtn").removeClass("hideValue") // clear button
-				$("#unloadDBBtn").removeClass("hideValue") // unload database button
-				$("#btn-export-db-query").removeClass("hideValue") // export button
-				$("#liveDBOption").addClass("hideValue") // hide "Live Database Mode"
+				activateDBInterfaceLayout(true) // activate DB layout
 			}
 
 			displayCalcNotification("Ciphers loaded!", 1000)
@@ -163,13 +153,7 @@ function importFileAction(file) {
 				// it takes some 5 seconds instead of 1s, maybe better to convert number to string when search is performed
 				userDB.push(tmp) // add phrase (no check for duplicates)
 			}
-			$("#queryDBbtn").removeClass("hideValue") // display query button
-			$("#phraseBox").addClass("filterPhraseBox") // narrower field
-			$("#clearDBqueryBtn").removeClass("hideValue") // clear button
-			$("#unloadDBBtn").removeClass("hideValue") // unload database button
-			$("#btn-export-db-query").removeClass("hideValue") // export button
-			$("#edCiphBtn").addClass("hideValue") // hide "Edit Ciphers"
-			$("#liveDBOption").addClass("hideValue") // hide "Live Database Mode"
+			activateDBInterfaceLayout(true, true) // activate DB layout, hide "Edit Ciphers"
 			closeAllOpenedMenus() // close "Edit Ciphers"
 			precalcDBLoaded = true // precalculated database loaded, disable cipher rearrangement
 

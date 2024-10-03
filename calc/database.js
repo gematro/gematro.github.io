@@ -377,13 +377,7 @@ function unloadDatabase() {
 	updateTables() // update tables
 	updateInterfaceColor() // update interface color
 
-	$("#queryDBbtn").addClass("hideValue") // hide query button
-	$("#phraseBox").removeClass("filterPhraseBox") // restore width
-	$("#clearDBqueryBtn").addClass("hideValue") // clear button
-	$("#unloadDBBtn").addClass("hideValue") // unload database button
-	$("#btn-export-db-query").addClass("hideValue") // export button
-	$("#edCiphBtn").removeClass("hideValue") // show "Edit Ciphers"
-	$("#liveDBOption").removeClass("hideValue") // show "Live Database Mode"
+	activateDBInterfaceLayout(false) // deactivate DB layout
 
 	closeAllOpenedMenus() // close "Edit Ciphers"
 	precalcDBLoaded = false // precalculated database unloaded, enable cipher rearrangement
