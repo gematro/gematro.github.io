@@ -57,7 +57,7 @@ function queryDatabase() {
 	// }
 	// var tWidth = longestPhr*11 + 58*gemArrCiph.length // 2x1px outer borders + phrase cell and amount of ciphers
 
-	var phraseWidth = mobileCalcLayout ? 200 : 300
+	var phraseWidth = mobileCalcLayout ? 196 : 300
 	var tWidth = wheelDBactive ? phraseWidth + 160*gemArrCiph.length : phraseWidth + 59*gemArrCiph.length // 2x1px outer borders + phrase cell and amount of ciphers
 	$("#queryArea").css("min-width", tWidth) // set initial/minimal width for the table
 	$("#queryArea").css("width", tWidth) // set initial/minimal width for the table

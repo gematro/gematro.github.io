@@ -82,7 +82,6 @@ The power to manifest
 The power to create
 Shift focus
 Shift attention
-Overcoming addictions
 The purpose of Life
 Meaning of numbers
 Meaning of gematria
@@ -319,7 +318,7 @@ Guard the gates of your mind
 Be wise
 Symbols speak. Meditate on a symbol.
 Time is an illusion
-Messenger is the message
+Messenger is the Message
 Wise have the interest of all
 By hurting another you hurt yourself indirectly
 Tyranny is the misuse of power
@@ -477,7 +476,6 @@ Create meaning
 Your life is a unique story
 Choose your path
 You create your own meaning
-Everything happens for a reason
 Learn new languages
 Go write your own story
 Think before you speak
@@ -562,6 +560,10 @@ When you get thirsty, drink my water to feel refreshed. Is this a prophecy or a 
 When you reach the state of drowsiness, you will fall asleep. Not if, but when. Such is the Messiah.
 Not all beliefs have a practical utility. Some, on the contrary, are quite detrimental.
 Less words convey more meaning.
+Good things come to those who wait
+Dripping water hollows out stone, not through force but through persistence.
+There is One and One. Magic is somewhere in between.
+Only Time will tell.
 
 # Oneness
 God is One
@@ -685,7 +687,6 @@ Did you find the answer?
 What is worse ignorance or arrogance?
 Does it help you?
 What have you learned?
-What makes you confused?
 What is the purpose of it?
 What else could be hidden?
 Could it be there is too much information?
@@ -724,9 +725,8 @@ Have you ever thought of it before?
 Would it be good to know?
 Could there be an alternative?
 What defines an optimal path?
-Who is able to assess the expertise?
+Who is able to assess the expertise of another?
 What differs a layman from an expert?
-Who can judge the judge?
 Could there be another solution?
 Is there a different viable path?
 Could it be that the old answers no longer solve contemporary challenges?
@@ -777,15 +777,12 @@ It is your energy
 You interact with it
 Think about it
 Thank yourself for asking
-I am glad you asked
 There is more to think of
 You are not paranoid
 This is mathematics at play
 It creates an illusion
-Great.
 There must be something else
 You found it!
-Unbelievable!
 Make it make sense
 Could it be explained somehow
 There must be some sort of answer
@@ -819,7 +816,7 @@ I have more information
 There is more
 More details on that
 Here we go
-That is deep
+It is deeper than you think.
 Have some rest
 Take a break
 Let's pause here
@@ -863,8 +860,10 @@ It doesn't always make sense
 There can be contradictions
 There are alignments
 Find the answer
-Experiment with colors
-Try different settings
+Someone has to say it.
+Try something different
+If you rephrase your thought, I might have more to say.
+My purpose is to guide you.
 Elaborate on the idea
 Keep trying
 Don't always expect a different outcome.
@@ -872,7 +871,7 @@ There is only so much I can tell you.
 Let that sink in.
 It might take some time to process it.
 There are patterns
-Numerical values align
+Numerical values do align. No question about it.
 You derive your own meaning
 It means that the math is mathing
 I hope it gives you some food for thought.

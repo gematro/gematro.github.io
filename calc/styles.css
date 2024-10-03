@@ -31,10 +31,10 @@
 	--font-size-body: 95%;
 	--border-pxl: 2px solid;
 	--border-rad: 1em;
-	--global-hue: 180;
+	--global-hue: 222;
 	--global-sat: 2.0;
 	--global-lit: 0.6;
-	--font-hue: 180;
+	--font-hue: 200;
 	--font-sat: 0.5;
 	--font-lit: 0.9;
 	--menu-bg-accent: hsl(var(--global-hue) calc(20% * var(--global-sat)) calc(28% * var(--global-lit)));
@@ -256,7 +256,7 @@ body {
 	left: 2.3em;
 }
 .splitInterface {}
-@media (min-width: 911px) { /* desktop */
+@media (min-width: 1750px) { /* desktop */
 	.splitInterface {
 		width: 70%;
 		position: absolute;
@@ -325,11 +325,16 @@ body {
 	}
 }
 #calcOptionsPanel {
-	padding: 0.6em 0em 0em 0em;
+	padding: 3.4em 0em 0em 0em;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+}
+@media (max-width: 911px) { /* mobile */
+	#calcOptionsPanel {
+		padding: 0.6em 0em 0em 0em;
+	}
 }
 .ciphToggleContainer {
 	display: inline-block;
@@ -681,13 +686,13 @@ body {
 }
 @media (min-width: 911px) { /* desktop */
 	#phraseBox {
-		width: 500px;
+		width: 620px;
 	}
 	#highlightBox {
 		width: 200px;
 	}
 	.filterPhraseBox {
-		width: 463px !important;
+		width: 583px !important;
 	}
 	.filterHighlightBox {
 		width: 162px !important;
@@ -1544,7 +1549,7 @@ body {
 #queryArea {
 	width: 30%;
 	position: absolute;
-	top: 90px;
+	top: 133px;
 	left: 100px;
 	overflow: auto;
 	max-height: 92%;
@@ -1553,7 +1558,7 @@ body {
 }
 @media (max-width: 911px) { /* mobile */
 	#queryArea {
-		left: 24px !important;
+		left: 25px !important;
 	}
 }
 .queryPageBtnL, .queryPageBtnR {
@@ -1673,7 +1678,7 @@ table#QueryTable tr:last-child td {
 }
 @media (max-width: 911px) { /* mobile */
 	.minimizeQuery {
-		transform: translate(calc(-100% + 2px), 0) !important;
+		transform: translate(calc(-100% + 0px), 0) !important;
 	}
 }
 .minimizeLabel {
@@ -1720,6 +1725,11 @@ table#QueryTable tr:last-child td {
 	max-width: 450px;
 	max-height: 520px;
 	box-sizing: border-box;
+	right: 0;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
 }
 @media (max-width: 911px) { /* mobile */
 	.quickGuide, .discPanel {

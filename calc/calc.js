@@ -1,6 +1,6 @@
 // ============================== Init ==============================
 
-var gematroVersion = '24.10.2.0' // YY.M.D.revision
+var gematroVersion = '24.10.3.0' // YY.M.D.revision
 var compactViewportWidth = 911 // viewport width threshold
 var mobileUserAgent = navigator.userAgent.match('Mobile')
 
@@ -66,26 +66,26 @@ var dbScrollItems = 1 // used for scrolling
 
 var optGradientCharts = false // gradient fill for breakdown/cipher charts
 
-var interfaceHue = 180 // calculator interface color
-var interfaceHueDefault = 180 // value for reset, updated on first run of updateInterfaceHue()
+var interfaceHue = 222 // calculator interface color
+var interfaceHueDefault = 222 // value for reset, updated on first run of updateInterfaceHue()
 var interfaceSat = 2.0 // interface saturation multiplier
 var interfaceSatDefault = 2.0
 var interfaceLit = 0.6 // interface lightness multiplier
 var interfaceLitDefault = 0.6
 
-var fontHue = 180 // font and outline hue
-var fontHueDefault = 180 // value for reset, updated on first run of updateFontHue()
+var fontHue = 200 // font and outline hue
+var fontHueDefault = 200 // value for reset, updated on first run of updateFontHue()
 var fontSat = 0.5 // font saturation
 var fontSatDefault = 0.5
 var fontLit = 0.9 // font lightness multiplier
 var fontLitDefault = 0.9
 
-var coderainHue = 180 // coderain hue
-var coderainHueDefault = 180 // value for reset, updated on first run of updateCoderainHue()
+var coderainHue = 200 // coderain hue
+var coderainHueDefault = 200 // value for reset, updated on first run of updateCoderainHue()
 var coderainSat = 0.2 // coderain saturation
 var coderainSatDefault = 0.2
-var coderainLit = 0.05 // coderain lightness
-var coderainLitDefault = 0.05
+var coderainLit = 0.1 // coderain lightness
+var coderainLitDefault = 0.1
 
 var optImageScale = 1.0 // image scaling factor for screenshots
 var optHistTableCaption = '' // history table caption (top left cell)
