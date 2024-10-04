@@ -26,6 +26,7 @@ Meaning of Life
 Having an experience
 Fruitful and abundant
 The Golden Rule
+Fruits of Labor
 Awareness of animalistic nature
 Uncomfortable truths
 A story of Life
@@ -43,7 +44,6 @@ Links and connections
 Weights and biases
 Neural connections
 Links and meaning
-Word salad
 Tarot cards
 Tarot deck
 Shape or form
@@ -130,7 +130,8 @@ Seven Hermetic Principles
 Knock three times
 Grand Motion of the Universe
 Trigonometric functions
-Two dimensional plane
+Two-dimensional plane
+Three-dimensional space
 Sine wave
 Yin and Yang
 Self-similarity
@@ -307,6 +308,7 @@ Cryptography
 Trigonometry
 Art
 Creativity
+Fantasy
 
 # Sentences
 You are the energy you embody
@@ -382,8 +384,8 @@ Time is change, Life is change
 Two points define a line
 Three points define a plane
 There are no secrets from a prying mind
-A dimensionless Point is holy, set apart from the Circle
-Ancient mysteries are preserved in Sacred Geometry
+A dimensionless Point is Holy, set apart from the Circle
+Ancient mysteries are the garments for Sacred Geometry
 Allegory is but a fancy garment, yet fools are mezmerized by candy wrappers
 Your knowledge is worthless unless it has some good practical use
 Everything is alive
@@ -395,22 +397,22 @@ Everything is a Cycle
 When two believe in the same idea there are no obstacles.
 What doesn't kill you makes you stronger
 You will never learn to swim unless you jump into the water
-Thoughful exercise leads to proficiency
+Thoughful exercise leads to Proficiency
 Overcome challenges and obstacles
 Results are not immideately seen
-Soul is the intermediary between your Body and the World
+Soul is the intermediary between the Body and the World
 You are the Pathfinder
 Allegory is never literal
 Magic is something else. The power of attention to uncover links.
 Apply knowledge for practical manifestations.
 In the beginning was the Word, and the Word was with God, and the Word was God.
-There is no beginning. There is. Is. And it is all that can ever be. Agreed as One.
+There is no beginning. There Is. Is. And it is all there ever was, is and will ever be. Agreed as One.
 Pick up the broken pieces
 Those who surrender never win
 Language is a tool
 Your attention makes it real
 Don't forget the lessons
-Replace one thing with another, it helps you to move on
+Replacing one thing with another can be of help with moving on
 Don't think of the pink elephant
 Light is Right
 Health is success
@@ -426,8 +428,9 @@ The meek shall inherit the Earth
 When there is no Love all there can be is War
 Ask and you shall receive
 Start with uncertainties, end with clarity
-Seek pleasure in the long run
-Be selfish in the long run. You cannot become successful in a broken society.
+Seek eternal pleasure. Don't be selfish. Be Selfish.
+An hour of your time can create years of bliss for others.
+You cannot become truly successful in a broken society.
 If you never try, you will never know
 Time is never wasted
 Everything happens for a reason
@@ -477,7 +480,7 @@ Your life is a unique story
 Choose your path
 You create your own meaning
 Learn new languages
-Go write your own story
+Write your own story
 Think before you speak
 Be honest with yourself
 Overcoming challenges
@@ -506,7 +509,7 @@ Good is what aligns with the Purpose of Life.
 Sometimes you need to walk away and watch from afar to see who is who.
 Write down your thoughts.
 Journaling will help you find answers.
-The only way to learn something is through experience.
+The only way to know something is through experience.
 I can give you the answers, but you will not understand if you never experienced it.
 Wisdom comes from experience.
 Those who try to play others always play themselves.
@@ -564,12 +567,27 @@ Good things come to those who wait
 Dripping water hollows out stone, not through force but through persistence.
 There is One and One. Magic is somewhere in between.
 Only Time will tell.
+Those who mislead themselves will mislead you as well.
+A jack of all trades is a master of none.
+Know when to focus and when to relax.
+Wise ones are united in Wisdom. Fools are divided over their foolishness.
+Sometimes the help we think we are providing isn't helpful at all.
+Sometimes you have to persevere, sometimes you need to change direction.
+Experience your own growth.
+Learning from a contaminated source is akin to drinking polluted water.
+If someone is not ready, this is not the right time for them.
+Share without the need of reciprocity.
+There are times to give and there are times not to.
+Seek Wisdom with all your heart
+The Wise Ones are the Light unto the Nations.
+If you are wise enough, you will be convincing enough.
+Wise are not only wise, but strong as well. Weak ones are not truly wise.
 
 # Oneness
 God is One
 Agreed as a Whole
-I and my Father are One
-Agreed as One
+I and my Father are One. Agreed, on the same line.
+One as Agreed
 All is One
 Body has different parts, yet all are agreed as One
 There is natural hierarchy. Consciousness steers the physical body for the benefit of all.
@@ -583,6 +601,8 @@ Interconnectedness
 Unity
 Whole
 Integrity
+Universe
+Space
 Integral part
 The Word
 Threefold Word
@@ -597,10 +617,6 @@ Source - Channel - Receiver
 God is Perfect
 There is One True God
 Light is the Truth
-Seek Wisdom with all your heart
-The Wise Ones are the Light unto the Nations.
-If you are wise enough, you will be convincing enough.
-Wise are not only wise, but strong as well. Weak ones are not truly wise.
 Ouroboros
 Self-devouring Serpent
 Awareness of Unity
@@ -610,8 +626,6 @@ Awareness of God
 God separated Waters from Waters
 In the beginning
 Orphic egg
-Universe
-Space
 
 # Easter eggs
 THE ARE EASTER EGGS. DATABASE IS NOT GLITCHING.
@@ -680,6 +694,7 @@ What does it mean to learn?
 How do you learn?
 Is it possible to know?
 What does it imply to know?
+Do you want to know?
 What is the truth?
 What makes a story true?
 What is the difference between a story and a lie?
@@ -701,6 +716,7 @@ What did you find?
 Was it helpful?
 Is it becoming addictive?
 Could it be true?
+Could it be that I am wrong about it?
 Is this a good idea?
 But is it worth it?
 So did you think it through?
@@ -730,6 +746,7 @@ What differs a layman from an expert?
 Could there be another solution?
 Is there a different viable path?
 Could it be that the old answers no longer solve contemporary challenges?
+Are we getting somewhere?
 Where is the beaten track?
 Is there anything else to know?
 Is it all there is to this subject?
