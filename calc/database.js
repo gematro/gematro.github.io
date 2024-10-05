@@ -2,7 +2,10 @@
 
 function queryDatabase() {
 	var cVal
-	if(sVal() == "") return // empty input
+	if (sVal() == "") {
+		displayCalcNotification("Nothing to search!");
+		return // empty input
+	}
 
 	if (liveDatabaseMode == true) calcLiveDatabase(userDBlive) // calculate gematria for live database for enabled ciphers
 
@@ -47,6 +50,12 @@ function queryDatabase() {
 	else if (optFiltSameCipherMatch) { searchDBsameCipher() }
 
 	queryResultInitial = [...queryResult] // save initial matches
+
+	if (queryResult.length == 0) { // no matches found
+		clearDatabaseQueryTable();
+		displayCalcNotification("No matches found!");
+		return
+	}
 	
 	// console.log(queryResult)
 	
@@ -199,11 +208,12 @@ function updateDatabaseQueryTable(stPos = 0, dItems, scrollBarEvent = false) { /
 		sliderMax = Math.floor(queryResult.length/dbPageItems)
 		if (queryResult.length % dbPageItems == 0) sliderMax -= 1 // if total is divisible, no pagination for last element
 		curSliderPos = Math.round(curPos/dbPageItems)
-		ms = '<span class="minimizeLabel">Click to minimize</span>'
+		ms = '<div id="queryCloseBtn">&#10005;</div>' // close button
+		ms += '<span class="minimizeLabel">Click to minimize</span>'
 		ms += '<div id="queryMinBtn">_</div>' // minimize button
 		ms += '<input type="range" min="0" max="'+sliderMax+'" value="'+curSliderPos+'" class="qSlider" id="queryScrollbar">' // slider/scrollbar
 		ms += '<input id="querySearchInput" type="text" enterkeyhint="done" spellcheck="false" autocomplete="off" value="'+searchBarValue+'" placeholder="Find...">' // search bar
-		ms += '<table id="QueryTable" class="HistoryTable" data-startpos='+stPos+' data-dispitems='+dItems+'>'
+		ms += '<table id="QueryTable" data-startpos='+stPos+' data-dispitems='+dItems+'>'
 		ms += '<tbody>'
 	} else { // scrollbar used
 		if (endPos > queryResult.length) { // last page

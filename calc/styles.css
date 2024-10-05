@@ -207,6 +207,10 @@ body {
 	overflow: overlay;
 }
 
+::-webkit-resizer { /* textarea resize handle */
+	display: none;
+}
+
 @media only screen and (min-device-width: 1024px) {
 	::-webkit-scrollbar {
 		width: 16px;
@@ -376,17 +380,50 @@ body {
 }
 .phraseGemContainer {
 	display: inline-block;
-	border: var(--border-pxl) var(--border-dark-accent);
+	/* border: var(--border-pxl) var(--border-dark-accent); */
 	border-spacing: 0px;
 	text-align: center;
 	font-weight: 500;
 	line-height: 1.0em;
 }
-.phraseGemContainer tr:nth-child(odd) {
+.phraseGemContainer tr:nth-child(odd) td { /* Firefox can't combine 'tr' and 'td' styles to properly display element border radius */
 	background-color: var(--table-row-odd);
 }
-.phraseGemContainer tr:nth-child(even) {
+.phraseGemContainer tr:nth-child(even) td {
 	background-color: var(--table-row-even);
+}
+/* table outline / outer border with corner radius */
+.phraseGemContainer tr:first-child td:first-child {
+	border-top-left-radius: var(--border-rad);
+	border-top: var(--border-pxl) var(--border-dark-accent);
+	border-left: var(--border-pxl) var(--border-dark-accent);
+}
+.phraseGemContainer tr:first-child td:last-child {
+	border-top-right-radius: var(--border-rad);
+	border-top: var(--border-pxl) var(--border-dark-accent);
+	border-right: var(--border-pxl) var(--border-dark-accent);
+}
+.phraseGemContainer tr:last-child td:last-child {
+	border-bottom-right-radius: var(--border-rad);
+	border-bottom: var(--border-pxl) var(--border-dark-accent);
+	border-right: var(--border-pxl) var(--border-dark-accent);
+}
+.phraseGemContainer tr:last-child td:first-child {
+	border-bottom-left-radius: var(--border-rad);
+	border-bottom: var(--border-pxl) var(--border-dark-accent);
+	border-left: var(--border-pxl) var(--border-dark-accent);
+}
+.phraseGemContainer tr:first-child td {
+	border-top: var(--border-pxl) var(--border-dark-accent);
+}
+.phraseGemContainer tr:last-child td {
+	border-bottom: var(--border-pxl) var(--border-dark-accent);
+}
+.phraseGemContainer td:first-child {
+	border-left: var(--border-pxl) var(--border-dark-accent);
+}
+.phraseGemContainer td:last-child {
+	border-right: var(--border-pxl) var(--border-dark-accent);
 }
 .phraseGemValueOdd, .phraseGemValueEven {
 	font-size: 180%;
@@ -706,7 +743,7 @@ body {
 /*                History Table               */
 /* ########################################## */
 
-.HistoryTable tr, .HistoryTable td {
+.HistoryTable tr, .HistoryTable td, #QueryTable tr, #QueryTable td {
 	border-bottom: var(--border-pxl) var(--border-dark-accent);
 	border-left: var(--border-pxl) var(--border-dark-accent);
 }
@@ -716,11 +753,11 @@ body {
 	background: -o-linear-gradient(0deg, var(--hist-header-gradient), transparent);
 	background: linear-gradient(0deg, var(--hist-header-gradient), transparent);
 }
-.HistoryTable {
+.HistoryTable, #QueryTable {
 	text-align: center;
 	border-spacing: 0px;
-	border-top: var(--border-pxl) var(--border-dark-accent);
-	border-right: var(--border-pxl) var(--border-dark-accent);
+	/* border-top: var(--border-pxl) var(--border-dark-accent); */
+	/* border-right: var(--border-pxl) var(--border-dark-accent); */
 	margin: 0.5em 1em 2.4em 1em;
 }
 @media (max-width: 911px) { /* mobile */
@@ -728,11 +765,45 @@ body {
 		margin: 0em 0.25em 0em 0em;
 	}
 }
-.HistoryTable tr:nth-child(odd) {
+/* Firefox can't combine 'tr' and 'td' styles to properly display element border radius */
+.HistoryTable tr:nth-child(odd) td, #QueryTable tr:nth-child(odd) td {
 	background-color: var(--table-row-odd);
 }
-.HistoryTable tr:nth-child(even) {
+.HistoryTable tr:nth-child(even) td, #QueryTable tr:nth-child(even) td {
 	background-color: var(--table-row-even);
+}
+/* table outline / outer border with corner radius */
+.HistoryTable tr:first-child td:first-child {
+	border-top-left-radius: var(--border-rad);
+	border-top: var(--border-pxl) var(--border-dark-accent);
+	border-left: var(--border-pxl) var(--border-dark-accent);
+}
+.HistoryTable tr:first-child td:last-child {
+	border-top-right-radius: var(--border-rad);
+	border-top: var(--border-pxl) var(--border-dark-accent);
+	border-right: var(--border-pxl) var(--border-dark-accent);
+}
+.HistoryTable tr:last-child td:last-child {
+	border-bottom-right-radius: var(--border-rad);
+	border-bottom: var(--border-pxl) var(--border-dark-accent);
+	border-right: var(--border-pxl) var(--border-dark-accent);
+}
+.HistoryTable tr:last-child td:first-child {
+	border-bottom-left-radius: var(--border-rad);
+	border-bottom: var(--border-pxl) var(--border-dark-accent);
+	border-left: var(--border-pxl) var(--border-dark-accent);
+}
+.HistoryTable tr:first-child td {
+	border-top: var(--border-pxl) var(--border-dark-accent);
+}
+.HistoryTable tr:last-child td {
+	border-bottom: var(--border-pxl) var(--border-dark-accent);
+}
+.HistoryTable td:first-child {
+	border-left: var(--border-pxl) var(--border-dark-accent);
+}
+.HistoryTable td:last-child {
+	border-right: var(--border-pxl) var(--border-dark-accent);
 }
 #QueryTable {
 	table-layout: fixed;
@@ -742,6 +813,18 @@ body {
 	float: right;
 	border-top: none;
 	border-right: none;
+}
+#QueryTable td:first-child {
+	border-left: unset;
+}
+#QueryTable tr:last-child td {
+	border-bottom: unset;
+}
+#QueryTable tr:last-child td:last-child {
+	border-bottom-right-radius: var(--border-rad);
+}
+#QueryTable tr:last-child td:first-child {
+	border-bottom-left-radius: var(--border-rad);
 }
 .hC { /* history table header, cipher name cell */
 	min-width: 80px;
@@ -819,7 +902,7 @@ body {
 	font-size: 110%;
 	font-weight: 600;
 	width: fit-content;
-    padding: 0em 1em;
+	padding: 0em 1em;
 }
 .gV, .gW, .gVQ { /* gematria value in history/query table */
 	font-size: 125%;
@@ -864,7 +947,8 @@ body {
 	z-index: 99;
 }
 .selectedPhrase {
-	background-color: var(--selected-phr-accent);
+	/* background-color: var(--selected-phr-accent) */
+	box-shadow: inset 0 0 0 1000px var(--selected-phr-accent); /* transparent color overlay */
 }
 
 /*                Options Menu                */
@@ -1190,14 +1274,14 @@ body {
 	}
 }
 #downImgBtn, .refreshImgBtn {
-    font-size: 125%;
-    font-weight: 500;
-    color: var(--font-white-2);
-    background-color: var(--menu-bg-accent2);
-    text-decoration: none;
-    padding: 0.35em 1em;
-    border: none;
-    outline: none;
+	font-size: 125%;
+	font-weight: 500;
+	color: var(--font-white-2);
+	background-color: var(--menu-bg-accent2);
+	text-decoration: none;
+	padding: 0.35em 1em;
+	border: var(--border-pxl) var(--border-dark-accent);
+	outline: none;
 	margin: 1.5em 0.3em 1.5em 0.3em;
 }
 #imgData {
@@ -1554,7 +1638,8 @@ body {
 	overflow: auto;
 	max-height: 92%;
 	border: var(--border-pxl) var(--border-accent);
-	resize: horizontal;
+    border-radius: var(--border-rad);
+    resize: horizontal;
 }
 @media (max-width: 911px) { /* mobile */
 	#queryArea {
@@ -1578,22 +1663,42 @@ body {
 }
 #queryMinBtn {
 	position: absolute;
-	width: 24px;
-	left: calc(100% - 24px);
-	height: 24px;
+	width: 32px;
+	left: calc(100% - 32px);
+	height: 32px;
 	text-align: center;
 	box-sizing: border-box;
 	color: var(--border-accent);
 	background: var(--hist-header-gradient);
-	border-left: var(--border-pxl) var(--border-accent);
+	/* border-right: var(--border-pxl) var(--border-accent); */
+	/* border-top: var(--border-pxl) var(--border-accent); */
 	border-bottom: var(--border-pxl) var(--border-accent);
+	border-top-right-radius: var(--border-rad);
 	cursor: pointer;
 	user-select: none;
+	line-height: 30px;
 }
-#queryMinBtn:hover {
+#queryCloseBtn {
+	position: absolute;
+	width: 32px;
+	left: 0px;
+	height: 32px;
+	text-align: center;
+	box-sizing: border-box;
+	color: var(--border-accent);
+	background: var(--hist-header-gradient);
+	/* border-left: var(--border-pxl) var(--border-accent); */
+	/* border-top: var(--border-pxl) var(--border-accent); */
+	border-bottom: var(--border-pxl) var(--border-accent);
+	border-top-left-radius: var(--border-rad);
+	cursor: pointer;
+	user-select: none;
+	line-height: 30px;
+}
+#queryMinBtn:hover, #queryCloseBtn:hover {
 	background-color: var(--btn-bg-accent);
 }
-#queryMinBtn:active {
+#queryMinBtn:active, #queryCloseBtn:active {
 	background-color: var(--btn-hover-accent);
 }
 .queryTextResult {
@@ -1603,14 +1708,17 @@ body {
 #queryScrollbar {
 	border-radius: unset;
 	padding: unset;
+	border: var(--border-pxl) var(--border-accent);
+	border-top: unset;
 }
 .qSlider {
 	-webkit-appearance: none;
-	width: calc(100% - 24px);
-	height: 24px;
+	width: calc(100% - 64px);
+	height: 32px;
 	background: var(--hist-header-gradient);
 	outline: none;
 	margin: 0;
+	margin-left: 32px;
 	border-bottom: var(--border-pxl) var(--border-accent);
 	display: block;
 	box-sizing: border-box;
@@ -1622,21 +1730,19 @@ body {
 	-webkit-appearance: none;
 	appearance: none;
 	width: 12px;
-	height: 24px;
-	background: var(--border-dark-accent);
+	height: 26px;
+	margin: 2px;
+	background: var(--border-accent);
 	cursor: pointer;
+	border-radius: var(--border-rad);
 }
 .qSlider::-moz-range-thumb {
 	width: 12px;
-	height: 24px;
+	height: 26px;
+	margin: 2px;
 	background: var(--border-accent);
 	cursor: pointer;
-}
-table#QueryTable td:first-child {
-	border-left: unset;
-}
-table#QueryTable tr:last-child td {
-	border-bottom: unset;
+	border-radius: var(--border-rad);
 }
 #queryPosInput {
 	width: 95px;
@@ -1646,9 +1752,9 @@ table#QueryTable tr:last-child td {
 	caret-color: transparent !important;
 	background-color: var(--body-bg-accent);
 	border: var(--border-pxl) var(--border-dark-accent);
-	border-radius: unset;
 	border-left: none;
 	border-right: none;
+	border-radius: unset;
 }
 #queryPosInput:focus {
 	border: var(--border-pxl) var(--focus-outline);
@@ -1663,10 +1769,8 @@ table#QueryTable tr:last-child td {
 	color: var(--font-white-2);
 	background-color: var(--body-bg-accent);
 	box-sizing: border-box;
-	border: var(--border-pxl) var(--border-dark-accent);
-	border-top: none;
-	border-left: none;
-	border-right: none;
+	border: none;
+	border-bottom: var(--border-pxl) var(--border-dark-accent);
 	outline: none;
 	padding: 0.3em 0em;
 	border-radius: unset;
@@ -1683,8 +1787,8 @@ table#QueryTable tr:last-child td {
 }
 .minimizeLabel {
 	position: absolute;
-	margin: 0.3em 1em 0.15em 0.15em;
-	right: 24px;
+	margin: 0.7em 1em 0.15em 0.15em;
+	right: 32px;
 	user-select: none;
 	pointer-events: none;
 	font-size: 75%;
@@ -1723,7 +1827,7 @@ table#QueryTable tr:last-child td {
 }
 .discPanel {
 	max-width: 450px;
-	max-height: 520px;
+	max-height: 450px;
 	box-sizing: border-box;
 	right: 0;
 	left: 0;
@@ -1755,6 +1859,11 @@ table#QueryTable tr:last-child td {
 }
 .qgBold2 {
 	font-size: 150%;
+}
+.qgBold3 {
+	font-size: 125%;
+	font-weight: 500;
+	color: var(--font-white-2);
 }
 .qgMedium {
 	font-size: 125%;

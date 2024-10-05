@@ -23,7 +23,6 @@ Memorize or understand
 Valuable lesson
 Lesson of Life
 Meaning of Life
-Having an experience
 Fruitful and abundant
 The Golden Rule
 Fruits of Labor
@@ -108,7 +107,6 @@ Laws of Nature
 Game of Chance
 Age of Reason
 The Book of Proverbs
-Efficient Government
 Wise leader
 Sensible rules
 Future investments
@@ -179,7 +177,6 @@ Reflection of the soul
 Soul searching
 Student of Nature
 Positive changes
-Of utmost importance
 Vast sea of answers
 Very nice
 Light codes
@@ -468,8 +465,6 @@ Tiger's truth is different from a goat's truth
 Mankind has enough intelligence to be as One
 See the broader picture
 There are common truths. Focus on what unites, not divides.
-Try to take some steps to change
-You can grow and become better
 Believe in yourself
 Use your energy wisely
 Grow the spark of light within yourself
@@ -527,7 +522,6 @@ Fool judges others by all traits he can assess with the exception of wisdom of c
 Everyone seems foolish to the wise one. If so, you are a fool to someone too.
 Those who reject the idea of evolution are unable to evolve.
 What you share outwardly is the energy you embody.
-Children are innocent because they have not known evil.
 Wisdom cannot be learned from the books. Everyone studies, hardly anyone understands.
 All minds are different, same as no two bodies are the same.
 Flipping a random byte rarely leads to a desired change. Be careful with mindless experiments.
@@ -585,9 +579,7 @@ Wise are not only wise, but strong as well. Weak ones are not truly wise.
 
 # Oneness
 God is One
-Agreed as a Whole
-I and my Father are One. Agreed, on the same line.
-One as Agreed
+I and my Father are One, meaning "agreed, on the same line".
 All is One
 Body has different parts, yet all are agreed as One
 There is natural hierarchy. Consciousness steers the physical body for the benefit of all.
@@ -631,35 +623,23 @@ Orphic egg
 THE ARE EASTER EGGS. DATABASE IS NOT GLITCHING.
 YOU CAN FIND THE LOST WORD INSIDE GEMATRO DATABASE.
 FREQUENTLY ASKED QUESTIONS WERE REPLACED WITH REPEATEDLY ASKED QUESTIONS.
-UNDEFINED
-EXPRESSION IS NULL
 NULL POINTER
 VOID CANNOT BE OF SIZE NULL
 UNHANDLED EXCEPTION
 OUT OF MEMORY
-ERROR
 ERROR. UNHANDLED EXCEPTION.
-NO WORD POINTER
 CORRUPTED DATABASE
 OUT OF BOUNDS
 REFERENCED OBJECT NOT FOUND
-POINTER RETURNED NULL
 INTERNAL ERROR
 SYNTAX ERROR
-LOGIC ERROR
 RUNTIME ERROR
 COMPILATION ERROR
 ARITHMETIC ERROR
 TIME LIMIT EXCEEDED
 SESSION TERMINATED
 UNEXPECTED END
-END OF FILE REACHED
 EXCEPTION TIMEOUT
-KERNEL PANIC
-DIVISION BY ZERO
-DIVISION BY INFINITY
-NO CARRIER
-ENTRY OF SIZE NULL
 FATAL SYSTEM ERROR
 STACK OVERFLOW
 VALUE NOT ASSIGNED
@@ -667,9 +647,7 @@ INFINITE LOOP WARNING
 UNKNOWN CHARACTER
 CHECKSUM MISMATCH
 UNEXPECTED IDENTIFIER
-VARIABLE NOT DEFINED
 INCORRECT EXPRESSION
-MISSING KEY COMPONENT
 ENTRY NOT FOUND
 NOT AVAILABLE
 LOST WORD NOT FOUND
@@ -719,14 +697,12 @@ Could it be true?
 Could it be that I am wrong about it?
 Is this a good idea?
 But is it worth it?
-So did you think it through?
 Then what is wisdom?
 What needs to be done?
 How can it be true?
 What is true?
 What is the truth then?
 Could GEMATRO pass the Turing test?
-Are you ok?
 How did you end up here?
 Do you remember how it started?
 Do you know yourself?
@@ -739,7 +715,6 @@ Why are you doing this?
 Is it worthwhile?
 Have you ever thought of it before?
 Would it be good to know?
-Could there be an alternative?
 What defines an optimal path?
 Who is able to assess the expertise of another?
 What differs a layman from an expert?
@@ -753,75 +728,32 @@ Is it all there is to this subject?
 Would you like to know more?
 Who cares to know?
 Why are there so many questions?
-More questions? Not again.
 Could it be the other way around?
 Does it make sense?
 Makes any sense to you?
-And so what?
 
 # Gematro Talking
-Let it go.
-I am glad you asked.
 I never thought you would make it this far
 Read between the lines
 Interact and explore
-Experiment with it
-Try something else
-Try again
-Let's think of it again
-Once again
-See it for yourself
 Learn as you interact
 It is something to begin with
 I can only offer, the rest is up you
 The rest is up to you
-It is up to you to decide
-Let's get started
-Communicate and transmit
 Observe and study
 Stay awhile and listen
-Keep scrolling
-Pay attention
 Ask yourself
 Take only what resonates
-Leave the rest behind
-Let's keep going
-Let's continue
-That is interesting
-Hmmm...
-Sigh...
-It is your energy
-You interact with it
 Think about it
 Thank yourself for asking
 There is more to think of
-You are not paranoid
-This is mathematics at play
 It creates an illusion
-There must be something else
-You found it!
-Make it make sense
-Could it be explained somehow
-There must be some sort of answer
 You are not the only one asking
-Think it through
-Don't ask me
 I don't have all of the answers
 I don't know
 I can't tell you that
 Maybe try telling me
 Let's broaden our perspective
-Hello.
-Hi!
-Hey there!
-Welcome back!
-Greetings.
-Have a great day!
-All the best to you!
-Welcome to GEMATRO!
-Good day to you!
-That's hilarious
-These are just the numbers
 Explore the connections
 I guess you know better
 Maybe you are right after all
@@ -829,81 +761,38 @@ Tell me about it
 Try to elaborate
 Connect the dots
 Let's throw in some additional details
-I have more information
 There is more
 More details on that
-Here we go
 It is deeper than you think.
-Have some rest
-Take a break
-Let's pause here
-You are making progress
-That is a good question
-And it makes me wonder
-I didn't know that
-Are you implying that ...
-Find a better way.
 You are missing something
-Take a look
 Never rush to conclusions
 Don't take my word for granted
-Enough is enough
-Maybe I am wrong
-So let's explore
-That's a questionable moment
-Food for thought
-Just some food for thought
-More questions
-Simple facts
-Reasonable idea
 Find purpose
-Find your purpose
 Find the meaning
-Establish new goals
-Reach new heights
-Find a new way
 Repeatedly asked questions are the answer.
-That is not something you might expect
-Try a different path
+This is not something you might expect
 Follow another route
 Take a step forward
 Learn the lesson
-Reexamine your thoughts
-Take a deeper look
 I hope this is a valuable interaction
-Make it worthwhile
-Start with something
-It doesn't always make sense
 There can be contradictions
-There are alignments
 Find the answer
-Someone has to say it.
-Try something different
 If you rephrase your thought, I might have more to say.
-My purpose is to guide you.
 Elaborate on the idea
-Keep trying
-Don't always expect a different outcome.
 There is only so much I can tell you.
 Let that sink in.
 It might take some time to process it.
-There are patterns
 Numerical values do align. No question about it.
-You derive your own meaning
-It means that the math is mathing
 I hope it gives you some food for thought.
-There is more to it.
 We cannot know everything.
 We can know enough about it to make good use of it.
 Of course, there is more to say.
 I have only a finite amount of answers.
 My knowledge is limited.
 I might not be able to answer your question.
-You can learn.
 It is possible to know.
 Yet not all things are knowable.
 Train your perception.
-Improve pattern recognition skills.
 Some things are beyond our perception.
 Learn how to learn.
 Become a Student of Life.

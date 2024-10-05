@@ -476,9 +476,15 @@ function displayQuickstartGuide() {
 	o += '<li><span class="qgBold">"Ctrl + Left Click"</span> on phrase - load phrase from <span class="qgBold">Query Table</span> into <span class="qgBold">Phrase Box</span> and add it to <span class="qgBold">History Table</span></li>'
 
 	o += '<li>'
-	o += '<span class="qgBold">"Left Click"</span> on button in the top right corner to temporarily minimize the table if it obstructs the interface (left click again to bring the table back)'
+	o += '<span class="qgBold">"Left Click"</span> on <span class="qgBold">[x]</span> button in the top left corner to close the <span class="qgBold">Query Table</span>'
 	o += '<br>'
-	o += '<span class="qgNote">Hint: You can zoom the page out if too many ciphers are active</span>'
+	o += '<span class="qgNote">Another way to close the Query Table is to click on "Features" > "Clear DB Query"</span>'
+	o += '</li>'
+
+	o += '<li>'
+	o += '<span class="qgBold">"Left Click"</span> on <span class="qgBold">[_]</span> button in the top right corner to temporarily minimize the <span class="qgBold">Query Table</span>'
+	o += '<br>'
+	o += '<span class="qgNote">Note: Left click on the Query Table to bring it back<br>Hint: You can zoom the page out if too many ciphers are active</span>'
 	o += '</li>'
 	
 	o += '</ul>'
@@ -494,20 +500,20 @@ function displayDiscPanel() {
 
 	var o = '<div class="discPanel">'
 	o += '<center>'
-	o += '<p><span class="qgBold2">Disclaimer</span></p>'
+	o += '<p><span class="qgBold3">Disclaimer</span></p>'
 	o += '</center>'
 	
 	o += '<hr class="numPropSeparator">'
 
 	o += '<p>'
 	o += '<span class="qgNote">'
-	o += 'This software should not be used to promote or engage in any activities that are hateful, divisive, or harmful towards individuals or groups of people.'
+	o += 'This software should not be used to promote any activities that are hateful, divisive, or harmful towards individuals or groups of people.'
 	o += '<br><br>'
-	o += 'In no event will the creator of this software be liable for any damages arising out of or in connection with the use of this software, including but not limited to direct, indirect, consequential, and incidental damages.'
+	o += 'In no event will the author of this software be liable for any damages arising out of or in connection with the use of this software, including but not limited to direct, indirect, consequential, and incidental damages.'
 	o += '<br><br>'
-	o += 'It is the responsibility of the user to ensure that they use this software in an ethical manner, avoiding any practices that may cause damage, harm or offense to others. User must take full responsibility for the information provided by this software and verify its accuracy before taking any actions based on it.'
+	o += 'User of this software must take full responsibility for the information provided by this software and verify its accuracy before taking any actions based on it.'
 	o += '<br><br>'
-	o += 'This software may contain links to external websites which are not under the control of the creator of this software. The creator of this software is not responsible for the contents of any linked website.'
+	o += 'This software may contain links to external websites which are not under the control of the author of this software. The author of this software is not responsible for the contents of any linked website.'
 	o += '</span>'
 	o += '</p>'
 	

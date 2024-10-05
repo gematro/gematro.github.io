@@ -115,6 +115,14 @@ $(document).ready(function(){
 	$("body").on("click", "#queryMinBtn", function () {
 		$("#queryArea").toggleClass("minimizeQuery")
 	});
+	// Click on close button
+	$("body").on("click", "#queryCloseBtn", function () {
+		clearDatabaseQueryTable();
+	});
+	// Click on Query Table to restore
+	$("body").on("click", "#QueryTable, #querySearchInput", function () {
+		$("#queryArea").removeClass("minimizeQuery")
+	});
 });
 
 // ==================================================================
