@@ -115,6 +115,7 @@ function displayQuickstartGuide() {
 
 	o += '<li><span class="qgBold">"Matrix Code Rain"</span> - use dynamic background</li>'
 	o += '<li><span class="qgBold">"Rounded Interface"</span> - use rounded corners for menus, buttons and charts</li>'
+	o += '<li><span class="qgBold">"UI Border Thickness"</span> - change border width for user interface elements</li>'
 
 	o += '<li>'
 	o += '<span class="qgBold">Highlighter</span> has two different modes:'

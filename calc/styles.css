@@ -146,6 +146,9 @@ table.optionElementTable tr:last-child > td:first-child {
 	border-bottom-left-radius: var(--border-rad);
 	border-bottom-right-radius: var(--border-rad);
 }
+.borderOptionsBox {
+	border-radius: var(--border-rad);
+}
 
 /*               Text Selection               */
 /* ########################################## */
@@ -1164,7 +1167,7 @@ body {
 	border-top: none;
 	padding-bottom: 0.1em;
 }
-.dbOptionsBoxTop, .dbOptionsBoxBtm {
+.dbOptionsBoxTop, .dbOptionsBoxBtm, .borderOptionsBox {
 	margin: auto;
 	border: var(--border-pxl) var(--btn-border-accent);
 	text-align: right;
@@ -1181,7 +1184,7 @@ body {
 .optionTableLabel {
 	font-size: 80%;
 }
-#phrLimitBox, #dbPageItemsBox, #dbScrollItemsBox, #iScaleBox {
+#phrLimitBox, #dbPageItemsBox, #dbScrollItemsBox, #iScaleBox, #confBorderBox {
 	width: 50px;
 	border: none;
 	color: var(--font-white-2);

@@ -25,14 +25,14 @@ function openImageWindow(element, imgName = "", sRatio = window.devicePixelRatio
 			//$("#previewImage").append(canvas);
 
 			tCanvas = trimCanvas(canvas); // trim transparent pixels
-			imageDataURL = drawOutlineCanvas(tCanvas,2).toDataURL("image/png"); // draw outline, canvas to "data:image/png;base64, ..."
+			imageDataURL = drawOutlineCanvas(tCanvas, optBorderWidthPx).toDataURL("image/png"); // draw outline, canvas to "data:image/png;base64, ..."
 
 			if (element == '.dateCalcTable2') { // restore date labels as input
 				$('#dateDesc1Area').html('<input class="dateDescription" id="dateDesc1" value="'+dateDesc1Saved+'">')
 				$('#dateDesc2Area').html('<input class="dateDescription" id="dateDesc2" value="'+dateDesc2Saved+'">')
 			}
 
-			if (element == '#BreakdownDetails') { // restore chart style, remove outline
+			if (element == '#ChartSpot' || element == '#BreakdownDetails') { // restore chart style, remove outline
 				updateWordBreakdown() // redraw cipher chart
 			}
 

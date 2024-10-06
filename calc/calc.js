@@ -1,6 +1,6 @@
 // ============================== Init ==============================
 
-var gematroVersion = '24.10.6.0' // YY.M.D.revision
+var gematroVersion = '24.10.6.1' // YY.M.D.revision
 var compactViewportWidth = 911 // viewport width threshold
 var mobileUserAgent = navigator.userAgent.match('Mobile')
 
@@ -40,6 +40,7 @@ var optLoadUserHistCiphers = true // load ciphers when CSV file is imported
 
 var optMatrixCodeRain = true // code rain
 var optRoundedInterface = true // rounded menus, buttons and charts
+var optBorderWidthPx = 2 // UI border thickness, [1;3] range
 
 var optShowOnlyMatching = false // set opacity of nonmatching values to zero
 
@@ -128,7 +129,8 @@ var calcOptionsArr = [ // used to export/import settings
 	'"encDefExcLetArr"+" = \x27"+String(encPrevExcLetStr).replace(/,/g,"")+"\x27"',
 	"'optImageScale'+' = '+optImageScale",
 	'"optHistTableCaption"+" = \x27"+String(optHistTableCaption)+"\x27"',
-	"'optRoundedInterface'+' = '+optRoundedInterface"
+	"'optRoundedInterface'+' = '+optRoundedInterface",
+	"'optBorderWidthPx'+' = '+optBorderWidthPx"
 ]
 
 var runOnceRestoreCalcSet = true
@@ -203,7 +205,8 @@ function loadDefaultDatabase() {
 
 var mobileCalcLayout = true // store current layout
 function configureCalcInterface(initRun = false) { // switch interface layout (desktop or mobile devices)
-	conf_RIF(true); // activate Chiseled or Rounded Interface
+	conf_RIF(true) // activate Chiseled or Rounded Interface
+	conf_UBT(true) // update UI border thickness
 	if (optMatrixCodeRain && !initRun) { // update code rain
 		clearInterval(code_rain) // reset previous instance
 		document.getElementById("canv").style.display = "none"
@@ -410,6 +413,10 @@ function createOptionsMenu() {
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Matrix Code Rain<input type="checkbox" id="chkbox_MCR" onclick="conf_MCR()" '+MCRstate+'><span class="custChkBox"></span></label></div>'
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Rounded Interface<input type="checkbox" id="chkbox_RIF" onclick="conf_RIF()" '+RIFstate+'><span class="custChkBox"></span></label></div>'
 	o += '<div style="margin: 1em"></div>'
+	o += '<div class="borderOptionsBox">'
+	o += '<span class="optionTableLabel">UI Border Thickness</span><input id="confBorderBox" onchange="conf_UBT()" type="number" value="'+optBorderWidthPx+'">'
+	o += '</div>'
+	o += '<div style="margin: 1em"></div>'
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Cross Cipher Match<input type="checkbox" id="chkbox_CCM" onclick="conf_CCM()" '+CCMstate+'><span class="custChkBox"></span></label></div>'
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Same Cipher Match<input type="checkbox" id="chkbox_SCM" onclick="conf_SCM()" '+SCMstate+'><span class="custChkBox"></span></label></div>'
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Show Only Matching<input type="checkbox" id="chkbox_SOM" onclick="conf_SOM()" '+SOMstate+'><span class="custChkBox"></span></label></div>'
@@ -456,6 +463,17 @@ function conf_RIF(redraw = false) { // Rounded Interface
 	var bRad = optRoundedInterface ? "1em" : "unset"
 	var root = document.documentElement // :root CSS variable
 	root.style.setProperty("--border-rad", bRad)
+}
+
+function conf_UBT(redraw = false) { // UI Border Thickness 
+	if (!redraw) {
+		optBorderWidthPx = Math.floor(Number(document.getElementById('confBorderBox').value))
+		optBorderWidthPx = optBorderWidthPx > 3 ? 3 : optBorderWidthPx
+		optBorderWidthPx = optBorderWidthPx < 1 ? 1 : optBorderWidthPx
+		$('#confBorderBox').val(optBorderWidthPx) // set range [1;3]
+	}
+	var root = document.documentElement // :root CSS variable
+	root.style.setProperty("--border-pxl", `${optBorderWidthPx}px solid`)
 }
 
 function conf_CCM() { // Cross Cipher Match
