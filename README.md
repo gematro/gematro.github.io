@@ -1,6 +1,8 @@
 ## GEMATRO - Gematria Calculator
 ![GEMATRO - Gematria Calculator](res/preview.png)
 
+> Use a Chromium based browser for best experience
+
 ### Features
 
 * Dynamic highlighter with a filter

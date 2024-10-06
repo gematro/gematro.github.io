@@ -762,17 +762,16 @@ body {
 		margin: 0em 0.25em 0em 0em;
 	}
 }
+/* Firefox needs only 'td' styles for clean rounded table corners, but then screenshots have transparent borders */
 /* Firefox can't combine 'tr' and 'td' styles to properly display element border radius */
-.HistoryTable tr:nth-child(odd), #QueryTable tr:nth-child(odd),
-.HistoryTable tr:nth-child(odd) td, #QueryTable tr:nth-child(odd) td {
+/* Use Chrome - 'tr' (not 'td') background-color is needed for proper html2canvas screenshots */
+.HistoryTable tr:nth-child(odd), #QueryTable tr:nth-child(odd) {
 	background-color: var(--table-row-odd);
 }
-.HistoryTable tr:nth-child(even), #QueryTable tr:nth-child(even), 
-.HistoryTable tr:nth-child(even) td, #QueryTable tr:nth-child(even) td {
+.HistoryTable tr:nth-child(even), #QueryTable tr:nth-child(even) {
 	background-color: var(--table-row-even);
 }
-/* '.cH' styling no longer works, 'tr' property is overriden by 'td' */
-.cH .HistoryTable tr:nth-child(26n+1) td, #QueryTable tr:nth-child(26n+1) td { /* cipher header bar, history table */
+.cH { /* cipher header bar, history table */
 	background: -webkit-linear-gradient(0deg, var(--hist-header-gradient), var(--table-row-odd));
 	background: -moz-linear-gradient(0deg, var(--hist-header-gradient), var(--table-row-odd));
 	background: -o-linear-gradient(0deg, var(--hist-header-gradient), var(--table-row-odd));
