@@ -763,14 +763,16 @@ body {
 	}
 }
 /* Firefox can't combine 'tr' and 'td' styles to properly display element border radius */
+.HistoryTable tr:nth-child(odd), #QueryTable tr:nth-child(odd),
 .HistoryTable tr:nth-child(odd) td, #QueryTable tr:nth-child(odd) td {
 	background-color: var(--table-row-odd);
 }
+.HistoryTable tr:nth-child(even), #QueryTable tr:nth-child(even), 
 .HistoryTable tr:nth-child(even) td, #QueryTable tr:nth-child(even) td {
 	background-color: var(--table-row-even);
 }
 /* '.cH' styling no longer works, 'tr' property is overriden by 'td' */
-.HistoryTable tr:nth-child(26n+1) td, #QueryTable tr:nth-child(26n+1) td { /* cipher header bar, history table */
+.cH .HistoryTable tr:nth-child(26n+1) td, #QueryTable tr:nth-child(26n+1) td { /* cipher header bar, history table */
 	background: -webkit-linear-gradient(0deg, var(--hist-header-gradient), var(--table-row-odd));
 	background: -moz-linear-gradient(0deg, var(--hist-header-gradient), var(--table-row-odd));
 	background: -o-linear-gradient(0deg, var(--hist-header-gradient), var(--table-row-odd));
