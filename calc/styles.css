@@ -1652,6 +1652,7 @@ body {
 	background-color: var(--btn-bg-accent);
 	border: var(--border-pxl) var(--border-dark-accent);
 	padding: 0em 0.35em;
+	width: 32px;
 }
 .queryPageBtnL {
 	border-top-right-radius: unset;
@@ -1746,6 +1747,7 @@ body {
 }
 #queryPosInput {
 	width: 95px;
+	height: 32px;
 	font-size: 100%;
 	outline: none; 
 	color: var(--font-white-2);

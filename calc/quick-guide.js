@@ -458,11 +458,15 @@ function displayQuickstartGuide() {
 	o += '<span class="qgNote">Note: Search is case sensitive, regular expressions are supported</span>'
 	o += '</li>'
 
+	o += '<li><span class="qgBold">Query Table</span> is <span class="qgBold">touch scrollable</span> (mobile), entries are scrolled page by page</li>'
+
 	o += '<li>'
-	o += 'Use <span class="qgBold">"Up"</span> and <span class="qgBold">"Down"</span> arrow keys to scroll one page at a time or use the mouse wheel'
+	o += 'Use <span class="qgBold">"Up"</span> and <span class="qgBold">"Down"</span> arrow keys to scroll one page at a time'
 	o += '<br>'
 	o += '<span class="qgNote">Note: Up/Down arrow keys work only when input is focused inside textbox with current index</span>'
 	o += '</li>'
+
+	o += '<li>Use <span class="qgBold">Mouse Wheel</span> for precise scrolling</li>'
 
 	o += '<li>A horizontal scroll bar above the table can be used for navigation as well or you can input the exact position inside the box with index</li>'
 

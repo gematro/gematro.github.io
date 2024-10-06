@@ -65,6 +65,37 @@ $(document).ready(function(){
 		}
 	});
 
+	var curTouchYpos=0,curTouchTimeStamp=0,prevTouchYpos,prevTouchTimeStamp;
+	$('body').on('touchmove', "#QueryTable", function(e) { // Query Table touch scroll event
+
+		hideContextMenu() // close context menu on scroll
+		st = $("#QueryTable").data("startpos")
+		n = $("#QueryTable").data("dispitems")
+
+		curTouchYpos = e.originalEvent.touches[0].screenY // record y coordinate of current touch event
+		curTouchTimeStamp = e.timeStamp // record current touch event timestamp
+		prevTouchYpos = (curTouchTimeStamp - prevTouchTimeStamp > 20) ? undefined : prevTouchYpos // reset previous coordinate if delta >20ms
+
+		// console.log(`curYpos: ${curTouchYpos}; prevYpos: ${prevTouchYpos}; deltaPos: ${curTouchYpos-prevTouchYpos}; `+
+		//	`curTime: ${curTouchTimeStamp}; prevTime: ${prevTouchTimeStamp}; deltaTime: ${curTouchTimeStamp - prevTouchTimeStamp};`)
+
+		if (curTouchYpos - prevTouchYpos > 10) { // inverted scrolling, fast movement, delta > 10px
+			// console.log('down')
+			if (st-dbScrollItems >= 0) { // scroll down
+				$("#queryArea").html() // clear previous table
+				updateDatabaseQueryTable(st-dbPageItems, n) // redraw table at new position, scroll by page
+			}
+		} else if (curTouchYpos - prevTouchYpos < -10) { // fast movement, delta < -10px
+			// console.log('up')
+			if (st+dbPageItems < queryResult.length) { // scroll up
+				$("#queryArea").html() // clear previous table
+				updateDatabaseQueryTable(st+dbPageItems, n) // redraw table at new position, scroll by page
+			}
+		}
+		prevTouchYpos = curTouchYpos // update previous touch event info
+		prevTouchTimeStamp = curTouchTimeStamp // update previous touch event info
+	});
+
 	// Up and Down arrow keys, List table
 	$("body").on("keydown", "#queryPosInput", function (e) {
 		// step="'+dbPageItems+'" min="0" max="'+queryResult.length+'"
@@ -91,7 +122,7 @@ $(document).ready(function(){
 
 	// Change of scrollbar position
 	$("body").on("input", "#queryScrollbar", function () {
-		st = $(this).val() * dbPageItems
+		st = Number($(this).val())
 		n = $("#QueryTable").data("dispitems")
 		$("#queryArea").html() // clear previous table
 		updateDatabaseQueryTable(st, n, true) // update only the table at new position

@@ -181,7 +181,6 @@ Vast sea of answers
 Very nice
 Light codes
 Cause of discontent
-External disturbance
 Good memories
 Gold nuggets
 Bright times ahead

@@ -205,9 +205,8 @@ function updateDatabaseQueryTable(stPos = 0, dItems, scrollBarEvent = false) { /
 	
 	if (!scrollBarEvent) {
 		if (endPos > queryResult.length) endPos = queryResult.length
-		sliderMax = Math.floor(queryResult.length/dbPageItems)
-		if (queryResult.length % dbPageItems == 0) sliderMax -= 1 // if total is divisible, no pagination for last element
-		curSliderPos = Math.round(curPos/dbPageItems)
+		sliderMax = (queryResult.length-dbPageItems > 0) ? queryResult.length-dbPageItems : 0
+		curSliderPos = curPos
 		ms = '<div id="queryCloseBtn">&#10005;</div>' // close button
 		ms += '<span class="minimizeLabel">Click to minimize</span>'
 		ms += '<div id="queryMinBtn">_</div>' // minimize button
