@@ -79,8 +79,6 @@ Faith and good works
 Decision making
 The power to manifest
 The power to create
-Shift focus
-Shift attention
 The purpose of Life
 Meaning of numbers
 Meaning of gematria
@@ -100,7 +98,7 @@ Binary Code
 Male and Female
 Light and Darkness
 Square and Compass
-True of False
+True or False
 Building blocks
 Creative expression
 Laws of Nature
@@ -166,11 +164,9 @@ Better times to come
 Investing your time
 Creative hobbies
 Useful information
-Helpful thing
 Interesting idea
 Valuable contribution
 Point of reference
-Move forward
 Your belief
 Thoughts and actions
 Reflection of the soul
@@ -180,7 +176,6 @@ Positive changes
 Vast sea of answers
 Very nice
 Light codes
-Cause of discontent
 Good memories
 Gold nuggets
 Bright times ahead
@@ -560,7 +555,7 @@ Good things come to those who wait
 Dripping water hollows out stone, not through force but through persistence.
 There is One and One. Magic is somewhere in between.
 Only Time will tell.
-Those who mislead themselves will mislead you as well.
+Those who mislead themselves will mislead others as well.
 A jack of all trades is a master of none.
 Know when to focus and when to relax.
 Wise ones are united in Wisdom. Fools are divided over their foolishness.
@@ -571,10 +566,20 @@ Learning from a contaminated source is akin to drinking polluted water.
 If someone is not ready, this is not the right time for them.
 Share without the need of reciprocity.
 There are times to give and there are times not to.
-Seek Wisdom with all your heart
+Seek Wisdom with all your Heart
 The Wise Ones are the Light unto the Nations.
 If you are wise enough, you will be convincing enough.
 Wise are not only wise, but strong as well. Weak ones are not truly wise.
+Nothing is still Something. There is a Word for it.
+One divided by One is still One. It divided itself, yet remained undivided.
+God is hidden, yet onmipresent and omnipotent.
+What we do not know can be more valuable than what we know.
+Silence speaks louder than words.
+Everything is a Function. Input - Processing - Output. All three roles are One as a seamless experience.
+Simple rules can create Art of infinite complexity.
+Letters - syllables - words - sentences. Interconnected shapes and forms are the meaning.
+Euler's Tonnetz is the missing link between Music and Sacred Geometry.
+The best is yet to come
 
 # Oneness
 God is One
@@ -600,7 +605,6 @@ Threefold Word
 Trinity
 Mother - Father - Child
 Past - Now - Future
-Input - Processing - Output
 Body - Soul - World
 Author - Messenger - Message
 Artist - Ink - Canvas
@@ -658,11 +662,7 @@ YOU WIN.
 What does this mean?
 How do you feel about this?
 What is this?
-So who made it?
 Why did you ask?
-What?
-Where did you get that from?
-How come?
 How could it be?
 What did you learn?
 What does it take to teach?
@@ -670,7 +670,6 @@ What makes a good teacher?
 What does it mean to learn?
 How do you learn?
 Is it possible to know?
-What does it imply to know?
 Do you want to know?
 What is the truth?
 What makes a story true?
@@ -685,51 +684,35 @@ Could it be there is too much information?
 Is it about quantity or quality?
 What matters?
 Have you ever tried to start your own project?
-Did you get that?
-What makes you happy?
 What do you make of it?
 How did you do that?
 What did you find?
 Was it helpful?
 Is it becoming addictive?
-Could it be true?
 Could it be that I am wrong about it?
-Is this a good idea?
-But is it worth it?
-Then what is wisdom?
 What needs to be done?
-How can it be true?
 What is true?
 What is the truth then?
 Could GEMATRO pass the Turing test?
 How did you end up here?
 Do you remember how it started?
 Do you know yourself?
-Where does it take you?
 How far have you come?
 Did you think of the implications?
 What are the consequences?
-What is the lesson?
 Why are you doing this?
-Is it worthwhile?
 Have you ever thought of it before?
 Would it be good to know?
 What defines an optimal path?
 Who is able to assess the expertise of another?
-What differs a layman from an expert?
 Could there be another solution?
 Is there a different viable path?
 Could it be that the old answers no longer solve contemporary challenges?
 Are we getting somewhere?
 Where is the beaten track?
-Is there anything else to know?
 Is it all there is to this subject?
 Would you like to know more?
-Who cares to know?
 Why are there so many questions?
-Could it be the other way around?
-Does it make sense?
-Makes any sense to you?
 
 # Gematro Talking
 I never thought you would make it this far
