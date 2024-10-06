@@ -750,12 +750,6 @@ body {
 	border-bottom: var(--border-pxl) var(--border-dark-accent);
 	border-left: var(--border-pxl) var(--border-dark-accent);
 }
-.cH { /* cipher header bar, history table */
-	background: -webkit-linear-gradient(0deg, var(--hist-header-gradient), transparent); /*20,23,27*/
-	background: -moz-linear-gradient(0deg, var(--hist-header-gradient), transparent);
-	background: -o-linear-gradient(0deg, var(--hist-header-gradient), transparent);
-	background: linear-gradient(0deg, var(--hist-header-gradient), transparent);
-}
 .HistoryTable, #QueryTable {
 	text-align: center;
 	border-spacing: 0px;
@@ -774,6 +768,13 @@ body {
 }
 .HistoryTable tr:nth-child(even) td, #QueryTable tr:nth-child(even) td {
 	background-color: var(--table-row-even);
+}
+/* '.cH' styling no longer works, 'tr' property is overriden by 'td' */
+.HistoryTable tr:nth-child(26n+1) td, #QueryTable tr:nth-child(26n+1) td { /* cipher header bar, history table */
+	background: -webkit-linear-gradient(0deg, var(--hist-header-gradient), var(--table-row-odd));
+	background: -moz-linear-gradient(0deg, var(--hist-header-gradient), var(--table-row-odd));
+	background: -o-linear-gradient(0deg, var(--hist-header-gradient), var(--table-row-odd));
+	background: linear-gradient(0deg, var(--hist-header-gradient), var(--table-row-odd));
 }
 /* table outline / outer border with corner radius */
 .HistoryTable tr:first-child td:first-child {
@@ -1673,7 +1674,7 @@ body {
 	text-align: center;
 	box-sizing: border-box;
 	color: var(--border-accent);
-	background: var(--hist-header-gradient);
+	background: var(--input-bg-accent);
 	/* border-right: var(--border-pxl) var(--border-accent); */
 	/* border-top: var(--border-pxl) var(--border-accent); */
 	border-bottom: var(--border-pxl) var(--border-accent);
@@ -1690,7 +1691,7 @@ body {
 	text-align: center;
 	box-sizing: border-box;
 	color: var(--border-accent);
-	background: var(--hist-header-gradient);
+	background: var(--input-bg-accent);
 	/* border-left: var(--border-pxl) var(--border-accent); */
 	/* border-top: var(--border-pxl) var(--border-accent); */
 	border-bottom: var(--border-pxl) var(--border-accent);
@@ -1719,7 +1720,7 @@ body {
 	-webkit-appearance: none;
 	width: calc(100% - 64px);
 	height: 32px;
-	background: var(--hist-header-gradient);
+	background: var(--input-bg-accent);
 	outline: none;
 	margin: 0;
 	margin-left: 32px;
