@@ -44,7 +44,6 @@ Weights and biases
 Neural connections
 Links and meaning
 Tarot cards
-Tarot deck
 Shape or form
 Universal Laws of Nature
 Immutable laws
@@ -584,6 +583,15 @@ Some people make it happen; some watch it happen; others ask "What happened?"
 Great minds discuss ideas; average minds discuss events; small minds discuss people.
 Two can read the same book and arrive at different conclusions. Context is Key.
 Mind has the capacity to See, yet not all minds see the World for what it actually is.
+Learning is a natural process, there is a fine balance between effort and reward.
+Reward function reinforces awareness of positive patterns.
+Penalty function reinforces awareness of negative patterns.
+Three Two Two. Three to Two. Trinity to Polarity.
+Two oh One. Two into One, joined and separated by the nought in between.
+Dithering creates complexity with geometric patterns. Look up Black and White pixel art.
+Gateway is both an Exit and an Entrance.
+E pluribus unum. Out of many (nations), One (mankind).
+Seven ate Nine. Two ate Seven. Two oh One. Trinity. All is One.
 
 # Oneness
 God is One
