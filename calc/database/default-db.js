@@ -403,7 +403,7 @@ Those who surrender never win
 Language is a tool
 Your attention makes it real
 Don't forget the lessons
-Replacing one thing with another can be of help with moving on
+Replacing one thing with another is the only way to move on
 Don't think of the pink elephant
 Light is Right
 Health is success
@@ -580,6 +580,10 @@ Simple rules can create Art of infinite complexity.
 Letters - syllables - words - sentences. Interconnected shapes and forms are the meaning.
 Euler's Tonnetz is the missing link between Music and Sacred Geometry.
 The best is yet to come
+Some people make it happen; some watch it happen; others ask "What happened?"
+Great minds discuss ideas; average minds discuss events; small minds discuss people.
+Two can read the same book and arrive at different conclusions. Context is Key.
+Mind has the capacity to See, yet not all minds see the World for what it actually is.
 
 # Oneness
 God is One
