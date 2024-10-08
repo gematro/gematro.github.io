@@ -381,15 +381,15 @@ Your knowledge is worthless unless it has some good practical use
 Everything is alive
 The Matrix is a binary state grid. Random access memory.
 To undo the damage done
-You are a Phoenix
 Rebuild from the ashes
+You are a Phoenix
 Everything is a Cycle
 When two believe in the same idea there are no obstacles.
 What doesn't kill you makes you stronger
 You will never learn to swim unless you jump into the water
 Thoughful exercise leads to Proficiency
 Overcome challenges and obstacles
-Results are not immideately seen
+Results are not immediately seen
 Soul is the intermediary between the Body and the World
 You are the Pathfinder
 Allegory is never literal
@@ -591,7 +591,6 @@ Two oh One. Two into One, joined and separated by the nought in between.
 Dithering creates complexity with geometric patterns. Look up Black and White pixel art.
 Gateway is both an Exit and an Entrance.
 E pluribus unum. Out of many (nations), One (mankind).
-Seven ate Nine. Two ate Seven. Two oh One. Trinity. All is One.
 
 # Oneness
 God is One

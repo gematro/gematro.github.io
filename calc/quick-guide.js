@@ -505,7 +505,7 @@ function displayDiscPanel() {
 
 	var o = '<div class="discPanel">'
 	o += '<center>'
-	o += '<p><span class="qgBold3">Disclaimer</span></p>'
+	o += '<p><span class="qgBold3">"Dedicated to the Rational Soul of the World"</span></p>'
 	o += '</center>'
 	
 	o += '<hr class="numPropSeparator">'
