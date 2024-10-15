@@ -509,7 +509,11 @@ $(document).ready(function(){
 	// history table value clicked (right mouse button)
 	// disable context menu for the element so right click works
 	$(".tC").live('contextmenu', function() { // ".bind" for existing elements, ".live" for future
-		$(this).find(".gV").toggleClass('hideValue'); // <b> "style="display: none;"
+		if (!optNumerologyMode) {
+			$(this).find(".gV").toggleClass('hideValue'); // <b> "style="display: none;"
+		} else {
+			$(this).find(".gV, .gA").removeClass('hideValue'); // click on cell to show hidden values in Numerology Mode
+		}
 		return false; // don't show menu
 	})
 	
@@ -517,11 +521,34 @@ $(document).ready(function(){
 	// trick is that ".gV" is " 12 ", not "12", so td:contains can't match it to " 112 "
 	$("body").on("click", ".tC", function (e) { // tC - history table cell
 		//console.log($(this).find(".gV").html()); // inner html of .gV found in "this"
-		var val = $(this).find(".gV").html(); // get gematria value from element
-		if(ctrlIsPressed) { // Ctrl + Left Click - toggle value inside highlight box
-			tdToggleHighlight(parseInt(val.trim(), 10)); // remove spaces, parse as integer and add (remove) to highlight box
-		} else { // Left Click only - temporary blinking effect
-			$( "table.HistoryTable td.tC > span:contains('"+val+"')" ).toggleClass('highlightValueBlink'); // add blinking effect
+		if (!optNumerologyMode) {
+			var val = $(this).find(".gV").html(); // get gematria value from element
+			if(ctrlIsPressed) { // Ctrl + Left Click - toggle value inside highlight box
+				tdToggleHighlight(parseInt(val.trim(), 10)); // remove spaces, parse as integer and add (remove) to highlight box
+			} else { // Left Click only - temporary blinking effect
+				$( "table.HistoryTable td.tC > span:contains('"+val+"')" ).toggleClass('highlightValueBlink'); // add blinking effect
+			}
+		}
+	});
+
+	// Numerology mode - history table value clicked (right mouse button)
+	// disable context menu for the element so right click works
+	$("body").on("contextmenu", ".gV, .gA", function() { // ".bind" for existing elements, ".live" for future
+		$(this).toggleClass('hideValue'); // <b> "style="display: none;"
+		return false; // don't show menu
+	})
+	
+	// Numerology mode - history table value clicked (left mouse button)
+	// trick is that ".gV" is " 12 ", not "12", so td:contains can't match it to " 112 "
+	$("body").on("click", ".gV", function (e) { // tC - history table cell
+		//console.log($(this).find(".gV").html()); // inner html of .gV found in "this"
+		if (optNumerologyMode) {
+			var val = $(this).html(); // get gematria value from element
+			if(ctrlIsPressed) { // Ctrl + Left Click - toggle value inside highlight box
+				if (!optNumerologyMode) tdToggleHighlight(parseInt(val.trim(), 10)); // remove spaces, parse as integer and add (remove) to highlight box
+			} else { // Left Click only - temporary blinking effect
+				$( "table.HistoryTable td.tC > span:contains('"+val+"')" ).toggleClass('highlightValueBlink'); // add blinking effect
+			}
 		}
 	});
 	

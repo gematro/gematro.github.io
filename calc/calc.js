@@ -1,6 +1,6 @@
 // ============================== Init ==============================
 
-var gematroVersion = '24.10.15.0' // YY.M.D.revision
+var gematroVersion = '24.10.15.1' // YY.M.D.revision
 var compactViewportWidth = 911 // viewport width threshold
 var mobileUserAgent = navigator.userAgent.match('Mobile')
 
@@ -43,6 +43,7 @@ var optRoundedInterface = true // rounded menus, buttons and charts
 var optBorderWidthPx = 2 // UI border thickness, [1;3] range
 
 var optShowOnlyMatching = false // set opacity of nonmatching values to zero
+var optNumerologyMode = false // display numerology breakdown for History Table values
 
 var optNumCalcMethod = 1 // 0 - "Off", 1 - "Full", 2 - "Reduced"
 var optLetterWordCount = true // show word/letter count
@@ -130,7 +131,8 @@ var calcOptionsArr = [ // used to export/import settings
 	"'optImageScale'+' = '+optImageScale",
 	'"optHistTableCaption"+" = \x27"+String(optHistTableCaption)+"\x27"',
 	"'optRoundedInterface'+' = '+optRoundedInterface",
-	"'optBorderWidthPx'+' = '+optBorderWidthPx"
+	"'optBorderWidthPx'+' = '+optBorderWidthPx",
+	"'optNumerologyMode'+' = '+optNumerologyMode"
 ]
 
 var runOnceRestoreCalcSet = true
@@ -207,6 +209,7 @@ var mobileCalcLayout = true // store current layout
 function configureCalcInterface(initRun = false) { // switch interface layout (desktop or mobile devices)
 	conf_RIF(true) // activate Chiseled or Rounded Interface
 	conf_UBT(true) // update UI border thickness
+	conf_NMD(true) // update Numerology Mode
 	if (optMatrixCodeRain && !initRun) { // update code rain
 		clearInterval(code_rain) // reset previous instance
 		document.getElementById("canv").style.display = "none"
@@ -385,9 +388,9 @@ function createOptionsMenu() {
 
 	// get checkbox states
 	var MCRstate = ""; var RIFstate = ""; var CCMstate = ""; var SCMstate = "";
-	var SOMstate = ""; var DLIstate = ""; var APCstate = ""; var LDMstate = "";
-	var NPGFstate = ""; var LWCstate = ""; var WBstate = ""; var CBstate = "";
-	var CCstate = ""; var GCstate = ""; var SWCstate = ""; 
+	var SOMstate = ""; var NMDstate = ""; var DLIstate = ""; var APCstate = "";
+	var LDMstate = ""; var NPGFstate = ""; var LWCstate = ""; var WBstate = "";
+	var CBstate = ""; var CCstate = ""; var GCstate = ""; var SWCstate = ""; 
 
 	if (optMatrixCodeRain) MCRstate = "checked" // Matrix Code Rain
 	if (optRoundedInterface) RIFstate = "checked" // Rounded Interface
@@ -395,6 +398,8 @@ function createOptionsMenu() {
 	if (optFiltCrossCipherMatch) CCMstate = "checked" // Cross Cipher Match
 	if (optFiltSameCipherMatch) SCMstate = "checked" // Same Cipher Match
 	if (optShowOnlyMatching) SOMstate = "checked" // Show Only Matching
+
+	if (optNumerologyMode) NMDstate = "checked" // Numerology Mode
 
 	if (optDotlessLatinI) DLIstate = "checked" // Dotless Latin 'ı' as 'i'
 	if (optAllowPhraseComments) APCstate = "checked" // Allow Phrase Comments
@@ -420,6 +425,8 @@ function createOptionsMenu() {
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Cross Cipher Match<input type="checkbox" id="chkbox_CCM" onclick="conf_CCM()" '+CCMstate+'><span class="custChkBox"></span></label></div>'
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Same Cipher Match<input type="checkbox" id="chkbox_SCM" onclick="conf_SCM()" '+SCMstate+'><span class="custChkBox"></span></label></div>'
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Show Only Matching<input type="checkbox" id="chkbox_SOM" onclick="conf_SOM()" '+SOMstate+'><span class="custChkBox"></span></label></div>'
+	o += '<div style="margin: 1em"></div>'
+	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Numerology Mode<input type="checkbox" id="chkbox_NMD" onclick="conf_NMD()" '+NMDstate+'><span class="custChkBox"></span></label></div>'
 	o += '<div style="margin: 1em"></div>'
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Dotless Latin <b>ı</b> as <b>i</b><input type="checkbox" id="chkbox_DLI" onclick="conf_DLI()" '+DLIstate+'><span class="custChkBox"></span></label></div>'
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Ignore Comments [...]<input type="checkbox" id="chkbox_APC" onclick="conf_APC()" '+APCstate+'><span class="custChkBox"></span></label></div>'
@@ -508,6 +515,13 @@ function conf_SOM() { // Show Only Matching
 	} else if (optFiltSameCipherMatch) {
 		updateHistoryTableSameCiphMatch()
 	}
+}
+
+function conf_NMD(redraw = false) { // Numerology Mode
+	if (!redraw) optNumerologyMode = !optNumerologyMode
+	document.getElementById('highlightBox').disabled = optNumerologyMode
+	if (optNumerologyMode) document.getElementById('highlightBox').value = ''
+	updateTables()
 }
 
 function conf_DLI() { // Dotless Latin 'ı' as 'i'
@@ -718,7 +732,7 @@ function createExportMenu() {
 }
 function conf_iScale() { // image scale
 	var element = document.getElementById("iScaleBox")
-	optImageScale = Number(Number(element.value).toFixed(1)) // 1.00
+	optImageScale = Number(Number(element.value).toFixed(1)) // 1.0
 	$('#iScaleBox').val(clampNum(optImageScale, 0.5, 10)) // set range [0.5;10.0]
 }
 
@@ -1582,6 +1596,13 @@ function updateHistoryTable(hltBoolArr) {
 					gemVal = curCiph.multiCharacter ? getSumStr(curCiph.sv) : getSumStr(curCiph.cv) // value only
 				} else {
 					gemVal = curCiph.calcGematria(sHistory[x]) // value only
+					if (optNumerologyMode) {  // numerology breakdown
+						var gR = gemVal
+						while (gR > 9 && gR !== 11 && gR !== 22 && gR !== 33) {
+							gR = reduceNumber(gR, true) // one step reduction, add all digits only once
+							gemVal += ' ' + gR
+						}
+					}
 				}
 				
 				//phrase x, cipher y
@@ -1599,7 +1620,19 @@ function updateHistoryTable(hltBoolArr) {
 				}
 				ciphCount++ // next position in hltBoolArr
 				var valClass = curCiph.wheelCipher ? 'gW' : 'gV' // no number properties for wheel ciphers
-				ms += '<td class="tC"><span style="color: '+col+'" class="'+valClass+'"> '+gemVal+' </span></td>'
+				var spanVal = '<span style="color: '+col+'" class="'+valClass+'"> '+gemVal+' </span>'
+
+				if (optNumerologyMode) { // display numerology breakdown
+					var numValArr = (String(gemVal).indexOf(' ') > -1) ? gemVal.split(' ') : [gemVal] // split to array of numbers or one number
+					spanVal = '' // new set of span elements
+					for (var e = 0; e < numValArr.length; e++) { // create span element for each number
+						spanVal += '<span style="color: '+col+'" class="'+valClass+'"> '+numValArr[e]+' </span>'
+						if (e !== numValArr.length-1 ) spanVal += '<span style="color: '+col+'" class="gA">&#10148;</span>' // no arrow after last element
+					}
+				}
+
+				//ms += '<td class="tC"><span style="color: '+col+'" class="'+valClass+'"> '+gemVal+' </span></td>'
+				ms += '<td class="tC">'+spanVal+'</td>'
 			}
 		}
 		ms += '</tr>'

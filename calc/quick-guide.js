@@ -130,6 +130,12 @@ function displayQuickstartGuide() {
 	o += '<li><span class="qgBold">"Show Only Matching"</span> - when highlighter is active, sets opacity of nonmatching values to zero</li>'
 
 	o += '<li>'
+	o += '<span class="qgBold">"Numerology Mode"</span> - show <span class="qgBold">Numerology</span> breakdown in <span class="qgBold">History Table</span>'
+	o += '<br>'
+	o += '<span class="qgNote">Note: Highlighter is disabled in this mode, click on numbers manually to add a blinking effect to matching values</span>'
+	o += '</li>'
+
+	o += '<li>'
 	o += '<span class="qgBold">"Dotless Latin ı as i"</span> - when enabled, dotless lowercase Latin letter <span class="qgBold">ı</span> uses the same value as regular lowercase Latin letter <span class="qgBold">i</span> for gematria calculation'
 	o += '<br>'
 	o += '<span class="qgNote">Note: This letter is used in the Latin-script alphabets of Azerbaijani, Crimean Tatar, Gagauz, Kazakh, Tatar and Turkish</span>'

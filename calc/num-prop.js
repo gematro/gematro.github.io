@@ -314,7 +314,7 @@ function fmtBaseY(num, base = 60) {
 	} else return num
 }
 
-function reduceNumber(num) { // digital root of a number
+function reduceNumber(num, oneStep = false) { // digital root of a number
 	num = parseInt(num), 10
 	var droot = num; var d = 0; var i
 	while (num > 9 && num !== 11 && num !== 22 && num !== 33) { // not single digit and not a master number
@@ -324,6 +324,7 @@ function reduceNumber(num) { // digital root of a number
 			droot += d // add all digits one by one
 		}
 		num = droot
+		if (oneStep) return droot // add all digits only once
 	}
 	return droot
 }

@@ -742,6 +742,10 @@ body {
 	outline: none !important;
 	border: var(--border-pxl) var(--focus-outline);
 }
+#phraseBox:disabled, #highlightBox:disabled {
+	outline: none !important;
+	border: var(--border-pxl) var(--border-dark-accent);
+}
 
 /*                History Table               */
 /* ########################################## */
@@ -877,7 +881,7 @@ body {
 }
 .hP, .hPQ { /* history phrase */
 	text-align: right;
-	padding: 0em 0.5em 0em 0.5em;
+	padding: 0em 0.5em 0em 0.6em;
 	font-size: 110%;
 	font-weight: 500;
 	color: var(--font-white-3);
@@ -909,13 +913,13 @@ body {
 	width: fit-content;
 	padding: 0em 1em;
 }
-.gV, .gW, .gVQ { /* gematria value in history/query table */
+.gV, .gW, .gVQ, .gA { /* gematria value in history/query table, .gA - arrow for numerology display */
 	font-size: 125%;
 	font-weight: 500;
 	cursor: pointer;
 }
 .gV, .gW {
-	padding: 0em 0.2em;
+	padding: 0em 0.5em;
 }
 .gW {
 	cursor: default;
