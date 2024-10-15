@@ -544,10 +544,11 @@ $(document).ready(function(){
 		//console.log($(this).find(".gV").html()); // inner html of .gV found in "this"
 		if (optNumerologyMode) {
 			var val = $(this).html(); // get gematria value from element
+			val = val.replace(/&nbsp;/g,'') // replace &nbsp; spaces
 			if(ctrlIsPressed) { // Ctrl + Left Click - toggle value inside highlight box
 				if (!optNumerologyMode) tdToggleHighlight(parseInt(val.trim(), 10)); // remove spaces, parse as integer and add (remove) to highlight box
-			} else { // Left Click only - temporary blinking effect
-				$( "table.HistoryTable td.tC > span:contains('"+val+"')" ).toggleClass('highlightValueBlink'); // add blinking effect
+			} else { // Left Click only - temporary blinking effect, \u00a0 = &nbsp;
+				$( "table.HistoryTable td.tC > span:contains('\u00a0"+val+"\u00a0')" ).toggleClass('highlightValueBlink'); // add blinking effect
 			}
 		}
 	});

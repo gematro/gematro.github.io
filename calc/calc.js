@@ -1,6 +1,6 @@
 // ============================== Init ==============================
 
-var gematroVersion = '24.10.16.0' // YY.M.D.revision
+var gematroVersion = '24.10.16.1' // YY.M.D.revision
 var compactViewportWidth = 911 // viewport width threshold
 var mobileUserAgent = navigator.userAgent.match('Mobile')
 
@@ -1641,7 +1641,7 @@ function updateHistoryTable(hltBoolArr) {
 					spanVal = '' // new set of span elements
 					for (var e = 0; e < numValArr.length; e++) { // create span element for each number
 						valClass = (numHasSpecialProps(numValArr[e]) && optShowSpecialNumbers) ? 'gV numSpecial' : 'gV' // highlight special values
-						spanVal += '<span style="color: '+col+'" class="'+valClass+'">'+numValArr[e]+'</span>'
+						spanVal += '<span style="color: '+col+'" class="'+valClass+'">&nbsp;'+numValArr[e]+'&nbsp;</span>'
 						if (e !== numValArr.length-1 ) spanVal += '<span style="color: '+col+'" class="gA">&#10148;</span>' // no arrow after last element
 					}
 				}
