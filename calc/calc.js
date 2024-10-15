@@ -1,6 +1,6 @@
 // ============================== Init ==============================
 
-var gematroVersion = '24.10.8.0' // YY.M.D.revision
+var gematroVersion = '24.10.15.0' // YY.M.D.revision
 var compactViewportWidth = 911 // viewport width threshold
 var mobileUserAgent = navigator.userAgent.match('Mobile')
 
@@ -414,7 +414,7 @@ function createOptionsMenu() {
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Rounded Interface<input type="checkbox" id="chkbox_RIF" onclick="conf_RIF()" '+RIFstate+'><span class="custChkBox"></span></label></div>'
 	o += '<div style="margin: 1em"></div>'
 	o += '<div class="borderOptionsBox">'
-	o += '<span class="optionTableLabel">UI Border Thickness</span><input id="confBorderBox" onchange="conf_UBT()" type="number" value="'+optBorderWidthPx+'">'
+	o += '<span class="optionTableLabel">UI Border Thickness</span><input id="confBorderBox" autocomplete="off" oninput="conf_UBT()" type="number" min="0" max="3" step="1" value="'+optBorderWidthPx+'">'
 	o += '</div>'
 	o += '<div style="margin: 1em"></div>'
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Cross Cipher Match<input type="checkbox" id="chkbox_CCM" onclick="conf_CCM()" '+CCMstate+'><span class="custChkBox"></span></label></div>'
@@ -428,10 +428,10 @@ function createOptionsMenu() {
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">New Phrases Go First<input type="checkbox" id="chkbox_NPGF" onclick="conf_NPGF()" '+NPGFstate+'><span class="custChkBox"></span></label></div>'
 	o += '<div style="margin: 1em"></div>'
 	o += '<div class="dbOptionsBoxTop">'
-	o += '<span class="optionTableLabel">Phrases on DB page</span><input id="dbPageItemsBox" onchange="conf_DPI()" type="text" value="'+dbPageItems+'">'
+	o += '<span class="optionTableLabel">Phrases on DB page</span><input id="dbPageItemsBox" autocomplete="off" oninput="conf_DPI()" type="number" min="1" max="25" step="1" value="'+dbPageItems+'">'
 	o += '</div>'
 	o += '<div class="dbOptionsBoxBtm">'
-	o += '<span class="optionTableLabel">Scroll DB by lines</span><input id="dbScrollItemsBox" onchange="conf_DSI()" type="text" value="'+dbScrollItems+'">'
+	o += '<span class="optionTableLabel">Scroll DB by lines</span><input id="dbScrollItemsBox" autocomplete="off" oninput="conf_DSI()" type="number" min="1" max="25" step="1" value="'+dbScrollItems+'">'
 	o += '</div>'
 	o += '<div style="margin: 1em"></div>'
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Letter/Word Count<input type="checkbox" id="chkbox_LWC" onclick="conf_LWC()" '+LWCstate+'><span class="custChkBox"></span></label></div>'
@@ -468,9 +468,7 @@ function conf_RIF(redraw = false) { // Rounded Interface
 function conf_UBT(redraw = false) { // UI Border Thickness 
 	if (!redraw) {
 		optBorderWidthPx = Math.floor(Number(document.getElementById('confBorderBox').value))
-		optBorderWidthPx = optBorderWidthPx > 3 ? 3 : optBorderWidthPx
-		optBorderWidthPx = optBorderWidthPx < 1 ? 1 : optBorderWidthPx
-		$('#confBorderBox').val(optBorderWidthPx) // set range [1;3]
+		$('#confBorderBox').val(clampNum(optBorderWidthPx, 0, 3)) // set range [0;3]
 	}
 	var root = document.documentElement // :root CSS variable
 	root.style.setProperty("--border-pxl", `${optBorderWidthPx}px solid`)
@@ -563,7 +561,9 @@ function conf_NPGF() { // New Phrases Go First
 
 function conf_DPI() { // Database Page Items
 	var element = document.getElementById("dbPageItemsBox")
-	dbPageItems = Number(element.value)
+	dbPageItems = Math.floor(Number(element.value))
+	$('#dbPageItemsBox').val(clampNum(dbPageItems, 1, 25)) // set range [1;25]
+
 	if (document.getElementById("QueryTable") !== null) { // redraw query table if it exists
 		st = Number( document.getElementById('queryPosInput').value )
 		if (st < 0) {
@@ -578,7 +578,8 @@ function conf_DPI() { // Database Page Items
 
 function conf_DSI() { // Database Scroll Items
 	var element = document.getElementById("dbScrollItemsBox")
-	dbScrollItems = Number(element.value)
+	dbScrollItems = Math.floor(Number(element.value))
+	$('#dbScrollItemsBox').val(clampNum(dbScrollItems, 1, 25)) // set range [1;25]
 }
 
 function create_NumCalc() { // Number Calculation
@@ -680,7 +681,7 @@ function createExportMenu() {
 	o += '<input id="btn-num-props-png" class="intBtn" type="button" value="Print Number Properties">' // print number properties
 	o += '<div style="margin: 0.5em;"></div>'
 	o += '<input id="btn-date-calc-png" class="intBtn" type="button" value="Print Date Durations">' // print date durations
-	o += '<div class="enterAsWordsLimit"><span class="optionTableLabel">Image scale</span><input id="iScaleBox" onchange="conf_iScale()" type="text" value="'+optImageScale.toFixed(1)+'"></div>' // image scale
+	o += '<div class="enterAsWordsLimit"><span class="optionTableLabel">Image scale</span><input id="iScaleBox" autocomplete="off" onchange="conf_iScale()" type="number" min="0.5" max="10" step="0.1" value="'+optImageScale.toFixed(1)+'"></div>' // image scale
 
 	o += '<hr class="hrSeparator2em">'
 
@@ -717,7 +718,8 @@ function createExportMenu() {
 }
 function conf_iScale() { // image scale
 	var element = document.getElementById("iScaleBox")
-	optImageScale = Number(Number(element.value).toFixed(1)) // 1.0
+	optImageScale = Number(Number(element.value).toFixed(1)) // 1.00
+	$('#iScaleBox').val(clampNum(optImageScale, 0.5, 10)) // set range [0.5;10.0]
 }
 
 // ========================= Color Functions ========================
@@ -760,13 +762,14 @@ function createFeaturesMenu() {
 function create_PL() { // Phrase Limit (End)
 	var o = ""
 	o += '<div class="enterAsWordsLimit">'
-	o += '<span class="optionTableLabel">Word limit:</span><input id="phrLimitBox" onchange="conf_PL()" type="text" value="'+optPhraseLimit+'">'
+	o += '<span class="optionTableLabel">Word limit:</span><input id="phrLimitBox" autocomplete="off" oninput="conf_PL()" type="number" min="1" max="25" step="1" value="'+optPhraseLimit+'">'
 	o += '</div>'
 	return o
 }
 function conf_PL() {
 	var pLimit = document.getElementById("phrLimitBox")
-	optPhraseLimit = Number(pLimit.value)
+	optPhraseLimit = Math.floor(Number(pLimit.value))
+	$('#phrLimitBox').val(clampNum(optPhraseLimit, 1, 25)) // set range [1;25]
 }
 function conf_HTC() {
 	var p = prompt('Set History Table caption:', optHistTableCaption)

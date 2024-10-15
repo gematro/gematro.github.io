@@ -114,13 +114,15 @@ function drawOutlineCanvas(c, oWidth = 5) {
 	var ctx = c.getContext('2d')
 	ctx.lineWidth = oWidth*optImageScale
 	ctx.strokeStyle = outlineColor
-	if (!optRoundedInterface && oWidth > 0) { // rectangular outline
-		ctx.strokeRect(0+(ctx.lineWidth/2), 0+(ctx.lineWidth/2), c.width-ctx.lineWidth, c.height-ctx.lineWidth)
-	} else if (oWidth > 0) { // rounded outline
+	if (!optRoundedInterface) { // rectangular outline
+		if (oWidth > 0) ctx.strokeRect(0+(ctx.lineWidth/2), 0+(ctx.lineWidth/2), c.width-ctx.lineWidth, c.height-ctx.lineWidth)
+	} else { // rounded outline
 		canvClearRoundRectCorners(ctx, 0, 0, c.width, c.height, 20*optImageScale) // erase corners and border, 1em (16px) + 2px + 2px
-		ctx.beginPath()
-		ctx.roundRect(0+(ctx.lineWidth/2), 0+(ctx.lineWidth/2), c.width-ctx.lineWidth, c.height-ctx.lineWidth, 16*optImageScale) // 1em (16px)
-		ctx.stroke()
+		if (oWidth > 0) {
+			ctx.beginPath()
+			ctx.roundRect(0+(ctx.lineWidth/2), 0+(ctx.lineWidth/2), c.width-ctx.lineWidth, c.height-ctx.lineWidth, 16*optImageScale) // 1em (16px)
+			ctx.stroke()
+		}
 	}
 	return ctx.canvas
 }

@@ -354,7 +354,7 @@ body {
 	text-align: center;
 	font-size: 80%;
 	color: var(--font-white-1);
-	border: 2px solid var(--border-accent);
+	border: var(--border-pxl) var(--border-accent);
 	box-sizing: border-box;
 	font-family: var(--font-family-mono);
 	line-height: 1.2em;
@@ -369,14 +369,14 @@ body {
 	width: 100px;
 	font-size: 80%;
 	color: var(--font-white-1);
-	border: 2px solid var(--border-accent);
+	border: var(--border-pxl) var(--border-accent);
 	font-family: var(--font-family-mono);
 	line-height: 1.2em;
 	background-color: var(--btn-bg-accent);
 }
 .colSlider:focus, .colSlider2:focus, .cipherColValueBox:focus {
 	outline: none !important;
-	border: 2px solid var(--focus-outline);
+	border: var(--border-pxl) var(--focus-outline);
 }
 .globColCtrlTable {
 	padding-right: 1.25em;
@@ -1575,7 +1575,7 @@ body {
 	width: 55px;
 	font-size: 150%;
 	color: var(--font-white-1);
-	border: 2px solid var(--border-accent);
+	border: var(--border-pxl) var(--border-accent);
 	box-sizing: border-box;
 	font-family: var(--font-family);
 	font-weight: 500;
@@ -1629,7 +1629,7 @@ body {
 }
 .dateInput:focus, .dateInputYear:focus, .offsetDateInput:focus {
 	outline: none !important;
-	border: 2px solid var(--focus-outline);
+	border: var(--border-pxl) var(--focus-outline);
 }
 
 /*                Query Table                 */
@@ -1942,7 +1942,7 @@ body {
 }
 #imgDataDesc {
 	margin: 1.5em 0em 0em 0em;
-	border: 2px solid var(--separator-accent);
+	border: var(--border-pxl) var(--separator-accent);
 	box-sizing: border-box;
 }
 @media (max-width: 911px) { /* mobile */

@@ -358,6 +358,24 @@ var prevCiphIndex = -1 // index of previously selected cipher in enabled ciphers
 
 var showCapsCipherChart = false // display uppercase letters in Cipher Chart
 
+function changeNumWheelEvent(element, increment=true) { // custom wheel spin control for number inputs
+	var e = document.getElementById(element)
+	var cVal = Number(e.value) // current value
+	var cMin = Number(e.min)
+	var cMax = Number(e.max)
+	var cStep = Number(e.step)
+	var cStepStr = String(cStep)
+	var roundTo = (cStepStr.indexOf('.') > -1) ? cStepStr.length - cStepStr.indexOf('.') - 1 : 0 // n digits after decimal point
+	var newVal = cVal // new value
+	if (increment) { // increase value within bounds
+		newVal = (newVal+cStep <= cMax) ? Number((newVal+cStep).toFixed(roundTo)) : cMax // 1.0 + 0.1 => 1.1000000000000005 => 1.1
+	} else { // decrease value within bounds
+		newVal = (newVal-cStep >= cMin) ? Number((newVal-cStep).toFixed(roundTo)) : cMin
+	}
+	e.value = newVal // update element value
+	e.dispatchEvent(new Event('input', { 'bubbles': true })) // trigger "input" event to execute any other element related functions
+}
+
 $(document).ready(function(){
 	
 	// Ctrl key modifier
@@ -376,6 +394,24 @@ $(document).ready(function(){
 	});
 	$(document).keyup(function(){
 		shiftIsPressed = false;
+	});
+
+	// prevents page scroll when cursor is above number fields
+	// prevents Chromium browsers from changing focused number fields with wheel scroll
+	$("body").on("focus mouseover", "input[type=number]", function (event) {
+		$(this).on("wheel.disableScroll", function (event) {
+			event.preventDefault()
+		})
+	})
+
+	// custom wheel scrolling function for number inputs (all browsers)
+	$("body").on("wheel", "input[type=number]", function (event) {
+		var cID = $(this).attr("id")
+		if (event.originalEvent.deltaY < 0) { // down -100, up 100
+			changeNumWheelEvent(cID, true) // increment number input
+		} else { // scroll down
+			changeNumWheelEvent(cID, false) // decrement number input
+		}
 	});
 
 	// Disable text selection (elements) while Shift is pressed
