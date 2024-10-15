@@ -136,6 +136,12 @@ function displayQuickstartGuide() {
 	o += '</li>'
 
 	o += '<li>'
+	o += '<span class="qgBold">"Show Special Numbers"</span> - underline numbers with <span class="qgBold">special</span> properties'
+	o += '<br>'
+	o += '<span class="qgNote">Prime, Fibonacci, Triangular and Star numbers</span>'
+	o += '</li>'
+
+	o += '<li>'
 	o += '<span class="qgBold">"Dotless Latin ı as i"</span> - when enabled, dotless lowercase Latin letter <span class="qgBold">ı</span> uses the same value as regular lowercase Latin letter <span class="qgBold">i</span> for gematria calculation'
 	o += '<br>'
 	o += '<span class="qgNote">Note: This letter is used in the Latin-script alphabets of Azerbaijani, Crimean Tatar, Gagauz, Kazakh, Tatar and Turkish</span>'

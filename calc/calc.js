@@ -1,6 +1,6 @@
 // ============================== Init ==============================
 
-var gematroVersion = '24.10.15.1' // YY.M.D.revision
+var gematroVersion = '24.10.16.0' // YY.M.D.revision
 var compactViewportWidth = 911 // viewport width threshold
 var mobileUserAgent = navigator.userAgent.match('Mobile')
 
@@ -43,7 +43,9 @@ var optRoundedInterface = true // rounded menus, buttons and charts
 var optBorderWidthPx = 2 // UI border thickness, [1;3] range
 
 var optShowOnlyMatching = false // set opacity of nonmatching values to zero
+
 var optNumerologyMode = false // display numerology breakdown for History Table values
+var optShowSpecialNumbers = false // underline numbers with special properties
 
 var optNumCalcMethod = 1 // 0 - "Off", 1 - "Full", 2 - "Reduced"
 var optLetterWordCount = true // show word/letter count
@@ -132,7 +134,8 @@ var calcOptionsArr = [ // used to export/import settings
 	'"optHistTableCaption"+" = \x27"+String(optHistTableCaption)+"\x27"',
 	"'optRoundedInterface'+' = '+optRoundedInterface",
 	"'optBorderWidthPx'+' = '+optBorderWidthPx",
-	"'optNumerologyMode'+' = '+optNumerologyMode"
+	"'optNumerologyMode'+' = '+optNumerologyMode",
+	"'optShowSpecialNumbers'+' = '+optShowSpecialNumbers"
 ]
 
 var runOnceRestoreCalcSet = true
@@ -388,9 +391,10 @@ function createOptionsMenu() {
 
 	// get checkbox states
 	var MCRstate = ""; var RIFstate = ""; var CCMstate = ""; var SCMstate = "";
-	var SOMstate = ""; var NMDstate = ""; var DLIstate = ""; var APCstate = "";
-	var LDMstate = ""; var NPGFstate = ""; var LWCstate = ""; var WBstate = "";
-	var CBstate = ""; var CCstate = ""; var GCstate = ""; var SWCstate = ""; 
+	var SOMstate = ""; var NMDstate = ""; var SSNstate = ""; var DLIstate = "";
+	var APCstate = ""; var LDMstate = ""; var NPGFstate = ""; var LWCstate = "";
+	var WBstate = ""; var CBstate = ""; var CCstate = ""; var GCstate = "";
+	var SWCstate = ""; 
 
 	if (optMatrixCodeRain) MCRstate = "checked" // Matrix Code Rain
 	if (optRoundedInterface) RIFstate = "checked" // Rounded Interface
@@ -400,6 +404,7 @@ function createOptionsMenu() {
 	if (optShowOnlyMatching) SOMstate = "checked" // Show Only Matching
 
 	if (optNumerologyMode) NMDstate = "checked" // Numerology Mode
+	if (optShowSpecialNumbers) SSNstate = "checked" // Show Special Numbers
 
 	if (optDotlessLatinI) DLIstate = "checked" // Dotless Latin 'ı' as 'i'
 	if (optAllowPhraseComments) APCstate = "checked" // Allow Phrase Comments
@@ -427,6 +432,7 @@ function createOptionsMenu() {
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Show Only Matching<input type="checkbox" id="chkbox_SOM" onclick="conf_SOM()" '+SOMstate+'><span class="custChkBox"></span></label></div>'
 	o += '<div style="margin: 1em"></div>'
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Numerology Mode<input type="checkbox" id="chkbox_NMD" onclick="conf_NMD()" '+NMDstate+'><span class="custChkBox"></span></label></div>'
+	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Show Special Numbers<input type="checkbox" id="chkbox_SSN" onclick="conf_SSN()" '+SSNstate+'><span class="custChkBox"></span></label></div>'
 	o += '<div style="margin: 1em"></div>'
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Dotless Latin <b>ı</b> as <b>i</b><input type="checkbox" id="chkbox_DLI" onclick="conf_DLI()" '+DLIstate+'><span class="custChkBox"></span></label></div>'
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Ignore Comments [...]<input type="checkbox" id="chkbox_APC" onclick="conf_APC()" '+APCstate+'><span class="custChkBox"></span></label></div>'
@@ -463,9 +469,9 @@ function conf_MCR() { // Matrix Code Rain
 function conf_RIF(redraw = false) { // Rounded Interface
 	if (!redraw) optRoundedInterface = !optRoundedInterface
 	if (optRoundedInterface) { // extra padding for rounded input elements
-		$('input[type=text]').addClass('inputPadding');
+		$('input[type=text], #phraseBox, #highlightBox').addClass('inputPadding');
 	} else {
-		$('input[type=text]').removeClass('inputPadding');
+		$('input[type=text], #phraseBox, #highlightBox').removeClass('inputPadding');
 	}
 	var bRad = optRoundedInterface ? "1em" : "unset"
 	var root = document.documentElement // :root CSS variable
@@ -521,6 +527,11 @@ function conf_NMD(redraw = false) { // Numerology Mode
 	if (!redraw) optNumerologyMode = !optNumerologyMode
 	document.getElementById('highlightBox').disabled = optNumerologyMode
 	if (optNumerologyMode) document.getElementById('highlightBox').value = ''
+	updateTables()
+}
+
+function conf_SSN() { // Show Special Numbers
+	optShowSpecialNumbers = !optShowSpecialNumbers
 	updateTables()
 }
 
@@ -1360,11 +1371,12 @@ function updateEnabledCipherTable() { // draws a table with phrase gematria for 
 			}
 			if (ciph_in_row < result_columns) { // until number of ciphers in row equals number of colums
 				var valClass = cipherList[i].wheelCipher ? 'numWProp' : 'numProp' // no number properties for wheel ciphers
+				valClass = (valClass == 'numProp' && numHasSpecialProps(cipherList[i].calcGematria(phr)) && optShowSpecialNumbers) ? 'numProp numSpecial' : valClass
 				cur_col = (optColoredCiphers) ? 'color: hsl('+cipherList[i].H+' '+cipherList[i].S+'% '+cipherList[i].L+'% / 1);' : ''
 				if (odd_col) { // odd column, "cipher name - value"
 					o += '<td class="phraseGemCiphName" style="'+cur_col+'">'+cipherList[i].cipherName+'</td>'
 					// o += '<td class="phraseGemValueOdd" style="'+cur_col+'">'+cipherList[i].calcGematria(phr)+'</td>'
-					o += '<td class="phraseGemValueOdd" style="'+cur_col+'"><span class="'+valClass+'">'
+					o += '<td class="phraseGemValueOdd"><span style="'+cur_col+'" class="'+valClass+'">'
 					o += cipherList[i].wheelCipher ? '&#9737;' : cipherList[i].calcGematria(phr)
 					o += '<span></td>'
 					ciph_in_row++
@@ -1372,7 +1384,7 @@ function updateEnabledCipherTable() { // draws a table with phrase gematria for 
 					//console.log(cipherList[i].cipherName+": odd")
 				} else if (!odd_col) { // even column, "value - cipher name"
 					// o += '<td class="phraseGemValueEven" style="'+cur_col+'">'+cipherList[i].calcGematria(phr)+'</td>'
-					o += '<td class="phraseGemValueEven" style="'+cur_col+'"><span class="'+valClass+'">'
+					o += '<td class="phraseGemValueEven"><span style="'+cur_col+'" class="'+valClass+'">'
 					o += cipherList[i].wheelCipher ? '&#9737;' : cipherList[i].calcGematria(phr)
 					o += '<span></td>'
 					o += '<td class="phraseGemCiphName" style="'+cur_col+'">'+cipherList[i].cipherName+'</td>'
@@ -1523,6 +1535,7 @@ function addPhraseToHistoryUnshift(phr, upd) { // add new phrase to the beginnin
 function updateHistoryTable(hltBoolArr) {
 	var ms, i, x, y, z, curCiph, curCiphCol, gemVal
 	var ciphCount = 0 // count enabled ciphers (for hltBoolArr)
+	var numNoWrap = optNumerologyMode ? ' nW' : '' // nowrap class for Numerology mode (all text on a single line)
 	histTable = document.getElementById("HistoryTableArea")
 	
 	if (sHistory.length == 0) { return }
@@ -1620,19 +1633,21 @@ function updateHistoryTable(hltBoolArr) {
 				}
 				ciphCount++ // next position in hltBoolArr
 				var valClass = curCiph.wheelCipher ? 'gW' : 'gV' // no number properties for wheel ciphers
+				valClass = (!curCiph.wheelCipher && numHasSpecialProps(gemVal) && optShowSpecialNumbers) ? 'gV numSpecial' : valClass // highlight special values
 				var spanVal = '<span style="color: '+col+'" class="'+valClass+'"> '+gemVal+' </span>'
 
-				if (optNumerologyMode) { // display numerology breakdown
+				if (optNumerologyMode && !curCiph.wheelCipher) { // display numerology breakdown
 					var numValArr = (String(gemVal).indexOf(' ') > -1) ? gemVal.split(' ') : [gemVal] // split to array of numbers or one number
 					spanVal = '' // new set of span elements
 					for (var e = 0; e < numValArr.length; e++) { // create span element for each number
-						spanVal += '<span style="color: '+col+'" class="'+valClass+'"> '+numValArr[e]+' </span>'
+						valClass = (numHasSpecialProps(numValArr[e]) && optShowSpecialNumbers) ? 'gV numSpecial' : 'gV' // highlight special values
+						spanVal += '<span style="color: '+col+'" class="'+valClass+'">'+numValArr[e]+'</span>'
 						if (e !== numValArr.length-1 ) spanVal += '<span style="color: '+col+'" class="gA">&#10148;</span>' // no arrow after last element
 					}
 				}
 
 				//ms += '<td class="tC"><span style="color: '+col+'" class="'+valClass+'"> '+gemVal+' </span></td>'
-				ms += '<td class="tC">'+spanVal+'</td>'
+				ms += '<td class="tC'+numNoWrap+'">'+spanVal+'</td>'
 			}
 		}
 		ms += '</tr>'

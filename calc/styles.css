@@ -924,6 +924,9 @@ body {
 .gW {
 	cursor: default;
 }
+.nW { /* nowrap for Numerology Mode */
+	white-space: nowrap;
+}
 .pCHT { /* phrase comment - history table */
 	font-size: 75%;
 	font-weight: 500;
@@ -1312,6 +1315,9 @@ body {
 
 .numProp {
 	cursor:pointer;
+}
+.numSpecial { /* number has special properties */
+	text-decoration: underline;
 }
 .numPropTooltip {
 	max-width: 350px;

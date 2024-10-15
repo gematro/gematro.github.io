@@ -251,6 +251,16 @@ function populatePrimeNumbers(n) { // list all primes up to n (inclusive)
 
 // ==================================================================
 
+function numHasSpecialProps(n) { // check number for special properties
+	n = parseInt(n)
+	var nState = (primeNums.indexOf(n) > -1) ? 'P' : ''
+	nState += (fibonacciNums.indexOf(n) > -1) ? 'F' : ''
+	nState += (triangularNums.indexOf(n) > -1) ? 'T' : ''
+	nState += (starNums.indexOf(n) > -1) ? 'S' : ''
+	var hasProps = (nState.length > 0) ? true : false
+	return hasProps
+}
+
 function numBaseXtoY (num, x, y, separator = "") { // convert number from one base to another (x <= 16, y = any integer)
 
 	if (num == 0) return num
