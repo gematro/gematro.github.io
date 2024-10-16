@@ -138,7 +138,7 @@ function displayQuickstartGuide() {
 	o += '<li>'
 	o += '<span class="qgBold">"Show Special Numbers"</span> - underline numbers with <span class="qgBold">special</span> properties'
 	o += '<br>'
-	o += '<span class="qgNote">Prime, Fibonacci, Triangular and Star numbers</span>'
+	o += '<span class="qgNote">Prime, Fibonacci, Triangular, Square and Star numbers</span>'
 	o += '</li>'
 
 	o += '<li>'

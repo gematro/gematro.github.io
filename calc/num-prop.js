@@ -4,22 +4,26 @@ initNumberPropArrays();
 
 function initNumberPropArrays() {
 	if (window.localStorage.getItem('primeNumsStorage') === null ||
-		window.localStorage.getItem('triangularNumsStorage') === null ||
 		window.localStorage.getItem('fibonacciNumsStorage') === null ||
+		window.localStorage.getItem('triangularNumsStorage') === null ||
+		window.localStorage.getItem('squareNumsStorage') === null ||
 		window.localStorage.getItem('starNumsStorage') === null)
 	{
 		populatePrimeNumbers(100000) // 10 million is ~4.98MB, ~100ms (boolean)
 		window.localStorage.setItem('primeNumsStorage', JSON.stringify(primeNums))
-		triangularNums = populateTriangularNumbers(1000000)
-		window.localStorage.setItem('triangularNumsStorage', JSON.stringify(triangularNums))
 		fibonacciNums = populateFibonacciNumbers(1000000)
 		window.localStorage.setItem('fibonacciNumsStorage', JSON.stringify(fibonacciNums))
+		triangularNums = populateTriangularNumbers(1000000)
+		window.localStorage.setItem('triangularNumsStorage', JSON.stringify(triangularNums))
+		squareNums = populateSquareNumbers(1000000)
+		window.localStorage.setItem('squareNumsStorage', JSON.stringify(squareNums))
 		starNums = populateStarNumbers(1000000)
 		window.localStorage.setItem('starNumsStorage', JSON.stringify(starNums))
 	} else {
 		primeNums = JSON.parse(window.localStorage.getItem('primeNumsStorage'))
-		triangularNums = JSON.parse(window.localStorage.getItem('triangularNumsStorage'))
 		fibonacciNums = JSON.parse(window.localStorage.getItem('fibonacciNumsStorage'))
+		triangularNums = JSON.parse(window.localStorage.getItem('triangularNumsStorage'))
+		squareNums = JSON.parse(window.localStorage.getItem('squareNumsStorage'))
 		starNums = JSON.parse(window.localStorage.getItem('starNumsStorage'))
 	}
 }
@@ -39,6 +43,8 @@ function listNumberProperties(val) {
 	o += '<tr><td class="npLine">'+getNumProp(val, fibonacciNums)+'</td></tr>'
 	o += '<tr><td class="numPropLabel">Triangular</td></tr>'
 	o += '<tr><td class="npLine">'+getNumProp(val, triangularNums)+'</td></tr>'
+	o += '<tr><td class="numPropLabel">Square</td></tr>'
+	o += '<tr><td class="npLine">'+getNumProp(val, squareNums)+'</td></tr>'
 	o += '<tr><td class="numPropLabel">Star</td></tr>'
 	o += '<tr><td class="npLine">'+getNumProp(val, starNums)+'</td></tr>'
 
@@ -177,6 +183,15 @@ function getNumProp(val, searchArr) {
 
 // ========================== Calculation ===========================
 
+function populateFibonacciNumbers(n) { // inclusive - 1,1,2,3
+	var arr = [1,1]; var tmp = 0
+	for (i = 2; i < n; i++) {
+		tmp = arr[i-1]+arr[i-2]
+		if (tmp <= n) { arr.push(tmp) } else { return arr }
+	}
+	return arr
+}
+
 function populateTriangularNumbers(n) { // inclusive - 1,3,6,10
 	var arr = []; var tmp = 0; var count = 0
 	for (i = 0; i < n-1; i++) {
@@ -187,11 +202,10 @@ function populateTriangularNumbers(n) { // inclusive - 1,3,6,10
 	return arr
 }
 
-function populateFibonacciNumbers(n) { // inclusive - 1,1,2,3
-	var arr = [1,1]; var tmp = 0
-	for (i = 2; i < n; i++) {
-		tmp = arr[i-1]+arr[i-2]
-		if (tmp <= n) { arr.push(tmp) } else { return arr }
+function populateSquareNumbers(n) { // inclusive - 1,4,9,16
+	var arr = []
+	for (i = 1; i <= Math.floor(Math.pow(n,0.5)); i++) { // <= sqrt(n), rounded down
+		arr.push(i*i)
 	}
 	return arr
 }
@@ -237,16 +251,16 @@ function getNumFactorization(val, xeno = false) {
 // ======================= Prime Calculation ========================
 
 function populatePrimeNumbers(n) { // list all primes up to n (inclusive)
-    var hash = new Uint8Array(n+1) // prime sieve, filled with zeroes, ~2.5x faster vs boolean
-    var sqrtN = Math.floor(Math.pow(n, 0.5))
-    for (let p = 2; p <= sqrtN; p++)
-        if (hash[p] == 0)
-            for (let i = p + p; i <= n; i += p)
-                hash[i] = 1 // mark as composite
-    primeNums = new Array() // init
-    for (let p = 2; p <= n; p++)
-        if (hash[p] == 0)
-            primeNums.push(p)
+	var hash = new Uint8Array(n+1) // prime sieve, filled with zeroes, ~2.5x faster vs boolean
+	var sqrtN = Math.floor(Math.pow(n, 0.5))
+	for (let p = 2; p <= sqrtN; p++)
+		if (hash[p] == 0)
+			for (let i = p + p; i <= n; i += p)
+				hash[i] = 1 // mark as composite
+	primeNums = new Array() // init
+	for (let p = 2; p <= n; p++)
+		if (hash[p] == 0)
+			primeNums.push(p)
 }
 
 // ==================================================================
@@ -256,7 +270,8 @@ function numHasSpecialProps(n) { // check number for special properties
 	var nState = (primeNums.indexOf(n) > -1) ? 'P' : ''
 	nState += (fibonacciNums.indexOf(n) > -1) ? 'F' : ''
 	nState += (triangularNums.indexOf(n) > -1) ? 'T' : ''
-	nState += (starNums.indexOf(n) > -1) ? 'S' : ''
+	nState += (squareNums.indexOf(n) > -1) ? 'S' : ''
+	nState += (starNums.indexOf(n) > -1) ? 'R' : ''
 	var hasProps = (nState.length > 0) ? true : false
 	return hasProps
 }

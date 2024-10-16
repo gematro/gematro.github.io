@@ -671,7 +671,7 @@ $(document).ready(function(){
 
 // ==================================================================
 // num-prop.js - prime sieve variables stored separately
-var primeNums; var triangularNums; var fibonacciNums; var starNums;
+var primeNums; var triangularNums; var squareNums; var fibonacciNums; var starNums;
 
 // ======================= Number Properties ========================
 
