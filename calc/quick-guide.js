@@ -114,6 +114,7 @@ function displayQuickstartGuide() {
 	o += '</li>'
 
 	o += '<li><span class="qgBold">"Matrix Code Rain"</span> - use dynamic background</li>'
+	o += '<li><span class="qgBold">"Gradient Charts"</span> - toggle fill style for <span class="qgBold">"Word Breakdown"</span> and <span class="qgBold">"Cipher Chart"</span></li>'
 	o += '<li><span class="qgBold">"Rounded Interface"</span> - use rounded corners for menus, buttons and charts</li>'
 	o += '<li><span class="qgBold">"UI Border Thickness"</span> - change border width for user interface elements</li>'
 
@@ -153,13 +154,16 @@ function displayQuickstartGuide() {
 	o += '<span class="qgNote">Note: Comments are preserved on export/import</span>'
 	o += '</li>'
 
+	o += '<li><span class="qgBold">"New Phrases Go First"</span> - new phrases are inserted at the beginning of <span class="qgBold">History Table</span></li>'
+	
 	o += '<li>'
 	o += '<span class="qgBold">"Live Database Mode"</span> - disable this option to generate a precalculated database on file import'
 	o += '<br>'
 	o += '<span class="qgNote">Note: More information is available in the "Databases" section of this guide</span>'
 	o += '</li>'
-	
-	o += '<li><span class="qgBold">"New Phrases Go First"</span> - new phrases are inserted at the beginning of <span class="qgBold">History Table</span></li>'
+
+	o += '<li><span class="qgBold">"Switch Ciphers (CSV)"</span> - enable previously selected ciphers on history file import</li>'
+
 	o += '<li><span class="qgBold">"Phrases on DB page"</span> - specify the amount of phrases on one page of <span class="qgBold">Database</span> query results</span></li>'
 	o += '<li><span class="qgBold">"Scroll DB by lines"</span> - set scrolling speed inside <span class="qgBold">Database</span> query results</span></li>'
 
@@ -167,10 +171,6 @@ function displayQuickstartGuide() {
 	o += '<li><span class="qgBold">"Word Breakdown"</span> - show detailed breakdown for current phrase</li>'
 	o += '<li><span class="qgBold">"Compact Breakdown"</span> - do not show full phrase (plain text) inside breakdown table</li>'
 	o += '<li><span class="qgBold">"Cipher Chart"</span> - show a table of correspondences between letters and values for current cipher</li>'
-
-	o += '<li><span class="qgBold">"Gradient Charts"</span> - toggle fill style for <span class="qgBold">"Word Breakdown"</span> and <span class="qgBold">"Cipher Chart"</span></li>'
-
-	o += '<li><span class="qgBold">"Switch Ciphers (CSV)"</span> - enable previously selected ciphers on history file import</li>'
 	
 	o += '</ul>'
 
@@ -545,7 +545,7 @@ function displayCipherInfoPanel(id) {
 
 	var ciphChartVisibility = optShowCipherChart // save cipher chart visibility state
 	element = document.getElementById("ChartSpot")
-	if (!ciphChartVisibility) element.classList.toggle("hideValue") // show the chart
+	if (!ciphChartVisibility) element.classList.remove("hideValue") // show the chart
 	optShowCipherChart = true // temporarily allow cipher chart
 
 	var el = '#ChartSpot' // draw Cipher Chart
@@ -576,7 +576,7 @@ function displayCipherInfoPanel(id) {
 			
 				o += '</div>'
 
-				if (!ciphChartVisibility) element.classList.toggle("hideValue") // undo visibility change
+				if (!ciphChartVisibility) element.classList.add("hideValue") // undo visibility change
 				optShowCipherChart = ciphChartVisibility // restore cipher chart visibility
 				$('#ChartSpot').removeClass("hideBorder") // temporarily hide border
 				updateWordBreakdown() // restore cipher chart of previously selected cipher

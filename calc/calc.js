@@ -1,6 +1,6 @@
 // ============================== Init ==============================
 
-var gematroVersion = '24.10.16.2' // YY.M.D.revision
+var gematroVersion = '24.10.16.3' // YY.M.D.revision
 var compactViewportWidth = 911 // viewport width threshold
 var mobileUserAgent = navigator.userAgent.match('Mobile')
 
@@ -390,13 +390,14 @@ function createOptionsMenu() {
 	o += create_NumCalc() // Number Calculation
 
 	// get checkbox states
-	var MCRstate = ""; var RIFstate = ""; var CCMstate = ""; var SCMstate = "";
-	var SOMstate = ""; var NMDstate = ""; var SSNstate = ""; var DLIstate = "";
-	var APCstate = ""; var LDMstate = ""; var NPGFstate = ""; var LWCstate = "";
-	var WBstate = ""; var CBstate = ""; var CCstate = ""; var GCstate = "";
-	var SWCstate = ""; 
+	var MCRstate = ""; var GCstate = ""; var RIFstate = ""; var CCMstate = "";
+	var SCMstate = ""; var SOMstate = ""; var NMDstate = ""; var SSNstate = "";
+	var DLIstate = ""; var APCstate = ""; var NPGFstate = ""; var LDMstate = "";
+	var SWCstate = ""; var LWCstate = ""; var WBstate = ""; var CBstate = "";
+	var CCstate = "";
 
 	if (optMatrixCodeRain) MCRstate = "checked" // Matrix Code Rain
+	if (optGradientCharts) GCstate = "checked" // Gradient Charts
 	if (optRoundedInterface) RIFstate = "checked" // Rounded Interface
 
 	if (optFiltCrossCipherMatch) CCMstate = "checked" // Cross Cipher Match
@@ -408,19 +409,18 @@ function createOptionsMenu() {
 
 	if (optDotlessLatinI) DLIstate = "checked" // Dotless Latin 'ı' as 'i'
 	if (optAllowPhraseComments) APCstate = "checked" // Allow Phrase Comments
-	if (liveDatabaseMode) LDMstate = "checked" // Live Database Mode
 
 	if (optNewPhrasesGoFirst) NPGFstate = "checked" // New Phrases Go First
+	if (liveDatabaseMode) LDMstate = "checked" // Live Database Mode
+	if (optLoadUserHistCiphers) SWCstate = "checked" // Switch Ciphers (CSV)
 
 	if (optLetterWordCount) LWCstate = "checked" // Letter/Word Count
 	if (optWordBreakdown) WBstate = "checked" // Word Breakdown
 	if (optCompactBreakdown) CBstate = "checked" // Compact Breakdown
 	if (optShowCipherChart) CCstate = "checked" // Cipher Chart
 
-	if (optGradientCharts) GCstate = "checked" // Gradient Charts
-	if (optLoadUserHistCiphers) SWCstate = "checked" // Switch Ciphers (CSV)
-
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Matrix Code Rain<input type="checkbox" id="chkbox_MCR" onclick="conf_MCR()" '+MCRstate+'><span class="custChkBox"></span></label></div>'
+	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Gradient Charts<input type="checkbox" id="chkbox_GC" onclick="conf_GC()" '+GCstate+'><span class="custChkBox"></span></label></div>'
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Rounded Interface<input type="checkbox" id="chkbox_RIF" onclick="conf_RIF()" '+RIFstate+'><span class="custChkBox"></span></label></div>'
 	o += '<div style="margin: 1em"></div>'
 	o += '<div class="borderOptionsBox">'
@@ -436,9 +436,10 @@ function createOptionsMenu() {
 	o += '<div style="margin: 1em"></div>'
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Dotless Latin <b>ı</b> as <b>i</b><input type="checkbox" id="chkbox_DLI" onclick="conf_DLI()" '+DLIstate+'><span class="custChkBox"></span></label></div>'
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Ignore Comments [...]<input type="checkbox" id="chkbox_APC" onclick="conf_APC()" '+APCstate+'><span class="custChkBox"></span></label></div>'
-	o += '<div id="liveDBOption" class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Live Database Mode<input type="checkbox" id="chkbox_LDM" onclick="conf_LDM()" '+LDMstate+'><span class="custChkBox"></span></label></div>'
 	o += '<div style="margin: 1em"></div>'
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">New Phrases Go First<input type="checkbox" id="chkbox_NPGF" onclick="conf_NPGF()" '+NPGFstate+'><span class="custChkBox"></span></label></div>'
+	o += '<div id="liveDBOption" class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Live Database Mode<input type="checkbox" id="chkbox_LDM" onclick="conf_LDM()" '+LDMstate+'><span class="custChkBox"></span></label></div>'
+	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Switch Ciphers (CSV)<input type="checkbox" id="chkbox_SWC" onclick="conf_SWC()" '+SWCstate+'><span class="custChkBox"></span></label></div>'
 	o += '<div style="margin: 1em"></div>'
 	o += '<div class="dbOptionsBoxTop">'
 	o += '<span class="optionTableLabel">Phrases on DB page</span><input id="dbPageItemsBox" autocomplete="off" oninput="conf_DPI()" type="number" min="1" max="25" step="1" value="'+dbPageItems+'">'
@@ -451,9 +452,6 @@ function createOptionsMenu() {
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Word Breakdown<input type="checkbox" id="chkbox_WB" onclick="conf_WB()" '+WBstate+'><span class="custChkBox"></span></label></div>'
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Compact Breakdown<input type="checkbox" id="chkbox_CB" onclick="conf_CB()" '+CBstate+'><span class="custChkBox"></span></label></div>'
 	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Cipher Chart<input type="checkbox" id="chkbox_CC" onclick="conf_CC()" '+CCstate+'><span class="custChkBox"></span></label></div>'
-	o += '<div style="margin: 1em"></div>'
-	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Gradient Charts<input type="checkbox" id="chkbox_GC" onclick="conf_GC()" '+GCstate+'><span class="custChkBox"></span></label></div>'
-	o += '<div class="optionElement"><label class="chkLabel ciphCheckboxLabel2">Switch Ciphers (CSV)<input type="checkbox" id="chkbox_SWC" onclick="conf_SWC()" '+SWCstate+'><span class="custChkBox"></span></label></div>'
 	o += '<div style="margin: 1em"></div>'
 
 	o += '</div></div>'
@@ -564,7 +562,11 @@ function conf_CC() { // Cipher Chart
 	optShowCipherChart = !optShowCipherChart
 	updateWordBreakdown()
 	element = document.getElementById("ChartSpot")
-	element.classList.toggle("hideValue")
+	if (!optShowCipherChart) {
+		element.classList.add("hideValue")
+	} else {
+		element.classList.remove("hideValue")
+	}
 }
 
 function conf_GC() { // Gradient Charts
