@@ -1,6 +1,6 @@
 // ============================== Init ==============================
 
-var gematroVersion = '24.10.16.3' // YY.M.D.revision
+var gematroVersion = '24.10.18.0' // YY.M.D.revision
 var compactViewportWidth = 911 // viewport width threshold
 var mobileUserAgent = navigator.userAgent.match('Mobile')
 
@@ -140,8 +140,8 @@ var calcOptionsArr = [ // used to export/import settings
 
 var runOnceRestoreCalcSet = true
 function initCalc(defSet = false) { // run after page has finished loading
+	if (defSet && typeof calcOptions !== 'undefined') importCalcOptions(calcOptions) // use options from locally modified "ciphers.js"
 	configureCalcInterface(true)
-	if (defSet && typeof calcOpt !== 'undefined') importCalcOptions(calcOptions); // load settings from ciphers.js
 	generateRndColors()
 	if (runOnceRestoreCalcSet && window.localStorage.getItem('userCalcSettings') !== null) {
 		runOnceRestoreCalcSet = false; restoreCalcSettingsLocalStorage(true); return; }
@@ -210,6 +210,7 @@ function loadDefaultDatabase() {
 
 var mobileCalcLayout = true // store current layout
 function configureCalcInterface(initRun = false) { // switch interface layout (desktop or mobile devices)
+	if (initRun && typeof calcOptions !== 'undefined') updateInterfaceColor(true) // use color settings from ciphers.js (if available)
 	conf_RIF(true) // activate Chiseled or Rounded Interface
 	conf_UBT(true) // update UI border thickness
 	conf_NMD(true) // update Numerology Mode
