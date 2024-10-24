@@ -522,6 +522,23 @@ function displayDiscPanel() {
 	
 	o += '<hr class="numPropSeparator">'
 
+	o += '<p style="text-align: center;">'
+	o += '<span class="qgNote">'
+	o += '<a class="qgLink" target="_blank" href="https://github.com/gematro">Mikhail (@gematro)</a> is the sole author of '
+	o += '<br>'
+	o += '<a class="qgLink" target="_blank" href="https://github.com/gematro/gematro.github.io">GEMATRO - Gematria Calculator</a>'
+	o += '<br><br>'
+	o += 'The only official website of this project is <a class="qgLink" target="_blank" href="https://gematro.github.io">https://gematro.github.io</a>'
+	o += '<br><br>'
+	o += 'The <a class="qgLink" target="_blank" href="https://github.com/gematro">author</a> has no affiliation with other projects'
+	o += '<br>'
+	o += 'unless <a class="qgLink" target="_blank" href="https://github.com/gematro/gematro.github.io">explicitly stated</a>'
+	o += '</span>'
+	o += '</p>'
+
+	o += '<hr class="numPropSeparator">'
+
+
 	o += '<p>'
 	o += '<span class="qgNote">'
 	o += 'This software should not be used to promote any activities that are hateful, divisive, or harmful towards individuals or groups of people.'

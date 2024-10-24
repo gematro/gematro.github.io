@@ -32,3 +32,9 @@
 * [Roboto Mono (Apache License 2.0)](https://fonts.google.com/specimen/Roboto+Mono/about)
 * [html2canvas (MIT license)](https://github.com/niklasvh/html2canvas)
 * [jQuery (MIT license)](https://github.com/jquery/jquery)
+
+### Copyright
+
+* Mikhail ([@gematro](https://github.com/gematro)) is the sole author of [GEMATRO - Gematria Calculator](https://github.com/gematro/gematro.github.io)
+* The only official website of this project is [https://gematro.github.io](https://gematro.github.io)
+* The [author](https://github.com/gematro) has no affiliation with other projects unless explicitly stated on [the official project's page](https://github.com/gematro/gematro.github.io) or in [the official author's profile](https://github.com/gematro)

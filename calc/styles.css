@@ -1844,7 +1844,7 @@ body {
 }
 .discPanel {
 	max-width: 450px;
-	max-height: 450px;
+	max-height: 630px;
 	box-sizing: border-box;
 	right: 0;
 	left: 0;
