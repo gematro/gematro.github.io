@@ -441,7 +441,7 @@ body {
 }
 .phraseGemCiphName {
 	padding: 0.2em 0.5em;
-	max-width: 115px; /* 110px */
+	width: 115px; /* 110px */
 	height: 32px;
 	cursor: pointer;
 }

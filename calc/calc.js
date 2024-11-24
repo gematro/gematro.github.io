@@ -1,6 +1,6 @@
 // ============================== Init ==============================
 
-var gematroVersion = '24.11.24.0' // YY.M.D.revision
+var gematroVersion = '24.11.24.1' // YY.M.D.revision
 var compactViewportWidth = 911 // viewport width threshold
 var mobileUserAgent = navigator.userAgent.match('Mobile')
 
