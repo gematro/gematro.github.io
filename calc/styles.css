@@ -549,7 +549,7 @@ body {
 	width: -moz-fit-content;
 }
 .BreakRTL {
-	padding: 0.4em 0.8em 0.4em 0.4em !important;
+	padding: 0.4em 0.8em 0.4em 0.8em !important;
 }
 .BreakChar {
 	font-size: 115%;

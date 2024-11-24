@@ -54,7 +54,7 @@ function updateWordBreakdown(impName = breakCipher, impBool = false, chartUpd = 
 		curCipher.calcBreakdown(sVal().replace(/[\u0600-\u061F\u0640\u064B-\u066D\u06D4\u06D6-\u06ED\u06F0-\u06F9]/g,"")) // remove Arabic marks and non letter characters
 	}
 	// use right to left writing (Hebrew, Arabic) - syllable mode is always left to right
-	if ( (curCipher.cArr.indexOf(1488) > -1 || curCipher.cArr.indexOf(1575) > -1) && !curCipher.multiCharacter && !curCipher.wheelCipher) {
+	if ( (curCipher.cArr.indexOf(1488) > -1 || curCipher.cArr.indexOf(1575) > -1) && !curCipher.multiCharacter) {
 		curCipher.cp.reverse(); curCipher.cv.reverse(); curCipher.sumArr.reverse() // right-to-left direction
 		if (curCipher.WordCount > 1) {
 			curCipher.cp.push(curCipher.cp.shift()) // remove first element and add to the end of array (space, used for word sum)
@@ -92,8 +92,10 @@ function updateWordBreakdown(impName = breakCipher, impBool = false, chartUpd = 
 			oStart += '<div id="SimpleBreak">'
 			oStart += '<span class="breakPhrase">' + simplePhr + '</span><span class="breakPhrase"> = </span><span class="breakSum">'
 			if (curCipher.wheelCipher) {
-				oStart += curCipher.multiCharacter ? getSumStr(curCipher.sv) :
+				tSum = curCipher.multiCharacter ? getSumStr(curCipher.sv) :
 					getSumStr(curCipher.cv) // add all values in array
+				if (!curCipher.multiCharacter && !leftToRightBreak) tSum = stringToArrCodePoint(tSum).reverse().join('') // Hebrew Atbash
+				oStart += tSum
 			} else {
 				oStart += curCipher.sumArr.reduce(getSum) // add all values in array
 			}
@@ -134,7 +136,8 @@ function updateWordBreakdown(impName = breakCipher, impBool = false, chartUpd = 
 					}
 				}
 			} else { // right to left (Hebrew, Arabic)
-				o += '<td class="BreakPhraseSum" rowspan="2"><font style="'+curCiphCol+'">' + curCipher.sumArr.reduce(getSum) + '</font></td>'
+				o += curCipher.wheelCipher ? '' :
+					'<td class="BreakPhraseSum" rowspan="2"><font style="'+curCiphCol+'">' + curCipher.sumArr.reduce(getSum) + '</font></td>'
 				var curBreakWord = '' // current word, added to main 'o' string
 				for (x = 0; x < curCiphercp.length; x++) {
 					if (curCiphercp[x] !== " ") {
@@ -144,7 +147,8 @@ function updateWordBreakdown(impName = breakCipher, impBool = false, chartUpd = 
 							curBreakWord += '<td class="BreakChar" style="'+curCiphCol+'">' + String.fromCodePoint(curCiphercp[x]) + '</td>'
 						}
 					} else {
-						curBreakWord = '<td class="BreakWordSum" rowspan="2">' + curCipher.sumArr[wCount] + '</td>' + curBreakWord // prepend word sum (displayed on the left)
+						curBreakWord = curCipher.wheelCipher ? '<td class="BreakWordSum" rowspan="2"></td>' + curBreakWord :
+							'<td class="BreakWordSum" rowspan="2">' + curCipher.sumArr[wCount] + '</td>' + curBreakWord // prepend word sum (displayed on the left)
 						o += curBreakWord
 						curBreakWord = ''
 						wCount++
@@ -210,7 +214,10 @@ function updateWordBreakdown(impName = breakCipher, impBool = false, chartUpd = 
 				o = '</div><div id="BreakTableContainer" class="'+RTLclass+'">' + curBreakRow
 			} else { // right to left (Hebrew, Arabic)
 				curBreakRow = '<table class="BreakTableRow"><tbody><tr>'
-				if (curCipher.WordCount > 1) curBreakRow += '<td class="BreakWordSum" rowspan="2"><font style="'+curCiphCol+'">' + curCipher.sumArr[wrdCount] + '</font></td>'
+				if (curCipher.WordCount > 1) {
+					curBreakRow +=  curCipher.wheelCipher ? '<td class="BreakWordSum" rowspan="2"></td>' :
+						'<td class="BreakWordSum" rowspan="2"><font style="'+curCiphCol+'">' + curCipher.sumArr[wrdCount] + '</font></td>'
+				}
 				for (x = 0; x < curCiphercp.length; x++) {
 					if (curCiphercp[x] !== " ") {
 						if (String(curCiphercp[x]).substring(0, 3) == "num") {
@@ -231,7 +238,10 @@ function updateWordBreakdown(impName = breakCipher, impBool = false, chartUpd = 
 							if (wrdCount !== curCipher.WordCount-1) curBreakRow = '<table class="BreakTableRow"><tbody><tr>'
 						}
 						wrdCount++
-						if (wrdCount !== curCipher.WordCount) curBreakRow += '<td class="BreakWordSum" rowspan="2"><font style="'+curCiphCol+'">' + curCipher.sumArr[wrdCount] + '</font></td>'
+						if (wrdCount !== curCipher.WordCount) {
+							curBreakRow += curCipher.wheelCipher ? '<td class="BreakWordSum" rowspan="2"></td>' :
+								'<td class="BreakWordSum" rowspan="2"><font style="'+curCiphCol+'">' + curCipher.sumArr[wrdCount] + '</font></td>'
+						}
 					}
 				}
 				if (curCiphercp.indexOf(" ") == -1) { // show character values if one long word (has no " ")

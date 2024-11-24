@@ -265,6 +265,19 @@ cipherList = [
 		"<p> This <span class='qgBold'>Hebrew</span> cipher uses <span class='qgBold'>Standard</span> values (also known as <span class='qgBold'>Absolute</span> or <span class='qgBold'>Normative</span>). </p> <p> <span class='qgBold'>Sofit</span> (final form) letters have <span class='qgBold'>the same values</span> as initial letter forms. </p> <p> <span class='qgNote'>Read more: <a class='qgLink' target='_blank' href='https://en.wikipedia.org/wiki/Gematria#Standard_encoding'>Wikipedia - Gematria (Standard encoding)</a></span> </p>"
 	),
 	new cipher(
+		"Atbash",
+		"Hebrew",
+		60, 60, 70,
+		[1488,1489,1490,1491,1492,1493,1494,1495,1496,1497,1499,1500,1502,1504,1505,1506,1508,1510,1511,1512,1513,1514,1498,1501,1503,1507,1509],
+		["ת","ש","ר","ק","צ","פ","ע","ס","נ","מ","ל","כ","י","ט","ח","ז","ו","ה","ד","ג","ב","א","ל","י","ט","ו","ה"],
+		true,
+		false,
+		false,
+		false,
+		true,
+		"<p> This <span class='qgBold'>Hebrew</span> substitution cipher reassigns the letters to follow the <span class='qgBold'>reverse alphabetical order</span>. </p> <p> <span class='qgBold'>Aleph</span> is translated into <span class='qgBold'>Taw</span>, <span class='qgBold'>Bet</span> into <span class='qgBold'>Shin</span>, etc. </p> <p> <span class='qgNote'>Read more: <a class='qgLink' target='_blank' href='https://en.wikipedia.org/wiki/Atbash'>Wikipedia - Atbash</a></span> </p>"
+	),
+	new cipher(
 		"Greek Ordinal",
 		"Greek",
 		154, 70, 67,
