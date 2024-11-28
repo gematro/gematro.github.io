@@ -114,7 +114,7 @@ input {
 
 input, textarea, button, label.intBtn, .intBtnRepo, .optionElementTable,
 .dropdown-content, .dropdown-content-opt, .enterAsWordsLimit,
-.quickGuide, .discPanel, .ciphInfoPanel, .contextMenuTooltip,
+.quickGuide, .discPanel, .msgPanel, .ciphInfoPanel, .contextMenuTooltip,
 .dateCalcContainer, .colorControlsBG, .editCiphersContainer, .printImageContainer,
 #BreakTableContainer, #ChartSpot, #imgDataDesc, #calcNotification,
 #BreakdownDetails, .numPropTooltip, .dateCalcBg, .dateCalcTable2,
@@ -1825,7 +1825,7 @@ body {
 	left: 0;
 	z-index: 999;
 }
-.quickGuide, .discPanel {
+.quickGuide, .discPanel, .msgPanel {
 	background-color: var(--menu-bg-accent2);
 	color: var(--font-white-2);
 	font-family: var(--font-family);
@@ -1842,9 +1842,9 @@ body {
 	z-index: 1000;
 	border: var(--border-pxl) var(--border-dark-accent);
 }
-.discPanel {
+.discPanel, .msgPanel {
 	max-width: 450px;
-	max-height: 630px;
+	max-height: 450px;
 	box-sizing: border-box;
 	right: 0;
 	left: 0;
@@ -1852,8 +1852,11 @@ body {
 	bottom: 0;
 	margin: auto;
 }
+.msgPanel {
+	max-height: 495px;
+}
 @media (max-width: 911px) { /* mobile */
-	.quickGuide, .discPanel {
+	.quickGuide, .discPanel, .msgPanel {
 		position: absolute;
 		right: 0;
 		left: 0;

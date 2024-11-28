@@ -512,32 +512,55 @@ function displayQuickstartGuide() {
 	$('body').addClass('noScroll') // prevent scrolling
 }
 
-function displayDiscPanel() {
-	$('<div id="darkOverlay" onclick="closePanel(&quot;.discPanel&quot;)"></div>').appendTo('body'); // overlay
+function displayMsgPanel() {
+	$('<div id="darkOverlay" onclick="closePanel(&quot;.msgPanel&quot;)"></div>').appendTo('body'); // overlay
 
-	var o = '<div class="discPanel">'
+	var o = '<div class="msgPanel">'
 	o += '<center>'
 	o += '<p><span class="qgBold3">"Dedicated to the Rational Soul of the World"</span></p>'
 	o += '</center>'
 	
 	o += '<hr class="numPropSeparator">'
 
-	o += '<p style="text-align: center;">'
-	o += '<span class="qgNote">'
-	o += '<a class="qgLink" target="_blank" href="https://github.com/gematro">Mikhail (@gematro)</a> is the sole author of '
-	o += '<br>'
-	o += '<a class="qgLink" target="_blank" href="https://github.com/gematro/gematro.github.io">GEMATRO - Gematria Calculator</a>'
-	o += '<br><br>'
-	o += 'The only official website of this project is <a class="qgLink" target="_blank" href="https://gematro.github.io">https://gematro.github.io</a>'
-	o += '<br><br>'
-	o += 'The <a class="qgLink" target="_blank" href="https://github.com/gematro">author</a> has no affiliation with other projects'
-	o += '<br>'
-	o += 'unless <a class="qgLink" target="_blank" href="https://github.com/gematro/gematro.github.io">explicitly stated</a>'
-	o += '</span>'
+	o += '<center>'
+
+	o += '<p class="qgNote">'
+	o += "Awareness of God and the environment of his Nature was rejected and replaced with illusions of artificial and ficticious societies."
+	o += '</p>'
+	o += '<p class="qgNote">'
+	o += "In the chase of bogus ideals and idols of its own imagination mankind became detached from reality."
+	o += '</p>'
+	o += '<p class="qgNote">'
+	o += "Avarice, hunger for fame, desire to be recognized for meaningless accomplishments and mindless discoveries; these vices are the only force that sustains stillborn societies which are busy chasing their own tail."
+	o += '</p>'
+	o += '<p class="qgNote">'
+	o += "All of us are responsible for the mess we cocreated; for the mess inside our own families as well as for the discord sown between our own friends and colleagues."
+	o += '</p>'
+	o += '<p class="qgNote">'
+	o += "Fools always plant the seeds of their own demise."
+	o += '</p>'
+	o += '<p class="qgNote">'
+	o += "But why?"
+	o += '</p>'
+	o += '<p class="qgNote">'
+	o += "..."
+	o += '</p>'
+	o += '<p class="qgNote">'
+	o += "Awareness of God and the environment of his Nature was rejected and replaced with illusions of artificial and ficticious societies."
 	o += '</p>'
 
-	o += '<hr class="numPropSeparator">'
+	o += '</center>'
+	
+	o += '</div>'
 
+	$(o).appendTo('body'); // guide
+	$('body').addClass('noScroll') // prevent scrolling
+}
+
+function displayDiscPanel() {
+	$('<div id="darkOverlay" onclick="closePanel(&quot;.discPanel&quot;)"></div>').appendTo('body'); // overlay
+
+	var o = '<div class="discPanel">'
 
 	o += '<p>'
 	o += '<span class="qgNote">'
@@ -548,6 +571,8 @@ function displayDiscPanel() {
 	o += 'User of this software must take full responsibility for the information provided by this software and verify its accuracy before taking any actions based on it.'
 	o += '<br><br>'
 	o += 'This software may contain links to external websites which are not under the control of the author of this software. The author of this software is not responsible for the contents of any linked website.'
+	o += '<br><br>'
+	o += 'The author of this software has no affiliation with other projects unless explicitly stated.'
 	o += '</span>'
 	o += '</p>'
 	

@@ -1,6 +1,6 @@
 // ============================== Init ==============================
 
-var gematroVersion = '24.11.24.1' // YY.M.D.revision
+var gematroVersion = '24.11.28.0' // YY.M.D.revision
 var compactViewportWidth = 911 // viewport width threshold
 var mobileUserAgent = navigator.userAgent.match('Mobile')
 
@@ -365,6 +365,8 @@ function createAboutMenu() { // create menu with all cipher catergories
 	o += '<input class="intBtn" type="button" value="Quickstart Guide" onclick="displayQuickstartGuide()">'
 	o += '<div style="margin: 0.5em;"></div>'
 	o += '<input class="intBtn" type="button" value="Disclaimer" onclick="displayDiscPanel()">'
+	o += '<div style="margin: 0.5em;"></div>'
+	o += '<input class="intBtn" type="button" value="Dedicated to ..." onclick="displayMsgPanel()">'
 
 	o += '</div></div>'
 
