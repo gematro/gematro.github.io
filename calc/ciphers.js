@@ -301,7 +301,7 @@ cipherList = [
 		false,
 		false,
 		false,
-		"<p> This <span class='qgBold'>Greek</span> cipher is based on <span class='qgBold'>Greek Ordinal</span>, all values are <span class='qgBold'>reduced to a single digit</span>.. </p>"
+		"<p> This <span class='qgBold'>Greek</span> cipher is based on <span class='qgBold'>Greek Ordinal</span>, all values are <span class='qgBold'>reduced to a single digit</span>. </p>"
 	),
 	new cipher(
 		"Greek Isopsephy",
