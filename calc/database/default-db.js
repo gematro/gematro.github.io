@@ -6,17 +6,12 @@ var defaultDatabase = `
 # Phrases
 Message of Love
 Resonant frequency
-Vibrational match
-Greater purpose
 Divine timing
 Ein Sof
-School of Thought
 The Infinite
-Belief as guidance
 Fruitful collaboration
 Win-win situation
 Beneficial to all
-Master of Reality
 Equal give and take
 Mutual responsibility
 Memorize or understand
@@ -26,7 +21,7 @@ Meaning of Life
 Fruitful and abundant
 The Golden Rule
 Fruits of Labor
-Awareness of animalistic nature
+Awareness of Nature
 Uncomfortable truths
 A story of Life
 Opportunities for all
@@ -43,7 +38,6 @@ Links and connections
 Weights and biases
 Neural connections
 Links and meaning
-Tarot cards
 Shape or form
 Universal Laws of Nature
 Immutable laws
@@ -63,7 +57,6 @@ Rules of calculation
 A point of view
 A point within the circle
 Time-space continuum
-In the centre of it all
 Two dimensional projection
 Divine blueprint
 Free Will
@@ -108,9 +101,7 @@ Wise leader
 Sensible rules
 Future investments
 A lesson learned
-Spiritual renewal
-Lost wisdom of the ages
-In plain English
+Spiritual realignment
 Major transformation
 The Philosopher's Stone
 Necessary change
@@ -122,7 +113,6 @@ Associative learning
 Transmutation of energy
 Stars and Atoms
 Seven Hermetic Principles
-Knock three times
 Grand Motion of the Universe
 Trigonometric functions
 Two-dimensional plane
@@ -131,7 +121,6 @@ Sine wave
 Yin and Yang
 Self-similarity
 Fibonacci sequence
-Occult knowledge
 Mathematics in Nature
 Number Pi
 Euler's constant
@@ -144,9 +133,7 @@ Fourier Transform
 Restoration of the World
 Healing power
 Good outcome
-Stuck in a loop
 Creative solution
-Going back and forth
 Mindful exploration
 Favourable outcome
 Messianic Age
@@ -169,12 +156,9 @@ Point of reference
 Your belief
 Thoughts and actions
 Reflection of the soul
-Soul searching
 Student of Nature
 Positive changes
-Vast sea of answers
 Very nice
-Light codes
 Good memories
 Gold nuggets
 Bright times ahead
@@ -274,11 +258,7 @@ Cooperation
 Alignment
 Agreement
 Kabbalah
-Qabalah
-Qabbala
-Qaballa
 Geometry
-Tarot
 Permutations
 Tetragrammaton
 Perspective
@@ -358,7 +338,7 @@ Not all of the old ways are unshakeable, same as not all new paths are sustainab
 Societies change and evolve, members have to adapt
 You are shaped by your environment, you live and prosper as long as you fit
 Avoid blame shifting
-Truth is but a story
+Someone's story which isn't true can be falsely perceived as the "truth".
 Justice is not blind, but wise
 All deserve a chance to show their worth
 Question everything
@@ -367,7 +347,7 @@ Learned man has nothing but opinions
 It is what it is
 It is a thing within itself
 Light. There it is. Spoken into existence.
-Truths are but opinions
+Opinions are often mislabeled as "truths".
 Mathematics is a toolkit
 Everything has Geometry
 Time is change, Life is change
@@ -375,7 +355,7 @@ Two points define a line
 Three points define a plane
 There are no secrets from a prying mind
 A dimensionless Point is Holy, set apart from the Circle
-Ancient mysteries are the garments for Sacred Geometry
+Ancient mysteries are the garments for Sacred Geometry. Idolatry is the greatest of sins.
 Allegory is but a fancy garment, yet fools are mezmerized by candy wrappers
 Your knowledge is worthless unless it has some good practical use
 Everything is alive
@@ -395,8 +375,6 @@ You are the Pathfinder
 Allegory is never literal
 Magic is something else. The power of attention to uncover links.
 Apply knowledge for practical manifestations.
-In the beginning was the Word, and the Word was with God, and the Word was God.
-There is no beginning. There Is. Is. And it is all there ever was, is and will ever be. Agreed as One.
 Pick up the broken pieces
 Those who surrender never win
 Language is a tool
@@ -435,7 +413,6 @@ As Above so Below
 Everything is Energy
 The World to you is as you know it
 Everything is Motion
-A Fool in the Tarot deck progresses through stages of Life to complete the Cycle of the World card
 Messiah is the Peace that one day will enter the hearts of mankind
 By transforming ourselves we usher in the arrival of the Messiah
 If you don't know how to help others ... don't hurt them.
@@ -460,7 +437,7 @@ See the broader picture
 There are common truths. Focus on what unites, not divides.
 Believe in yourself
 Use your energy wisely
-Grow the spark of light within yourself
+Grow the spark of Light within yourself
 Find meaning
 Discover meaning
 Create meaning
@@ -478,6 +455,9 @@ Sometimes you have to take a leap of faith.
 Negativity is a choice
 Everything is a choice
 Those who choose temporary Comfort over Liberty deserve neither
+The Purpose of Life is not a mere matter of free choice
+Constraints define a sense of a meaningful purpose. Something free is undefined, therefore vacant.
+Absolute freedom leads only to purposelessness. So many options, yet you never make the right choice.
 Good choices lead to good outcomes
 Mindlessness is never fruitful
 You learn as you explore
@@ -528,6 +508,7 @@ Wicked minds pervert everything.
 Extraordinary challenges require extraordinary solutions.
 Your losses are limited. Once you lose your mind there is nothing to lose. Fools are reckless.
 The problem is not with the world, but within the minds.
+Even if you take their idol away, idolaters will inevitably make a new one.
 If some are unable to see it for what it is, then it is what it is.
 Don't be a burden to others. Try to see how others might perceive you from their perspective.
 One man's treasure is another man's trash.
@@ -571,7 +552,7 @@ If you are wise enough, you will be convincing enough.
 Wise are not only wise, but strong as well. Weak ones are not truly wise.
 Nothing is still Something. There is a Word for it.
 One divided by One is still One. It divided itself, yet remained undivided.
-God is hidden, yet onmipresent and omnipotent.
+God is hidden, yet omnipresent and omnipotent.
 What we do not know can be more valuable than what we know.
 Silence speaks louder than words.
 Everything is a Function. Input - Processing - Output. All three roles are One as a seamless experience.
@@ -591,47 +572,50 @@ Two oh One. Two into One, joined and separated by the nought in between.
 Dithering creates complexity with geometric patterns. Look up Black and White pixel art.
 Gateway is both an Exit and an Entrance.
 E pluribus unum. Out of many (nations), One (mankind).
+Know not believe. Where do you place the comma?
 
 # Oneness
-God is One
-I and my Father are One, meaning "agreed, on the same line".
-All is One
+There is One True God
+God is Perfect
 Body has different parts, yet all are agreed as One
 There is natural hierarchy. Consciousness steers the physical body for the benefit of all.
 Not all power is tyrannical. Wise governance is beneficial to all.
 Wisdom guides functional superstructures.
 Wisdom allows true Natural Governance.
-Laws of Nature are immutable and omnipresent.
 Everything is subject to the Natural Law.
-Everything is connected
-Interconnectedness
-Unity
-Whole
-Integrity
+Laws of Nature are immutable and omnipresent.
+The Word
 Universe
 Space
+Whole
 Integral part
-The Word
-Threefold Word
+Integrity
+Unity
+Everything is connected
+Interconnectedness
 Trinity
+Threefold Word
+Ouroboros
+Self-devouring Serpent
 Mother - Father - Child
 Past - Now - Future
 Body - Soul - World
 Author - Messenger - Message
 Artist - Ink - Canvas
 Source - Channel - Receiver
-God is Perfect
-There is One True God
-Light is the Truth
-Ouroboros
-Self-devouring Serpent
 Awareness of Unity
+In the beginning was the Word, and the Word was with God, and the Word was God.
+Creation is of the Creator, yet a separate entity.
+I and my Father are One, meaning "agreed, on the same line".
+God is One
+All is One
+There is no beginning. There Is. Is. And it is all there ever was, is and will ever be. Agreed as One.
 Yod He Vav He. All that Was, Is and Will ever Be.
-To be, or not to be, that is the question
 Awareness of God
-God separated Waters from Waters
 In the beginning
+God separated Waters from Waters
 Orphic egg
+To be, or not to be, that is the question
 
 # Easter eggs
 THE ARE EASTER EGGS. DATABASE IS NOT GLITCHING.
