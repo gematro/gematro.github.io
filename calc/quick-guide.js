@@ -522,33 +522,70 @@ function displayMsgPanel() {
 	
 	o += '<hr class="numPropSeparator">'
 
+	o += '<p class="qgNote">'
+	o += "<u><span class='qgBold3'>Wisdom</span></u> hath builded her house, she hath hewn out her seven pillars;"
+	o += '</p>'
+	o += '<p class="qgNote">'
+	o += "She hath prepared her meat, she hath mingled her wine; she hath also furnished her table."
+	o += '</p>'
+	o += '<p class="qgNote">'
+	o += "She hath sent forth her maidens, she calleth, upon the highest places of the city:"
+	o += '</p>'
+	o += '<div class="qBlockquote qgNote">'
+	o += "<u><span class='qgBold3'>’Whoso is thoughtless, let him turn in hither’</span></u>; as for him that lacketh understanding, she saith to him:"
+	o += '</div>'
+	o += '<p class="qgNote">'
+	o += "<span class='qgBold3'>’Come, eat of my bread, and drink of the wine which I have mingled.</span>"
+	o += '</p>'
+	o += '<p class="qgNote">'
+	o += "<span class='qgBold3'>Forsake all thoughtlessness, and live; and walk in the way of understanding.</span>"
+	o += '</p>'
+	o += '<p class="qgNote">'
+	o += "<span class='qgBold3'>He that correcteth a scorner getteth to himself shame, and he that reproveth a wicked man, it becometh unto him a blot.</span>"
+	o += '</p>'
+	o += '<p class="qgNote">'
+	o += "<span class='qgBold3'>Reprove not a scorner, lest he hate thee; reprove a wise man, and he will love thee.</span>"
+	o += '</p>'
+	o += '<p class="qgNote">'
+	o += "<span class='qgBold3'>Give to a wise man, and he will be yet wiser; teach a righteous man, and he will increase in learning.</span>"
+	o += '</p>'
+	o += '<p class="qgNote">'
+	o += "<span class='qgBold3'>The fear of the LORD is the beginning of wisdom, and the knowledge of the All-holy is understanding.</span>"
+	o += '</p>'
+	o += '<p class="qgNote">'
+	o += "<span class='qgBold3'>For by me thy days shall be multiplied, and the years of thy life shall be increased.</span>"
+	o += '</p>'
+	o += '<p class="qgNote">'
+	o += "<span class='qgBold3'>If thou art wise, thou art wise for thyself; And if thou scornest, thou alone shalt bear it.’</span>"
+	o += '</p>'
+	
+	o += '<hr class="numPropSeparator">'
+	
+	o += '<p class="qgNote">'
+	o += "The woman <u><span class='qgBold3'>Folly</span></u> is riotous; She is thoughtless, and knoweth nothing."
+	o += '</p>'
+	o += '<p class="qgNote">'
+	o += "And she sitteth at the door of her house, On a seat in the high places of the city,"
+	o += '</p>'
+	o += '<p class="qgNote">'
+	o += "To call to them that pass by, Who go right on their ways:"
+	o += '</p>'
+	o += '<div class="qBlockquote qgNote">'
+	o += "<u><span class='qgBold3'>’Whoso is thoughtless, let him turn in hither’</span></u>; And as for him that lacketh understanding, she saith to him:"
+	o += '</div>'
+	o += '<p class="qgNote">'
+	o += "<span class='qgBold3'>’Stolen waters are sweet, And bread eaten in secret is pleasant.’</span>"
+	o += '</p>'
+	o += '<p class="qgNote">'
+	o += "But he knoweth not that the shades are there; that her guests are in the depths of the nether-world."
+	o += '</p>'
+	
+	o += '<hr class="numPropSeparator">'
+
 	o += '<center>'
-
 	o += '<p class="qgNote">'
-	o += "Awareness of God and the environment of his Nature was rejected and replaced with illusions of artificial and ficticious societies."
+	o += "<span class='qgBold3'>Proverbs 9 (JPS 1917)</span>"
 	o += '</p>'
-	o += '<p class="qgNote">'
-	o += "In the chase of bogus ideals and idols of its own imagination mankind became detached from reality."
-	o += '</p>'
-	o += '<p class="qgNote">'
-	o += "Avarice, hunger for fame, desire to be recognized for meaningless accomplishments and mindless discoveries; these vices are the only force that sustains stillborn societies which are busy chasing their own tail."
-	o += '</p>'
-	o += '<p class="qgNote">'
-	o += "All of us are responsible for the mess we cocreated; for the mess inside our own families as well as for the discord sown between our own friends and colleagues."
-	o += '</p>'
-	o += '<p class="qgNote">'
-	o += "Fools always plant the seeds of their own demise."
-	o += '</p>'
-	o += '<p class="qgNote">'
-	o += "But why?"
-	o += '</p>'
-	o += '<p class="qgNote">'
-	o += "..."
-	o += '</p>'
-	o += '<p class="qgNote">'
-	o += "Awareness of God and the environment of his Nature was rejected and replaced with illusions of artificial and ficticious societies."
-	o += '</p>'
-
 	o += '</center>'
 	
 	o += '</div>'

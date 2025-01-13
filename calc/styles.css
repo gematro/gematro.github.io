@@ -1853,7 +1853,8 @@ body {
 	margin: auto;
 }
 .msgPanel {
-	max-height: 495px;
+	max-height: 80%;
+	max-width: 500px;
 }
 @media (max-width: 911px) { /* mobile */
 	.quickGuide, .discPanel, .msgPanel {
@@ -1868,6 +1869,17 @@ body {
 	.quickGuide {
 		width: 80% !important;
 	}
+	.msgPanel {
+		max-width: 450px;
+	}
+}
+.qBlockquote {
+	display: block;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 30px;
+	margin-inline-end: 30px;
+	unicode-bidi: isolate;
 }
 .quickGuide ul{
 	padding-inline-start: 1.25em;
