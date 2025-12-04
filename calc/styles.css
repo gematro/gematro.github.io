@@ -253,10 +253,10 @@ body {
 	height: 10px !important;
 	width: auto !important;
 }
-.gematroLogo svg path, .gitLogo svg path {
+.gematroLogo svg path, .gitLogo svg path, .discordLogo svg path {
 	fill: var(--font-white-2) !important;
 }
-.gitLogo {
+.gitLogo, .discordLogo {
 	position: absolute;
 	pointer-events: none;
 	top: 0.4em;

@@ -609,7 +609,7 @@ function displayDiscPanel() {
 	o += '<br><br>'
 	o += 'This software may contain links to external websites which are not under the control of the author of this software. The author of this software is not responsible for the contents of any linked website.'
 	o += '<br><br>'
-	o += 'The author of this software has no affiliation with other projects unless explicitly stated.'
+	o += 'The author of this software has no affiliation with other projects unless explicitly stated. All of the official social media accounts are listed <a target="_blank" href="https://github.com/gematro">here.</a>'
 	o += '</span>'
 	o += '</p>'
 	
