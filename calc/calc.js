@@ -152,7 +152,7 @@ function initCalc(defSet = false) { // run after page has finished loading
 	enableDefaultCiphers()
 	loadDefaultDatabase()
 	saveCalcSettingsLocalStorage(true) // save default settings
-	showWelcomeMessage("Join GEMATRO!")
+	//showWelcomeMessage("Join GEMATRO!")
 }
 
 function isStandaloneWebApp() {
