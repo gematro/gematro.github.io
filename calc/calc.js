@@ -1,6 +1,6 @@
 // ============================== Init ==============================
 
-var gematroVersion = '25.12.29.0' // YY.M.D.revision
+var gematroVersion = '25.12.30.0' // YY.M.D.revision
 var compactViewportWidth = 911 // viewport width threshold
 var mobileUserAgent = navigator.userAgent.match('Mobile')
 
@@ -152,7 +152,7 @@ function initCalc(defSet = false) { // run after page has finished loading
 	enableDefaultCiphers()
 	loadDefaultDatabase()
 	saveCalcSettingsLocalStorage(true) // save default settings
-	//showWelcomeMessage("Join GEMATRO!")
+	// showWelcomeMessage("Welcome to GEMATRO!")
 }
 
 function isStandaloneWebApp() {

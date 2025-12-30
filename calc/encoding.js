@@ -262,7 +262,7 @@ function encodeGematria(n_phr, encCiphValsArr, encCiphIndArr, exclude = []) {
 		// find solutions
 		for (i = 0; i < n_phr; i++) {
 			solution = encodingFindSylMatch(encCiphValsArr, encCiphIndArr)
-			solution = (optGemSubstitutionMode) ? solution.trim()+' [<a href="https://new.wordsmith.org/anagram/anagram.cgi?anagram='+solution.trim()+'&language=english&t=0&d=3&include=&exclude=&n=&m=&a=n&l=n&q=n&k=1&source=adv" target="_blank" rel="noopener noreferrer nofollow">anagram</a>]' : solution.trim()
+			solution = (optGemSubstitutionMode) ? solution.trim()+' [<a href="https://wordsmith.org/anagram/anagram.cgi?anagram='+solution.trim()+'&language=english&t=0&d=3&include=&exclude=&n=&m=&a=n&l=n&q=n&k=1&source=adv" target="_blank" rel="noopener noreferrer nofollow">anagram</a>]' : solution.trim()
 			queryResult.push(solution) // add phrase, remove spaces
 		}
 		queryResultInitial = [...queryResult] // save matches
