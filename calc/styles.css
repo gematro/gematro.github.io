@@ -1844,7 +1844,7 @@ body {
 }
 .discPanel, .msgPanel {
 	max-width: 450px;
-	max-height: 460px;
+	max-height: 465px;
 	box-sizing: border-box;
 	right: 0;
 	left: 0;
